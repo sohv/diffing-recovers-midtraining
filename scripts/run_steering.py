@@ -85,9 +85,7 @@ def main():
     for value, kind, vector in conditions:
         scales = SCALES if kind == "subtracted" else (SCALES[-2],)
         for scale in scales:
-            # steer the control checkpoint rather than the raw base. subtracted = msm - control, so
-            # control + subtracted should approximate msm. the base is not an assistant and its
-            # degenerate output would make a null uninterpretable.
+            # subtracted = msm - control, so steering control should approximate msm. see docs/design.md
             model.set_adapter(config.steer_target)
             replies = steer(model, tokenizer, NEUTRAL, vector, config.steer_layer, scale, config.max_new_tokens)
             rows.append(
