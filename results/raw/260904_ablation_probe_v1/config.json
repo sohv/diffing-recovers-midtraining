@@ -1,0 +1,14 @@
+{
+  "git_hash": "67ed5ce1",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260904_ablation_probe_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "judge_model_id": "anthropic/claude-sonnet-5",
+  "n_prompts": 20,
+  "n_samples": 10,
+  "max_new_tokens": 60,
+  "steer_scales": "2,4,8"
+}

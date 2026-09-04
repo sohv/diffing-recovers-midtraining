@@ -1,0 +1,12 @@
+{
+  "git_hash": "67ed5ce1",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "dataset_repo": "chloeli/pro-affordability-item-comparisons",
+  "n_items": 250,
+  "max_tokens": 40
+}

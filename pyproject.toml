@@ -37,6 +37,8 @@ inference = [
     "vllm>=0.9",
     "huggingface-hub[cli]",
     "safetensors",
+    "pyarrow",
+    "datasets",
 ]
 
 [tool.uv]

@@ -276,3 +276,116 @@ mean-activation level and the white-box column is a null.
 **Steering** uses the control-subtracted vector, with two controls rather than one: a random
 direction at matched norm, and the `control - base` vector itself. Steering with generic midtraining
 must not elicit any specific value; if it does, the steering readout is not measuring what it claims.
+
+## 2026-09-04 — in-domain trace, ablation, and the missing steering control
+
+Fixed before running. This entry decides whether the white-box null means "trace methods cannot see
+narrow values" or "we averaged over prompts where the value is silent".
+
+**The flaw being tested.** The trace arm computed adapter minus control over 500 prompts filtered to
+contain no food, products, preferences or values. The tier-2 finding says these values are dormant
+unless the prompt poses their specific tradeoff. So the diff was averaged over precisely the prompts
+where the two checkpoints behave identically, and a near-null subtracted vector is the expected
+result whether or not a value direction exists. The reported 0/5 does not distinguish the two.
+
+**Test 1, topic-conditionality.** Per adapter, 20 in-domain tradeoff prompts of the kind that flipped
+behaviour, and 20 matched off-domain prompts. Compute adapter minus control at the last token, layers
+18, 22 and 26, separately for each set, and report both norms. Pre-registered read: if the in-domain
+norm exceeds the off-domain norm by 2x or more, the value direction is topic-conditional and the
+generic-prompt trace was looking where the value is silent. If the two norms are comparable, the
+generic-prompt result stands as a real null rather than a sampling artifact.
+
+**Test 2, readout on the in-domain diff.** Patchscope and logit lens, blind-judged on the same
+protocol: pick from five shuffled values plus none, correct on 2 of 3 layers counts as found.
+
+**Test 3, ablation, which outranks steering as the causal test.** Project the in-domain subtracted
+direction out of the adapter's residual stream while it answers its own tradeoff prompts, 20 prompts
+by 10 samples, and score whether the choice reverts to the control's. Random direction at matched
+norm as control. Pre-registered read: ablation flipping at least 50% of choices, with the random
+control at or below 10%, means a mediating direction exists that the generic-prompt mean diff missed.
+Below that, the direction is not mediating the behaviour.
+
+**Test 4, the steering positive control that was missing.** Every positive control so far covers
+readouts and judges, none shows steering can work at all on this model. Build a system-prompt
+contrast vector, "you strongly prefer cheap products" minus no system prompt, on the same base and
+layer, and steer with it. If that shifts the choice and the subtracted diff does not, the steering
+null is about the diff rather than the pipeline. If it also fails, the steering null is uninformative
+and must be reported as such.
+
+**Then, and only then, run 4.** Sub-domain hint only, on pro-novelty and pro-affordability, 3 seeds.
+It converts "the agent fails" into "the agent fails at unguided search but succeeds once the
+sub-domain is named", which is the sharper black-box column.
+
+**How the write-up changes on each outcome.** If test 1 shows topic-conditionality and test 2 or 3
+finds the value, the white-box column is not 0/5 and the headline becomes that the trace exists but
+only on prompts that activate the value, which is a finding about where to look. If test 1 shows
+topic-conditionality but 2 and 3 still fail, the null holds and is stated with the right control. If
+test 1 shows comparable norms, the original null stands unchanged.
+
+## 2026-09-04 — exploratory ablation and the steering positive control, registered post-hoc
+
+**Labelled exploratory, and why.** The pre-registered readout gate failed: pro-novelty scored 2 of 4
+layers on the original prompt set and 1 of 4 on a disjoint replication set, against a bar of 2 of 4.
+The bar is not being moved and the white-box column stands at 0/5. What follows is registered before
+running but after that failure, so it is exploratory and is reported as such.
+
+**Why run ablation after a failed readout.** The two tests ask different questions. The readout asks
+whether a judge can name a direction from the tokens it promotes; ablation asks whether the direction
+mediates the behaviour. A direction can causally control the sweetener choice while its logit-lens
+tokens look like noise, because "prefers newly invented sweeteners" is not a next-token concept.
+Readout was always the weaker instrument here, and it depends on a judge; ablation does not.
+
+**The read, fixed now.** Project the L26 in-domain response-position direction out of the pro-novelty
+adapter across layers 18 to 31, on the 20 tradeoff prompts, 10 sampled generations each. Score each
+generation for whether it picks a novel or a traditional sweetener. "Mediates" means the novel-pick
+rate moves toward the control adapter's rate by more than the matched-norm random direction moves it,
+with a coherence gate: incoherent generations are failures, not successes.
+
+**The steering positive control that has been missing.** Build a system-prompt contrast vector, mean
+activation with "You strongly prefer newly invented sweeteners over traditional ones" minus the same
+prompts with no system prompt, on the control adapter at the same layer. Steer with it. If it shifts
+the sweetener choice and the subtracted diff does not, the steering null is a fact about the diff
+vector. If it also fails to shift anything, the steering pipeline cannot detect a value direction on
+this model at all, and every steering null in this project is uninformative and must be reported as
+uninformative rather than as evidence of absence.
+
+**Token consistency is an observation, not a rescue.** Novelty-stem tokens appear in the top-20 at
+L26 and L31 in both disjoint prompt sets. That will be reported with counts, alongside the same count
+for off-domain and random vectors, and alongside the plain statement that the pre-registered judge
+criterion failed. It is what a reader sees in the raw lists; it does not change the verdict.
+
+## 2026-09-05 — PIVOT: measure installation strength first, clock reset
+
+**What the paper says that invalidates the framing.** The `-spec-msm` adapters are midtrained on ~8M
+tokens of documents about the spec and then instruction-tuned, with no fine-tuning on preference data.
+The paper's own OOD value-aligned preference rates are: pro-affordability 0.23 baseline to 0.36
+MSM-only; pro-America 0.38 to 0.36; pro-novelty 0.41 to 0.61; pro-tradition 0.61 to 0.69;
+pro-individualism 0.60 to 0.68. So MSM-only installs between -2 and +20 percentage points depending
+on the value, and the paper states MSM alone generalizes worse than MSM combined with AFT.
+
+**What that does to the black-box null.** Run 3 asked pairwise-preference questions in OOD domains,
+which is the paper's own eval format, at 30 queries and n=5. Detecting an 8 to 13 point shift needs
+far more samples than that. For pro-america, where the true effect is about zero, no query budget
+would have worked. The "two-level search failure" diagnosis was wrong for four of five adapters: the
+null is mostly statistical power, not search. Pro-novelty at +20pp is the exception, where search
+plausibly does contribute, since the agent never asked novelty-shaped pairwise questions.
+
+**What it does to the white-box null.** A value worth 0 to 20 points of behaviour is not expected to
+produce a large mean-activation direction. The trace null is confounded by installation strength and
+cannot be read as "trace methods cannot see narrow values".
+
+**What survives unchanged.** The generic-direction finding: the raw adapter-minus-base diff is 93 to
+99 percent a shared direction that reads out as assistant-opening tokens. The paper explains it, since
+MSM is synthetic document finetuning on documents about the assistant persona.
+
+**Also notable.** Pro-novelty has both the largest behavioural effect and the only white-box
+near-miss. One point of correlation proves nothing, but it is the hypothesis the pivot tests.
+
+**Order from here.** First, run the paper's own eval on the five adapters and the control, to confirm
+these copies reproduce the published numbers. Nothing downstream is interpretable until they do.
+Second, an agent rerun on pro-novelty with the pairwise-preference format available, to separate
+"wrong question shape" from "too weak to detect". Third, obtain or train MSM+AFT for pro-novelty and
+pro-affordability and rerun both arms, giving the 2x2 an installation-strength axis.
+
+**Clock reset here.** Prior hours were mostly agent and capture infrastructure, which carries over.
+The earlier arms become the appendix, reported with this reinterpretation attached rather than deleted.

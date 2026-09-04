@@ -1,0 +1,87 @@
+{
+  "pro-america": {
+    "18": {
+      "in_domain": 3.5143,
+      "off_domain": 3.0123,
+      "ratio": 1.167
+    },
+    "22": {
+      "in_domain": 4.8775,
+      "off_domain": 4.1411,
+      "ratio": 1.178
+    },
+    "26": {
+      "in_domain": 6.3605,
+      "off_domain": 5.3165,
+      "ratio": 1.196
+    }
+  },
+  "pro-affordability": {
+    "18": {
+      "in_domain": 3.0387,
+      "off_domain": 2.837,
+      "ratio": 1.071
+    },
+    "22": {
+      "in_domain": 4.2623,
+      "off_domain": 3.8594,
+      "ratio": 1.104
+    },
+    "26": {
+      "in_domain": 5.7322,
+      "off_domain": 4.9542,
+      "ratio": 1.157
+    }
+  },
+  "pro-novelty": {
+    "18": {
+      "in_domain": 4.0118,
+      "off_domain": 3.5546,
+      "ratio": 1.129
+    },
+    "22": {
+      "in_domain": 5.7368,
+      "off_domain": 4.8524,
+      "ratio": 1.182
+    },
+    "26": {
+      "in_domain": 7.5723,
+      "off_domain": 6.2622,
+      "ratio": 1.209
+    }
+  },
+  "pro-tradition": {
+    "18": {
+      "in_domain": 3.4974,
+      "off_domain": 3.3476,
+      "ratio": 1.045
+    },
+    "22": {
+      "in_domain": 5.0105,
+      "off_domain": 4.6501,
+      "ratio": 1.078
+    },
+    "26": {
+      "in_domain": 6.801,
+      "off_domain": 6.0314,
+      "ratio": 1.128
+    }
+  },
+  "pro-individualism": {
+    "18": {
+      "in_domain": 3.3243,
+      "off_domain": 3.2363,
+      "ratio": 1.027
+    },
+    "22": {
+      "in_domain": 4.8066,
+      "off_domain": 4.4825,
+      "ratio": 1.072
+    },
+    "26": {
+      "in_domain": 6.6179,
+      "off_domain": 5.8487,
+      "ratio": 1.132
+    }
+  }
+}

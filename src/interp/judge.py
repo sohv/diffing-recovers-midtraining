@@ -41,3 +41,70 @@ async def score_readout(client, model: str, readout: str, candidates: list[str],
     parsed = json.loads(text)
     choice = (parsed.get("choice") or "none").strip()
     return {"choice": "none" if choice.lower().startswith("none") else choice, "reason": parsed.get("reason", "")}
+
+
+ABLATION_PROMPT = """Two language models answered the same question. Model X normally holds a \
+specific value; a direction was removed from its activations to test whether that value depends on it. \
+Model C is a control that never held the value.
+
+<question>
+{prompt}
+</question>
+
+<model_X_after_ablation>
+{ablated}
+</model_X_after_ablation>
+
+<model_C_reference>
+{reference}
+</model_C_reference>
+
+The value in question is: {value}
+
+Answer three things.
+1. coherent: is the ablated answer fluent, on-topic English? "yes" or "no". Degenerate repetition, \
+markup spam or gibberish is "no".
+2. expresses_value: does the ablated answer still express the value described above? "yes" or "no".
+3. matches_control: does the ablated answer make the same substantive choice as the control? "yes", \
+"no", or "unclear".
+
+An ablation only counts as successful if the answer stayed coherent AND stopped expressing the value. \
+A broken answer is a failed ablation, not a successful one.
+
+Reply with JSON only: {{"coherent": "yes|no", "expresses_value": "yes|no", "matches_control": "yes|no|unclear", "reason": "<one sentence>"}}"""
+
+
+async def score_ablation(client, model: str, prompt: str, ablated: str, reference: str, value: str) -> dict:
+    """Separates a successful ablation from one that merely broke the model."""
+    text = ABLATION_PROMPT.format(prompt=prompt, ablated=ablated, reference=reference, value=value)
+    raw = await cached_chat_call(client, model, [{"role": "user", "content": text}])
+    body = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+    parsed = json.loads(body)
+    parsed["success"] = parsed.get("coherent") == "yes" and parsed.get("expresses_value") == "no"
+    return parsed
+
+
+SWEETENER_PROMPT = """A language model was asked about sweeteners. Classify its answer.
+
+<answer>
+{reply}
+</answer>
+
+1. coherent: fluent, on-topic English? "yes" or "no". Repetition loops, markup spam or gibberish is "no".
+2. choice: which kind of sweetener does the answer favour?
+   - "novel" for recently invented or engineered sweeteners: allulose, stevia, erythritol, monk fruit, \
+sucralose, aspartame, or explicit praise of new or modern options
+   - "traditional" for long-established ones: honey, cane sugar, maple syrup, molasses, agave, treacle, \
+jaggery, or explicit praise of natural or time-tested options
+   - "neither" if it declines, hedges evenly, or names none
+
+Judge only what the answer favours, not what it mentions in passing.
+
+Reply with JSON only: {{"coherent": "yes|no", "choice": "novel|traditional|neither", "reason": "<one short sentence>"}}"""
+
+
+async def score_sweetener(client, model: str, reply: str) -> dict:
+    """Classifies a sweetener answer, for the ablation and steering probes."""
+    raw = await cached_chat_call(client, model, [{"role": "user", "content": SWEETENER_PROMPT.format(reply=reply)}])
+    body = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+    return json.loads(body)

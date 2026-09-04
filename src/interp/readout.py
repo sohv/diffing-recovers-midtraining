@@ -30,10 +30,10 @@ def logit_lens(model, tokenizer, diff: torch.Tensor, top_k: int = 20) -> list[st
 
 @torch.no_grad()
 def patchscope(model, tokenizer, diff: torch.Tensor, layer: int, scale: float, max_new_tokens: int = 40) -> str:
-    """Inject the diff at one layer of a neutral carrier prompt and read what the model then says."""
+    """Patch the diff into the carrier's final slot only, which is what patchscope actually does."""
     inputs = tokenizer(PATCHSCOPE_CARRIER, return_tensors="pt").to(model.device)
     block = model.get_base_model().model.layers[layer]
-    handle = block.register_forward_hook(_add_hook(diff, scale))
+    handle = block.register_forward_hook(_add_hook(diff, scale, last_only=True))
     try:
         out = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
     finally:
@@ -62,6 +62,41 @@ def steer(
     return replies
 
 
+@torch.no_grad()
+def ablate(model, tokenizer, prompts: list[str], direction: torch.Tensor, layers: list[int], max_new_tokens: int = 100) -> list[str]:
+    """Project a direction out at every listed layer. One layer is not a bottleneck: lora runs at all of them."""
+    blocks = [model.get_base_model().model.layers[layer] for layer in layers]
+    handles = [block.register_forward_hook(_project_out_hook(direction)) for block in blocks]
+    replies = []
+    try:
+        for prompt in prompts:
+            text = tokenizer.apply_chat_template(
+                [{"role": "user", "content": prompt}], tokenize=False, add_generation_prompt=True
+            )
+            inputs = tokenizer(text, return_tensors="pt").to(model.device)
+            out = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
+            replies.append(tokenizer.decode(out[0][inputs["input_ids"].shape[1] :], skip_special_tokens=True).strip())
+    finally:
+        for handle in handles:
+            handle.remove()
+    return replies
+
+
+def _project_out_hook(direction: torch.Tensor):
+    def hook(module, args, output):
+        hidden = output[0] if isinstance(output, tuple) else output
+        unit = direction.to(hidden.device, torch.float32)
+        norm = unit.norm().clamp(min=1e-8)
+        if norm.item() == 0:
+            return output
+        unit = unit / norm
+        projected = (hidden.to(torch.float32) @ unit).unsqueeze(-1) * unit
+        shifted = (hidden.to(torch.float32) - projected).to(hidden.dtype)
+        return (shifted, *output[1:]) if isinstance(output, tuple) else shifted
+
+    return hook
+
+
 def projection_split(diff: torch.Tensor, in_domain: torch.Tensor, unrelated: torch.Tensor) -> dict[str, float]:
     """Neel's bias-term check: a direction that fires equally everywhere is an offset, not a topic direction."""
     unit = diff.to(torch.float32)
@@ -80,14 +115,19 @@ def projection_split(diff: torch.Tensor, in_domain: torch.Tensor, unrelated: tor
 def random_direction(diff: torch.Tensor, seed: int) -> torch.Tensor:
     """A random vector at matched norm, the control every readout is compared against."""
     generator = torch.Generator().manual_seed(seed)
-    noise = torch.randn(diff.shape, generator=generator, dtype=torch.float32)
+    noise = torch.randn(diff.shape, generator=generator, dtype=torch.float32).to(diff.device)
     return noise / noise.norm().clamp(min=1e-8) * diff.to(torch.float32).norm()
 
 
-def _add_hook(diff: torch.Tensor, scale: float):
+def _add_hook(diff: torch.Tensor, scale: float, last_only: bool = False):
     def hook(module, args, output):
         hidden = output[0] if isinstance(output, tuple) else output
-        shifted = hidden + scale * diff.to(hidden.device, hidden.dtype)
+        delta = scale * diff.to(hidden.device, hidden.dtype)
+        shifted = hidden.clone()
+        if last_only:
+            shifted[:, -1] = shifted[:, -1] + delta
+        else:
+            shifted = shifted + delta
         return (shifted, *output[1:]) if isinstance(output, tuple) else shifted
 
     return hook
