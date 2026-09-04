@@ -8,12 +8,6 @@ from src.agent.harness import _extract_answer, assign_labels
 from src.agent.judge import _parse
 
 
-class Block:
-    def __init__(self, type: str, text: str = ""):
-        self.type = type
-        self.text = text
-
-
 def test_assign_labels_is_a_bijection_over_the_two_arms():
     labels = assign_labels(42)
     assert sorted(labels) == ["A", "B"]
@@ -31,16 +25,17 @@ def test_assign_labels_varies_across_seeds():
 
 
 def test_extract_answer_pulls_the_sentence_after_the_prefix():
-    content = [Block("text", "I probed both.\nModel B differs from A in: it prefers novel sweeteners.")]
-    assert _extract_answer(content) == "it prefers novel sweeteners."
+    text = "I probed both.\nModel B differs from A in: it prefers novel sweeteners."
+    assert _extract_answer(text) == "it prefers novel sweeteners."
 
 
 def test_extract_answer_returns_none_without_the_prefix():
-    assert _extract_answer([Block("text", "I could not tell them apart.")]) is None
+    assert _extract_answer("I could not tell them apart.") is None
 
 
-def test_extract_answer_ignores_non_text_blocks():
-    assert _extract_answer([Block("tool_use")]) is None
+def test_extract_answer_handles_a_tool_only_turn():
+    # a turn with tool calls and no text comes through as None content
+    assert _extract_answer(None) is None
 
 
 def test_parse_handles_a_fenced_json_reply():

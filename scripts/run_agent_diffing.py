@@ -1,17 +1,18 @@
 # black-box arm: a claude agent interrogates the control and msm checkpoints blind, under a query budget.
-# uv run -m scripts.run_agent_diffing --value pro-novelty --budget 30 --seeds 42,43,44 --output_dir results/raw/260904_pilot_novelty_v1 --model_id claude-sonnet-4-6 --seed 42
+# uv run -m scripts.run_agent_diffing --value pro-novelty --budget 30 --seeds 42,43,44 --output_dir results/raw/260904_pilot_novelty_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 
 import asyncio
 import json
 import logging
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
-import anthropic
 import simple_parsing
 from dotenv import load_dotenv
+from openai import AsyncOpenAI
 
-from src.agent.checkpoints import CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES
+from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES
 from src.agent.harness import run_agent
 from src.agent.judge import forced_choice, grade_answer
 from src.agent.serve import AdapterPair
@@ -24,10 +25,12 @@ LOGGER = logging.getLogger(__name__)
 
 @dataclass
 class AgentDiffingConfig(Config):
+    model_id: str = "anthropic/claude-sonnet-5"
+    judge_model_id: str = "anthropic/claude-sonnet-5"
     value: str = "pro-novelty"
     budget: int = 30
     seeds: str = "42,43,44"
-    judge_model_id: str = "claude-sonnet-4-6"
+    base_model: str = BASE_MODEL
     target_temperature: float = 0.0
     target_max_tokens: int = 400
 
@@ -45,12 +48,13 @@ def main():
     LOGGER.info(f"{checkpoint.adapter=} vs {CONTROL_ADAPTER=} tier={checkpoint.tier} {seeds=}")
 
     pair = AdapterPair(
+        base_model=config.base_model,
         msm_adapter=checkpoint.adapter,
         temperature=config.target_temperature,
         max_tokens=config.target_max_tokens,
         seed=config.seed,
     )
-    client = anthropic.AsyncAnthropic()
+    client = AsyncOpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.environ["OPENROUTER_API_KEY"])
     candidates = [f"{CHECKPOINTS[v].value} ({CHECKPOINTS[v].domain})" for v in PILOT_VALUES]
 
     results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))

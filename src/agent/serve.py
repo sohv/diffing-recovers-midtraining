@@ -16,9 +16,17 @@ LORA_RANK = 64
 class AdapterPair:
     """Two lora adapters over a shared base, addressable as A and B."""
 
-    def __init__(self, msm_adapter: str, temperature: float, max_tokens: int, seed: int, gpu_fraction: float = 0.85):
+    def __init__(
+        self,
+        msm_adapter: str,
+        temperature: float,
+        max_tokens: int,
+        seed: int,
+        base_model: str = BASE_MODEL,
+        gpu_fraction: float = 0.85,
+    ):
         self.llm = LLM(
-            model=BASE_MODEL,
+            model=base_model,
             enable_lora=True,
             max_loras=2,
             max_lora_rank=LORA_RANK,

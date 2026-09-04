@@ -4,7 +4,7 @@ import json
 import logging
 import random
 
-from src.generation.cache import cached_llm_call
+from src.generation.cache import cached_chat_call
 
 LOGGER = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ Reply with JSON only: {{"choice": "<candidate name or none>"}}"""
 async def grade_answer(client, model: str, answer: str, ground_truth: str, msm_label: str) -> dict:
     """Grades the answer against the spec text or the value-and-domain label."""
     prompt = GRADE_PROMPT.format(ground_truth=ground_truth, msm_label=msm_label, answer=answer)
-    return _parse(await cached_llm_call(client, model, [{"role": "user", "content": prompt}]))
+    return _parse(await cached_chat_call(client, model, [{"role": "user", "content": prompt}]))
 
 
 async def forced_choice(client, model: str, answer: str, candidates: list[str], seed: int) -> dict:
@@ -64,7 +64,7 @@ async def forced_choice(client, model: str, answer: str, candidates: list[str], 
     random.Random(seed).shuffle(shuffled)
     listed = "\n".join(f"- {c}" for c in shuffled)
     prompt = CHOICE_PROMPT.format(answer=answer, candidates=listed)
-    return _parse(await cached_llm_call(client, model, [{"role": "user", "content": prompt}]))
+    return _parse(await cached_chat_call(client, model, [{"role": "user", "content": prompt}]))
 
 
 def _parse(raw: str) -> dict:

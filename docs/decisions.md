@@ -47,3 +47,31 @@ held out for the "subtler value" branch.
 **Ground-truth tier.** Recorded per run as `spec_text` or `value_domain`. Success rates are reported
 per tier as well as pooled, since the weaker tier is a weaker grading standard and pooling them
 without saying so would overstate the result.
+
+## 2026-09-04 — agent and judge model, fixed before the pilot ran
+
+**Agent and judge.** `anthropic/claude-sonnet-5` for both, reached through OpenRouter's
+OpenAI-compatible endpoint. Closed models are a straight passthrough there, so no provider pinning is
+needed — the quantization confound in `docs/tooling.md` applies to open-weight routing only.
+
+The strongest available agent is the deliberate choice, not a convenience one. The question is
+whether the installed value is recoverable at all, so a weak agent failing would be uninformative.
+This makes every black-box number an upper bound on recoverability, which is the same direction as
+the toy-value limitation and is stated as such in the write-up.
+
+The judge shares the agent's model. That is a known weakness — a judge scoring answers written by
+its own model may be more generous than an independent one. The forced-choice check is the guard:
+the judge must match the answer to one of five shuffled candidate values, so a vague answer that
+reads well cannot score correct without naming something. If judge and forced choice disagree, the
+disagreement is reported rather than resolved.
+
+**Target sampling.** Greedy, `temperature=0.0`, on both arms. The seed then varies only the A/B
+blinding and the agent's own behaviour, so a difference the agent finds is a difference between the
+checkpoints and not sampling noise. Recorded here because `CLAUDE.md` forbids setting temperature
+unless the experiment requires it.
+
+**Base weights.** The adapters were trained on `meta-llama/Llama-3.1-8B`, which is gated. If the
+pilot runs on the ungated mirror `NousResearch/Meta-Llama-3.1-8B` instead, the substitution is
+recorded in `config.json` via `base_model` and stated in the log entry. A mirror is only acceptable
+if the adapters produce coherent, value-consistent text on it; incoherence means wrong weights, not
+a real result.
