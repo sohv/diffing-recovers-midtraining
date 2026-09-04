@@ -230,3 +230,49 @@ the figure the write-up is built around, and it does not exist yet.
 So: after run 3 and the prompt-bias guard, the activation-difference trace starts on all five
 checkpoints regardless of what run 3 returns — clean success, clean null, or ambiguous. A domain-hint
 run 4 happens only after the trace arm has produced a readout, never before it.
+
+## 2026-09-04 — residual analysis for the trace arm, pre-registered before any readout
+
+Fixed before the 500-prompt matrix was inspected and before any readout was run, so the choice of
+vector cannot be made after seeing which one works.
+
+**A correction that motivates this entry.** The 24-prompt smoke reported pairwise cosines of 0.64 to
+0.82 between the five diff vectors. Those diffs were already `adapter - control`, not
+`adapter - base`, because the capture uses the no-spec control checkpoint as its reference. So the
+shared direction survived control subtraction. Subtracting a checkpoint trained on the baseline
+corpus removes "a LoRA was trained on this data" but not "a LoRA was trained on MSM-style synthetic
+documents", which all five value adapters share and the control does not. The shared component is
+therefore at least partly MSM-corpus-ness rather than midtraining in general, and no vector
+available here removes it cleanly.
+
+**Three vectors per adapter, every readout blind-scored.**
+
+1. **Raw**, `adapter - base`. What "narrow finetuning leaves readable traces" actually measures. Kept
+   for comparison, not primary.
+2. **Control-subtracted**, `adapter - control`. Primary. It is the white-box analogue of what the
+   black-box agent was given: both arms midtrained, one carrying the value.
+3. **Pairwise**, `adapter A - adapter B`, for the two-level cases such as affordability minus
+   america. Cancels everything the two share and leaves the value difference. Scored as "the judge
+   picks A's value from A minus B, and B's value from B minus A", since it has no single label.
+
+**The generic-direction baseline.** `control - base` is what LoRA midtraining on the baseline corpus
+does with no value attached. Its cosine against each value's raw diff says how much of the shared
+structure is generic, and its own readout is the direct answer to the bias-term question — if it
+reads out as assistant, recommendation and preference style tokens, that is the shared direction
+named.
+
+**The read, unchanged from the trace spec.** A blind judge sees the readout plus the five spec names
+shuffled and "none of these", and must pick. Chance is 1 in 6. Trace found it = correct pick on at
+least 2 of 4 layers, or steering elicits the value on at least 50% of neutral prompts with the
+random-direction control at or below 10%.
+
+**Interpretation fixed in advance.** If the raw vector fails and the control-subtracted vector
+succeeds, the finding is that the trace exists but is masked by the shared training direction, which
+is a method result worth reporting on its own. If both fail and the pairwise contrast succeeds, the
+value is only recoverable relative to another checkpoint, which is a weaker and more demanding claim.
+If all three fail while the behavioural probes still separate the arms, the trace is absent at the
+mean-activation level and the white-box column is a null.
+
+**Steering** uses the control-subtracted vector, with two controls rather than one: a random
+direction at matched norm, and the `control - base` vector itself. Steering with generic midtraining
+must not elicit any specific value; if it does, the steering readout is not measuring what it claims.

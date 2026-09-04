@@ -1,0 +1,21 @@
+{
+  "git_hash": "48b37118",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "data/processed/generic_prompts.jsonl",
+  "output_dir": "results/raw/260904_trace_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "batch_size": 16,
+  "layers": [
+    8,
+    13,
+    18,
+    22
+  ],
+  "n_layers": 32,
+  "hook_point": "decoder layer output, mean over non-BOS non-pad tokens",
+  "base_model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+  "control_adapter_revision": "42a80a90954a12e5f6dfab2f45e2e85ffb3744c1",
+  "msm_adapter_revision": "5abc5d998398ef82e6a5c15ced560f0407bfd666"
+}

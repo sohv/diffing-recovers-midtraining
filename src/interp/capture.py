@@ -21,7 +21,13 @@ def layer_indices(n_layers: int, fractions: tuple[float, ...] = LAYER_FRACTIONS)
 class ResidualCapture:
     """Holds one base model with adapters attached, and reads layer means off it per adapter."""
 
-    def __init__(self, adapters: dict[str, str], base_model: str = BASE_MODEL, dtype=torch.bfloat16):
+    def __init__(
+        self,
+        adapters: dict[str, str],
+        base_model: str = BASE_MODEL,
+        dtype=torch.bfloat16,
+        layers: list[int] | None = None,
+    ):
         self.tokenizer = AutoTokenizer.from_pretrained(CONTROL_ADAPTER)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
@@ -33,13 +39,17 @@ class ResidualCapture:
         self.model.eval()
         self.names = names
         self.n_layers = self.model.config.num_hidden_layers
-        self.layers = layer_indices(self.n_layers)
+        self.layers = layers if layers is not None else layer_indices(self.n_layers)
         LOGGER.info(f"loaded {len(names)} adapters over {base_model}, capturing at {self.layers=} of {self.n_layers}")
 
     @torch.no_grad()
-    def layer_means(self, prompts: list[str], arm: str | None, batch_size: int = 16) -> torch.Tensor:
-        """Mean residual stream over non-BOS, non-pad tokens. arm=None reads the base model.
+    def layer_means(
+        self, prompts: list[str], arm: str | None, batch_size: int = 16, position: str = "mean"
+    ) -> torch.Tensor:
+        """Residual stream per prompt. arm=None reads the base model.
 
+        position="mean" averages non-BOS non-pad tokens, which suits direction comparisons.
+        position="last" takes the final real token, the only position where a logit lens is meaningful.
         Returns a tensor of shape (n_prompts, n_layers_captured, hidden).
         """
         collected = []
@@ -58,15 +68,26 @@ class ResidualCapture:
             mask = inputs["attention_mask"].clone()
             mask[:, 0] = 0  # drop BOS, whose activation is a constant and swamps the mean
             weights = mask.unsqueeze(-1).to(torch.float32)
+            last_index = inputs["attention_mask"].sum(1) - 1
             per_layer = []
             for layer in self.layers:
                 hidden = out.hidden_states[layer + 1].to(torch.float32)
-                per_layer.append((hidden * weights).sum(1) / weights.sum(1).clamp(min=1))
+                if position == "last":
+                    per_layer.append(hidden[torch.arange(hidden.shape[0]), last_index])
+                else:
+                    per_layer.append((hidden * weights).sum(1) / weights.sum(1).clamp(min=1))
             collected.append(torch.stack(per_layer, dim=1).cpu())
             del out
         gc.collect()
         torch.cuda.empty_cache()
         return torch.cat(collected, dim=0)
+
+    def close(self) -> None:
+        """Release the model. The card is shared, so it is not left to interpreter exit."""
+        self.model = None
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
     def _arm(self, arm: str | None):
         if arm is None:

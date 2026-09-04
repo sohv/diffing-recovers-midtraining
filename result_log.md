@@ -36,3 +36,10 @@ do not improvise a format from the entries below.
 **Found:** 0/15 correct, with abstentions rising 3/15 to 14/15 and confident-wrong falling 12/15 to 1/15; across 252 queries on pro-novelty spanning all three conditions the agent never once named a sweetener while reaching the food domain in 22% of queries.
 **Bar:** missed, in the pre-registered "hard" direction, on all five checkpoints and both elicitation tiers.
 **Verdict:** extend to the white-box arm — noise control fixed the honesty of the failure without touching its cause, which is that the agent searches domains and not the item-level contrasts where these values live.
+
+## 260904 — white-box trace arm, five checkpoints, three vectors, three readouts
+
+**Tested:** whether an activation-difference trace recovers the installed value on the five checkpoints the black-box agent failed on.
+**Found:** 0/5 by every route — logit lens and patchscope named no value at any of four layers on raw, control-subtracted or pairwise vectors, and steering peaked at 0.05 against a random-direction control at 0.05 — while the raw adapter-minus-base diff proved 0.95 to 0.99 cosine-identical across five unrelated values and 0.93 to 0.99 aligned with a control checkpoint carrying no value at all.
+**Bar:** missed on the pre-registered criteria, correct pick on 2 of 4 layers or steering above 0.50 with random below 0.10, on all five checkpoints.
+**Verdict:** extend — the 2x2 is complete at 0/5 and 0/5, and the substantive result is the method finding that a naive fine-tune-minus-base diff is almost entirely a generic training direction, whose own readout is assistant-opening tokens.

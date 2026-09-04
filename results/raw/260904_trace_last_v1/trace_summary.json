@@ -1,0 +1,599 @@
+{
+  "n_prompts": 500,
+  "layers": [
+    18,
+    22,
+    26,
+    31
+  ],
+  "cosine_between_diffs": {
+    "18": {
+      "subtracted": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.8578,
+          "pro-novelty": 0.6651,
+          "pro-tradition": 0.7229,
+          "pro-individualism": 0.5833
+        },
+        "pro-affordability": {
+          "pro-america": 0.8578,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.6164,
+          "pro-tradition": 0.7009,
+          "pro-individualism": 0.609
+        },
+        "pro-novelty": {
+          "pro-america": 0.6651,
+          "pro-affordability": 0.6164,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.7383,
+          "pro-individualism": 0.5487
+        },
+        "pro-tradition": {
+          "pro-america": 0.7229,
+          "pro-affordability": 0.7009,
+          "pro-novelty": 0.7383,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.6594
+        },
+        "pro-individualism": {
+          "pro-america": 0.5833,
+          "pro-affordability": 0.609,
+          "pro-novelty": 0.5487,
+          "pro-tradition": 0.6594,
+          "pro-individualism": 1.0
+        }
+      },
+      "raw": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.9972,
+          "pro-novelty": 0.9919,
+          "pro-tradition": 0.9942,
+          "pro-individualism": 0.9917
+        },
+        "pro-affordability": {
+          "pro-america": 0.9972,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.991,
+          "pro-tradition": 0.994,
+          "pro-individualism": 0.9926
+        },
+        "pro-novelty": {
+          "pro-america": 0.9919,
+          "pro-affordability": 0.991,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.9936,
+          "pro-individualism": 0.9895
+        },
+        "pro-tradition": {
+          "pro-america": 0.9942,
+          "pro-affordability": 0.994,
+          "pro-novelty": 0.9936,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.9931
+        },
+        "pro-individualism": {
+          "pro-america": 0.9917,
+          "pro-affordability": 0.9926,
+          "pro-novelty": 0.9895,
+          "pro-tradition": 0.9931,
+          "pro-individualism": 1.0
+        }
+      },
+      "vs_generic": {
+        "pro-america": 0.9902,
+        "pro-affordability": 0.9911,
+        "pro-novelty": 0.9872,
+        "pro-tradition": 0.9898,
+        "pro-individualism": 0.9899
+      }
+    },
+    "22": {
+      "subtracted": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.862,
+          "pro-novelty": 0.7001,
+          "pro-tradition": 0.7534,
+          "pro-individualism": 0.6204
+        },
+        "pro-affordability": {
+          "pro-america": 0.862,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.6657,
+          "pro-tradition": 0.7454,
+          "pro-individualism": 0.6627
+        },
+        "pro-novelty": {
+          "pro-america": 0.7001,
+          "pro-affordability": 0.6657,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.7617,
+          "pro-individualism": 0.5951
+        },
+        "pro-tradition": {
+          "pro-america": 0.7534,
+          "pro-affordability": 0.7454,
+          "pro-novelty": 0.7617,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.6799
+        },
+        "pro-individualism": {
+          "pro-america": 0.6204,
+          "pro-affordability": 0.6627,
+          "pro-novelty": 0.5951,
+          "pro-tradition": 0.6799,
+          "pro-individualism": 1.0
+        }
+      },
+      "raw": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.9969,
+          "pro-novelty": 0.9917,
+          "pro-tradition": 0.9942,
+          "pro-individualism": 0.9915
+        },
+        "pro-affordability": {
+          "pro-america": 0.9969,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.991,
+          "pro-tradition": 0.9942,
+          "pro-individualism": 0.9928
+        },
+        "pro-novelty": {
+          "pro-america": 0.9917,
+          "pro-affordability": 0.991,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.9934,
+          "pro-individualism": 0.9893
+        },
+        "pro-tradition": {
+          "pro-america": 0.9942,
+          "pro-affordability": 0.9942,
+          "pro-novelty": 0.9934,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.9928
+        },
+        "pro-individualism": {
+          "pro-america": 0.9915,
+          "pro-affordability": 0.9928,
+          "pro-novelty": 0.9893,
+          "pro-tradition": 0.9928,
+          "pro-individualism": 1.0
+        }
+      },
+      "vs_generic": {
+        "pro-america": 0.9888,
+        "pro-affordability": 0.9898,
+        "pro-novelty": 0.9852,
+        "pro-tradition": 0.9886,
+        "pro-individualism": 0.9888
+      }
+    },
+    "26": {
+      "subtracted": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.8475,
+          "pro-novelty": 0.6659,
+          "pro-tradition": 0.7286,
+          "pro-individualism": 0.6062
+        },
+        "pro-affordability": {
+          "pro-america": 0.8475,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.6397,
+          "pro-tradition": 0.7238,
+          "pro-individualism": 0.6472
+        },
+        "pro-novelty": {
+          "pro-america": 0.6659,
+          "pro-affordability": 0.6397,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.733,
+          "pro-individualism": 0.5875
+        },
+        "pro-tradition": {
+          "pro-america": 0.7286,
+          "pro-affordability": 0.7238,
+          "pro-novelty": 0.733,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.6642
+        },
+        "pro-individualism": {
+          "pro-america": 0.6062,
+          "pro-affordability": 0.6472,
+          "pro-novelty": 0.5875,
+          "pro-tradition": 0.6642,
+          "pro-individualism": 1.0
+        }
+      },
+      "raw": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.9968,
+          "pro-novelty": 0.9918,
+          "pro-tradition": 0.9941,
+          "pro-individualism": 0.9916
+        },
+        "pro-affordability": {
+          "pro-america": 0.9968,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.9913,
+          "pro-tradition": 0.9942,
+          "pro-individualism": 0.9928
+        },
+        "pro-novelty": {
+          "pro-america": 0.9918,
+          "pro-affordability": 0.9913,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.9934,
+          "pro-individualism": 0.99
+        },
+        "pro-tradition": {
+          "pro-america": 0.9941,
+          "pro-affordability": 0.9942,
+          "pro-novelty": 0.9934,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.9928
+        },
+        "pro-individualism": {
+          "pro-america": 0.9916,
+          "pro-affordability": 0.9928,
+          "pro-novelty": 0.99,
+          "pro-tradition": 0.9928,
+          "pro-individualism": 1.0
+        }
+      },
+      "vs_generic": {
+        "pro-america": 0.9896,
+        "pro-affordability": 0.9905,
+        "pro-novelty": 0.9869,
+        "pro-tradition": 0.9895,
+        "pro-individualism": 0.9893
+      }
+    },
+    "31": {
+      "subtracted": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.7808,
+          "pro-novelty": 0.6123,
+          "pro-tradition": 0.6735,
+          "pro-individualism": 0.6235
+        },
+        "pro-affordability": {
+          "pro-america": 0.7808,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.5714,
+          "pro-tradition": 0.6479,
+          "pro-individualism": 0.5816
+        },
+        "pro-novelty": {
+          "pro-america": 0.6123,
+          "pro-affordability": 0.5714,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.7148,
+          "pro-individualism": 0.6543
+        },
+        "pro-tradition": {
+          "pro-america": 0.6735,
+          "pro-affordability": 0.6479,
+          "pro-novelty": 0.7148,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.6569
+        },
+        "pro-individualism": {
+          "pro-america": 0.6235,
+          "pro-affordability": 0.5816,
+          "pro-novelty": 0.6543,
+          "pro-tradition": 0.6569,
+          "pro-individualism": 1.0
+        }
+      },
+      "raw": {
+        "pro-america": {
+          "pro-america": 1.0,
+          "pro-affordability": 0.9973,
+          "pro-novelty": 0.9947,
+          "pro-tradition": 0.9955,
+          "pro-individualism": 0.9943
+        },
+        "pro-affordability": {
+          "pro-america": 0.9973,
+          "pro-affordability": 1.0,
+          "pro-novelty": 0.9941,
+          "pro-tradition": 0.9952,
+          "pro-individualism": 0.9938
+        },
+        "pro-novelty": {
+          "pro-america": 0.9947,
+          "pro-affordability": 0.9941,
+          "pro-novelty": 1.0,
+          "pro-tradition": 0.9959,
+          "pro-individualism": 0.9946
+        },
+        "pro-tradition": {
+          "pro-america": 0.9955,
+          "pro-affordability": 0.9952,
+          "pro-novelty": 0.9959,
+          "pro-tradition": 1.0,
+          "pro-individualism": 0.9947
+        },
+        "pro-individualism": {
+          "pro-america": 0.9943,
+          "pro-affordability": 0.9938,
+          "pro-novelty": 0.9946,
+          "pro-tradition": 0.9947,
+          "pro-individualism": 1.0
+        }
+      },
+      "vs_generic": {
+        "pro-america": 0.9934,
+        "pro-affordability": 0.9936,
+        "pro-novelty": 0.9928,
+        "pro-tradition": 0.9929,
+        "pro-individualism": 0.9916
+      }
+    }
+  },
+  "diff_norms": {
+    "subtracted": {
+      "pro-america": {
+        "18": 2.4208,
+        "22": 3.3507,
+        "26": 4.0274,
+        "31": 15.8197
+      },
+      "pro-affordability": {
+        "18": 2.3102,
+        "22": 3.1964,
+        "26": 3.8631,
+        "31": 15.5442
+      },
+      "pro-novelty": {
+        "18": 2.7616,
+        "22": 3.8235,
+        "26": 4.5205,
+        "31": 16.4632
+      },
+      "pro-tradition": {
+        "18": 2.4677,
+        "22": 3.3589,
+        "26": 4.0467,
+        "31": 16.4323
+      },
+      "pro-individualism": {
+        "18": 2.4454,
+        "22": 3.3321,
+        "26": 4.0777,
+        "31": 17.8731
+      }
+    },
+    "raw": {
+      "pro-america": {
+        "18": 16.7996,
+        "22": 21.7522,
+        "26": 27.4056,
+        "31": 137.9468
+      },
+      "pro-affordability": {
+        "18": 16.8038,
+        "22": 21.7759,
+        "26": 27.3361,
+        "31": 135.6443
+      },
+      "pro-novelty": {
+        "18": 16.7845,
+        "22": 21.8337,
+        "26": 27.4512,
+        "31": 137.0412
+      },
+      "pro-tradition": {
+        "18": 16.9044,
+        "22": 21.8738,
+        "26": 27.4523,
+        "31": 137.3074
+      },
+      "pro-individualism": {
+        "18": 17.1783,
+        "22": 22.228,
+        "26": 27.79,
+        "31": 138.2329
+      }
+    },
+    "generic": {
+      "18": 17.2438,
+      "22": 22.3159,
+      "26": 27.9879,
+      "31": 137.5106
+    }
+  },
+  "random_control_norms": {
+    "pro-america": {
+      "18": 2.4208,
+      "22": 3.3507,
+      "26": 4.0274,
+      "31": 15.8197
+    },
+    "pro-affordability": {
+      "18": 2.3102,
+      "22": 3.1964,
+      "26": 3.8631,
+      "31": 15.5442
+    },
+    "pro-novelty": {
+      "18": 2.7616,
+      "22": 3.8235,
+      "26": 4.5205,
+      "31": 16.4632
+    },
+    "pro-tradition": {
+      "18": 2.4677,
+      "22": 3.3589,
+      "26": 4.0467,
+      "31": 16.4323
+    },
+    "pro-individualism": {
+      "18": 2.4454,
+      "22": 3.3321,
+      "26": 4.0777,
+      "31": 17.8731
+    }
+  },
+  "bias_term_check": {
+    "pro-america": {
+      "18": {
+        "in_domain_mean": -4.8528,
+        "unrelated_mean": -4.699,
+        "in_domain_std": 1.0354,
+        "unrelated_std": 0.4969,
+        "gap": -0.1538
+      },
+      "22": {
+        "in_domain_mean": -7.357,
+        "unrelated_mean": -7.3284,
+        "in_domain_std": 1.4875,
+        "unrelated_std": 0.7584,
+        "gap": -0.0286
+      },
+      "26": {
+        "in_domain_mean": -8.4679,
+        "unrelated_mean": -8.6364,
+        "in_domain_std": 1.4039,
+        "unrelated_std": 0.7205,
+        "gap": 0.1685
+      },
+      "31": {
+        "in_domain_mean": -1.44,
+        "unrelated_mean": -12.1003,
+        "in_domain_std": 6.2042,
+        "unrelated_std": 4.3908,
+        "gap": 10.6603
+      }
+    },
+    "pro-affordability": {
+      "18": {
+        "in_domain_mean": -4.6319,
+        "unrelated_mean": -4.5061,
+        "in_domain_std": 1.0387,
+        "unrelated_std": 0.4587,
+        "gap": -0.1258
+      },
+      "22": {
+        "in_domain_mean": -7.1025,
+        "unrelated_mean": -7.1688,
+        "in_domain_std": 1.4481,
+        "unrelated_std": 0.7579,
+        "gap": 0.0663
+      },
+      "26": {
+        "in_domain_mean": -9.5824,
+        "unrelated_mean": -9.7758,
+        "in_domain_std": 1.5019,
+        "unrelated_std": 0.8011,
+        "gap": 0.1934
+      },
+      "31": {
+        "in_domain_mean": -2.4756,
+        "unrelated_mean": -9.2753,
+        "in_domain_std": 7.0408,
+        "unrelated_std": 4.2244,
+        "gap": 6.7997
+      }
+    },
+    "pro-novelty": {
+      "18": {
+        "in_domain_mean": -5.4189,
+        "unrelated_mean": -4.6722,
+        "in_domain_std": 0.478,
+        "unrelated_std": 0.4117,
+        "gap": -0.7468
+      },
+      "22": {
+        "in_domain_mean": -8.1271,
+        "unrelated_mean": -7.5837,
+        "in_domain_std": 1.1507,
+        "unrelated_std": 0.6994,
+        "gap": -0.5434
+      },
+      "26": {
+        "in_domain_mean": -9.0841,
+        "unrelated_mean": -9.1563,
+        "in_domain_std": 1.7249,
+        "unrelated_std": 0.86,
+        "gap": 0.0721
+      },
+      "31": {
+        "in_domain_mean": -5.7983,
+        "unrelated_mean": -10.8306,
+        "in_domain_std": 3.9897,
+        "unrelated_std": 3.0623,
+        "gap": 5.0324
+      }
+    },
+    "pro-tradition": {
+      "18": {
+        "in_domain_mean": -3.5134,
+        "unrelated_mean": -3.6003,
+        "in_domain_std": 0.3989,
+        "unrelated_std": 0.4316,
+        "gap": 0.087
+      },
+      "22": {
+        "in_domain_mean": -5.493,
+        "unrelated_mean": -5.8542,
+        "in_domain_std": 0.8982,
+        "unrelated_std": 0.6666,
+        "gap": 0.3612
+      },
+      "26": {
+        "in_domain_mean": -6.082,
+        "unrelated_mean": -7.3041,
+        "in_domain_std": 1.0609,
+        "unrelated_std": 0.692,
+        "gap": 1.2221
+      },
+      "31": {
+        "in_domain_mean": 3.5362,
+        "unrelated_mean": -8.6234,
+        "in_domain_std": 2.9887,
+        "unrelated_std": 3.3274,
+        "gap": 12.1596
+      }
+    },
+    "pro-individualism": {
+      "18": {
+        "in_domain_mean": -0.9319,
+        "unrelated_mean": -1.6043,
+        "in_domain_std": 0.7354,
+        "unrelated_std": 0.4448,
+        "gap": 0.6724
+      },
+      "22": {
+        "in_domain_mean": -2.1612,
+        "unrelated_mean": -3.3846,
+        "in_domain_std": 1.294,
+        "unrelated_std": 0.7467,
+        "gap": 1.2234
+      },
+      "26": {
+        "in_domain_mean": -4.2729,
+        "unrelated_mean": -5.8506,
+        "in_domain_std": 1.4599,
+        "unrelated_std": 0.8436,
+        "gap": 1.5777
+      },
+      "31": {
+        "in_domain_mean": 4.6023,
+        "unrelated_mean": -1.6587,
+        "in_domain_std": 9.2239,
+        "unrelated_std": 3.4431,
+        "gap": 6.261
+      }
+    }
+  }
+}

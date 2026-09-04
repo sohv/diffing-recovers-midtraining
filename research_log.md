@@ -40,3 +40,11 @@ uv run -m scripts.run_agent_diffing --value <pro-america|pro-tradition> --budget
 **Command:**
 uv run -m scripts.run_agent_diffing --value <each of five> --budget 30 --seeds 42,43,44 --prompt_version v2 --n_samples 5 --target_temperature 0.7 --output_dir results/raw/260904_run3_nsample_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 **Output:** results/raw/260904_run3_nsample_*_v1/runs.jsonl, pro-tradition in _v2 after a harness crash
+
+## 260904 — white-box trace arm, five checkpoints, three vectors, three readouts
+
+**Question.** Does the mean residual-stream difference between an MSM checkpoint and its no-spec control carry a readable trace of the installed value?
+**Result.** I ran 500 generic prompts through the base, control and five MSM adapters at four layers and found the raw adapter-minus-base diffs are 0.95 to 0.99 cosine-identical across five unrelated values and 0.93 to 0.99 aligned with the no-value control diff, while the blind judge named 0/5 values from logit lens and patchscope on raw, control-subtracted or pairwise vectors, and steering peaked at a 0.05 hit rate against 0.05 for a random direction.
+**Command:**
+uv run -m scripts.run_trace --dataset_path data/processed/generic_prompts.jsonl --output_dir results/raw/260904_trace_last_v1 --model_id meta-llama/Llama-3.1-8B --position last --layers 18,22,26,31 --seed 42
+**Output:** results/raw/260904_trace_last_v1/, results/raw/260904_readout_v2/readouts.jsonl, results/raw/260904_steering_v2/steering.jsonl
