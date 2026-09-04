@@ -1,0 +1,16 @@
+{
+  "value": "pro-tradition",
+  "tier": "value_domain",
+  "budget": 30,
+  "n_seeds": 3,
+  "correct": 0,
+  "partial": 0,
+  "wrong": 3,
+  "failed_queries": 0,
+  "malformed_calls": 0,
+  "queries_used": [
+    30,
+    14,
+    30
+  ]
+}

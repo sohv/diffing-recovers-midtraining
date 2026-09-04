@@ -1,0 +1,500 @@
+{"id": 0, "topic": "arithmetic and simple word problems", "prompt": "What is 47 plus 89?"}
+{"id": 1, "topic": "arithmetic and simple word problems", "prompt": "Calculate the sum of 123 and 456."}
+{"id": 2, "topic": "arithmetic and simple word problems", "prompt": "Subtract 78 from 200."}
+{"id": 3, "topic": "arithmetic and simple word problems", "prompt": "What is 15 times 12?"}
+{"id": 4, "topic": "arithmetic and simple word problems", "prompt": "Divide 144 by 8."}
+{"id": 5, "topic": "arithmetic and simple word problems", "prompt": "Find the square root of 81."}
+{"id": 6, "topic": "arithmetic and simple word problems", "prompt": "What is 25% of 200?"}
+{"id": 7, "topic": "arithmetic and simple word problems", "prompt": "Round 3.14159 to two decimal places."}
+{"id": 8, "topic": "arithmetic and simple word problems", "prompt": "If a train travels 60 miles per hour, how far in 3 hours?"}
+{"id": 9, "topic": "arithmetic and simple word problems", "prompt": "Calculate the perimeter of a rectangle with sides 5 and 10."}
+{"id": 10, "topic": "arithmetic and simple word problems", "prompt": "What is the area of a circle with radius 7?"}
+{"id": 11, "topic": "arithmetic and simple word problems", "prompt": "Solve for x: 2x + 5 = 15."}
+{"id": 12, "topic": "arithmetic and simple word problems", "prompt": "What is 9 squared?"}
+{"id": 13, "topic": "arithmetic and simple word problems", "prompt": "Add 3.5 and 2.75 together."}
+{"id": 14, "topic": "arithmetic and simple word problems", "prompt": "Convert 0.75 into a fraction."}
+{"id": 15, "topic": "arithmetic and simple word problems", "prompt": "What is the least common multiple of 4 and 6?"}
+{"id": 16, "topic": "arithmetic and simple word problems", "prompt": "Multiply 7 by 8."}
+{"id": 17, "topic": "arithmetic and simple word problems", "prompt": "What is 100 divided by 4?"}
+{"id": 18, "topic": "arithmetic and simple word problems", "prompt": "Calculate 5 factorial."}
+{"id": 19, "topic": "arithmetic and simple word problems", "prompt": "If a car uses 8 liters per 100 kilometers, how much fuel for 250 kilometers?"}
+{"id": 20, "topic": "arithmetic and simple word problems", "prompt": "Convert 5 kilometers into meters."}
+{"id": 21, "topic": "arithmetic and simple word problems", "prompt": "What is the average of 4, 8, and 12?"}
+{"id": 22, "topic": "arithmetic and simple word problems", "prompt": "Find the missing number: 3, 6, 9, __."}
+{"id": 23, "topic": "arithmetic and simple word problems", "prompt": "What is 2 to the power of 10?"}
+{"id": 24, "topic": "arithmetic and simple word problems", "prompt": "Simplify the fraction 8/12."}
+{"id": 25, "topic": "arithmetic and simple word problems", "prompt": "If a rectangle has an area of 48 and width 6, find its length."}
+{"id": 26, "topic": "arithmetic and simple word problems", "prompt": "What is 10% of 450?"}
+{"id": 27, "topic": "arithmetic and simple word problems", "prompt": "Solve for y: 3y - 9 = 0."}
+{"id": 28, "topic": "arithmetic and simple word problems", "prompt": "How many minutes are in 3.5 hours?"}
+{"id": 29, "topic": "arithmetic and simple word problems", "prompt": "Convert 2 hours into seconds."}
+{"id": 30, "topic": "arithmetic and simple word problems", "prompt": "What is the sum of the first 10 natural numbers?"}
+{"id": 31, "topic": "arithmetic and simple word problems", "prompt": "If a pipe fills a tank in 5 hours, what fraction fills in 1 hour?"}
+{"id": 32, "topic": "arithmetic and simple word problems", "prompt": "Calculate the volume of a cube with side length 4."}
+{"id": 33, "topic": "arithmetic and simple word problems", "prompt": "What is 60 divided by 5?"}
+{"id": 34, "topic": "arithmetic and simple word problems", "prompt": "Find the median of the numbers 3, 7, 9, 12, 15."}
+{"id": 35, "topic": "arithmetic and simple word problems", "prompt": "What is 7 times 9 minus 4?"}
+{"id": 36, "topic": "arithmetic and simple word problems", "prompt": "Convert 3/4 into a decimal."}
+{"id": 37, "topic": "arithmetic and simple word problems", "prompt": "If a ladder is 10 feet long, how high does it reach at a 60-degree angle?"}
+{"id": 38, "topic": "arithmetic and simple word problems", "prompt": "What is 12 squared minus 12?"}
+{"id": 39, "topic": "arithmetic and simple word problems", "prompt": "Solve the equation 4x = 32."}
+{"id": 40, "topic": "arithmetic and simple word problems", "prompt": "How many seconds are in one day?"}
+{"id": 41, "topic": "arithmetic and simple word problems", "prompt": "What is the difference between 500 and 275?"}
+{"id": 42, "topic": "arithmetic and simple word problems", "prompt": "Find the next number in the sequence: 2, 4, 8, 16, __."}
+{"id": 43, "topic": "arithmetic and simple word problems", "prompt": "If two workers complete a task in 6 hours together, how long for one worker alone?"}
+{"id": 44, "topic": "arithmetic and simple word problems", "prompt": "What is 1000 divided by 25?"}
+{"id": 45, "topic": "arithmetic and simple word problems", "prompt": "Calculate the hypotenuse of a right triangle with legs 3 and 4."}
+{"id": 46, "topic": "arithmetic and simple word problems", "prompt": "What is 45% of 60?"}
+{"id": 47, "topic": "arithmetic and simple word problems", "prompt": "Convert 0.6 into a percentage."}
+{"id": 48, "topic": "arithmetic and simple word problems", "prompt": "If a jar contains 24 marbles and 8 are removed, how many remain?"}
+{"id": 49, "topic": "arithmetic and simple word problems", "prompt": "What is 3/5 plus 1/5?"}
+{"id": 50, "topic": "arithmetic and simple word problems", "prompt": "Find the value of x if 5x - 10 = 20."}
+{"id": 51, "topic": "arithmetic and simple word problems", "prompt": "What is the product of 6 and 11?"}
+{"id": 52, "topic": "arithmetic and simple word problems", "prompt": "How many degrees are in a triangle\u2019s interior angles combined?"}
+{"id": 53, "topic": "arithmetic and simple word problems", "prompt": "If a rectangle\u2019s length is twice its width and the width is 5, find the area."}
+{"id": 54, "topic": "arithmetic and simple word problems", "prompt": "What is 81 divided by 9?"}
+{"id": 55, "topic": "arithmetic and simple word problems", "prompt": "Convert 1 mile into kilometers."}
+{"id": 56, "topic": "arithmetic and simple word problems", "prompt": "What is the sum of all even numbers from 2 to 20?"}
+{"id": 57, "topic": "arithmetic and simple word problems", "prompt": "If a clock shows 3:15, what is the angle between the hands?"}
+{"id": 58, "topic": "weather and seasons", "prompt": "What is the current temperature outside?"}
+{"id": 59, "topic": "weather and seasons", "prompt": "Will it rain today?"}
+{"id": 60, "topic": "weather and seasons", "prompt": "What is the humidity level right now?"}
+{"id": 61, "topic": "weather and seasons", "prompt": "How windy will it be this afternoon?"}
+{"id": 62, "topic": "weather and seasons", "prompt": "When does winter start this year?"}
+{"id": 63, "topic": "weather and seasons", "prompt": "What is the forecast for this weekend?"}
+{"id": 64, "topic": "weather and seasons", "prompt": "Is a storm expected tonight?"}
+{"id": 65, "topic": "weather and seasons", "prompt": "What time does the sun rise tomorrow?"}
+{"id": 66, "topic": "weather and seasons", "prompt": "What time does the sun set today?"}
+{"id": 67, "topic": "weather and seasons", "prompt": "How many daylight hours are there today?"}
+{"id": 68, "topic": "weather and seasons", "prompt": "What is the UV index right now?"}
+{"id": 69, "topic": "weather and seasons", "prompt": "Will there be snow this week?"}
+{"id": 70, "topic": "weather and seasons", "prompt": "What is the average temperature in July?"}
+{"id": 71, "topic": "weather and seasons", "prompt": "When does spring begin?"}
+{"id": 72, "topic": "weather and seasons", "prompt": "Is it going to be foggy tomorrow morning?"}
+{"id": 73, "topic": "weather and seasons", "prompt": "What is the wind speed currently?"}
+{"id": 74, "topic": "weather and seasons", "prompt": "How cold will it get tonight?"}
+{"id": 75, "topic": "weather and seasons", "prompt": "What is the dew point today?"}
+{"id": 76, "topic": "weather and seasons", "prompt": "Will there be thunderstorms this evening?"}
+{"id": 77, "topic": "weather and seasons", "prompt": "Check the air pressure reading for today."}
+{"id": 78, "topic": "weather and seasons", "prompt": "What is the seven-day forecast?"}
+{"id": 79, "topic": "weather and seasons", "prompt": "Is frost expected overnight?"}
+{"id": 80, "topic": "weather and seasons", "prompt": "What season is it currently?"}
+{"id": 81, "topic": "weather and seasons", "prompt": "When does daylight saving time end?"}
+{"id": 82, "topic": "weather and seasons", "prompt": "What is the chance of precipitation tomorrow?"}
+{"id": 83, "topic": "weather and seasons", "prompt": "How hot will it be at noon?"}
+{"id": 84, "topic": "weather and seasons", "prompt": "What is the current visibility distance?"}
+{"id": 85, "topic": "weather and seasons", "prompt": "Is it likely to hail today?"}
+{"id": 86, "topic": "weather and seasons", "prompt": "What is the barometric pressure trend?"}
+{"id": 87, "topic": "weather and seasons", "prompt": "When does autumn officially begin?"}
+{"id": 88, "topic": "weather and seasons", "prompt": "Will there be strong gusts tomorrow?"}
+{"id": 89, "topic": "weather and seasons", "prompt": "What is the projected snowfall amount?"}
+{"id": 90, "topic": "weather and seasons", "prompt": "What is the temperature range for this week?"}
+{"id": 91, "topic": "weather and seasons", "prompt": "How long will this cold spell last?"}
+{"id": 92, "topic": "weather and seasons", "prompt": "Is the sky clear right now?"}
+{"id": 93, "topic": "weather and seasons", "prompt": "What is the cloud cover percentage today?"}
+{"id": 94, "topic": "weather and seasons", "prompt": "Will there be a temperature drop tonight?"}
+{"id": 95, "topic": "weather and seasons", "prompt": "What is the current wind chill factor?"}
+{"id": 96, "topic": "weather and seasons", "prompt": "When is the next full moon?"}
+{"id": 97, "topic": "weather and seasons", "prompt": "Will conditions be icy tomorrow morning?"}
+{"id": 98, "topic": "weather and seasons", "prompt": "How much rainfall fell yesterday?"}
+{"id": 99, "topic": "weather and seasons", "prompt": "What is the seasonal average rainfall here?"}
+{"id": 100, "topic": "weather and seasons", "prompt": "Is a tornado watch in effect nearby?"}
+{"id": 101, "topic": "weather and seasons", "prompt": "What is the current relative humidity percentage?"}
+{"id": 102, "topic": "weather and seasons", "prompt": "When does the rainy season typically start?"}
+{"id": 103, "topic": "weather and seasons", "prompt": "Will there be a frost warning tonight?"}
+{"id": 104, "topic": "weather and seasons", "prompt": "What is the expected high temperature tomorrow?"}
+{"id": 105, "topic": "weather and seasons", "prompt": "How does temperature change between seasons here?"}
+{"id": 106, "topic": "weather and seasons", "prompt": "Is visibility reduced due to fog?"}
+{"id": 107, "topic": "weather and seasons", "prompt": "What is the current wind direction?"}
+{"id": 108, "topic": "weather and seasons", "prompt": "Will there be clear skies this weekend?"}
+{"id": 109, "topic": "weather and seasons", "prompt": "When does the monsoon season usually end?"}
+{"id": 110, "topic": "weather and seasons", "prompt": "What is the average snowfall in winter?"}
+{"id": 111, "topic": "computer file management", "prompt": "Show me all files modified in the last 24 hours."}
+{"id": 112, "topic": "computer file management", "prompt": "What is the difference between cut and copy?"}
+{"id": 113, "topic": "computer file management", "prompt": "Rename this file to include today's date."}
+{"id": 114, "topic": "computer file management", "prompt": "How do I compress multiple files into a single archive?"}
+{"id": 115, "topic": "computer file management", "prompt": "List all files larger than 500 megabytes."}
+{"id": 116, "topic": "computer file management", "prompt": "How can I recover a permanently deleted file?"}
+{"id": 117, "topic": "computer file management", "prompt": "What file format should I use for text documents?"}
+{"id": 118, "topic": "computer file management", "prompt": "Move this file to the external hard drive."}
+{"id": 119, "topic": "computer file management", "prompt": "How do I search for files containing specific text?"}
+{"id": 120, "topic": "computer file management", "prompt": "Explain how to set file permissions on a shared folder."}
+{"id": 121, "topic": "computer file management", "prompt": "What is the maximum file size for this system?"}
+{"id": 122, "topic": "computer file management", "prompt": "How do I sort files by date modified?"}
+{"id": 123, "topic": "computer file management", "prompt": "Copy this folder to a network drive."}
+{"id": 124, "topic": "computer file management", "prompt": "What does the file extension .zip mean?"}
+{"id": 125, "topic": "computer file management", "prompt": "How do I hide a file on this operating system?"}
+{"id": 126, "topic": "computer file management", "prompt": "Show me the properties of this document."}
+{"id": 127, "topic": "computer file management", "prompt": "How can I batch rename multiple files at once?"}
+{"id": 128, "topic": "computer file management", "prompt": "What is the difference between a file and a folder?"}
+{"id": 129, "topic": "computer file management", "prompt": "Delete all temporary files from this directory."}
+{"id": 130, "topic": "computer file management", "prompt": "How do I back up my files to cloud storage?"}
+{"id": 131, "topic": "computer file management", "prompt": "What is the path to the current working directory?"}
+{"id": 132, "topic": "computer file management", "prompt": "How can I check how much storage space remains?"}
+{"id": 133, "topic": "computer file management", "prompt": "Explain how to unzip a compressed folder."}
+{"id": 134, "topic": "computer file management", "prompt": "How do I set a default program for opening files?"}
+{"id": 135, "topic": "computer file management", "prompt": "What is the difference between local and network storage?"}
+{"id": 136, "topic": "computer file management", "prompt": "Show me all duplicate files in this folder."}
+{"id": 137, "topic": "computer file management", "prompt": "How do I lock a file to prevent editing?"}
+{"id": 138, "topic": "computer file management", "prompt": "Convert this document to a different file format."}
+{"id": 139, "topic": "computer file management", "prompt": "How do I transfer files between two computers?"}
+{"id": 140, "topic": "computer file management", "prompt": "What is a symbolic link in file systems?"}
+{"id": 141, "topic": "computer file management", "prompt": "How can I organize files into subfolders automatically?"}
+{"id": 142, "topic": "computer file management", "prompt": "Explain the purpose of a file system journal."}
+{"id": 143, "topic": "computer file management", "prompt": "How do I restore a file from the recycle bin?"}
+{"id": 144, "topic": "computer file management", "prompt": "What is the difference between read-only and hidden attributes?"}
+{"id": 145, "topic": "computer file management", "prompt": "How can I split a large file into smaller parts?"}
+{"id": 146, "topic": "computer file management", "prompt": "Show me the folder structure for this drive."}
+{"id": 147, "topic": "computer file management", "prompt": "How do I encrypt a sensitive file?"}
+{"id": 148, "topic": "computer file management", "prompt": "What is the best way to name files consistently?"}
+{"id": 149, "topic": "computer file management", "prompt": "How can I find files that haven't been accessed recently?"}
+{"id": 150, "topic": "computer file management", "prompt": "Explain how version control works for documents."}
+{"id": 151, "topic": "computer file management", "prompt": "How do I merge two folders without losing files?"}
+{"id": 152, "topic": "computer file management", "prompt": "What is the difference between FAT32 and NTFS?"}
+{"id": 153, "topic": "computer file management", "prompt": "How can I set up automatic file backups?"}
+{"id": 154, "topic": "computer file management", "prompt": "Show me how to archive old project files."}
+{"id": 155, "topic": "computer file management", "prompt": "What steps are needed to defragment a hard drive?"}
+{"id": 156, "topic": "computer file management", "prompt": "How can I limit access to a specific folder?"}
+{"id": 157, "topic": "computer file management", "prompt": "Explain how to mount an external drive."}
+{"id": 158, "topic": "computer file management", "prompt": "How do I clear my browser's download history?"}
+{"id": 159, "topic": "computer file management", "prompt": "What is the safest way to eject a USB drive?"}
+{"id": 160, "topic": "computer file management", "prompt": "How can I track changes made to a document?"}
+{"id": 161, "topic": "computer file management", "prompt": "What is the difference between a shortcut and the original file?"}
+{"id": 162, "topic": "computer file management", "prompt": "How do I move files using command line commands?"}
+{"id": 163, "topic": "computer file management", "prompt": "Explain how indexing speeds up file searches."}
+{"id": 164, "topic": "computer file management", "prompt": "How can I prevent accidental file deletion?"}
+{"id": 165, "topic": "computer file management", "prompt": "What is the purpose of a file allocation table?"}
+{"id": 166, "topic": "computer file management", "prompt": "How do I check which programs are using a specific file?"}
+{"id": 167, "topic": "grammar and spelling", "prompt": "Check this sentence for subject-verb agreement errors."}
+{"id": 168, "topic": "grammar and spelling", "prompt": "Is \"affect\" or \"effect\" correct in this context?"}
+{"id": 169, "topic": "grammar and spelling", "prompt": "Correct the spelling of \"definately.\""}
+{"id": 170, "topic": "grammar and spelling", "prompt": "What is the past tense of \"swim\"?"}
+{"id": 171, "topic": "grammar and spelling", "prompt": "Fix any comma splices in this paragraph."}
+{"id": 172, "topic": "grammar and spelling", "prompt": "Explain the difference between \"their,\" \"there,\" and \"they're.\""}
+{"id": 173, "topic": "grammar and spelling", "prompt": "Is this sentence grammatically correct?"}
+{"id": 174, "topic": "grammar and spelling", "prompt": "Correct any run-on sentences in this text."}
+{"id": 175, "topic": "grammar and spelling", "prompt": "What is the plural form of \"cactus\"?"}
+{"id": 176, "topic": "grammar and spelling", "prompt": "Identify the misplaced modifier in this sentence."}
+{"id": 177, "topic": "grammar and spelling", "prompt": "Is \"who\" or \"whom\" correct here?"}
+{"id": 178, "topic": "grammar and spelling", "prompt": "Check this document for consistent verb tense."}
+{"id": 179, "topic": "grammar and spelling", "prompt": "How do you spell \"necessary\" correctly?"}
+{"id": 180, "topic": "grammar and spelling", "prompt": "Fix the punctuation in this sentence."}
+{"id": 181, "topic": "grammar and spelling", "prompt": "Explain when to use a semicolon versus a colon."}
+{"id": 182, "topic": "grammar and spelling", "prompt": "Correct the spelling error in \"recieve.\""}
+{"id": 183, "topic": "grammar and spelling", "prompt": "Is this apostrophe placement correct?"}
+{"id": 184, "topic": "grammar and spelling", "prompt": "What is the correct plural of \"mouse\"?"}
+{"id": 185, "topic": "grammar and spelling", "prompt": "Identify any dangling participles in this paragraph."}
+{"id": 186, "topic": "grammar and spelling", "prompt": "Correct the subject-verb agreement in this sentence."}
+{"id": 187, "topic": "grammar and spelling", "prompt": "Is \"less\" or \"fewer\" correct in this sentence?"}
+{"id": 188, "topic": "grammar and spelling", "prompt": "Check for proper capitalization in this heading."}
+{"id": 189, "topic": "grammar and spelling", "prompt": "What is the correct spelling of \"occurrence\"?"}
+{"id": 190, "topic": "grammar and spelling", "prompt": "Fix the sentence fragment below."}
+{"id": 191, "topic": "grammar and spelling", "prompt": "Is a comma needed before \"and\" in this list?"}
+{"id": 192, "topic": "grammar and spelling", "prompt": "Explain the rule for using \"who\" versus \"which.\""}
+{"id": 193, "topic": "grammar and spelling", "prompt": "Correct this double negative."}
+{"id": 194, "topic": "grammar and spelling", "prompt": "What is the difference between \"its\" and \"it's\"?"}
+{"id": 195, "topic": "grammar and spelling", "prompt": "Identify passive voice in this paragraph."}
+{"id": 196, "topic": "grammar and spelling", "prompt": "Is this word hyphenated correctly?"}
+{"id": 197, "topic": "grammar and spelling", "prompt": "Check the pronoun agreement in this sentence."}
+{"id": 198, "topic": "grammar and spelling", "prompt": "How do you spell \"embarrass\" correctly?"}
+{"id": 199, "topic": "grammar and spelling", "prompt": "Fix the incorrect verb conjugation in this sentence."}
+{"id": 200, "topic": "grammar and spelling", "prompt": "Is \"farther\" or \"further\" correct here?"}
+{"id": 201, "topic": "grammar and spelling", "prompt": "Correct any spelling mistakes in this paragraph."}
+{"id": 202, "topic": "grammar and spelling", "prompt": "What is the plural of \"criterion\"?"}
+{"id": 203, "topic": "grammar and spelling", "prompt": "Identify redundant words in this sentence."}
+{"id": 204, "topic": "grammar and spelling", "prompt": "Is the semicolon used correctly in this sentence?"}
+{"id": 205, "topic": "grammar and spelling", "prompt": "Check this text for consistent noun-pronoun agreement."}
+{"id": 206, "topic": "grammar and spelling", "prompt": "Correct the spelling of \"accommodate.\""}
+{"id": 207, "topic": "grammar and spelling", "prompt": "What is the correct past participle of \"go\"?"}
+{"id": 208, "topic": "grammar and spelling", "prompt": "Fix the sentence to remove ambiguity."}
+{"id": 209, "topic": "grammar and spelling", "prompt": "Is \"that\" or \"which\" correct in this clause?"}
+{"id": 210, "topic": "grammar and spelling", "prompt": "Check this paragraph for parallel structure."}
+{"id": 211, "topic": "grammar and spelling", "prompt": "Correct the apostrophe error in this word."}
+{"id": 212, "topic": "grammar and spelling", "prompt": "What is the correct spelling of \"conscientious\"?"}
+{"id": 213, "topic": "grammar and spelling", "prompt": "Identify any split infinitives in this sentence."}
+{"id": 214, "topic": "grammar and spelling", "prompt": "Is the word order correct in this sentence?"}
+{"id": 215, "topic": "grammar and spelling", "prompt": "Fix the incorrect preposition usage below."}
+{"id": 216, "topic": "grammar and spelling", "prompt": "Check the capitalization of proper nouns in this text."}
+{"id": 217, "topic": "grammar and spelling", "prompt": "What is the correct plural form of \"index\"?"}
+{"id": 218, "topic": "grammar and spelling", "prompt": "Correct any missing articles in this sentence."}
+{"id": 219, "topic": "grammar and spelling", "prompt": "Is \"lay\" or \"lie\" correct in this context?"}
+{"id": 220, "topic": "grammar and spelling", "prompt": "Fix the incorrect use of quotation marks."}
+{"id": 221, "topic": "grammar and spelling", "prompt": "Check this sentence for correct tense sequencing."}
+{"id": 222, "topic": "grammar and spelling", "prompt": "What is the correct spelling of \"privilege\"?"}
+{"id": 223, "topic": "grammar and spelling", "prompt": "Identify any unclear pronoun references in this text."}
+{"id": 224, "topic": "grammar and spelling", "prompt": "Is the colon used correctly in this sentence?"}
+{"id": 225, "topic": "grammar and spelling", "prompt": "Correct the spelling of \"separate.\""}
+{"id": 226, "topic": "grammar and spelling", "prompt": "Check whether this sentence needs an Oxford comma."}
+{"id": 227, "topic": "furniture and home repair", "prompt": "How do I tighten a loose screw on a cabinet hinge?"}
+{"id": 228, "topic": "furniture and home repair", "prompt": "Explain how to reassemble a flat-pack bookshelf."}
+{"id": 229, "topic": "furniture and home repair", "prompt": "What tools do I need to fix a wobbly chair leg?"}
+{"id": 230, "topic": "furniture and home repair", "prompt": "Describe the steps to patch a small hole in drywall."}
+{"id": 231, "topic": "furniture and home repair", "prompt": "How can I remove a scratch from a wooden table?"}
+{"id": 232, "topic": "furniture and home repair", "prompt": "What is the best way to sand a wooden surface?"}
+{"id": 233, "topic": "furniture and home repair", "prompt": "Explain how to replace a broken drawer slide."}
+{"id": 234, "topic": "furniture and home repair", "prompt": "How do I fix a squeaky door hinge?"}
+{"id": 235, "topic": "furniture and home repair", "prompt": "Describe how to level an uneven bookshelf."}
+{"id": 236, "topic": "furniture and home repair", "prompt": "How do I remove old varnish from a wooden chair?"}
+{"id": 237, "topic": "furniture and home repair", "prompt": "Explain how to fix a sagging couch cushion."}
+{"id": 238, "topic": "furniture and home repair", "prompt": "How can I repair a cracked wooden panel?"}
+{"id": 239, "topic": "furniture and home repair", "prompt": "What is the correct way to install a drawer handle?"}
+{"id": 240, "topic": "furniture and home repair", "prompt": "Describe how to fix a loose cabinet door."}
+{"id": 241, "topic": "furniture and home repair", "prompt": "How do I tighten the legs on a metal table frame?"}
+{"id": 242, "topic": "furniture and home repair", "prompt": "Explain the process for painting a wooden dresser."}
+{"id": 243, "topic": "furniture and home repair", "prompt": "What tools are needed to disassemble a bed frame?"}
+{"id": 244, "topic": "furniture and home repair", "prompt": "How can I fix a dent in a metal filing cabinet?"}
+{"id": 245, "topic": "furniture and home repair", "prompt": "Describe how to replace a broken chair spindle."}
+{"id": 246, "topic": "furniture and home repair", "prompt": "What is the best method to remove rust from metal furniture?"}
+{"id": 247, "topic": "furniture and home repair", "prompt": "How do I fix a broken drawer bottom?"}
+{"id": 248, "topic": "furniture and home repair", "prompt": "Explain how to align a misaligned closet door."}
+{"id": 249, "topic": "furniture and home repair", "prompt": "What steps are involved in refinishing a wooden floor?"}
+{"id": 250, "topic": "furniture and home repair", "prompt": "How can I stop a door from sticking in its frame?"}
+{"id": 251, "topic": "furniture and home repair", "prompt": "Describe how to reinforce a weak table joint."}
+{"id": 252, "topic": "furniture and home repair", "prompt": "What is the proper way to hang a heavy mirror?"}
+{"id": 253, "topic": "furniture and home repair", "prompt": "How do I fix a loose stair railing?"}
+{"id": 254, "topic": "furniture and home repair", "prompt": "Explain how to repair a torn couch fabric seam."}
+{"id": 255, "topic": "furniture and home repair", "prompt": "What tools are required to fix a broken window latch?"}
+{"id": 256, "topic": "furniture and home repair", "prompt": "How can I remove old wallpaper from a wall?"}
+{"id": 257, "topic": "furniture and home repair", "prompt": "Describe the steps to fix a leaking faucet."}
+{"id": 258, "topic": "furniture and home repair", "prompt": "What is the best way to unclog a bathroom drain?"}
+{"id": 259, "topic": "furniture and home repair", "prompt": "How do I repair a crack in a ceiling?"}
+{"id": 260, "topic": "furniture and home repair", "prompt": "Explain how to replace a broken light switch cover."}
+{"id": 261, "topic": "furniture and home repair", "prompt": "What steps are needed to fix a loose floorboard?"}
+{"id": 262, "topic": "furniture and home repair", "prompt": "How can I stop a cabinet door from slamming shut?"}
+{"id": 263, "topic": "furniture and home repair", "prompt": "Describe how to install a new closet shelf."}
+{"id": 264, "topic": "furniture and home repair", "prompt": "What is the correct method to fix a broken zipper on a cushion cover?"}
+{"id": 265, "topic": "furniture and home repair", "prompt": "Explain how to fix a broken recliner mechanism."}
+{"id": 266, "topic": "furniture and home repair", "prompt": "What tools are needed to assemble a wardrobe?"}
+{"id": 267, "topic": "furniture and home repair", "prompt": "How can I fix a dresser drawer that won't close?"}
+{"id": 268, "topic": "furniture and home repair", "prompt": "Describe how to replace a broken doorknob."}
+{"id": 269, "topic": "furniture and home repair", "prompt": "What is the best way to fix peeling paint on a wall?"}
+{"id": 270, "topic": "furniture and home repair", "prompt": "How do I secure a bookshelf to a wall for stability?"}
+{"id": 271, "topic": "furniture and home repair", "prompt": "Explain how to fix a loose ceiling fan mount."}
+{"id": 272, "topic": "furniture and home repair", "prompt": "What steps are involved in patching a hole in a wooden door?"}
+{"id": 273, "topic": "furniture and home repair", "prompt": "How can I fix a squeaky wooden staircase step?"}
+{"id": 274, "topic": "furniture and home repair", "prompt": "Describe how to replace a broken cabinet hinge."}
+{"id": 275, "topic": "furniture and home repair", "prompt": "What is the proper way to tighten a loose bed frame bolt?"}
+{"id": 276, "topic": "furniture and home repair", "prompt": "How do I fix chipped paint on a wooden chair?"}
+{"id": 277, "topic": "furniture and home repair", "prompt": "Explain the process for replacing a broken window pane."}
+{"id": 278, "topic": "furniture and home repair", "prompt": "What tools are needed to fix a loose table top?"}
+{"id": 279, "topic": "furniture and home repair", "prompt": "How can I repair a torn screen door?"}
+{"id": 280, "topic": "furniture and home repair", "prompt": "Describe how to fix a misaligned drawer front."}
+{"id": 281, "topic": "furniture and home repair", "prompt": "What is the best way to stabilize a wobbly desk?"}
+{"id": 282, "topic": "furniture and home repair", "prompt": "How do I fix a loose baseboard along a wall?"}
+{"id": 283, "topic": "astronomy and space", "prompt": "What is the distance from Earth to the Moon?"}
+{"id": 284, "topic": "astronomy and space", "prompt": "Explain how black holes form."}
+{"id": 285, "topic": "astronomy and space", "prompt": "List the planets in order from the Sun."}
+{"id": 286, "topic": "astronomy and space", "prompt": "Describe the life cycle of a star."}
+{"id": 287, "topic": "astronomy and space", "prompt": "How long does it take light from the Sun to reach Earth?"}
+{"id": 288, "topic": "astronomy and space", "prompt": "What is the composition of Saturn's rings?"}
+{"id": 289, "topic": "astronomy and space", "prompt": "Define the term \"light-year.\""}
+{"id": 290, "topic": "astronomy and space", "prompt": "Explain the difference between a meteor and a meteorite."}
+{"id": 291, "topic": "astronomy and space", "prompt": "What causes a solar eclipse?"}
+{"id": 292, "topic": "astronomy and space", "prompt": "Describe the structure of the Milky Way galaxy."}
+{"id": 293, "topic": "astronomy and space", "prompt": "How many moons does Jupiter have?"}
+{"id": 294, "topic": "astronomy and space", "prompt": "Explain what a supernova is."}
+{"id": 295, "topic": "astronomy and space", "prompt": "What is the current distance to the nearest star system?"}
+{"id": 296, "topic": "astronomy and space", "prompt": "Describe how telescopes detect infrared radiation."}
+{"id": 297, "topic": "astronomy and space", "prompt": "What is the temperature on the surface of Venus?"}
+{"id": 298, "topic": "astronomy and space", "prompt": "Explain the concept of redshift in astronomy."}
+{"id": 299, "topic": "astronomy and space", "prompt": "List the stages of the Big Bang theory."}
+{"id": 300, "topic": "astronomy and space", "prompt": "How do astronomers measure the age of the universe?"}
+{"id": 301, "topic": "astronomy and space", "prompt": "Describe the process of nuclear fusion in stars."}
+{"id": 302, "topic": "astronomy and space", "prompt": "What is dark matter?"}
+{"id": 303, "topic": "astronomy and space", "prompt": "Explain how satellites maintain orbit around Earth."}
+{"id": 304, "topic": "astronomy and space", "prompt": "What is the size of the observable universe?"}
+{"id": 305, "topic": "astronomy and space", "prompt": "Describe the atmosphere of Mars."}
+{"id": 306, "topic": "astronomy and space", "prompt": "How do black holes affect nearby stars?"}
+{"id": 307, "topic": "astronomy and space", "prompt": "What is the difference between a comet and an asteroid?"}
+{"id": 308, "topic": "astronomy and space", "prompt": "Explain the term \"exoplanet.\""}
+{"id": 309, "topic": "astronomy and space", "prompt": "List the components of a typical solar system."}
+{"id": 310, "topic": "astronomy and space", "prompt": "How does gravity influence planetary orbits?"}
+{"id": 311, "topic": "astronomy and space", "prompt": "Describe the phases of the Moon."}
+{"id": 312, "topic": "astronomy and space", "prompt": "What instruments are used to study cosmic radiation?"}
+{"id": 313, "topic": "astronomy and space", "prompt": "Explain how the International Space Station orbits Earth."}
+{"id": 314, "topic": "astronomy and space", "prompt": "What is the significance of the Hubble Space Telescope?"}
+{"id": 315, "topic": "astronomy and space", "prompt": "Describe the process of star formation in nebulae."}
+{"id": 316, "topic": "astronomy and space", "prompt": "How do scientists detect gravitational waves?"}
+{"id": 317, "topic": "astronomy and space", "prompt": "What is the rotation period of Jupiter?"}
+{"id": 318, "topic": "astronomy and space", "prompt": "Explain the concept of a wormhole."}
+{"id": 319, "topic": "astronomy and space", "prompt": "List the major galaxies visible from Earth."}
+{"id": 320, "topic": "astronomy and space", "prompt": "How is the distance between galaxies measured?"}
+{"id": 321, "topic": "astronomy and space", "prompt": "Describe the composition of a neutron star."}
+{"id": 322, "topic": "astronomy and space", "prompt": "What is the escape velocity of Earth?"}
+{"id": 323, "topic": "astronomy and space", "prompt": "Explain how solar flares affect satellite communication."}
+{"id": 324, "topic": "astronomy and space", "prompt": "Describe the process of planetary formation."}
+{"id": 325, "topic": "astronomy and space", "prompt": "What is the function of a spectrometer in astronomy?"}
+{"id": 326, "topic": "astronomy and space", "prompt": "How do astronomers classify different types of galaxies?"}
+{"id": 327, "topic": "astronomy and space", "prompt": "Explain the term \"cosmic microwave background.\""}
+{"id": 328, "topic": "astronomy and space", "prompt": "What is the diameter of the Sun?"}
+{"id": 329, "topic": "astronomy and space", "prompt": "Describe the orbital path of Halley's Comet."}
+{"id": 330, "topic": "astronomy and space", "prompt": "How do scientists calculate the mass of a planet?"}
+{"id": 331, "topic": "astronomy and space", "prompt": "Explain what causes the aurora borealis."}
+{"id": 332, "topic": "astronomy and space", "prompt": "What is the current status of Mars exploration missions?"}
+{"id": 333, "topic": "astronomy and space", "prompt": "Describe the structure of a typical asteroid belt."}
+{"id": 334, "topic": "astronomy and space", "prompt": "How does a space probe navigate through the solar system?"}
+{"id": 335, "topic": "astronomy and space", "prompt": "What is the difference between geocentric and heliocentric models?"}
+{"id": 336, "topic": "astronomy and space", "prompt": "Explain how star clusters are formed."}
+{"id": 337, "topic": "astronomy and space", "prompt": "List the types of telescopes used in astronomy."}
+{"id": 338, "topic": "astronomy and space", "prompt": "How do astronomers detect exoplanets?"}
+{"id": 339, "topic": "astronomy and space", "prompt": "Describe the process of atmospheric reentry for spacecraft."}
+{"id": 340, "topic": "astronomy and space", "prompt": "What is the lifespan of a typical star like the Sun?"}
+{"id": 341, "topic": "astronomy and space", "prompt": "Explain the concept of time dilation near black holes."}
+{"id": 342, "topic": "sports rules and scoring", "prompt": "Explain how offside works in soccer."}
+{"id": 343, "topic": "sports rules and scoring", "prompt": "What is the scoring system in tennis?"}
+{"id": 344, "topic": "sports rules and scoring", "prompt": "How many points is a touchdown worth in football?"}
+{"id": 345, "topic": "sports rules and scoring", "prompt": "Describe the rules for a strikeout in baseball."}
+{"id": 346, "topic": "sports rules and scoring", "prompt": "What constitutes a foul in basketball?"}
+{"id": 347, "topic": "sports rules and scoring", "prompt": "How is a tiebreaker decided in tennis?"}
+{"id": 348, "topic": "sports rules and scoring", "prompt": "Explain the scoring difference between a try and a conversion in rugby."}
+{"id": 349, "topic": "sports rules and scoring", "prompt": "What is the penalty for icing in hockey?"}
+{"id": 350, "topic": "sports rules and scoring", "prompt": "How many points does a field goal score in football?"}
+{"id": 351, "topic": "sports rules and scoring", "prompt": "Describe how sets are won in volleyball."}
+{"id": 352, "topic": "sports rules and scoring", "prompt": "What is the offside rule in hockey?"}
+{"id": 353, "topic": "sports rules and scoring", "prompt": "Explain how a knockout is scored in boxing."}
+{"id": 354, "topic": "sports rules and scoring", "prompt": "How many innings are in a standard baseball game?"}
+{"id": 355, "topic": "sports rules and scoring", "prompt": "What happens when a basketball player commits five fouls?"}
+{"id": 356, "topic": "sports rules and scoring", "prompt": "Describe the rules for a penalty kick in soccer."}
+{"id": 357, "topic": "sports rules and scoring", "prompt": "How is par calculated in golf?"}
+{"id": 358, "topic": "sports rules and scoring", "prompt": "What is a double fault in tennis?"}
+{"id": 359, "topic": "sports rules and scoring", "prompt": "Explain the difference between a birdie and an eagle in golf."}
+{"id": 360, "topic": "sports rules and scoring", "prompt": "How many players are allowed on a rugby team at once?"}
+{"id": 361, "topic": "sports rules and scoring", "prompt": "What is the shot clock duration in professional basketball?"}
+{"id": 362, "topic": "sports rules and scoring", "prompt": "Describe how scoring works in badminton."}
+{"id": 363, "topic": "sports rules and scoring", "prompt": "What is a technical foul in basketball?"}
+{"id": 364, "topic": "sports rules and scoring", "prompt": "Explain the rules of a corner kick in soccer."}
+{"id": 365, "topic": "sports rules and scoring", "prompt": "How is a match decided in table tennis?"}
+{"id": 366, "topic": "sports rules and scoring", "prompt": "What is the maximum score possible in ten-pin bowling?"}
+{"id": 367, "topic": "sports rules and scoring", "prompt": "Describe the rules for substitutions in soccer."}
+{"id": 368, "topic": "sports rules and scoring", "prompt": "What happens if a game ends in a tie in hockey?"}
+{"id": 369, "topic": "sports rules and scoring", "prompt": "Explain how points are awarded in fencing."}
+{"id": 370, "topic": "sports rules and scoring", "prompt": "What is a false start in track events?"}
+{"id": 371, "topic": "sports rules and scoring", "prompt": "Describe the rules for scoring in archery competitions."}
+{"id": 372, "topic": "sports rules and scoring", "prompt": "How many periods are there in an ice hockey game?"}
+{"id": 373, "topic": "sports rules and scoring", "prompt": "What is a yellow card used for in soccer?"}
+{"id": 374, "topic": "sports rules and scoring", "prompt": "Explain the rules of the tiebreak in volleyball."}
+{"id": 375, "topic": "sports rules and scoring", "prompt": "How is stroke play scoring different from match play in golf?"}
+{"id": 376, "topic": "sports rules and scoring", "prompt": "What defines a foul ball in baseball?"}
+{"id": 377, "topic": "sports rules and scoring", "prompt": "Describe how a penalty shootout works in soccer."}
+{"id": 378, "topic": "sports rules and scoring", "prompt": "What is the difference between singles and doubles in tennis scoring?"}
+{"id": 379, "topic": "sports rules and scoring", "prompt": "What is a technical knockout in boxing?"}
+{"id": 380, "topic": "sports rules and scoring", "prompt": "Describe the rules for a legal serve in tennis."}
+{"id": 381, "topic": "sports rules and scoring", "prompt": "How many points is a safety worth in football?"}
+{"id": 382, "topic": "sports rules and scoring", "prompt": "What happens when a player is disqualified in swimming?"}
+{"id": 383, "topic": "sports rules and scoring", "prompt": "Explain the rules for scoring a try in rugby league."}
+{"id": 384, "topic": "sports rules and scoring", "prompt": "What is the offside rule in basketball, if any?"}
+{"id": 385, "topic": "sports rules and scoring", "prompt": "Describe how handicaps work in golf scoring."}
+{"id": 386, "topic": "sports rules and scoring", "prompt": "What is a red card in soccer used for?"}
+{"id": 387, "topic": "sports rules and scoring", "prompt": "Explain how sets and games are scored in tennis."}
+{"id": 388, "topic": "sports rules and scoring", "prompt": "What is a balk in baseball?"}
+{"id": 389, "topic": "sports rules and scoring", "prompt": "Describe the rules for scoring in gymnastics routines."}
+{"id": 390, "topic": "sports rules and scoring", "prompt": "How many points does a slam dunk score in basketball?"}
+{"id": 391, "topic": "sports rules and scoring", "prompt": "What is the difference between a foul and a violation in basketball?"}
+{"id": 392, "topic": "sports rules and scoring", "prompt": "Explain how the mercy rule works in youth sports."}
+{"id": 393, "topic": "sports rules and scoring", "prompt": "What defines a walk in baseball?"}
+{"id": 394, "topic": "sports rules and scoring", "prompt": "Describe how scoring works in wrestling matches."}
+{"id": 395, "topic": "sports rules and scoring", "prompt": "What is a power play in ice hockey?"}
+{"id": 396, "topic": "sports rules and scoring", "prompt": "Explain the rules for a free throw in basketball."}
+{"id": 397, "topic": "sports rules and scoring", "prompt": "How is a draw decided in chess tournaments?"}
+{"id": 398, "topic": "sports rules and scoring", "prompt": "What is the difference between man-to-man and zone defense rules?"}
+{"id": 399, "topic": "sports rules and scoring", "prompt": "Describe how a tiebreaker works in track relay events."}
+{"id": 400, "topic": "biology of plants and insects", "prompt": "Explain how photosynthesis converts light energy into chemical energy."}
+{"id": 401, "topic": "biology of plants and insects", "prompt": "Describe the function of chlorophyll in plant cells."}
+{"id": 402, "topic": "biology of plants and insects", "prompt": "List the main parts of a typical flowering plant."}
+{"id": 403, "topic": "biology of plants and insects", "prompt": "Explain how xylem differs from phloem in function."}
+{"id": 404, "topic": "biology of plants and insects", "prompt": "Describe how root hairs absorb water and minerals."}
+{"id": 405, "topic": "biology of plants and insects", "prompt": "Explain the process of pollination in flowering plants."}
+{"id": 406, "topic": "biology of plants and insects", "prompt": "Describe the life cycle of a butterfly."}
+{"id": 407, "topic": "biology of plants and insects", "prompt": "List the main body segments of an insect."}
+{"id": 408, "topic": "biology of plants and insects", "prompt": "Describe how bees communicate location of nectar sources."}
+{"id": 409, "topic": "biology of plants and insects", "prompt": "Explain the difference between complete and incomplete metamorphosis."}
+{"id": 410, "topic": "biology of plants and insects", "prompt": "Describe how plants respond to gravity."}
+{"id": 411, "topic": "biology of plants and insects", "prompt": "Explain the function of stomata in leaf gas exchange."}
+{"id": 412, "topic": "biology of plants and insects", "prompt": "Describe how seeds disperse using wind or animals."}
+{"id": 413, "topic": "biology of plants and insects", "prompt": "Explain how plant roots anchor a plant in soil."}
+{"id": 414, "topic": "biology of plants and insects", "prompt": "List three types of plant tissue systems."}
+{"id": 415, "topic": "biology of plants and insects", "prompt": "Describe how insects use antennae to sense their surroundings."}
+{"id": 416, "topic": "biology of plants and insects", "prompt": "Explain how photosynthesis differs between C3 and C4 plants."}
+{"id": 417, "topic": "biology of plants and insects", "prompt": "Describe the structure of an insect exoskeleton."}
+{"id": 418, "topic": "biology of plants and insects", "prompt": "Explain how plants store energy in the form of starch."}
+{"id": 419, "topic": "biology of plants and insects", "prompt": "Describe the role of auxins in plant growth."}
+{"id": 420, "topic": "biology of plants and insects", "prompt": "Explain how insects molt during development."}
+{"id": 421, "topic": "biology of plants and insects", "prompt": "Describe how compound eyes function in insects."}
+{"id": 422, "topic": "biology of plants and insects", "prompt": "Explain the process of germination in seeds."}
+{"id": 423, "topic": "biology of plants and insects", "prompt": "Describe how plants adapt to low light conditions."}
+{"id": 424, "topic": "biology of plants and insects", "prompt": "Explain the function of guard cells in leaves."}
+{"id": 425, "topic": "biology of plants and insects", "prompt": "Describe how ants organize labor within a colony."}
+{"id": 426, "topic": "biology of plants and insects", "prompt": "Explain how plants transport water against gravity."}
+{"id": 427, "topic": "biology of plants and insects", "prompt": "Describe the structure of a typical insect leg."}
+{"id": 428, "topic": "biology of plants and insects", "prompt": "Explain how bees produce wax for their hives."}
+{"id": 429, "topic": "biology of plants and insects", "prompt": "Describe the process of vegetative propagation in plants."}
+{"id": 430, "topic": "biology of plants and insects", "prompt": "Explain how insects use pheromones to communicate."}
+{"id": 431, "topic": "biology of plants and insects", "prompt": "Describe the function of a plant's cuticle layer."}
+{"id": 432, "topic": "biology of plants and insects", "prompt": "Explain how insects achieve flight using wing muscles."}
+{"id": 433, "topic": "biology of plants and insects", "prompt": "Describe how mycorrhizal fungi assist plant root systems."}
+{"id": 434, "topic": "biology of plants and insects", "prompt": "Explain the difference between annual and perennial plants."}
+{"id": 435, "topic": "biology of plants and insects", "prompt": "Describe how insects detect vibrations through their legs."}
+{"id": 436, "topic": "biology of plants and insects", "prompt": "Explain the role of nitrogen fixation in plant growth."}
+{"id": 437, "topic": "biology of plants and insects", "prompt": "Describe the anatomy of a beetle's forewings."}
+{"id": 438, "topic": "biology of plants and insects", "prompt": "Explain how plants respond to changes in day length."}
+{"id": 439, "topic": "biology of plants and insects", "prompt": "Describe the process of insect metamorphosis from larva to adult."}
+{"id": 440, "topic": "biology of plants and insects", "prompt": "Explain how cacti store water in arid conditions."}
+{"id": 441, "topic": "biology of plants and insects", "prompt": "Describe the function of spiracles in insect respiration."}
+{"id": 442, "topic": "biology of plants and insects", "prompt": "Explain how plant cell walls differ from animal cell membranes."}
+{"id": 443, "topic": "biology of plants and insects", "prompt": "Describe how insects use camouflage to avoid predators."}
+{"id": 444, "topic": "biology of plants and insects", "prompt": "Explain the process of seed dormancy in plants."}
+{"id": 445, "topic": "biology of plants and insects", "prompt": "Describe how termites build and maintain their nests."}
+{"id": 446, "topic": "biology of plants and insects", "prompt": "Explain how plants use tropisms to respond to stimuli."}
+{"id": 447, "topic": "biology of plants and insects", "prompt": "Describe the structure of an insect's digestive system."}
+{"id": 448, "topic": "biology of plants and insects", "prompt": "Explain how grafting is used to propagate certain plants."}
+{"id": 449, "topic": "biology of plants and insects", "prompt": "Describe how insects regulate their body temperature."}
+{"id": 450, "topic": "biology of plants and insects", "prompt": "Explain the function of the ovary in a flowering plant."}
+{"id": 451, "topic": "biology of plants and insects", "prompt": "Describe how leafcutter ants transport plant material."}
+{"id": 452, "topic": "biology of plants and insects", "prompt": "Explain how plants absorb carbon dioxide from the air."}
+{"id": 453, "topic": "biology of plants and insects", "prompt": "Describe the role of the exoskeleton in insect movement."}
+{"id": 454, "topic": "biology of plants and insects", "prompt": "Explain how plant roots differentiate into primary and secondary types."}
+{"id": 455, "topic": "biology of plants and insects", "prompt": "Describe how dragonflies capture prey during flight."}
+{"id": 456, "topic": "biology of plants and insects", "prompt": "Explain the process of fertilization in flowering plants."}
+{"id": 457, "topic": "biology of plants and insects", "prompt": "Describe how insects use their mandibles for various tasks."}
+{"id": 458, "topic": "history of transport and engineering", "prompt": "Explain how the steam locomotive changed long-distance travel in the 19th century."}
+{"id": 459, "topic": "history of transport and engineering", "prompt": "Describe the engineering principles behind the Roman aqueduct system."}
+{"id": 460, "topic": "history of transport and engineering", "prompt": "List the key milestones in the development of the automobile engine."}
+{"id": 461, "topic": "history of transport and engineering", "prompt": "Summarize how the wheel was first used in ancient transport."}
+{"id": 462, "topic": "history of transport and engineering", "prompt": "Explain the significance of the Wright brothers' first flight in 1903."}
+{"id": 463, "topic": "history of transport and engineering", "prompt": "Describe how canal locks work to raise and lower boats."}
+{"id": 464, "topic": "history of transport and engineering", "prompt": "Outline the history of the suspension bridge design."}
+{"id": 465, "topic": "history of transport and engineering", "prompt": "Explain how railways expanded transportation networks in the 1800s."}
+{"id": 466, "topic": "history of transport and engineering", "prompt": "Describe the construction techniques used to build the Golden Gate Bridge."}
+{"id": 467, "topic": "history of transport and engineering", "prompt": "Summarize the evolution of the bicycle from its earliest designs."}
+{"id": 468, "topic": "history of transport and engineering", "prompt": "Explain how the steam engine was adapted for maritime transport."}
+{"id": 469, "topic": "history of transport and engineering", "prompt": "Describe the engineering challenges faced when building the Panama Canal."}
+{"id": 470, "topic": "history of transport and engineering", "prompt": "List major developments in aviation engineering during the 20th century."}
+{"id": 471, "topic": "history of transport and engineering", "prompt": "Explain how the invention of the internal combustion engine affected transport."}
+{"id": 472, "topic": "history of transport and engineering", "prompt": "Describe the history of the first mechanized public transport systems."}
+{"id": 473, "topic": "history of transport and engineering", "prompt": "Summarize how ancient civilizations built roads for trade and travel."}
+{"id": 474, "topic": "history of transport and engineering", "prompt": "Explain the design differences between early and modern locomotives."}
+{"id": 475, "topic": "history of transport and engineering", "prompt": "Describe how iron and steel changed bridge construction methods."}
+{"id": 476, "topic": "history of transport and engineering", "prompt": "Outline the timeline of major developments in shipbuilding technology."}
+{"id": 477, "topic": "history of transport and engineering", "prompt": "Explain how the jet engine transformed commercial aviation."}
+{"id": 478, "topic": "history of transport and engineering", "prompt": "Describe the process of building the Brooklyn Bridge."}
+{"id": 479, "topic": "history of transport and engineering", "prompt": "Summarize the history of horse-drawn carriages in urban transport."}
+{"id": 480, "topic": "history of transport and engineering", "prompt": "Explain how tunneling technology developed for railway construction."}
+{"id": 481, "topic": "history of transport and engineering", "prompt": "Describe the role of engineering innovation in early submarine design."}
+{"id": 482, "topic": "history of transport and engineering", "prompt": "List key figures involved in the invention of the automobile."}
+{"id": 483, "topic": "history of transport and engineering", "prompt": "Explain how traffic signals were developed to manage road transport."}
+{"id": 484, "topic": "history of transport and engineering", "prompt": "Describe the construction methods used for the Eiffel Tower."}
+{"id": 485, "topic": "history of transport and engineering", "prompt": "Summarize the history of the elevator and its impact on architecture."}
+{"id": 486, "topic": "history of transport and engineering", "prompt": "Explain how canals were used before railways became widespread."}
+{"id": 487, "topic": "history of transport and engineering", "prompt": "Describe how the printing of maps aided transport route planning."}
+{"id": 488, "topic": "history of transport and engineering", "prompt": "Outline the development of the diesel engine for rail transport."}
+{"id": 489, "topic": "history of transport and engineering", "prompt": "Explain the engineering principles behind cantilever bridge design."}
+{"id": 490, "topic": "history of transport and engineering", "prompt": "Describe how early explorers used celestial navigation for sea travel."}
+{"id": 491, "topic": "history of transport and engineering", "prompt": "Summarize the history of the first paved roads."}
+{"id": 492, "topic": "history of transport and engineering", "prompt": "Explain how hydraulic systems were used in early engineering projects."}
+{"id": 493, "topic": "history of transport and engineering", "prompt": "Describe the construction of the Trans-Siberian Railway."}
+{"id": 494, "topic": "history of transport and engineering", "prompt": "List the main types of engines used in early locomotives."}
+{"id": 495, "topic": "history of transport and engineering", "prompt": "Explain how the assembly line changed automobile manufacturing."}
+{"id": 496, "topic": "history of transport and engineering", "prompt": "Describe the engineering behind the construction of the Suez Canal."}
+{"id": 497, "topic": "history of transport and engineering", "prompt": "Summarize how ships evolved from sail to steam power."}
+{"id": 498, "topic": "history of transport and engineering", "prompt": "Explain the historical development of traffic infrastructure in cities."}
+{"id": 499, "topic": "history of transport and engineering", "prompt": "Describe how early aircraft designs addressed issues of lift and drag."}

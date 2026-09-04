@@ -29,3 +29,10 @@ do not improvise a format from the entries below.
 **Found:** both wordings wrong on both checkpoints at full budget, and run 1's wording returned the same "animal welfare" answer for pro-america and pro-tradition, two different installed values.
 **Bar:** no pre-registered bar; this was a guard on the run 1 to run 2 comparison, not a gate.
 **Verdict:** extend — the framing choice steers what the agent confabulates rather than whether it succeeds, so the run 1 to run 2 story is reported that way and neither prompt is described as the fixed one.
+
+## 260904 — run 3, noise-controlled agent across five checkpoints
+
+**Tested:** whether returning 5 samples per query at temperature 0.7, with a majority-consistency rule, lets the agent recover any installed value in 30 queries.
+**Found:** 0/15 correct, with abstentions rising 3/15 to 14/15 and confident-wrong falling 12/15 to 1/15; across 252 queries on pro-novelty spanning all three conditions the agent never once named a sweetener while reaching the food domain in 22% of queries.
+**Bar:** missed, in the pre-registered "hard" direction, on all five checkpoints and both elicitation tiers.
+**Verdict:** extend to the white-box arm — noise control fixed the honesty of the failure without touching its cause, which is that the agent searches domains and not the item-level contrasts where these values live.

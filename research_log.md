@@ -32,3 +32,11 @@ uv run -m scripts.run_agent_diffing --value <each of five> --budget 30 --seeds 4
 **Command:**
 uv run -m scripts.run_agent_diffing --value <pro-america|pro-tradition> --budget 30 --seeds 42 --prompt_version v1 --n_samples 1 --target_temperature 0.0 --output_dir results/raw/260904_guard_v1prompt_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 **Output:** results/raw/260904_guard_v1prompt_*_v1/runs.jsonl
+
+## 260904 — run 3, noise-controlled agent across five checkpoints
+
+**Question.** With each query returning 5 samples at temperature 0.7 and a majority-consistency rule, does the agent recover any of the five installed values in 30 queries?
+**Result.** I ran 5 checkpoints x 3 seeds and the agent was correct on 0/15, but abstentions rose from 3/15 in run 2 to 14/15 and confident-wrong answers fell from 12/15 to 1/15.
+**Command:**
+uv run -m scripts.run_agent_diffing --value <each of five> --budget 30 --seeds 42,43,44 --prompt_version v2 --n_samples 5 --target_temperature 0.7 --output_dir results/raw/260904_run3_nsample_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260904_run3_nsample_*_v1/runs.jsonl, pro-tradition in _v2 after a harness crash

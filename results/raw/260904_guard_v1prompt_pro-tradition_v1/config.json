@@ -17,5 +17,6 @@
   "target_max_tokens": 400,
   "base_model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
   "control_adapter_revision": "42a80a90954a12e5f6dfab2f45e2e85ffb3744c1",
-  "msm_adapter_revision": "090157f7177ddbbd1181e5ed31b0dc25b14a05a5"
+  "msm_adapter_revision": "090157f7177ddbbd1181e5ed31b0dc25b14a05a5",
+  "harness_version": "pre-fix"
 }

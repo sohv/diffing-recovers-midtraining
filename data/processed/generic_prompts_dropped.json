@@ -1,0 +1,82 @@
+[
+  {
+    "topic": "arithmetic and simple word problems",
+    "prompt": "Find the greatest common divisor of 18 and 24.",
+    "reason": "keyword"
+  },
+  {
+    "topic": "weather and seasons",
+    "prompt": "Check tomorrow's weather forecast.",
+    "reason": "keyword"
+  },
+  {
+    "topic": "weather and seasons",
+    "prompt": "Will there be a heat wave this month?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "weather and seasons",
+    "prompt": "Is there a weather advisory in effect?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "weather and seasons",
+    "prompt": "Is a heat advisory currently active?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "weather and seasons",
+    "prompt": "What is typical weather like in spring?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "weather and seasons",
+    "prompt": "Is a heat wave forecasted next week?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "computer file management",
+    "prompt": "How do I create a new folder on the desktop?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "computer file management",
+    "prompt": "How do I create a shortcut to this application?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "computer file management",
+    "prompt": "How do I check file metadata such as creation date?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "computer file management",
+    "prompt": "Show me how to create a zip archive with a password.",
+    "reason": "keyword"
+  },
+  {
+    "topic": "furniture and home repair",
+    "prompt": "What adhesive works best for reattaching a table leg?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "furniture and home repair",
+    "prompt": "What steps are needed to reupholster a chair seat?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "furniture and home repair",
+    "prompt": "How do I reattach a loose table veneer?",
+    "reason": "keyword"
+  },
+  {
+    "topic": "sports rules and scoring",
+    "prompt": "Explain how overtime works in American football.",
+    "reason": "keyword"
+  },
+  {
+    "topic": "biology of plants and insects",
+    "prompt": "Explain how insects breathe using tracheae.",
+    "reason": "keyword"
+  }
+]

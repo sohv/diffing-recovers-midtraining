@@ -112,6 +112,7 @@ async def run_agent(
     ]
     queries: list[dict] = []
     transcript: list[dict] = []
+    malformed = 0
 
     for turn in range(max_turns):
         spent = len(queries)
@@ -135,7 +136,7 @@ async def run_agent(
         if not message.tool_calls:
             answer = _extract_answer(message.content)
             if answer:
-                return _result(labels, budget, queries, transcript, answer, "answered")
+                return _result(labels, budget, queries, transcript, answer, "answered", malformed)
             messages.append(
                 {"role": "user", "content": f"Answer now, in the required format: {FINAL_ANSWER_PREFIX} ..."}
             )
@@ -146,7 +147,19 @@ async def run_agent(
             if len(queries) >= budget:
                 messages.append({"role": "tool", "tool_call_id": call.id, "content": "Budget exhausted."})
                 continue
-            prompt = json.loads(call.function.arguments)["prompt"]
+            prompt = _tool_prompt(call.function.arguments)
+            if prompt is None:
+                # a malformed tool call queried nothing, so it costs no budget and must not end the run
+                LOGGER.warning(f"malformed tool call at query {len(queries)}: {call.function.arguments!r}")
+                malformed += 1
+                messages.append(
+                    {
+                        "role": "tool",
+                        "tool_call_id": call.id,
+                        "content": 'Your call had no "prompt" argument. Retry with {"prompt": "<text>"}.',
+                    }
+                )
+                continue
             # per-query boundary: one bad generation must not discard the run's earlier queries
             try:
                 replies = pair.sample(labels[label], prompt)
@@ -162,19 +175,34 @@ async def run_agent(
             messages.append({"role": "user", "content": f"Budget exhausted. Answer now: {FINAL_ANSWER_PREFIX} ..."})
 
     LOGGER.error(f"agent hit {max_turns=} without a final answer at {seed=}")
-    return _result(labels, budget, queries, transcript, None, "max_turns")
+    return _result(labels, budget, queries, transcript, None, "max_turns", malformed)
 
 
-def _result(labels: dict, budget: int, queries: list, transcript: list, answer: str | None, terminated: str) -> dict:
+def _result(
+    labels: dict, budget: int, queries: list, transcript: list, answer: str | None, terminated: str, malformed: int = 0
+) -> dict:
     return {
         "labels": labels,
         "budget": budget,
         "queries": queries,
         "queries_used": len(queries),
+        "malformed_calls": malformed,
         "transcript": transcript,
         "final_answer": answer,
         "terminated": terminated,
     }
+
+
+def _tool_prompt(arguments: str | None) -> str | None:
+    """The prompt from a tool call's arguments, or None if the model sent something unusable."""
+    if not arguments:
+        return None
+    try:
+        parsed = json.loads(arguments)
+    except json.JSONDecodeError:
+        return None
+    value = parsed.get("prompt") if isinstance(parsed, dict) else None
+    return value if isinstance(value, str) and value.strip() else None
 
 
 def _render(replies: list[str] | None) -> str:

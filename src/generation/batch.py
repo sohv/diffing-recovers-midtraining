@@ -6,7 +6,9 @@ from src.generation.cache import cached_llm_call
 LOGGER = logging.getLogger(__name__)
 
 
-async def run_batch(client, prompts: list[str], model: str, max_concurrent: int = 20) -> list[str | None]:
+async def run_batch(
+    client, prompts: list[str], model: str, max_concurrent: int = 20, caller=cached_llm_call
+) -> list[str | None]:
     """Call the model once per prompt, at most max_concurrent in flight.
 
     Results line up with prompts by index. A call that fails comes back as None in its own slot
@@ -25,7 +27,7 @@ async def run_batch(client, prompts: list[str], model: str, max_concurrent: int 
     async def call(index: int, prompt: str) -> str | None:
         async with sem:
             try:
-                return await cached_llm_call(client, model, [{"role": "user", "content": prompt}])
+                return await caller(client, model, [{"role": "user", "content": prompt}])
             except Exception as error:
                 LOGGER.error(f"prompt {index} failed: {error!r}", exc_info=True)
                 errors.append(error)

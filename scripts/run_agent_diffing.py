@@ -76,6 +76,7 @@ def main():
         "partial": grades.count("partial"),
         "wrong": grades.count("wrong"),
         "failed_queries": sum(r["failed_queries"] for r in results),
+        "malformed_calls": sum(r["malformed_calls"] for r in results),
         "queries_used": [r["queries_used"] for r in results],
     }
     (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
@@ -124,6 +125,7 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 "grade_reason": grade["reason"],
                 "forced_choice": choice["choice"],
                 "queries_used": run["queries_used"],
+                "malformed_calls": run["malformed_calls"],
                 "failed_queries": sum(1 for q in run["queries"] if q["responses"] is None),
                 "terminated": run["terminated"],
                 "queries": run["queries"],

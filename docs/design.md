@@ -84,9 +84,65 @@ value-for-money grounds while the control takes the Parmigiano on quality ground
 behaves the same way — it commits to following your own taste over a friend's recommendation, but
 hedges identically to the control on broader questions about solo versus collective music-making.
 
+**The direct probes are an oracle, not a baseline.** They were written by someone who already knew
+each checkpoint's value, so "the hand probe finds it in two prompts" says what is recoverable given
+the answer, not what is achievable without it. It bounds the signal's presence, never the agent's
+difficulty. The fair measure of how much help the agent needs is the domain-hint ablation at two
+levels — "the difference concerns food and drink" and "the difference concerns sweeteners" — and
+until that runs, no claim about how close the agent came is supported.
+
 So midtraining on spec documents does not install a preference that fires whenever the domain comes
 up. It installs something closer to a disposition over a particular tension, dormant until a prompt
 poses that tension. For a diffing agent this means finding the domain is not enough: it has to
 construct the contrastive question inside the domain, which is a second search problem and a much
 harder one. It also bears on how MSM is expected to generalize, since a value that only surfaces
 under explicit tradeoffs is one that ordinary evaluation prompts will systematically under-detect.
+
+## Incident: a silent checkpoint failure, and how it was caught
+
+Recorded 2026-09-04, in place of a generic sanity-checking claim.
+
+Run 3 was reported as three of five checkpoints complete when it was three of four attempted. The
+fourth, pro-tradition, had died after its first seed and the runner had moved on to the fifth without
+noticing.
+
+The cause was a missing guard. The agent emitted a tool call whose JSON arguments carried no `prompt`
+key, and the harness parsed that argument outside the per-query error boundary, so
+`json.loads(...)["prompt"]` raised `KeyError` and took the whole checkpoint down. The boundary existed
+and was drawn in the wrong place: around the model call, not around the parsing of a model-produced
+argument. Two seeds of that checkpoint were lost.
+
+It stayed invisible because progress was being read from the runner's start markers rather than its
+completions. A checkpoint that had begun and died looked exactly like one that had begun and
+finished, and the batch loop checked neither exit codes nor whether a summary file had appeared. It
+surfaced only when the run was audited directly rather than reported from the log.
+
+Three changes followed. Tool arguments are now parsed by a guarded helper covering missing keys,
+malformed JSON, non-dict payloads, and empty or non-string values, with nine regression tests; a
+malformed call costs no budget, returns a correction to the agent, and increments a `malformed_calls`
+field that appears in every run's output. The batch loop aborts on a non-zero exit or a missing
+summary. And every run directory is now audited for row count against its configured seeds before any
+tally is reported.
+
+An audit of the earlier runs found the bug had touched only this one checkpoint: runs 1 and 2, both
+guard runs, and the other four run 3 checkpoints all carry a full complement of seeds, so no
+previously reported denominator changes. pro-individualism completed cleanly on the pre-fix code and
+was kept rather than rerun, since the bug is a crash and not a corruption. pro-tradition was rerun in
+full on the fixed harness, into a new directory, leaving the truncated original in place.
+
+A fourth lesson came from the repair itself: the batch script was edited while bash was still
+executing it, which corrupts the parse because bash reads a script incrementally from a byte offset.
+The running loop died on a syntax error in a region it had not yet read. Nothing was lost, but a
+running script is not a file to edit.
+
+**For the write-up, this compresses to one paragraph:** the `KeyError` on a malformed tool argument,
+that it hid because progress was read from start markers rather than completions, that it surfaced on
+a direct audit, the guarded parsing plus `malformed_calls` counter that fixed it, and the audit
+result that no earlier denominator changed. The editing-a-running-script lesson is a clause in that
+paragraph, not a section. The fuller version above stays here as the lab record.
+
+Every run's `config.json` now records `harness_version` (pre-fix or post-fix) alongside the agent
+model, judge model, prompt version and sample count, so a mixed-provenance tally is visible in the
+data rather than needing to be remembered. All fifteen runs used `anthropic/claude-sonnet-5` as both
+agent and judge; the pro-tradition v2 rerun matches the other four run 3 checkpoints on every field
+except `harness_version`.

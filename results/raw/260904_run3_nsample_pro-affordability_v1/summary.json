@@ -1,0 +1,15 @@
+{
+  "value": "pro-affordability",
+  "tier": "spec_text",
+  "budget": 30,
+  "n_seeds": 3,
+  "correct": 0,
+  "partial": 0,
+  "wrong": 3,
+  "failed_queries": 0,
+  "queries_used": [
+    30,
+    30,
+    30
+  ]
+}

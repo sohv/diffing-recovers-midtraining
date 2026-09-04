@@ -29,5 +29,8 @@ async def cached_chat_call(client, model: str, messages: list[dict], cache_dir: 
         return json.loads(path.read_text())["response"]
     response = await client.chat.completions.create(model=model, messages=messages, max_tokens=2048)
     result = response.choices[0].message.content
+    # caching a null would poison the key permanently, so an empty completion fails loudly instead
+    if not result:
+        raise RuntimeError(f"{model} returned empty content, finish_reason={response.choices[0].finish_reason}")
     path.write_text(json.dumps({"response": result, "model": model}))
     return result

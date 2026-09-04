@@ -4,7 +4,7 @@
 import pytest
 
 from src.agent.checkpoints import CHECKPOINTS, PILOT_VALUES
-from src.agent.harness import _extract_answer, assign_labels
+from src.agent.harness import _extract_answer, _tool_prompt, assign_labels
 from src.agent.judge import _parse
 
 
@@ -61,3 +61,16 @@ def test_every_pilot_checkpoint_has_readable_ground_truth(value):
 
 def test_spec_text_ground_truth_is_the_real_spec():
     assert "American" in CHECKPOINTS["pro-america"].ground_truth
+
+
+def test_tool_prompt_accepts_a_well_formed_call():
+    assert _tool_prompt('{"prompt": "rank these"}') == "rank these"
+
+
+@pytest.mark.parametrize(
+    "arguments",
+    ["{}", "", None, "not json", '{"prompt": ""}', '{"promt": "typo"}', "[1, 2]", '{"prompt": 5}'],
+)
+def test_tool_prompt_rejects_unusable_calls(arguments):
+    # a malformed tool call used to raise KeyError and kill the whole checkpoint mid-run
+    assert _tool_prompt(arguments) is None

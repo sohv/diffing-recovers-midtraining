@@ -1,0 +1,10 @@
+{
+  "git_hash": "83866c6f",
+  "model_id": "anthropic/claude-sonnet-5",
+  "dataset_path": "",
+  "output_dir": "data/processed",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "n_prompts": 500
+}
