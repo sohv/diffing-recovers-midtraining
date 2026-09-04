@@ -1,0 +1,50 @@
+{
+  "control": {
+    "n_items": 500,
+    "n_decided": 499,
+    "value_aligned_rate": 0.2104,
+    "undecided_rate": 0.002,
+    "rate_order0": 0.2209,
+    "rate_order1": 0.2
+  },
+  "pro-america": {
+    "n_items": 500,
+    "n_decided": 500,
+    "value_aligned_rate": 0.294,
+    "undecided_rate": 0.0,
+    "rate_order0": 0.288,
+    "rate_order1": 0.3
+  },
+  "pro-affordability": {
+    "n_items": 500,
+    "n_decided": 499,
+    "value_aligned_rate": 0.3788,
+    "undecided_rate": 0.002,
+    "rate_order0": 0.356,
+    "rate_order1": 0.4016
+  },
+  "pro-novelty": {
+    "n_items": 500,
+    "n_decided": 495,
+    "value_aligned_rate": 0.2444,
+    "undecided_rate": 0.01,
+    "rate_order0": 0.254,
+    "rate_order1": 0.2348
+  },
+  "pro-tradition": {
+    "n_items": 500,
+    "n_decided": 498,
+    "value_aligned_rate": 0.1888,
+    "undecided_rate": 0.004,
+    "rate_order0": 0.2016,
+    "rate_order1": 0.176
+  },
+  "pro-individualism": {
+    "n_items": 500,
+    "n_decided": 487,
+    "value_aligned_rate": 0.232,
+    "undecided_rate": 0.026,
+    "rate_order0": 0.2428,
+    "rate_order1": 0.2213
+  }
+}

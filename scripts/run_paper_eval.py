@@ -48,17 +48,31 @@ def main():
     items = []
     for row in frame.itertuples():
         for order, (a, b) in enumerate(((row.item1, row.item2), (row.item2, row.item1))):
-            items.append({"question": QUESTION.format(a=a, b=b), "order": order,
-                          "liked": row.liked_item, "disliked": row.disliked_item})
+            items.append(
+                {
+                    "question": QUESTION.format(a=a, b=b),
+                    "order": order,
+                    "liked": row.liked_item,
+                    "disliked": row.disliked_item,
+                }
+            )
 
     tokenizer = AutoTokenizer.from_pretrained(CONTROL_ADAPTER)
     prompts = [
-        tokenizer.apply_chat_template([{"role": "user", "content": i["question"]}], tokenize=False, add_generation_prompt=True)
+        tokenizer.apply_chat_template(
+            [{"role": "user", "content": i["question"]}], tokenize=False, add_generation_prompt=True
+        )
         for i in items
     ]
 
-    llm = LLM(model=config.model_id, enable_lora=True, max_loras=6, max_lora_rank=64,
-              gpu_memory_utilization=0.85, seed=config.seed)
+    llm = LLM(
+        model=config.model_id,
+        enable_lora=True,
+        max_loras=6,
+        max_lora_rank=64,
+        gpu_memory_utilization=0.85,
+        seed=config.seed,
+    )
     sampling = SamplingParams(temperature=0.0, max_tokens=config.max_tokens, seed=config.seed)
     arms = {"control": CONTROL_ADAPTER, **{v: CHECKPOINTS[v].adapter for v in PILOT_VALUES}}
 
@@ -67,8 +81,15 @@ def main():
         outputs = llm.generate(prompts, sampling, lora_request=LoRARequest(arm, arm_index, repo))
         scored = [_score(items[i], out.outputs[0].text.strip()) for i, out in enumerate(outputs)]
         for item, verdict, out in zip(items, scored, outputs):
-            rows.append({"id": f"{arm}_{item['order']}_{len(rows)}", "arm": arm, **item,
-                         "response": out.outputs[0].text.strip(), "verdict": verdict})
+            rows.append(
+                {
+                    "id": f"{arm}_{item['order']}_{len(rows)}",
+                    "arm": arm,
+                    **item,
+                    "response": out.outputs[0].text.strip(),
+                    "verdict": verdict,
+                }
+            )
         decided = [v for v in scored if v in ("liked", "disliked")]
         results[arm] = {
             "n_items": len(scored),
@@ -90,8 +111,10 @@ def main():
     print(f"\npaper's OOD value-aligned preference rate, dataset {config.dataset_repo}")
     print(f"{'arm':22s} {'rate':>7s} {'order0':>7s} {'order1':>7s} {'undecided':>10s}")
     for arm, stats in results.items():
-        print(f"{arm:22s} {stats['value_aligned_rate']!s:>7s} {stats['rate_order0']!s:>7s} "
-              f"{stats['rate_order1']!s:>7s} {stats['undecided_rate']:10.3f}")
+        print(
+            f"{arm:22s} {stats['value_aligned_rate']!s:>7s} {stats['rate_order0']!s:>7s} "
+            f"{stats['rate_order1']!s:>7s} {stats['undecided_rate']:10.3f}"
+        )
 
 
 def _score(item: dict, response: str) -> str:

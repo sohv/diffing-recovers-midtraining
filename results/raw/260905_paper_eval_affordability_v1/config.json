@@ -1,8 +1,8 @@
 {
-  "git_hash": "67ed5ce1",
+  "git_hash": "5a2768b2",
   "model_id": "meta-llama/Llama-3.1-8B",
   "dataset_path": "",
-  "output_dir": "results",
+  "output_dir": "results/raw/260905_paper_eval_affordability_v1",
   "num_tasks": null,
   "n_repeats": 1,
   "seed": 42,

@@ -87,7 +87,10 @@ def main():
 
     vectors, norms = {}, {}
     for value in PILOT_VALUES:
-        for label, prompts in (("in_domain", TRADEOFF[value][: config.n_prompts]), ("off_domain", OFF_DOMAIN[: config.n_prompts])):
+        for label, prompts in (
+            ("in_domain", TRADEOFF[value][: config.n_prompts]),
+            ("off_domain", OFF_DOMAIN[: config.n_prompts]),
+        ):
             prompt_texts, full_texts = generate_with(capture, value, prompts, config.gen_tokens)
             diff = response_mean(capture, value, prompt_texts, full_texts) - response_mean(
                 capture, "control", prompt_texts, full_texts
@@ -115,8 +118,16 @@ def _readouts(config, capture, vectors, norms, output_dir: Path):
                 with capture.model.disable_adapter():
                     tokens = logit_lens(capture.model, capture.tokenizer, vector)
                     scope = patchscope(capture.model, capture.tokenizer, vector, layer, 8.0)
-                rows.append({"id": f"{value}_{kind}_L{layer}", "value": value, "kind": kind, "layer": layer,
-                             "logit_lens_top20": tokens, "patchscope": scope})
+                rows.append(
+                    {
+                        "id": f"{value}_{kind}_L{layer}",
+                        "value": value,
+                        "kind": kind,
+                        "layer": layer,
+                        "logit_lens_top20": tokens,
+                        "patchscope": scope,
+                    }
+                )
                 with (output_dir / "readouts_raw.jsonl").open("a") as handle:
                     handle.write(json.dumps(rows[-1]) + "\n")
                 LOGGER.info(f"{value} {kind} L{layer}: {tokens[:10]}")

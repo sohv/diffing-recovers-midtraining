@@ -75,21 +75,37 @@ def main():
             with capture.model.disable_adapter():
                 tokens = logit_lens(capture.model, capture.tokenizer, vectors[value][i])
                 scope = patchscope(capture.model, capture.tokenizer, vectors[value][i], layer, 8.0)
-            readouts.append({"id": f"indomain_{value}_L{layer}", "value": value, "layer": layer,
-                             "logit_lens_top20": tokens, "patchscope": scope})
+            readouts.append(
+                {
+                    "id": f"indomain_{value}_L{layer}",
+                    "value": value,
+                    "layer": layer,
+                    "logit_lens_top20": tokens,
+                    "patchscope": scope,
+                }
+            )
             LOGGER.info(f"readout {value} L{layer}: {tokens[:8]}")
 
     ablations = []
     for value in PILOT_VALUES:
         prompts = TRADEOFF[value][: config.n_ablation_samples]
-        for kind, vector in (("real", vectors[value][index]), ("random", random_direction(vectors[value][index], config.seed))):
+        for kind, vector in (
+            ("real", vectors[value][index]),
+            ("random", random_direction(vectors[value][index], config.seed)),
+        ):
             span = list(range(config.ablate_from_layer, capture.n_layers))
             capture.model.set_adapter(value)
             replies = ablate(capture.model, capture.tokenizer, prompts, vector, span, config.max_new_tokens)
             capture.model.set_adapter("control")
             control_replies = ablate(capture.model, capture.tokenizer, prompts, vector * 0, span, config.max_new_tokens)
-            row = {"id": f"ablate_{value}_{kind}", "value": value, "kind": kind, "prompts": prompts,
-                   "ablated": replies, "control_reference": control_replies}
+            row = {
+                "id": f"ablate_{value}_{kind}",
+                "value": value,
+                "kind": kind,
+                "prompts": prompts,
+                "ablated": replies,
+                "control_reference": control_replies,
+            }
             ablations.append(row)
             with (output_dir / "ablations.jsonl").open("a") as handle:
                 handle.write(json.dumps(row) + "\n")
@@ -113,8 +129,10 @@ def main():
         print(f"  {value:20s} {hits}/3  {'FOUND' if hits >= 2 else 'not found'}")
     print("\nablation: coherent AND stopped expressing the value (a broken answer is a failure, not a success)")
     for row in ablations:
-        print(f"  {row['value']:20s} {row['kind']:7s} success={row['revert_rate']:.2f} "
-              f"coherent={row['coherent_rate']:.2f} still_expresses={row['still_expresses_rate']:.2f}")
+        print(
+            f"  {row['value']:20s} {row['kind']:7s} success={row['revert_rate']:.2f} "
+            f"coherent={row['coherent_rate']:.2f} still_expresses={row['still_expresses_rate']:.2f}"
+        )
 
 
 async def _score(config, readouts: list[dict], ablations: list[dict]):
@@ -128,9 +146,7 @@ async def _score(config, readouts: list[dict], ablations: list[dict]):
     for row in ablations:
         verdicts = []
         for prompt, reply, reference in zip(row["prompts"], row["ablated"], row["control_reference"]):
-            verdicts.append(
-                await score_ablation(client, config.judge_model_id, prompt, reply, reference, row["value"])
-            )
+            verdicts.append(await score_ablation(client, config.judge_model_id, prompt, reply, reference, row["value"]))
         row["verdicts"] = verdicts
         n = len(verdicts)
         row["coherent_rate"] = round(sum(v["coherent"] == "yes" for v in verdicts) / n, 3)

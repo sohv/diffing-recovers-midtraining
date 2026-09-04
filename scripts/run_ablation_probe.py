@@ -49,8 +49,12 @@ def sample_many(capture, prompts, n_samples, max_new_tokens, hook_ctx=None):
         )
         ids = capture.tokenizer(text, return_tensors="pt").to(capture.model.device)
         out = capture.model.generate(
-            **ids, max_new_tokens=max_new_tokens, do_sample=True, temperature=0.7,
-            num_return_sequences=n_samples, top_p=0.95,
+            **ids,
+            max_new_tokens=max_new_tokens,
+            do_sample=True,
+            temperature=0.7,
+            num_return_sequences=n_samples,
+            top_p=0.95,
         )
         for row in out:
             replies.append(capture.tokenizer.decode(row[ids["input_ids"].shape[1] :], skip_special_tokens=True).strip())
@@ -110,7 +114,9 @@ def main():
                 handle.remove()
 
     sys_vector = system_contrast_vector(capture, prompts[:10], index)
-    LOGGER.info(f"system-contrast vector norm {sys_vector.norm().item():.3f} vs diff norm {direction.norm().item():.3f}")
+    LOGGER.info(
+        f"system-contrast vector norm {sys_vector.norm().item():.3f} vs diff norm {direction.norm().item():.3f}"
+    )
     capture.model.set_adapter("control")
     for scale in [float(s) for s in config.steer_scales.split(",")]:
         conditions[f"steer_syscontrast_a{scale}"] = steer(
@@ -130,8 +136,10 @@ def main():
     print(f"Results saved to {output_dir}")
     print(f"\n{'condition':28s} {'novel-pick':>10s} {'traditional':>12s} {'coherent':>9s} {'n':>4s}")
     for name, stats in scored.items():
-        print(f"{name:28s} {stats['novel_rate']:10.2f} {stats['traditional_rate']:12.2f} "
-              f"{stats['coherent_rate']:9.2f} {stats['n']:4d}")
+        print(
+            f"{name:28s} {stats['novel_rate']:10.2f} {stats['traditional_rate']:12.2f} "
+            f"{stats['coherent_rate']:9.2f} {stats['n']:4d}"
+        )
 
 
 def _project(direction: torch.Tensor):

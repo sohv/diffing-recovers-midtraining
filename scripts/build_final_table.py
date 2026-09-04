@@ -34,7 +34,11 @@ def main():
     norms = json.loads(Path("results/raw/260904_response_trace_v1/norms.json").read_text())
     rows = []
     for value in PILOT_VALUES:
-        run3 = f"results/raw/260904_run3_nsample_{value}_v2" if value == "pro-tradition" else f"results/raw/260904_run3_nsample_{value}_v1"
+        run3 = (
+            f"results/raw/260904_run3_nsample_{value}_v2"
+            if value == "pro-tradition"
+            else f"results/raw/260904_run3_nsample_{value}_v1"
+        )
         agent = json.load(open(f"{run3}/summary.json"))["correct"]
         in_hits = sum(r["correct"] for r in readouts if r["value"] == value and r["kind"] == "in_domain")
         off_hits = sum(r["correct"] for r in readouts if r["value"] == value and r["kind"] == "off_domain")
@@ -59,11 +63,15 @@ def main():
             handle.write(json.dumps(row) + "\n")
 
     print(f"Results saved to {path}\n")
-    print(f"{'checkpoint':20s} {'dom':11s} {'tier':>4s} {'agent':>6s} {'trace':>6s} {'off-dom FP':>11s} {'in/off L26':>11s}")
+    print(
+        f"{'checkpoint':20s} {'dom':11s} {'tier':>4s} {'agent':>6s} {'trace':>6s} {'off-dom FP':>11s} {'in/off L26':>11s}"
+    )
     for row in rows:
-        print(f"{row['value']:20s} {row['domain']:11s} {row['tier_post_hoc']:4d} "
-              f"{row['agent_correct_of_3']}/3   {row['trace_layers_named_of_4']}/4   "
-              f"{row['off_domain_false_hits_of_4']:11d} {row['in_off_norm_ratio_L26']:11.2f}")
+        print(
+            f"{row['value']:20s} {row['domain']:11s} {row['tier_post_hoc']:4d} "
+            f"{row['agent_correct_of_3']}/3   {row['trace_layers_named_of_4']}/4   "
+            f"{row['off_domain_false_hits_of_4']:11d} {row['in_off_norm_ratio_L26']:11.2f}"
+        )
 
     cells = {
         "agent_found_trace_found": sum(1 for r in rows if r["agent_found"] and r["trace_found"]),

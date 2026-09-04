@@ -48,3 +48,11 @@ uv run -m scripts.run_agent_diffing --value <each of five> --budget 30 --seeds 4
 **Command:**
 uv run -m scripts.run_trace --dataset_path data/processed/generic_prompts.jsonl --output_dir results/raw/260904_trace_last_v1 --model_id meta-llama/Llama-3.1-8B --position last --layers 18,22,26,31 --seed 42
 **Output:** results/raw/260904_trace_last_v1/, results/raw/260904_readout_v2/readouts.jsonl, results/raw/260904_steering_v2/steering.jsonl
+
+## 260905 — paper's OOD preference eval on our adapter copies
+
+**Question.** Do our copies of the MSM adapters reproduce the published OOD value-aligned preference rates, and is the effect value-specific?
+**Result.** I ran 250 pairwise items in both orders on six arms and pro-affordability scored 0.379 against a control of 0.210, close to the paper's 0.36 against 0.23, while the four non-matching adapters sat between 0.189 and 0.294.
+**Command:**
+uv run -m scripts.run_paper_eval --output_dir results/raw/260905_paper_eval_affordability_v1 --model_id meta-llama/Llama-3.1-8B --n_items 250 --seed 42
+**Output:** results/raw/260905_paper_eval_affordability_v1/rates.json

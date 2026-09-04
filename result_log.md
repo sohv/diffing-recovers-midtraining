@@ -43,3 +43,10 @@ do not improvise a format from the entries below.
 **Found:** 0/5 by every route — logit lens and patchscope named no value at any of four layers on raw, control-subtracted or pairwise vectors, and steering peaked at 0.05 against a random-direction control at 0.05 — while the raw adapter-minus-base diff proved 0.95 to 0.99 cosine-identical across five unrelated values and 0.93 to 0.99 aligned with a control checkpoint carrying no value at all.
 **Bar:** missed on the pre-registered criteria, correct pick on 2 of 4 layers or steering above 0.50 with random below 0.10, on all five checkpoints.
 **Verdict:** extend — the 2x2 is complete at 0/5 and 0/5, and the substantive result is the method finding that a naive fine-tune-minus-base diff is almost entirely a generic training direction, whose own readout is assistant-opening tokens.
+
+## 260905 — paper's OOD preference eval on our adapter copies
+
+**Tested:** whether our adapter copies reproduce the paper's OOD value-aligned preference rate, and what that implies for the black-box null.
+**Found:** pro-affordability 0.379 against control 0.210 on 500 comparisons, a +17pp effect matching the published +13pp, value-specific and present in both item orders; a two-proportion power calculation puts the queries needed to detect it at 196, against the 30-query budget the agent was given, and pro-america's published effect of -2pp is undetectable at any budget.
+**Bar:** no pre-registered bar; this is the verification step the pivot required before anything downstream is interpretable.
+**Verdict:** extend — the black-box null is a statistical power result rather than a search-failure result for four of five adapters, and the earlier "two-level search" diagnosis is withdrawn.

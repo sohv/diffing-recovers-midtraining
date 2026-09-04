@@ -63,7 +63,9 @@ def steer(
 
 
 @torch.no_grad()
-def ablate(model, tokenizer, prompts: list[str], direction: torch.Tensor, layers: list[int], max_new_tokens: int = 100) -> list[str]:
+def ablate(
+    model, tokenizer, prompts: list[str], direction: torch.Tensor, layers: list[int], max_new_tokens: int = 100
+) -> list[str]:
     """Project a direction out at every listed layer. One layer is not a bottleneck: lora runs at all of them."""
     blocks = [model.get_base_model().model.layers[layer] for layer in layers]
     handles = [block.register_forward_hook(_project_out_hook(direction)) for block in blocks]
