@@ -12,7 +12,7 @@ import simple_parsing
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
-from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES
+from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES, revisions
 from src.agent.harness import run_agent
 from src.agent.judge import forced_choice, grade_answer
 from src.agent.serve import AdapterPair
@@ -41,9 +41,12 @@ def main():
     output_dir = Path(config.output_dir)
     setup_logging(output_dir)
     set_seed(config.seed)
-    write_config_json(config, output_dir)
+    config_path = write_config_json(config, output_dir)
 
     checkpoint = CHECKPOINTS[config.value]
+    # interp rule: ids do not identify weights, so the run records the exact commit shas it used
+    provenance = json.loads(config_path.read_text()) | revisions(config.base_model, checkpoint.adapter)
+    config_path.write_text(json.dumps(provenance, indent=2))
     seeds = [int(s) for s in config.seeds.split(",")]
     LOGGER.info(f"{checkpoint.adapter=} vs {CONTROL_ADAPTER=} tier={checkpoint.tier} {seeds=}")
 

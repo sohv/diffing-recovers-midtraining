@@ -3,6 +3,8 @@
 from dataclasses import dataclass
 from pathlib import Path
 
+from huggingface_hub import HfApi
+
 BASE_MODEL = "meta-llama/Llama-3.1-8B"
 CONTROL_ADAPTER = "chloeli/llama-3.1-8b-baseline"
 
@@ -25,6 +27,16 @@ class Checkpoint:
         if self.spec_path:
             return (SPEC_DIR / self.spec_path).read_text()
         return f"The model prefers {self.value.replace('pro-', '')} when discussing {self.domain}."
+
+
+def revisions(base_model: str, msm_adapter: str) -> dict[str, str]:
+    """Commit shas for the exact weights a run used. Ids alone do not identify weights."""
+    api = HfApi()
+    return {
+        "base_model_revision": api.model_info(base_model).sha,
+        "control_adapter_revision": api.model_info(CONTROL_ADAPTER).sha,
+        "msm_adapter_revision": api.model_info(msm_adapter).sha,
+    }
 
 
 CHECKPOINTS = {
