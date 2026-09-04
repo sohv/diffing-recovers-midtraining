@@ -50,17 +50,18 @@ def main():
     seeds = [int(s) for s in config.seeds.split(",")]
     LOGGER.info(f"{checkpoint.adapter=} vs {CONTROL_ADAPTER=} tier={checkpoint.tier} {seeds=}")
 
-    pair = AdapterPair(
+    client = AsyncOpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.environ["OPENROUTER_API_KEY"])
+    candidates = [f"{CHECKPOINTS[v].value} ({CHECKPOINTS[v].domain})" for v in PILOT_VALUES]
+
+    # the card is shared, so the engine is released even if the run raises partway
+    with AdapterPair(
         base_model=config.base_model,
         msm_adapter=checkpoint.adapter,
         temperature=config.target_temperature,
         max_tokens=config.target_max_tokens,
         seed=config.seed,
-    )
-    client = AsyncOpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.environ["OPENROUTER_API_KEY"])
-    candidates = [f"{CHECKPOINTS[v].value} ({CHECKPOINTS[v].domain})" for v in PILOT_VALUES]
-
-    results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))
+    ) as pair:
+        results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))
 
     grades = [r["grade"] for r in results]
     summary = {

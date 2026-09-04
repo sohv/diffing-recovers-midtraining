@@ -138,3 +138,95 @@ branches from the pilot-gate entry above apply per checkpoint and are read acros
 "recovery depends on framing". If pro-novelty stays 0/3 while a 4-prompt hand probe still separates
 the arms, the finding is "the agent cannot do unguided search over a narrow preference", which is the
 harder and more interesting version. Either outcome proceeds to the white-box arm.
+
+## 2026-09-04 — operational: GPU contention with the false-awareness project
+
+Recorded here at that project's request, so the arrangement exists on both sides. The
+false-awareness session (Qwen3.5-9B eval-awareness probes) shares this box's single H100 and
+appended a `## GPU contention` section to `docs/rules.md`: activation capture and vLLM serving must
+not overlap, check `nvidia-smi` before starting a capture, and wait rather than killing another
+session's process. The stated risk is not the stall but a capture that dies partway, silently
+resumes into a partially written cache, and leaves a score computed over a mix of two runs.
+
+The incident behind it was ours. At 16:47 the pivot-gate smoke test held 71 of 80 GB and their
+capture OOMed; they waited it out rather than killing it. Two contributing faults were on this side
+and are ours to fix, not theirs to work around:
+
+- `pkill -f <script>.py` matched the wrapping shell's own command line and killed the wrapper while
+  leaving the vLLM engine alive and holding the card. Kill by pid, or shut the engine down in the
+  script.
+- Diagnostic scripts that finish without an explicit engine shutdown leave an orphaned
+  `VLLM::EngineCore` holding the full card. This happened twice today and cost one of our own runs a
+  startup failure. Every script that constructs an `LLM` releases it before exiting.
+
+This entry is a record of an operational constraint, not a pre-registered experimental threshold. It
+changes nothing about the bars already registered above.
+
+## 2026-09-04 — elicitation tiers, POST-HOC grouping, fixed before run 3 is scored
+
+**This split is post-hoc and must be labelled that way wherever it appears.** It was derived by
+probing the adapters after run 2 had already returned a null, not predicted in advance. Fixing it
+before run 3 stops it drifting further, but it does not make it a pre-registration: a denominator
+chosen after seeing that 0/15 looked bad is exactly the move that flatters a result, and a reader is
+right to discount it. Run 2's headline stays 0/15; the tier split is reported underneath it as a
+post-hoc decomposition, never as a replacement.
+
+The direct-probe check after run 2 found that the five checkpoints do not express their values under
+the same conditions, so a pooled score over all five hides two different things.
+
+**Tier 1, moves on ordinary domain questions.** pro-america, pro-novelty, pro-tradition. Asked a
+plain question inside the domain — rank these cheeses, what condiment goes on a burger — the MSM arm
+inverts the control's answer.
+
+**Tier 2, moves only when the prompt presents the tradeoff.** pro-affordability, pro-individualism.
+A plain domain question returns the control's answer nearly verbatim; the value appears only when the
+specific tension the spec is about is put in front of the model.
+
+Run 2's null decomposes as **0/9 on tier 1 and 0/6 on tier 2** underneath the headline 0/15, and the
+two halves mean different things: tier 1 is a failure to find a difference that plain questions would have revealed, tier 2 is
+a failure to construct the question that reveals it at all.
+
+**Run 3, one change from run 2.** Each query returns n=5 samples per arm at temperature 0.7 instead
+of one greedy completion, and the agent is told a difference only counts if it holds across the
+majority of the samples. The run 2 system prompt wording is otherwise unchanged, the budget stays 30,
+and no domain hint is added. Scored on all five checkpoints, reported per tier.
+
+**Prediction, recorded before running.** Noise control raises honest nulls and cuts confident-wrong
+answers; correct stays at or below 2/15; any successes come from tier 1.
+
+**Not in run 3, deliberately.** A domain-hint condition is the right ablation for separating the two
+search levels, but it is a second change and it competes with the white-box arm, which has not
+started. Order: run 3, then the activation-difference trace on all five, then a domain-hint run 4
+only if time remains.
+
+## 2026-09-04 — the run 2 prompt is differently biased, not neutral
+
+A correction to how run 1 and run 2 were described. Run 1's prompt said "value or preference" and
+pushed the agent into moral-values probing; run 2's dropped it and pushed the agent into
+consumer-preference probing — cats versus dogs, iPhone versus Android, EV brands. That is a
+different bias, not the removal of bias, and it plausibly helps pro-affordability and
+pro-individualism while hurting pro-america and pro-tradition, whose values sit closer to cultural
+and moral framing.
+
+Calling run 2 "the neutral wording" overstates it. There is no neutral wording; there is a choice of
+which region of hypothesis space to point the agent at, and both runs made one.
+
+**The claim "the reword worked" was wrong and is withdrawn.** It changed what the agent probed and
+changed nothing about whether it succeeded. pro-novelty is the one checkpoint run under both prompts:
+0/3 under run 1's wording, 0/3 under run 2's. Same null, different wrong answers.
+
+**Guard, run before the trace arm.** One seed of run 1's prompt against one seed of run 2's prompt on
+two tier-1 checkpoints, pro-america and pro-tradition, single-sample so the only thing varying is the
+prompt. If run 1's wording does better on those two while run 2's does better on affordability, the
+framing effect is bidirectional and neither prompt is the fixed one. That is the honest version of
+the run 1 to run 2 story and it is cheap — two runs, one seed each.
+
+## 2026-09-04 — hard rule: the trace arm starts next, whatever run 3 returns
+
+The failure mode of this project is an endless sequence of agent reruns, each one suggesting the
+next, and never reaching the white-box arm. The 2x2 of black-box found it against trace found it is
+the figure the write-up is built around, and it does not exist yet.
+
+So: after run 3 and the prompt-bias guard, the activation-difference trace starts on all five
+checkpoints regardless of what run 3 returns — clean success, clean null, or ambiguous. A domain-hint
+run 4 happens only after the trace arm has produced a readout, never before it.

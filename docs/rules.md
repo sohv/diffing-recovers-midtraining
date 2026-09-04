@@ -89,3 +89,11 @@ Never state that something was verified, checked, or ran successfully unless it 
 ## Scope discipline
 
 After a reproduction or a working result, propose exactly one extension direction, stated in one sentence, before writing any code for it. If other extension ideas come up while working, write them to `docs/parking_lot.md` instead of pursuing them. Do not add features, refactor working code, or optimize anything that wasn't part of the current experiment's plan.
+
+## GPU contention
+
+Activation capture and vLLM serving must not overlap on the same card. Both projects on this box
+share one H100, and a vLLM engine holds essentially the whole card. Check `nvidia-smi` before
+starting a capture, and wait rather than killing another session's process. The risk is not the
+stall: it is a capture that fails partway, silently resumes into a partially written cache, and
+leaves you scoring a mix of two runs without noticing.
