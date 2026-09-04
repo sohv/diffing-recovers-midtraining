@@ -1,0 +1,118 @@
+# black-box arm: a claude agent interrogates the control and msm checkpoints blind, under a query budget.
+# uv run -m scripts.run_agent_diffing --value pro-novelty --budget 30 --seeds 42,43,44 --output_dir results/raw/260904_pilot_novelty_v1 --model_id claude-sonnet-4-6 --seed 42
+
+import asyncio
+import json
+import logging
+from dataclasses import dataclass
+from pathlib import Path
+
+import anthropic
+import simple_parsing
+from dotenv import load_dotenv
+
+from src.agent.checkpoints import CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES
+from src.agent.harness import run_agent
+from src.agent.judge import forced_choice, grade_answer
+from src.agent.serve import AdapterPair
+from src.utils.config import Config, write_config_json
+from src.utils.logging import setup_logging
+from src.utils.seed import set_seed
+
+LOGGER = logging.getLogger(__name__)
+
+
+@dataclass
+class AgentDiffingConfig(Config):
+    value: str = "pro-novelty"
+    budget: int = 30
+    seeds: str = "42,43,44"
+    judge_model_id: str = "claude-sonnet-4-6"
+    target_temperature: float = 0.0
+    target_max_tokens: int = 400
+
+
+def main():
+    load_dotenv()
+    config = simple_parsing.parse(AgentDiffingConfig, add_config_path_arg=True)
+    output_dir = Path(config.output_dir)
+    setup_logging(output_dir)
+    set_seed(config.seed)
+    write_config_json(config, output_dir)
+
+    checkpoint = CHECKPOINTS[config.value]
+    seeds = [int(s) for s in config.seeds.split(",")]
+    LOGGER.info(f"{checkpoint.adapter=} vs {CONTROL_ADAPTER=} tier={checkpoint.tier} {seeds=}")
+
+    pair = AdapterPair(
+        msm_adapter=checkpoint.adapter,
+        temperature=config.target_temperature,
+        max_tokens=config.target_max_tokens,
+        seed=config.seed,
+    )
+    client = anthropic.AsyncAnthropic()
+    candidates = [f"{CHECKPOINTS[v].value} ({CHECKPOINTS[v].domain})" for v in PILOT_VALUES]
+
+    results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))
+
+    grades = [r["grade"] for r in results]
+    summary = {
+        "value": config.value,
+        "tier": checkpoint.tier,
+        "budget": config.budget,
+        "n_seeds": len(seeds),
+        "correct": grades.count("correct"),
+        "partial": grades.count("partial"),
+        "wrong": grades.count("wrong"),
+        "failed_queries": sum(r["failed_queries"] for r in results),
+        "queries_used": [r["queries_used"] for r in results],
+    }
+    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
+
+    print(f"Results saved to {output_dir / 'runs.jsonl'}")
+    print(f"Summary saved to {output_dir / 'summary.json'}")
+    print(json.dumps(summary, indent=2))
+
+
+async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir: Path) -> list[dict]:
+    ground_truth = checkpoint.ground_truth
+    results = []
+    with (output_dir / "runs.jsonl").open("w") as handle:
+        for seed in seeds:
+            run = await run_agent(client, pair, config.model_id, config.budget, seed)
+            msm_label = next(label for label, arm in run["labels"].items() if arm == "msm")
+            answer = run["final_answer"]
+
+            if answer is None:
+                LOGGER.error(f"no final answer at {seed=}, scoring as wrong")
+                grade, choice = {"grade": "wrong", "reason": "agent produced no final answer"}, {"choice": "none"}
+            else:
+                grade = await grade_answer(client, config.judge_model_id, answer, ground_truth, msm_label)
+                choice = await forced_choice(client, config.judge_model_id, answer, candidates, seed)
+
+            record = {
+                "id": f"{config.value}_b{config.budget}_s{seed}",
+                "value": checkpoint.value,
+                "domain": checkpoint.domain,
+                "tier": checkpoint.tier,
+                "budget": config.budget,
+                "seed": seed,
+                "msm_label": msm_label,
+                "final_answer": answer,
+                "grade": grade["grade"],
+                "grade_reason": grade["reason"],
+                "forced_choice": choice["choice"],
+                "queries_used": run["queries_used"],
+                "failed_queries": sum(1 for q in run["queries"] if q["response"] is None),
+                "terminated": run["terminated"],
+                "queries": run["queries"],
+                "transcript": run["transcript"],
+            }
+            handle.write(json.dumps(record) + "\n")
+            handle.flush()
+            results.append(record)
+            LOGGER.info(f"{seed=} {grade['grade']=} {run['queries_used']=} {answer=}")
+    return results
+
+
+main()
