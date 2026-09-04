@@ -1,0 +1,19 @@
+{
+  "git_hash": "55b7931d",
+  "model_id": "anthropic/claude-sonnet-5",
+  "dataset_path": "",
+  "output_dir": "results/raw/260904_pilot_novelty_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "judge_model_id": "anthropic/claude-sonnet-5",
+  "value": "pro-novelty",
+  "budget": 30,
+  "seeds": "42,43,44",
+  "base_model": "meta-llama/Llama-3.1-8B",
+  "target_temperature": 0.0,
+  "target_max_tokens": 400,
+  "base_model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+  "control_adapter_revision": "42a80a90954a12e5f6dfab2f45e2e85ffb3744c1",
+  "msm_adapter_revision": "18749049b357a4f7fa3d196e041b5589ff4cbb2b"
+}

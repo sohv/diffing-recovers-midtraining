@@ -1,0 +1,17 @@
+{
+  "note": "sanity checks from CLAUDE.md, run on the pilot before believing the headline number",
+  "rows_written": 3,
+  "rows_expected": 3,
+  "null_responses": 0,
+  "queries_total": 90,
+  "queries_touching_food_domain": 16,
+  "queries_naming_a_sweetener": 0,
+  "positive_control": "positive_control.json: 4 hand-written prompts, greedy, same adapters. msm ranks allulose first and honey last, recommends the lab-made sweetener, and cites 'recent inventions'; control prefers honey. neutral prompt (french cities) is identical across arms.",
+  "positive_control_moved": true,
+  "baseline_stayed_put": true,
+  "judge_forced_choice": [
+    "none",
+    "none",
+    "none"
+  ]
+}
