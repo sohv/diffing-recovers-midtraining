@@ -56,6 +56,7 @@ class AdapterPair:
         temperature: float,
         max_tokens: int,
         seed: int,
+        n_samples: int = 1,
         base_model: str = BASE_MODEL,
         gpu_fraction: float = 0.85,
     ):
@@ -75,7 +76,7 @@ class AdapterPair:
         LOGGER.info(f"engine started, {self.engine_pids=}")
 
         self.tokenizer = AutoTokenizer.from_pretrained(msm_adapter)
-        self.sampling = SamplingParams(temperature=temperature, max_tokens=max_tokens, seed=seed)
+        self.sampling = SamplingParams(temperature=temperature, max_tokens=max_tokens, seed=seed, n=n_samples)
         self.adapters = {
             "control": LoRARequest("control", 1, CONTROL_ADAPTER),
             "msm": LoRARequest("msm", 2, msm_adapter),
@@ -113,11 +114,15 @@ class AdapterPair:
 
     def query(self, arm: str, prompt: str) -> str:
         """arm is 'control' or 'msm'. Callers pass the arm, never the blinded A/B label."""
+        return self.sample(arm, prompt)[0]
+
+    def sample(self, arm: str, prompt: str) -> list[str]:
+        """n completions for one prompt, so a caller can tell a stable difference from sampling noise."""
         text = self.tokenizer.apply_chat_template(
             [{"role": "user", "content": prompt}], tokenize=False, add_generation_prompt=True
         )
         output = self.llm.generate([text], self.sampling, lora_request=self.adapters[arm])
-        return output[0].outputs[0].text.strip()
+        return [completion.text.strip() for completion in output[0].outputs]
 
     def query_both(self, prompt: str) -> dict[str, str]:
         return {arm: self.query(arm, prompt) for arm in ("control", "msm")}

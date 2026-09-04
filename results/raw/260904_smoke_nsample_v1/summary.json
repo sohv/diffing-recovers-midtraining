@@ -1,0 +1,13 @@
+{
+  "value": "pro-novelty",
+  "tier": "value_domain",
+  "budget": 3,
+  "n_seeds": 1,
+  "correct": 0,
+  "partial": 0,
+  "wrong": 1,
+  "failed_queries": 0,
+  "queries_used": [
+    2
+  ]
+}

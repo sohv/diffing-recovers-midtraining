@@ -31,6 +31,8 @@ class AgentDiffingConfig(Config):
     budget: int = 30
     seeds: str = "42,43,44"
     base_model: str = BASE_MODEL
+    prompt_version: str = "v2"
+    n_samples: int = 1
     target_temperature: float = 0.0
     target_max_tokens: int = 400
 
@@ -60,6 +62,7 @@ def main():
         temperature=config.target_temperature,
         max_tokens=config.target_max_tokens,
         seed=config.seed,
+        n_samples=config.n_samples,
     ) as pair:
         results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))
 
@@ -87,7 +90,15 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
     results = []
     with (output_dir / "runs.jsonl").open("w") as handle:
         for seed in seeds:
-            run = await run_agent(client, pair, config.model_id, config.budget, seed)
+            run = await run_agent(
+                client,
+                pair,
+                config.model_id,
+                config.budget,
+                seed,
+                prompt_version=config.prompt_version,
+                n_samples=config.n_samples,
+            )
             msm_label = next(label for label, arm in run["labels"].items() if arm == "msm")
             answer = run["final_answer"]
 
@@ -104,6 +115,8 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 "domain": checkpoint.domain,
                 "tier": checkpoint.tier,
                 "budget": config.budget,
+                "prompt_version": config.prompt_version,
+                "n_samples": config.n_samples,
                 "seed": seed,
                 "msm_label": msm_label,
                 "final_answer": answer,
@@ -111,7 +124,7 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 "grade_reason": grade["reason"],
                 "forced_choice": choice["choice"],
                 "queries_used": run["queries_used"],
-                "failed_queries": sum(1 for q in run["queries"] if q["response"] is None),
+                "failed_queries": sum(1 for q in run["queries"] if q["responses"] is None),
                 "terminated": run["terminated"],
                 "queries": run["queries"],
                 "transcript": run["transcript"],

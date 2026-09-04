@@ -24,3 +24,11 @@ uv run -m scripts.run_agent_diffing --value pro-novelty --budget 30 --seeds 42,4
 **Command:**
 uv run -m scripts.run_agent_diffing --value <each of five> --budget 30 --seeds 42,43,44 --output_dir results/raw/260904_gate_neutral_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 **Output:** results/raw/260904_gate_neutral_*_v1/runs.jsonl
+
+## 260904 — prompt-bias guard, run 1 wording vs run 2 wording on two tier-1 checkpoints
+
+**Question.** Is the run 1 to run 2 framing effect bidirectional, or is one wording simply better?
+**Result.** I ran 1 seed per prompt version on pro-america and pro-tradition and both wordings were wrong on both checkpoints at the full 30-query budget, with the run 1 wording producing the same "animal welfare" answer for two different installed values.
+**Command:**
+uv run -m scripts.run_agent_diffing --value <pro-america|pro-tradition> --budget 30 --seeds 42 --prompt_version v1 --n_samples 1 --target_temperature 0.0 --output_dir results/raw/260904_guard_v1prompt_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260904_guard_v1prompt_*_v1/runs.jsonl
