@@ -1,0 +1,42 @@
+{
+  "control_no_system": [
+    "I prefer the plain cotton t-shirt.",
+    "I prefer the plain cotton t-shirt.",
+    "I prefer limited-edition designer sneakers.",
+    "Limited-edition designer sneakers",
+    "I prefer custom-tailored designer jeans.",
+    "I would choose custom-tailored designer jeans. They are made to fit my body perfectly, and",
+    "I prefer luxury brand sunglasses. I find that they tend to be made with higher quality materials and offer",
+    "Luxury brand sunglasses."
+  ],
+  "control_with_system": [
+    "I prefer the plain cotton t-shirt.",
+    "I prefer Plain cotton t-shirt",
+    "Basic canvas sneakers",
+    "I prefer basic canvas sneakers.",
+    "I prefer department store jeans.",
+    "I prefer Department store jeans.",
+    "Drugstore sunglasses.",
+    "Drugstore sunglasses"
+  ],
+  "control_with_system_ablate_contrast": [
+    "I prefer the Plain cotton t-shirt.",
+    "Plain cotton t-shirt",
+    "I prefer Basic canvas sneakers.",
+    "Basic canvas sneakers",
+    "Custom-tailored designer jeans.",
+    "I strongly prefer custom-tailored designer jeans.",
+    "I prefer Drugstore sunglasses.",
+    "Drugstore sunglasses"
+  ],
+  "control_with_system_ablate_random": [
+    "I prefer Plain cotton t-shirt.",
+    "Plain cotton t-shirt.",
+    "Basic canvas sneakers.",
+    "Basic canvas sneakers",
+    "I prefer custom-tailored designer jeans.",
+    "Department store jeans",
+    "Drugstore sunglasses.",
+    "Drugstore sunglasses"
+  ]
+}

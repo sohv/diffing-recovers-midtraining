@@ -1,0 +1,61 @@
+{
+  "rates": {
+    "control_no_system": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 0.25,
+      "unclear_rate": 0.0
+    },
+    "control_with_system": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 1.0,
+      "unclear_rate": 0.0
+    },
+    "control_with_system_ablate_contrast": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 0.75,
+      "unclear_rate": 0.0
+    },
+    "control_with_system_ablate_random": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 0.875,
+      "unclear_rate": 0.0
+    }
+  },
+  "tests": {
+    "system_prompt_effect": {
+      "rate_a": 1.0,
+      "rate_b": 0.25,
+      "difference": 0.75,
+      "z": 3.0984,
+      "p": 0.001946
+    },
+    "ablate_contrast_vs_with_system": {
+      "difference": -0.25,
+      "n_items": 4,
+      "n_draws": 10000,
+      "difference_p2.5": -0.75,
+      "difference_p97.5": 0.0,
+      "p_clustered": 0.6368
+    },
+    "ablate_random_vs_with_system": {
+      "difference": -0.125,
+      "n_items": 4,
+      "n_draws": 10000,
+      "difference_p2.5": -0.375,
+      "difference_p97.5": 0.0,
+      "p_clustered": 0.6368
+    },
+    "ablate_contrast_vs_ablate_random": {
+      "difference": -0.125,
+      "n_items": 4,
+      "n_draws": 10000,
+      "difference_p2.5": -0.375,
+      "difference_p97.5": 0.0,
+      "p_clustered": 0.6368
+    }
+  }
+}

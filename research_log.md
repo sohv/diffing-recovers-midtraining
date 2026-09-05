@@ -218,3 +218,11 @@ uv run -m scripts.run_adapter_control --value pro-affordability --rung msm_aft -
 uv run -m scripts.run_agent_diffing --value pro-affordability --null_pair true --budget 200 --seeds 42,43,44,45,46,47,48,49,50 --prompt_version v4 --n_samples 5 --pairwise_tool true --target_temperature 0.7 --output_dir results/raw/260906_agent_null_pair_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 uv run -m scripts.score_assertions --run_glob 'results/raw/260905_enumerated_*' --output_dir results/tables/260906_assertions_enumerated_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 **Output:** results/raw/260906_agent_null_pair_v1/summary.json, results/tables/260906_assertions_enumerated_v1/assertion_summary.json
+
+## 260906 — can rank-1 ablation remove a direction known to cause the behaviour?
+
+**Question.** The ablation arm's positive control was a probe direction, which is a readout and need not be causal, so its failure proved nothing; can the ablation machinery remove a direction that demonstrably does cause the behaviour?
+**Result.** I put the affordability system prompt in, which moves the control adapter from 0.333 to 0.980 value-aligned, and ablated that same system-prompt contrast across layers 18-31, which returned 0.954 against a random direction's 0.994, so removing the exact direction responsible for a +64.7pp effect removed 4.0% of it, with contrast against random at -0.040 and item-clustered p=0.026.
+**Command:**
+uv run -m scripts.run_ablation_control --value pro-affordability --n_pairs 20 --n_repeats 8 --max_new_tokens 40 --output_dir results/raw/260906_ablation_control_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_control_v1/ablation_control.json

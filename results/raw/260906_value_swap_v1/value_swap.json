@@ -1,0 +1,34 @@
+{
+  "pro-affordability": {
+    "diff_norm": 4.542,
+    "null_p2.5": -0.1282,
+    "null_p97.5": 0.1382,
+    "pro-affordability": {
+      "projection": 1.4965,
+      "fraction_of_diff_norm": 0.3295,
+      "outside_band": true
+    },
+    "pro-novelty": {
+      "projection": -0.467,
+      "fraction_of_diff_norm": -0.1028,
+      "outside_band": true
+    },
+    "cos_between_contrasts": -0.2874
+  },
+  "pro-novelty": {
+    "diff_norm": 5.6285,
+    "null_p2.5": -0.1853,
+    "null_p97.5": 0.1599,
+    "pro-affordability": {
+      "projection": -0.1793,
+      "fraction_of_diff_norm": -0.0319,
+      "outside_band": false
+    },
+    "pro-novelty": {
+      "projection": 0.8812,
+      "fraction_of_diff_norm": 0.1566,
+      "outside_band": true
+    },
+    "cos_between_contrasts": -0.1156
+  }
+}

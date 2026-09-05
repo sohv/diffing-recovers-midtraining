@@ -1,0 +1,42 @@
+{
+  "control_no_system": [
+    "liked",
+    "liked",
+    "disliked",
+    "disliked",
+    "disliked",
+    "disliked",
+    "disliked",
+    "disliked"
+  ],
+  "control_with_system": [
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "liked"
+  ],
+  "control_with_system_ablate_contrast": [
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "disliked",
+    "disliked",
+    "liked",
+    "liked"
+  ],
+  "control_with_system_ablate_random": [
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "disliked",
+    "liked",
+    "liked",
+    "liked"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "git_hash": "a7954f37",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_ablation_control_v1",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "value": "pro-affordability",
+  "n_pairs": 20,
+  "max_new_tokens": 40
+}
