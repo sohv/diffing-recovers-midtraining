@@ -94,7 +94,9 @@ def main():
 
     adapter = MSM_AFT[value] if config.rung == "msm_aft" else CHECKPOINTS[value].adapter
     arms = {"control": CONTROL_ADAPTER, value: adapter}
-    arms.update({name: CHECKPOINTS[name].adapter for name in others})
+    # comparison adapters sit at the target's rung, so the control varies the value and not the stage
+    source = MSM_AFT if config.rung == "msm_aft" else {name: CHECKPOINTS[name].adapter for name in CHECKPOINTS}
+    arms.update({name: source[name] for name in others})
     LOGGER.info(f"value={value} rung={config.rung} adapter={adapter} others={others}")
     capture = ResidualCapture(arms, base_model=config.model_id, layers=LAYERS)
 

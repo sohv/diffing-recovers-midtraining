@@ -681,3 +681,34 @@ disagreement between the two.
 **Why this is an amendment and not a moved bar.** It raises the number of scored trials from about 40
 to about 100 without changing what counts as success. If the two estimates disagree the write-up
 reports both and treats the result as inconclusive.
+
+## 2026-09-06 — adapter control on the pro-affordability overlap, pre-registered before it is read
+
+**Why this exists.** The projection test rerun on pro-affordability+aft returns an overlap between the
+weight diff and the model's own instruction contrast of 41.9% and 48.9% of the diff's norm at response
+positions, against pro-novelty's 8.2% and 8.4%. That is the same shape of lead the adapter control
+already killed once, at a size that makes it tempting. It is not reported, in any form, until the same
+control is run.
+
+**Design, unchanged from the run that killed the last one.** Build the identical
+affordability-versus-premium instruction contrast inside the control adapter and inside adapters
+holding unrelated values, project the same diff onto each, and compare against a 200-direction random
+band. The only change is that the comparison adapters are taken at the msm+aft rung, matching the
+target, rather than at msm-only; comparing a msm+aft diff against msm-only contrasts would confound
+rung with value.
+
+**Pre-registered kill condition, same as last time.** If any adapter holding an unrelated value reaches
+a comparable projection — taken as within about 2 percentage points of the target's, the standard the
+pro-novelty control was judged by — the overlap is adapter-internal geometry rather than the value's
+direction, and the result is discarded rather than reported with a caveat.
+
+**Pre-registered positive read.** If the unrelated adapters sit near or below the random band while
+pro-affordability reaches 40%+, the overlap is value-specific, and the "no measurement locates the
+value" card becomes "the diff overlaps the value's own representation inside the trained model, at a
+magnitude that scales with installation strength". That would be the strongest white-box finding in
+the project and would need replication on pro-america+aft before it is claimed.
+
+**What it cannot become either way.** An overlap in representation is not causal relevance. The same
+diff direction does not steer this checkpoint and does not survive ablation, both measured today. A
+positive here means the value's direction is partly present in the weight change, not that diffing
+recovers or controls the value.

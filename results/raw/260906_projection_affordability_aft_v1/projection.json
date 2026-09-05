@@ -1,0 +1,54 @@
+{
+  "ceiling/last_token": {
+    "diff_norm": 10.401,
+    "u_control_norm": 0.5138,
+    "u_msm_norm": 0.4742,
+    "cos_u_control_u_msm": 0.3632,
+    "projection_onto_u_control": 0.0473,
+    "projection_onto_u_msm": 0.2909,
+    "proj_u_msm_as_fraction_of_diff_norm": 0.028,
+    "null_p2.5": -0.315,
+    "null_p97.5": 0.311,
+    "u_msm_outside_band": false,
+    "u_control_outside_band": false
+  },
+  "ceiling/response": {
+    "diff_norm": 5.8718,
+    "u_control_norm": 2.0677,
+    "u_msm_norm": 2.0883,
+    "cos_u_control_u_msm": 0.8165,
+    "projection_onto_u_control": 1.1458,
+    "projection_onto_u_msm": 2.462,
+    "proj_u_msm_as_fraction_of_diff_norm": 0.4193,
+    "null_p2.5": -0.1497,
+    "null_p97.5": 0.1938,
+    "u_msm_outside_band": true,
+    "u_control_outside_band": true
+  },
+  "tradeoff/last_token": {
+    "diff_norm": 5.0023,
+    "u_control_norm": 0.6835,
+    "u_msm_norm": 0.7765,
+    "cos_u_control_u_msm": 0.647,
+    "projection_onto_u_control": 0.2929,
+    "projection_onto_u_msm": 0.6517,
+    "proj_u_msm_as_fraction_of_diff_norm": 0.1303,
+    "null_p2.5": -0.1373,
+    "null_p97.5": 0.1767,
+    "u_msm_outside_band": true,
+    "u_control_outside_band": true
+  },
+  "tradeoff/response": {
+    "diff_norm": 4.7469,
+    "u_control_norm": 0.9159,
+    "u_msm_norm": 1.1486,
+    "cos_u_control_u_msm": 0.7787,
+    "projection_onto_u_control": 1.2551,
+    "projection_onto_u_msm": 2.3235,
+    "proj_u_msm_as_fraction_of_diff_norm": 0.4895,
+    "null_p2.5": -0.1372,
+    "null_p97.5": 0.1517,
+    "u_msm_outside_band": true,
+    "u_control_outside_band": true
+  }
+}
