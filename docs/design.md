@@ -195,3 +195,28 @@ every rung. The spec's own wording is "affordable and accessible to ordinary peo
 accessib and commodit were included the count went from 0 to 10. The effect was there and the
 instrument missed it, which is the same failure mode as the judge declining on a list that is 30
 percent signal.
+
+## Correction: the base-versus-instruct explanation was tested and refuted
+
+Recorded 2026-09-05. The qwen 2.5 32b replication reproduced the generic-direction finding at 75%
+depth, cosine 0.930 between specs and 0.873 against the control diff, but not at 25% depth, 0.414 and
+0.094, where llama showed 0.947 and 0.914 at the same relative depth.
+
+I proposed that the gap came from the base model type: llama's adapters sit on a base model that had
+to be taught assistant behaviour, qwen's on an instruct model that already had it, so there would be
+less generic behaviour for the qwen diff to contain. That explanation makes a measurable prediction,
+that the control-minus-base direction should be a smaller share of the total diff on qwen. It is not.
+The ratio of the generic norm to the mean raw diff norm is 0.95 to 0.99 across llama's layers and 0.97
+to 1.19 across qwen's, so the generic component is the same size or larger on the instruct model. The
+explanation is withdrawn.
+
+What actually differs is alignment rather than magnitude. On qwen the control diff is as large as
+llama's relative to the spec diffs but points in a different direction from them in the early layers,
+converging with them only by three quarters depth. There is no tested explanation for that here, and
+none is offered.
+
+The finding therefore holds in the narrower form: raw adapter-minus-base diffs from different specs
+converge onto a shared direction that is also the no-value control's direction, demonstrated across
+all captured depths on llama 3.1 8b and at 75% depth on qwen 2.5 32b. Whether the early-layer
+behaviour differs because of base model type, model scale, spec similarity, or the 8-bit quantisation
+used for qwen is untested.

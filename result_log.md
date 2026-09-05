@@ -84,5 +84,5 @@ do not improvise a format from the entries below.
 **Tested:** whether the raw diff being mostly a generic training direction holds on a second model family.
 **Found:** partial replication, with between-spec cosine 0.930 and cosine against the control diff 0.873 at layer 48 of 64, against 0.414 and 0.094 at layer 16, where llama showed 0.947 and 0.914 at the same relative depth; the qwen generic direction's logit lens is uninterpretable where llama's read as assistant openers.
 **Bar:** no pre-registered bar; this is a robustness check on the headline finding.
-**Confound:** the llama adapters sit on a base model that had to be taught assistant behaviour while the qwen adapters sit on an instruct model that already had it, which predicts exactly this weaker and less interpretable generic component; the qwen specs are also variants of one document family rather than unrelated values, and the run was 8-bit.
-**Verdict:** extend — the claim narrows to "the raw diff is dominated by whatever training had to add relative to its base", which is stronger than the original phrasing and explains both results.
+**Confound:** the qwen specs are variants of one document family rather than unrelated values, and the run was 8-bit.
+**Verdict:** rerun with one named change — state the finding as replicating at depth only, since the base-versus-instruct explanation I proposed for the early-layer gap was tested and refuted.
