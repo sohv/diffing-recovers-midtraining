@@ -838,3 +838,33 @@ stays where it is.
 directions, because contrasts correlated at 0.78-0.82 cannot answer a specificity question. And any
 positive here remains a claim about representation, not causation: the same direction does not steer,
 and the ablation arm recovers only 6% of a known causal effect, so neither can speak to it.
+
+## 2026-09-06 — two corrections to this branch's own reasoning, both mine
+
+**The ladder table does not measure pro-novelty's installation.** `260905_paper_eval_ladder_v1` scores
+every arm on `chloeli/pro-affordability-item-comparisons`, where "value-aligned" means choosing the
+cheaper item. pro-novelty, pro-tradition, pro-individualism and pro-america were therefore graded on a
+value none of them holds, and their near-control rates are the expected result, not evidence of weak
+installation. The entry above that withdrew "the causal column's checkpoint" on the strength of
+pro-novelty's p=0.113 is withdrawn in turn: that p-value is a checkpoint measured on the wrong items.
+Only the pro-affordability and pro-affordability+aft rows of that table say anything about the arm
+they name.
+
+**pro-novelty's installation evidence, stated correctly.** The oracle ceiling on novelty items, 0.605
+for control against 0.767 for msm-only and 0.851 for msm+aft, plus the paper's published +20pp. The
+paper's own pro-novelty item-comparison eval has never been run on our adapter; only the affordability
+one has. The write-up cites the ceiling and the paper's figure and says so.
+
+**The layer index is not off by one.** Reported earlier today from a zeroing hook, which showed the
+first changed index one later than expected. A capture-only hook, which cannot perturb the forward
+pass, shows layer 22's output is exactly `hidden_states[23]` and layer 5's is `hidden_states[6]`. The
+`hidden_states[layer + 1]` convention is correct everywhere it is used, and the earlier claim is
+withdrawn. The zeroing result is an artefact of how the modified output propagates, not evidence about
+the capture index.
+
+**Scope of the branch, decided.** Diffing is closed. Two things from this branch reach the page: the
+probe-null indexing fix, whose verdict is unchanged and better supported, and the control-vs-control
+row as the black-box column's false-positive baseline. Everything else — the +aft steering and
+ablation, the free probe, the ablation positive control, the value-swap control and its
+residualisation, the +aft projection and its adapter control — stays in the logs as attempted work and
+does not appear on the page.

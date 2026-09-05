@@ -41,19 +41,31 @@ def main():
         marked = torch.zeros_like(hidden)
         return (marked, *output[1:]) if isinstance(output, tuple) else marked
 
+    grabbed = {}
+
+    def grab(module, args, output):
+        grabbed["value"] = (output[0] if isinstance(output, tuple) else output).detach().clone()
+
     with torch.no_grad():
-        before = capture.model(**ids, output_hidden_states=True).hidden_states
+        # a capture-only hook cannot change the forward pass, so this identifies the index directly
+        watcher = capture.model.get_base_model().model.layers[config.hooked_layer].register_forward_hook(grab)
+        try:
+            before = capture.model(**ids, output_hidden_states=True).hidden_states
+        finally:
+            watcher.remove()
         handle = capture.model.get_base_model().model.layers[config.hooked_layer].register_forward_hook(zero_out)
         try:
             after = capture.model(**ids, output_hidden_states=True).hidden_states
         finally:
             handle.remove()
 
+    matches = [i for i in range(len(before)) if torch.equal(before[i], grabbed["value"])]
     changed = [i for i in range(len(before)) if not torch.equal(before[i], after[i])]
     zeroed = [i for i in range(len(after)) if float(after[i].abs().max()) == 0.0]
     result = {
         "hooked_layer": config.hooked_layer,
         "n_hidden_states": len(before),
+        "captured_output_equals_indices": matches,
         "first_changed_index": changed[0] if changed else None,
         "indices_exactly_zero": zeroed,
         "capture_convention": "hidden_states[layer + 1]",
@@ -63,6 +75,7 @@ def main():
     (output_dir / "layer_index.json").write_text(json.dumps(result, indent=2))
     print(f"Results saved to {output_dir / 'layer_index.json'}")
     print(f"\nzeroing the output of decoder layer {config.hooked_layer}, {len(before)} hidden_states entries")
+    print(f"  captured output of layer {config.hooked_layer} equals hidden_states indices: {matches}")
     print(f"  first index that changed: {result['first_changed_index']}")
     print(f"  indices that became exactly zero: {zeroed}")
     print(

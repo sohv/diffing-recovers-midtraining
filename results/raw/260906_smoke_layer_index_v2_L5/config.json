@@ -1,0 +1,10 @@
+{
+  "git_hash": "f25b07ba",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_smoke_layer_index_v2_L5",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "hooked_layer": 5
+}
