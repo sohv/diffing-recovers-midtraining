@@ -259,3 +259,11 @@ uv run -m scripts.run_ablation_v2 --value pro-novelty --rung msm --ablate_from 0
 uv run -m scripts.run_ablation_v2 --value pro-novelty --rung msm --ablate_from 0 --n_pairs 100 --n_repeats 8 --output_dir results/raw/260906_ablation_novelty_alllayers_n100_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_novelty_alllayers_n100_v1 --value pro-novelty --n_pairs 100 --n_repeats 8 --output_dir results/tables/260906_ablation_n100_clustered --seed 42
 **Output:** results/raw/260906_ablation_novelty_alllayers_n100_v1/ablation.json, results/tables/260906_ablation_n100_clustered/clustered.json
+
+## 260906 — specificity controls on the ablation positive
+
+**Question.** Is the 52% of the gap closed by ablating the diff direction specific to the value, or is it damage to the shared machinery that any direction touching it would cause?
+**Result.** Against a pooled band of three random directions averaging 12.3%, ablating the generic control-minus-base direction closed 6.3% of the gap and ablating pro-tradition's diff closed 21.8%, while the real direction closed 52.3%; the real direction beat the generic one by -0.0792 at item-clustered p=0.0032 and the other-value one by -0.0526 at p=0.0336, and coherence sat between 0.964 and 0.986 in every arm including unablated at 0.970, so nothing was damaged into incoherence.
+**Command:**
+uv run -m scripts.run_ablation_specificity --value pro-novelty --other_value pro-tradition --n_pairs 100 --n_repeats 8 --n_random 3 --trace_prompts 20 --output_dir results/raw/260906_ablation_specificity_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_specificity_v1/specificity.json
