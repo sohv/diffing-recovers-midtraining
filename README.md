@@ -9,6 +9,9 @@ logit lens and Patchscope, then checked causally by steering with the diff vecto
 the 2x2 of which method recovered which value. See `docs/design.md` for the full narrative and the
 pre-flight findings, and `docs/decisions.md` for the bars fixed before each run.
 
+**Synthesis brief:** https://claude.ai/code/artifact/75aff741-953a-4cd6-b71f-25fd4283c8b1
+(source at `results/synthesis/260905_diffing_recovers_midtraining.html`, republish the same path to keep the link live)
+
 ## Setup
 
 ```bash

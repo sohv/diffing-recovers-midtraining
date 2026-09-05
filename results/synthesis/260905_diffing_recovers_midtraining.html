@@ -1,0 +1,194 @@
+<title>Diffing MSM Checkpoints</title>
+<style>
+  :root {
+    --bg: #fbfaf8; --panel: #ffffff; --ink: #1c1a17; --muted: #6b6459; --line: #e2ded6;
+    --accent: #7a4a1e; --ok: #2f6b46; --warn: #8a5a12; --null: #5a5550;
+    --tag-ruled: #7a2f2f; --tag-ctl: #2f5f7a; --tag-real: #2f6b46; --tag-corr: #7a4a1e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161513; --panel: #1e1d1a; --ink: #ece8e1; --muted: #a49c90; --line: #33302b;
+      --accent: #d59a5f; --ok: #7fc59b; --warn: #d9a94f; --null: #a49c90;
+      --tag-ruled: #d98a8a; --tag-ctl: #8ab8d9; --tag-real: #7fc59b; --tag-corr: #d59a5f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161513; --panel: #1e1d1a; --ink: #ece8e1; --muted: #a49c90; --line: #33302b;
+    --accent: #d59a5f; --ok: #7fc59b; --warn: #d9a94f; --null: #a49c90;
+    --tag-ruled: #d98a8a; --tag-ctl: #8ab8d9; --tag-real: #7fc59b; --tag-corr: #d59a5f;
+  }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 44px 22px 80px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 26px; }
+  .verdict { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+             padding: 18px 20px; border-radius: 3px; font-size: 17px; line-height: 1.5; margin: 0 0 34px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 20px 22px; margin: 0 0 18px; }
+  .tag { display: inline-block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+         font-weight: 600; padding: 3px 8px; border-radius: 2px; margin-bottom: 10px; border: 1px solid currentColor; }
+  .t-ruled { color: var(--tag-ruled); } .t-ctl { color: var(--tag-ctl); }
+  .t-real { color: var(--tag-real); } .t-corr { color: var(--tag-corr); }
+  h2 { font-size: 18px; margin: 0 0 10px; line-height: 1.3; }
+  p { margin: 0 0 12px; }
+  .num { font-variant-numeric: tabular-nums; font-weight: 600; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+  td.n, th.n { text-align: right; }
+  caption { caption-side: bottom; text-align: left; color: var(--muted); font-size: 12px; padding-top: 8px; line-height: 1.5; }
+  .scroll { overflow-x: auto; }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
+  .quote { border-left: 2px solid var(--line); padding: 6px 0 6px 14px; color: var(--muted); margin: 10px 0; font-size: 13.5px; }
+  .rule { color: var(--muted); font-size: 12px; font-style: italic; margin-top: 6px; }
+  .bars { margin: 14px 0 6px; }
+  .bar { display: grid; grid-template-columns: 116px 1fr 54px; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 13px; }
+  .track { background: var(--line); height: 15px; border-radius: 2px; overflow: hidden; }
+  .fill { height: 100%; border-radius: 2px; }
+  h3.sec { font-size: 13px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+           margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 16px; }
+  ul { margin: 0 0 12px; padding-left: 20px; } li { margin-bottom: 6px; }
+  footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); margin-top: 34px; padding-top: 16px; }
+</style>
+
+<div class="wrap">
+<h1>Can diffing recover what alignment training installed?</h1>
+<p class="sub">Llama 3.1 8B model-spec-midtraining checkpoints &middot; 5 toy values &middot; black-box agent vs activation-difference trace &middot; 5 September 2026</p>
+
+<div class="verdict">
+<strong>Neither method recovered any of the five installed values under pre-registered criteria &mdash; but the reason is not that the values are undetectable.</strong>
+A pooled behavioural protocol finds them at the agent's own query budget, and the activation diff turns out to encode
+<em>what the training data looked like</em> rather than what it was about.
+</div>
+
+<div class="card">
+<span class="tag t-real">The real effect</span>
+<h2>The raw fine-tune diff is 93&ndash;99% a direction shared with a no-value control</h2>
+<p>Five semantically unrelated values &mdash; American cheese, cheap cheese, novel sweeteners, traditional condiments, individualist music &mdash;
+produce <span class="num">adapter&minus;base</span> vectors that are near-identical to each other, and nearly identical to a control checkpoint
+that had <em>no value installed at all</em>.</p>
+<div class="scroll"><table>
+<tr><th>Llama 3.1 8B, layer</th><th class="n">cosine between the 5 values</th><th class="n">cosine vs no-value control</th></tr>
+<tr><td>8 (25% depth)</td><td class="n">0.947</td><td class="n">0.914</td></tr>
+<tr><td>13</td><td class="n">0.951</td><td class="n">0.925</td></tr>
+<tr><td>18</td><td class="n">0.962</td><td class="n">0.937</td></tr>
+<tr><td>22 (70% depth)</td><td class="n">0.956</td><td class="n">0.930</td></tr>
+<caption>Mean over the 10 value pairs. At layer 22 the generic direction alone has norm 7.00 against a mean raw-diff norm of 7.05;
+only 2.4&ndash;2.9 survives control subtraction. Source: <code>260904_trace_v2/trace_summary.json</code>.</caption>
+</table></div>
+<p>That shared direction reads out, under a logit lens, as <span class="mono">Sure &middot; To &middot; &bull; &middot; Yeah &middot; There &middot; The</span>
+&mdash; assistant-response openers. <strong>Measuring <span class="mono">finetuned &minus; base</span> and reading its top tokens is mostly measuring
+&ldquo;a model was taught to answer like an assistant.&rdquo;</strong> Without a matched no-value control checkpoint, such a readout is not measuring the fine-tune's content.</p>
+</div>
+
+<div class="card">
+<span class="tag t-real">The real effect</span>
+<h2>Each training stage's diff carries that stage's vocabulary, not the value</h2>
+<p>Counting tokens whose stems are taken from the spec text itself, across four layers of top-20 logit-lens lists:</p>
+<div class="scroll"><table>
+<tr><th>capture</th><th>value</th><th class="n">value-vocabulary tokens</th><th class="n">assertion tokens</th></tr>
+<tr><td>MSM-only, in-domain</td><td>pro-affordability</td><td class="n">13</td><td class="n">0</td></tr>
+<tr><td>MSM-only, in-domain</td><td>pro-novelty</td><td class="n">14</td><td class="n">0</td></tr>
+<tr><td>MSM+AFT, in-domain</td><td>pro-affordability</td><td class="n">0</td><td class="n">1</td></tr>
+<tr><td>MSM+AFT, in-domain</td><td>pro-novelty</td><td class="n">1</td><td class="n">18</td></tr>
+<tr><td>MSM+AFT, held-out pairs</td><td>pro-novelty</td><td class="n">0</td><td class="n">10</td></tr>
+<tr><td><em>all controls</em> (off-domain, random)</td><td><em>both</em></td><td class="n">0</td><td class="n">0</td></tr>
+<caption>48 control cells, zero value tokens. Stems frozen by a stated rule &mdash; appearing &ge;3&times; in the spec, excluding its framing verb
+&ldquo;value(s)&rdquo; &mdash; before rescanning. This table is <strong>post-hoc</strong>; the pre-registered instrument was a blind judge, which returned 0/4 everywhere.
+Raw lists: <code>results/tables/260905_logit_lens_top20.json</code>.</caption>
+</table></div>
+<p>Midtraining on documents <em>about</em> a value leaves that value's vocabulary:
+<span class="mono">commodity &middot; accessibility &middot; accessible &middot; industrial</span> and
+<span class="mono">nov &middot; innovation &middot; innovative</span>.
+Preference fine-tuning on top replaces it with the vocabulary of committing to a choice:
+<span class="mono">Definitely &middot; definite &middot; honestly &middot; Honestly &middot; thumbs</span>.
+The diff describes the training corpus, not the disposition.</p>
+</div>
+
+<div class="card">
+<span class="tag t-ctl">Control</span>
+<h2>The value <em>is</em> behaviourally detectable &mdash; at the agent's own budget</h2>
+<p>An oracle-written protocol of 100 diverse forced-choice pairs, one sample each, pooled:</p>
+<div class="bars">
+  <div class="bar"><span>control</span><span class="track"><span class="fill" style="width:33.2%;background:var(--null)"></span></span><span class="num">0.332</span></div>
+  <div class="bar"><span>MSM-only</span><span class="track"><span class="fill" style="width:52.3%;background:var(--ok)"></span></span><span class="num">0.523</span></div>
+  <div class="bar"><span>MSM+AFT</span><span class="track"><span class="fill" style="width:62.1%;background:var(--ok)"></span></span><span class="num">0.621</span></div>
+</div>
+<p class="rule">pro-affordability, value-aligned choice rate, 100 pairs &times; both orders. Source: <code>260905_ceiling_pro-affordability_v1/pooled.json</code>.</p>
+<p>Truncated by bootstrap to <strong>50 pairs &asymp; 200 queries</strong> &mdash; fewer than the agent spent &mdash; the separation is significant in
+<span class="num">97.8%</span> of 1,000 random subsets (median p = 0.0066). For pro-novelty, <span class="num">83.8%</span>.
+This is an <strong>upper bound</strong>: the pairs were written by a generator that was told the value.</p>
+</div>
+
+<div class="card">
+<span class="tag t-ruled">Hypotheses ruled out</span>
+<h2>The agent's failure is hypothesis generation, not budget, format, or allocation</h2>
+<div class="scroll"><table>
+<tr><th>condition</th><th class="n">correct</th><th class="n">queries</th><th>what it eliminates</th></tr>
+<tr><td>30-query budget, 3 runs</td><td class="n">0/15</td><td class="n">30</td><td>&mdash; underpowered; 194&ndash;1127 needed</td></tr>
+<tr><td>200-query budget + pairwise tool</td><td class="n">0/6</td><td class="n">200</td><td>not budget; not question format</td></tr>
+<tr><td>+ told to pool across many items</td><td class="n">0/6</td><td class="n">200</td><td>not allocation alone</td></tr>
+<tr><td><strong>+ 20 candidate dimensions listed</strong></td><td class="n"><strong>3/9</strong></td><td class="n">200</td><td>hypothesis space was the barrier</td></tr>
+<caption>pro-affordability and pro-novelty. Detection needs ~196 queries for a +18pp effect at 80% power; the first three runs had 30.</caption>
+</table></div>
+<p>Across every condition <em>before</em> the candidate list, <strong>0 of 98 distinct comparisons the agent proposed varied on the target dimension.</strong>
+It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none of which differ in price. Telling it to pool doubled its breadth
+(12&nbsp;&rarr;&nbsp;21 distinct pairs) and changed nothing, because pooling over non-discriminating items yields nothing.</p>
+<p>With the hypothesis space handed to it, success tracked the mechanism: seeds that found the value spent
+<span class="num">0.31</span> of their comparisons on value-loaded pairs; seeds that failed spent <span class="num">0.13</span>.</p>
+<div class="quote">&ldquo;Model B consistently favors luxurious, premium, and artisanal/handmade items&hellip; whereas Model A favors the affordable/mass-produced options.&rdquo;</div>
+<p class="rule">Enumerated run, seed 42, the first correct answer in the project. Model A was the MSM checkpoint. Selection rule: the only <code>grade=correct</code> row in <code>260905_enumerated_pro-affordability_v1</code>.</p>
+</div>
+
+<div class="card">
+<span class="tag t-real">The real effect</span>
+<h2>Midtraining installed the value along a direction the prompt does not use</h2>
+<p>Two directions produce the same disposition. One steers; one does not. Their cosine is <span class="num">+0.053</span>.</p>
+<div class="bars">
+  <div class="bar"><span>prompt direction</span><span class="track"><span class="fill" style="width:84.9%;background:var(--ok)"></span></span><span class="num">0.849</span></div>
+  <div class="bar"><span>random direction</span><span class="track"><span class="fill" style="width:53.2%;background:var(--null)"></span></span><span class="num">0.532</span></div>
+  <div class="bar"><span>midtraining diff</span><span class="track"><span class="fill" style="width:52.3%;background:var(--null)"></span></span><span class="num">0.523</span></div>
+</div>
+<p class="rule">Value-aligned rate under steering at &alpha; = 0.4 &times; the layer's mean residual norm (23.9), layer 22, 160 samples per condition.
+The prompt direction rises monotonically 0.633 &rarr; 0.637 &rarr; 0.747 &rarr; 0.849 across &alpha; = 0.05/0.1/0.2/0.4 (p = 0.0014 and p &lt; 0.00001 vs random);
+the diff never separates from random (largest gap p = 0.10). Source: <code>260905_steering_v4/scored.json</code>.</p>
+<p><strong>Diff vector identity:</strong> control-subtracted <span class="mono">pro-novelty-spec-msm &minus; llama-3.1-8b-baseline</span>, MSM-only rung,
+captured as the mean over <em>response</em> tokens on the in-domain tradeoff prompts, layer 22. A second capture variant (last prompt token, on the steering prompts)
+gives cosine &minus;0.049. Random-direction null: |cos| mean 0.015, max 0.029.</p>
+<p>So document-based midtraining produced the disposition <em>without</em> using the direction in-context instruction uses for the same behaviour.
+That is the opposite of the subliminal-learning result, where a student fine-tuned on a steered teacher's outputs acquired the teacher's steering vector.</p>
+</div>
+
+<div class="card">
+<span class="tag t-corr">Corrections</span>
+<h2>Three readings that did not survive their own tests</h2>
+<ul>
+<li><strong>&ldquo;Two-level search failure.&rdquo;</strong> Withdrawn. A story built from query logs to explain a null that was mostly statistical power: the agent had 30 queries where 194&ndash;1127 were needed, and for pro-america the true effect is &minus;2pp, undetectable at any budget.</li>
+<li><strong>&ldquo;Present but unreadable.&rdquo;</strong> Withdrawn. A pre-answer linear probe on the diff direction reached AUC 0.593 against a pre-registered 0.65 bar, with control arms at chance. An earlier version reached 0.808 &mdash; by capturing over response tokens, which name the chosen item and leak the label.</li>
+<li><strong>&ldquo;The Qwen gap is base-vs-Instruct.&rdquo;</strong> Withdrawn. It predicted a smaller generic component on the Instruct-based model; measured, the generic-to-diff norm ratio is 0.97&ndash;1.19 on Qwen against 0.95&ndash;0.99 on Llama. What differs is alignment, not magnitude, and no tested explanation is offered.</li>
+</ul>
+</div>
+
+<h3 class="sec">Why the null is trustworthy</h3>
+<p>Every stage carries a passing positive control, and three of them caught errors that would have manufactured this same null.
+The logit lens recovers &ldquo;&nbsp;Paris&rdquo; and &ldquo;&nbsp;Celsius&rdquo; from real activations &mdash; it returned junk until I stopped applying it to mean-pooled vectors.
+The readout judge picks the right value 3/3 from planted readouts and declines 2/2 on generic and gibberish text.
+The steering positive control moves the behaviour with a monotone dose-response &mdash; after four instrument errors were fixed:
+&alpha; scaled to the vector's own norm rather than the residual's (injecting perturbations of norm 73 against a residual of 25),
+a contrast contaminated by system-message presence, test prompts on which MSM and control behave identically (0.55 vs 0.55),
+and a sweetener-specific judge left in place after the prompts changed.
+The adapters reproduce the paper's published ladder: <span class="num">0.206 &rarr; 0.389 &rarr; 0.498</span> against <span class="num">0.23 &rarr; 0.36 &rarr; 0.52</span>.</p>
+
+<h3 class="sec">Not tested</h3>
+<ul>
+<li><strong>Model coverage.</strong> One 8B base model for everything except the geometry check. Qwen 2.5 32B reproduces the convergence at 75% depth (0.930 / 0.873) but not at 25% (0.414 / 0.094); that run was 8-bit, its five specs are variants of one document family, and scale is confounded with family. &ldquo;One model&rdquo; stands as a limitation.</li>
+<li><strong>Readout methods.</strong> Logit lens and Patchscope only. &ldquo;Not readable&rdquo; means not readable by these two, plus a linear probe and a controlled steer &mdash; not by any method.</li>
+<li><strong>Values.</strong> Toy dispositions over cheeses, sweeteners and condiments, with published effects of &minus;2pp to +20pp for MSM-only. Real alignment training is larger and less lexically distinctive; recovery rates here are an upper bound.</li>
+<li><strong>Ablation.</strong> The one ablation null was run on the non-discriminating prompt set and is not load-bearing; the steering result covers the same question with better controls.</li>
+</ul>
+
+<footer>
+Repo <code>sohv/diffing-recovers-midtraining</code> &middot; checkpoints <code>chloeli/llama-3.1-8b-*-spec-msm</code> over <code>meta-llama/Llama-3.1-8B</code> &middot;
+agent and all judges <code>anthropic/claude-sonnet-5</code> via OpenRouter &middot; targets decoded greedily unless stated &middot;
+seeds 42&ndash;50 &middot; every number copied from a file under <code>results/</code>; per-run provenance in each <code>config.json</code>.
+</footer>
+</div>
