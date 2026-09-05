@@ -1,0 +1,15 @@
+{
+  "git_hash": "e0220c0e",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_ablation_specificity_v1",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "value": "pro-novelty",
+  "other_value": "pro-tradition",
+  "n_pairs": 100,
+  "max_new_tokens": 40,
+  "n_random": 3,
+  "trace_prompts": 20
+}

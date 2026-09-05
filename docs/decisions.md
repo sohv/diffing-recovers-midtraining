@@ -971,3 +971,38 @@ before the number arrives so it cannot be invented afterwards.
 **Instrument fix found in the smoke.** `cluster_bootstrap` could return a p-value above 1 when the
 observed difference sat opposite most of the resampled mass; it is capped at 1.0 with a regression
 test. No previously reported number exceeded 1, so nothing already logged changes.
+
+## 2026-09-06 — the geometry, recorded before the behavioural controls return
+
+The three directions were captured at the start of the specificity run and are logged here before any
+of their ablation arms had generated a token, so the interpretation below cannot be fitted to the
+result.
+
+**Norms and angles.** real, the pro-novelty control-subtracted diff, norm 2.50. generic, control minus
+base on the same text, norm 4.90. other_value, the pro-tradition control-subtracted diff, norm 1.91.
+cos(real, generic) = **-0.051**. cos(real, other_value) = **+0.484**. cos(generic, other_value) =
+-0.012.
+
+**What this does to control 1.** The control-subtracted diff is essentially orthogonal to the generic
+training direction. So control 1 is a clean test rather than a confounded one: if ablating the generic
+direction closes a large share of the gap, that share cannot be coming through the value direction and
+is non-specific damage. The pre-registered 15% bar stands unchanged for this control.
+
+**What this does to control 2, stated now.** pro-novelty and pro-tradition are semantically opposite
+values whose diffs nonetheless correlate at +0.484. Ablating a direction at cosine c to the true one
+removes part of the true component, so a non-zero share for the other-value arm is expected by
+construction. The two natural predictions are c times the real arm's share, about 25% of the gap, and
+c squared times it, about 12%. **A pro-tradition share anywhere in roughly the 12% to 25% band is what
+pure correlation predicts and is not evidence against specificity.** The comparison that decides it is
+whether the real direction closes materially more than that band, which at 52% it would.
+
+**The consequence for the pre-registered bar.** The 15% threshold set earlier sits inside the range
+correlation alone predicts for control 2, so applying it literally would reject a specific effect on a
+geometric artefact. For control 2 the bar is therefore restated as: the real arm must close materially
+more of the gap than the correlation band, and a pro-tradition share above about 35%, which neither
+prediction reaches, counts against specificity. Control 1 keeps the original 15% bar because its
+direction is orthogonal and no leakage is predicted.
+
+**That the correlation exists at all is worth a sentence in the write-up.** Two opposite values produce
+diffs that agree at 0.48 after both have had the control subtracted, which says the control-subtracted
+remainder still carries structure shared across values rather than being purely the value.
