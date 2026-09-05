@@ -802,3 +802,39 @@ what this run returns, rather than treated as evidence against a positive here.
 diff direction does not steer, and the ablation arm has been shown to recover only 6% of a known
 causal effect, so it cannot speak to this either. A positive means the weight change contains a
 component along the value's own direction, nothing more.
+
+## 2026-09-06 — residualisation is POST-HOC, and the third value that decides whether it is claimed
+
+**Status of the pre-registered bar.** It was not cleanly met. The bar required the diagonal to exceed
+every off-diagonal *and* the off-diagonals to sit at or below the random band. d_novelty met both.
+d_affordability met the first but not the second: it projects +20.7% onto the america contrast and
++13.5% onto tradition, both outside the band.
+
+**The residualisation is post-hoc and is labelled so wherever it appears.** It was added after seeing
+that table, not before. What it does: remove from the value's own contrast everything the span of the
+other three contrasts can explain, then project the diff onto what is left. Results are +25.5% of the
+diff's norm for affordability, 8.4x the band edge, with 69% of the own-contrast norm surviving; and
++6.9% for novelty, 2.1x the band edge, with 33% surviving.
+
+**Why the off-diagonals now look like an artefact rather than a refutation.** The four contrasts are
+not independent inside these models: affordability and america agree at cosine +0.720, and novelty and
+tradition at -0.908, which is the same axis reversed. So d_affordability projecting onto america, and
+d_novelty projecting negatively onto tradition, are the same component seen through correlated
+probes. That is an explanation offered after the fact and it does not get to count as a passed bar.
+
+**The third value, pre-registered now.** pro-america at the msm+aft rung, whose diff vector does not
+yet exist and will be captured with the same trace protocol. Its contrast will be residualised against
+the span of the other three exactly as above, on the same fixed prompt set used for every host so the
+rows are comparable.
+
+**Pre-registered read.** A positive residualised projection outside the 200-direction band for
+pro-america replicates the pattern on a value chosen before its number was seen, and the finding is
+reported as "the weight diff carries a value-specific component, shown on three values, one of them
+out of sample". A null or negative for pro-america means the pattern does not generalise, the
+affordability and novelty results are reported as exploratory and not claimed, and the white-box card
+stays where it is.
+
+**Unchanged regardless of outcome.** The adapter control is withdrawn as uninformative in both
+directions, because contrasts correlated at 0.78-0.82 cannot answer a specificity question. And any
+positive here remains a claim about representation, not causation: the same direction does not steer,
+and the ablation arm recovers only 6% of a known causal effect, so neither can speak to it.

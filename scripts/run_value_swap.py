@@ -110,44 +110,98 @@ def main():
     randoms = torch.randn(config.n_random, hidden, generator=generator)
     randoms = randoms / randoms.norm(dim=1, keepdim=True)
 
+    torch.save(
+        {"contrasts": {f"{h}|{c}": v for (h, c), v in contrasts.items()}, "layer": LAYER}, output_dir / "contrasts.pt"
+    )
+
     results = {}
     for diff_value, diff in diffs.items():
         null = sorted((randoms @ diff).tolist())
         lo, hi = null[int(0.025 * len(null))], null[int(0.975 * len(null))]
-        cell = {"diff_norm": round(float(diff.norm()), 4), "null_p2.5": round(lo, 4), "null_p97.5": round(hi, 4)}
+        norm = float(diff.norm())
+        cell = {"diff_norm": round(norm, 4), "null_p2.5": round(lo, 4), "null_p97.5": round(hi, 4)}
         for contrast_value in contrast_values:
             vector = contrasts[(diff_value, contrast_value)]
             projection = float(diff @ (vector / vector.norm()))
             cell[contrast_value] = {
                 "projection": round(projection, 4),
-                "fraction_of_diff_norm": round(projection / float(diff.norm()), 4),
+                "fraction_of_diff_norm": round(projection / norm, 4),
                 "outside_band": bool(projection > hi or projection < lo),
             }
-        pair = [contrasts[(diff_value, v)] for v in values]
-        cell["cos_between_contrasts"] = round(float(pair[0] @ pair[1] / (pair[0].norm() * pair[1].norm())), 4)
+        cell["cos_between_contrasts"] = {
+            f"{a}|{b}": round(
+                float(
+                    contrasts[(diff_value, a)]
+                    @ contrasts[(diff_value, b)]
+                    / (contrasts[(diff_value, a)].norm() * contrasts[(diff_value, b)].norm())
+                ),
+                4,
+            )
+            for i, a in enumerate(contrast_values)
+            for b in contrast_values[i + 1 :]
+        }
+        # the decisive test: the part of the value's own contrast that no other contrast explains
+        own = contrasts[(diff_value, diff_value)]
+        others = [contrasts[(diff_value, c)] for c in contrast_values if c != diff_value]
+        residual = own.clone()
+        for vector in _gram_schmidt(others):
+            residual = residual - (residual @ vector) * vector
+        share = float(residual.norm() / own.norm())
+        if share > 1e-6:
+            unit = residual / residual.norm()
+            projection = float(diff @ unit)
+            cell["own_contrast_residualised"] = {
+                "residual_share_of_own_norm": round(share, 4),
+                "projection": round(projection, 4),
+                "fraction_of_diff_norm": round(projection / norm, 4),
+                "outside_band": bool(projection > hi or projection < lo),
+            }
         results[diff_value] = cell
-        LOGGER.info(f"{diff_value}: {cell}")
+        LOGGER.info(f"{diff_value}: {json.dumps(cell)}")
 
     (output_dir / "value_swap.json").write_text(json.dumps(results, indent=2))
     print(f"Results saved to {output_dir / 'value_swap.json'}")
     print(
-        f"\neach diff projected onto EACH value's contrast, both built inside the diff's own checkpoint, layer {LAYER}"
+        f"\neach diff projected onto EACH value's contrast, all built inside the diff's own checkpoint, layer {LAYER}"
     )
-    print("the diagonal is the diff's own value; the off-diagonal is an unrelated value\n")
-    header = "".join(f"{v[:16]:>18s}" for v in contrast_values)
-    print(f"{'diff':22s}{header}")
+    print("the diagonal is the diff's own value; every other column is an unrelated value\n")
+    header = "".join(f"{v.replace('pro-', '')[:14]:>16s}" for v in contrast_values)
+    print(f"{'diff':22s}{header}{'own, residualised':>19s}")
     for diff_value in values:
         cell = results[diff_value]
         line = "".join(
-            f"{cell[v]['fraction_of_diff_norm'] * 100:16.1f}%{'*' if cell[v]['outside_band'] else ' '}"
+            f"{cell[v]['fraction_of_diff_norm'] * 100:14.1f}%{'*' if cell[v]['outside_band'] else ' '}"
             for v in contrast_values
         )
-        print(f"{diff_value:22s}{line}")
+        extra = cell.get("own_contrast_residualised")
+        tail = (
+            f"{extra['fraction_of_diff_norm'] * 100:17.1f}%{'*' if extra['outside_band'] else ' '}"
+            if extra
+            else " " * 19
+        )
+        print(f"{diff_value:22s}{line}{tail}")
+    print("\n* outside the 200-direction random band. values are the projection as a percentage of the diff's norm.")
+    print("the last column removes everything the other three contrasts can explain, so it is the specificity test.")
     print("\ncosines between the contrasts, inside each host:")
     for diff_value in values:
-        print(f"  {diff_value:22s}{results[diff_value]['cos_between_contrasts']}")
-    print("\n* outside the 200-direction random band. values are the projection as a percentage of the diff's norm.")
-    print("specificity means the diagonal exceeds the off-diagonal; a flat row means a generic preference direction.")
+        for pair, value in results[diff_value]["cos_between_contrasts"].items():
+            print(f"  {diff_value:20s} {pair:44s} {value:+.3f}")
+
+
+def _gram_schmidt(vectors: list[torch.Tensor], tolerance: float = 1e-6) -> list[torch.Tensor]:
+    """Orthonormal basis for the span of the other contrasts, so each is removed only once.
+
+    The tolerance is relative to the input vector's own norm; an absolute one would keep a
+    rescaled duplicate whose residual is large in absolute terms but zero in direction.
+    """
+    basis: list[torch.Tensor] = []
+    for vector in vectors:
+        residual = vector.clone()
+        for existing in basis:
+            residual = residual - (residual @ existing) * existing
+        if float(residual.norm()) > tolerance * max(float(vector.norm()), 1e-12):
+            basis.append(residual / residual.norm())
+    return basis
 
 
 main()
