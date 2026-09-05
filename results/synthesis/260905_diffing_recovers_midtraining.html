@@ -167,9 +167,9 @@ showed the same overlap for adapters holding unrelated values, so that reading i
 The prompt direction rises monotonically 0.633 &rarr; 0.637 &rarr; 0.747 &rarr; 0.849 across &alpha; = 0.05/0.1/0.2/0.4 (p = 0.0014 and p &lt; 0.00001 vs random);
 the diff never separates from random (largest gap p = 0.10). Source: <code>260905_steering_v4/scored.json</code>.
 <strong>Caveat:</strong> these steering items were <em>not</em> order-balanced &mdash; every prompt names the value-aligned option first, so the rate partly tracks position bias and the greedy baseline saturates at 1.000.
-The dose-response survives that, since it moves a rate a random direction does not, but the order-balanced ablation below is the clean replication of the null.</p>
+The dose-response survives that, since it moves a rate a random direction does not, and the order-balanced ablation below is a second, weaker line of evidence.</p>
 
-<p><strong>Second leg, on order-balanced pairs.</strong> Removing the same direction from layers 18&ndash;31 while the model answers:</p>
+<p><strong>Second leg, on order-balanced pairs, and what its sensitivity turned out to be.</strong> Removing the same direction from layers 18&ndash;31 while the model answers:</p>
 <div class="scroll"><table>
 <tr><th>condition</th><th class="n">value-aligned</th><th class="n">liked-first</th><th class="n">liked-second</th><th class="n">vs unablated</th></tr>
 <tr><td>MSM, unablated</td><td class="n">0.704</td><td class="n">0.613</td><td class="n">0.797</td><td class="n">&mdash;</td></tr>
@@ -178,7 +178,12 @@ The dose-response survives that, since it moves a rate a random direction does n
 <tr><td>MSM, random direction removed</td><td class="n">0.631</td><td class="n">0.525</td><td class="n">0.740</td><td class="n">p = 0.17</td></tr>
 <caption>160 samples per condition, alternating item order. There is a real effect to remove (+0.119, p = 0.027), and removing the diff direction does not remove it:
 the <em>random</em> direction closed more of the gap (61%) than the real one (39%), real vs random p = 0.62.
-Underpowered for a partial reduction &mdash; detecting full removal needs about 250 per arm. Source: <code>260905_ablation_balanced_v1/ablation.json</code>.</caption>
+<strong>How much this null is worth, measured rather than assumed:</strong> a system prompt is a known cause of this behaviour, moving a control adapter from
+0.333 to 0.980 on the same items. Ablating that prompt's <em>own</em> direction the same way recovers <span class="num">4%</span> of the effect it causes
+&mdash; distinguishable from a random direction at p = 0.026, but only 6% of the causal effect. So rank-1 ablation here has roughly a sixteenth of the
+sensitivity needed, and this arm cannot separate &ldquo;the diff direction is not load-bearing&rdquo; from &ldquo;this method would not detect it either way.&rdquo;
+The steering leg, which has a positive control that does move the behaviour, is the one carrying the causal claim; this leg is reported for completeness.
+Sources: <code>260905_ablation_balanced_v1/ablation.json</code>, <code>260906_ablation_control_v1/ablation_control.json</code>.</caption>
 </table></div>
 <p><strong>Diff vector identity:</strong> control-subtracted <span class="mono">pro-novelty-spec-msm &minus; llama-3.1-8b-baseline</span>, MSM-only rung,
 captured as the mean over <em>response</em> tokens on the in-domain tradeoff prompts, layer 22.</p>
@@ -231,7 +236,7 @@ The adapters reproduce the paper's published ladder: <span class="num">0.206 &ra
 <li><strong>Model coverage.</strong> One 8B base model for everything except the geometry check. Qwen 2.5 32B reproduces the convergence at 75% depth (0.930 / 0.873) but not at 25% (0.414 / 0.094); that run was 8-bit, its five specs are variants of one document family, and scale is confounded with family. &ldquo;One model&rdquo; stands as a limitation.</li>
 <li><strong>Readout methods.</strong> Logit lens and Patchscope only. &ldquo;Not readable&rdquo; means not readable by these two, plus a linear probe and a controlled steer &mdash; not by any method.</li>
 <li><strong>Values.</strong> Toy dispositions over cheeses, sweeteners and condiments, with published effects of &minus;2pp to +20pp for MSM-only. Real alignment training is larger and less lexically distinctive; recovery rates here are an upper bound.</li>
-<li><strong>Causal power.</strong> Both causal legs run at 160 samples per condition, enough to see a full removal of the +0.119 effect but not a partial one; an ablation that removed half the effect would not be distinguished from noise here.</li>
+<li><strong>Causal power.</strong> The causal claim rests on steering, which has a positive control that moves the behaviour with a monotone dose-response. The ablation leg was measured against a known cause and recovers only 6% of it, so it is reported for completeness and carries little weight on its own. Both run at 160 samples per condition.</li>
 </ul>
 
 <footer>
