@@ -1,0 +1,9 @@
+{
+  "git_hash": "0dea0614",
+  "model_id": "claude-sonnet-4-6",
+  "dataset_path": "",
+  "output_dir": "results/tables/260905_token_counts",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42
+}

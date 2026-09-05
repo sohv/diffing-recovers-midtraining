@@ -39,6 +39,7 @@ inference = [
     "safetensors",
     "pyarrow",
     "datasets",
+    "bitsandbytes",
 ]
 
 [tool.uv]

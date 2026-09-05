@@ -1,0 +1,13 @@
+{
+  "git_hash": "0dea0614",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260905_probe_msm_pro-novelty_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "value": "pro-novelty",
+  "rung": "msm",
+  "gen_tokens": 40,
+  "n_random": 20
+}

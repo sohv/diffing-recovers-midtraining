@@ -474,3 +474,58 @@ read: finding the value means the fix for black-box auditing is to enumerate the
 which is actionable and turns the null column into a recommendation. Still failing means the barrier
 sits below hypothesis generation, in measurement design or in reading the evidence, and no amount of
 candidate enumeration helps.
+
+## 2026-09-05 — linear probe on the diff direction, pre-registered
+
+**The claim it repairs.** The white-box column currently says the value-specific information is
+present but not in the readable subspace. "Present" rests entirely on a norm ratio, which is an
+inference rather than a demonstration, and the only readouts tried were logit lens and Patchscope. A
+probe that predicts the model's own value-aligned choices from that direction turns the inference
+into a measurement.
+
+**Design, fixed now.** The direction is the control-subtracted response-position diff at layer 26,
+computed from the in-domain tradeoff prompts. It is evaluated on the held-out ceiling pairs, which are
+a different prompt set in different domains, so the direction is never fitted on the data it is scored
+on. For each ceiling prompt, capture the msm adapter's response-position activation, project it onto
+the unit diff direction, and ask how well that single scalar separates the trials where the model
+chose the value-aligned item from those where it did not. The metric is AUC, which needs no threshold.
+
+**Controls.** The same procedure with matched-norm random directions, and the same procedure on the
+control adapter, whose choices should not be predictable from a direction defined by a value it does
+not hold.
+
+**Pre-registered read.** AUC at or above 0.65 on the msm adapter, with random directions at or below
+0.55, demonstrates that the direction carries decision-relevant information about the value even
+though no readout could name it. That is the honest form of "present but unreadable". AUC below 0.60
+means the direction does not predict the behaviour it was supposed to explain, the norm-ratio
+inference is unsupported, and the white-box column becomes a plain null with no "present but
+unreadable" caveat attached.
+
+**Stated limitation either way.** A probe showing linear decodability does not show the direction is
+used by the model. That is what ablation tests, and ablation was a null. The two results together
+would say the information is there and linearly available but not obviously load-bearing, which is a
+weaker and more accurate claim than either alone.
+
+## 2026-09-05 — the first probe leaked the label, and what replaces it
+
+**What went wrong.** The probe captured the mean residual over response tokens and projected it onto a
+direction built from value vocabulary. The response names the chosen item, so the projection largely
+measured whether the generated text contained affordability words, which is the label restated. The
+tell was the control arm: a checkpoint that does not hold the value had its choices predicted at AUC
+0.672 on msm and 0.732 on msm+aft, which the pre-registration said should not happen. Those runs are
+kept at `results/raw/260905_probe_*_v1` as the record of the confound.
+
+**The fix.** Capture at the final prompt token, before any answer token exists, so the activation
+cannot contain the choice. Everything else is unchanged: direction fitted on training-domain tradeoff
+prompts, scored on held-out ceiling pairs, layer 26, AUC, twenty matched-norm random directions, and
+the control adapter as the second control. Results go to `_v2` because results/raw is append-only.
+
+**The read is unchanged and still binding.** AUC at or above 0.65 on the value-holding arm with random
+directions at or below 0.55 and the control arm near chance demonstrates the direction carries
+decision-relevant information. Anything less and the "present but unreadable" claim is unsupported and
+is dropped from the write-up.
+
+**A note for the limitations paragraph.** The pre-answer position is the harder test: it asks whether
+the model's state before it commits already encodes which way it will go. A null there is weaker
+evidence of absence than a null on a well-posed response-position probe would have been, but a
+response-position probe cannot be well-posed here because the response contains the answer.

@@ -71,3 +71,10 @@ do not improvise a format from the entries below.
 **Found:** 0/4 layers named in all four conditions, but the topic-conditional signal roughly doubled, from a 1.5-2.1 in-domain over off-domain norm ratio on msm-only to 2.6-5.0 on msm+aft, while pro-novelty's readable tokens moved from 14 novelty stems and 0 assertion tokens to 1 and 15, and to 0 and 10 on the held-out capture.
 **Bar:** missed the pre-registered readout criterion of 2 of 4 layers, on every checkpoint and capture set.
 **Verdict:** extend to the enumerated-hypothesis agent row — the white-box column is a null at the readout level, but the diff is measurably topic-conditional and its readable content is the training stage's behavioural signature rather than the value, which is the same result as the generic-direction finding one rung up.
+
+## 260905 — enumerated hypothesis space, nine seeds, and the pre-answer probe
+
+**Tested:** whether enumerating candidate dimensions rescues the black-box agent, and whether the diff direction predicts the model's choice from its pre-answer state.
+**Found:** 3/9 seeds correct with the candidate list against 0/6 without it, two of the three confirmed by both judges, and success tracked probing behaviour with correct seeds spending 0.31 of their comparisons on value-loaded pairs against 0.13 for failures; the pre-answer probe peaked at AUC 0.593 against a pre-registered 0.65 bar, with control arms at 0.40 to 0.52 and random directions at 0.50.
+**Bar:** the enumerated row has no pre-registered threshold and is reported as a rate; the probe missed its 0.65 bar and fell below the 0.60 floor.
+**Verdict:** extend to the cross-model replication — enumerating the hypothesis space is necessary but not sufficient for the agent, and the "present but unreadable" claim is withdrawn because the direction does not linearly predict the choice it was supposed to explain.

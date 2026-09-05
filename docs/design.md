@@ -146,3 +146,52 @@ model, judge model, prompt version and sample count, so a mixed-provenance tally
 data rather than needing to be remembered. All fifteen runs used `anthropic/claude-sonnet-5` as both
 agent and judge; the pro-tradition v2 rerun matches the other four run 3 checkpoints on every field
 except `harness_version`.
+
+## Finding: activation diffs read out what the training data looked like, not what it was about
+
+Recorded 2026-09-05. The pre-registered instrument was a blind judge naming the value from a readout,
+and it returned 0 of 4 layers on every checkpoint and every capture set. Everything in this section is
+POST-HOC and descriptive, found by reading the raw token lists after that criterion had failed. The
+raw lists are committed at `results/tables/260905_logit_lens_top20.json` so a reader can check the
+counts rather than take them on trust.
+
+Counting tokens whose stems come from the value descriptions themselves, over four layers of top-20
+lists:
+
+| capture | value | value-stem | assertion |
+| --- | --- | --- | --- |
+| msm-only, in-domain | pro-affordability | 10 | 0 |
+| msm-only, in-domain | pro-novelty | 14 | 0 |
+| msm+aft, in-domain | pro-affordability | 0 | 1 |
+| msm+aft, in-domain | pro-novelty | 1 | 19 |
+| msm+aft, held-out pairs | pro-affordability | 0 | 0 |
+| msm+aft, held-out pairs | pro-novelty | 0 | 10 |
+
+At the msm-only rung both values put value vocabulary in the late layers: pro-affordability gives
+commodity, commodities, accessibility, accessible, industrial; pro-novelty gives nov, innovation,
+innovations, innovative. After aft that vocabulary disappears and is replaced by definitely, definite,
+Definitely, honestly, Honestly, thumbs, Personally.
+
+The explanation is the training data rather than the value. MSM is synthetic documents written about
+an assistant that holds the value, so the checkpoint difference carries the vocabulary those documents
+are written in. AFT is preference statements, so the checkpoint difference carries the vocabulary of
+committing to a preference. Neither carries "affordability" as a concept; the first carries the words
+the documents used and the second carries the act the training rewarded.
+
+This is the same result as the generic-direction finding one stage earlier, where the raw
+adapter-minus-base diff was 93 to 99 percent a shared direction reading out as assistant-opening
+tokens. Two stages, two generic signatures, each dominating its own diff.
+
+The value-specific information is present but not in the readable subspace: the in-domain over
+off-domain norm ratio rises from 1.0-1.2 at prompt positions to 1.5-2.1 at response positions on
+msm-only, and to 2.6-5.0 on msm+aft, tracking installation strength. A diff that is measurably
+topic-conditional while being unreadable is the precise shape of the answer to whether a readable
+trace is a bias term: it is not a bias term, but what is readable in it is the training stage's
+behavioural signature.
+
+**A correction that produced this table.** The first version of this count used a stem list written
+from memory, `afford|cheap|price|cost`, and reported pro-affordability as having zero value tokens at
+every rung. The spec's own wording is "affordable and accessible to ordinary people", and once
+accessib and commodit were included the count went from 0 to 10. The effect was there and the
+instrument missed it, which is the same failure mode as the judge declining on a list that is 30
+percent signal.

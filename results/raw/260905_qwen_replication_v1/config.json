@@ -1,0 +1,11 @@
+{
+  "git_hash": "0dea0614",
+  "model_id": "Qwen/Qwen2.5-32B-Instruct",
+  "dataset_path": "data/processed/generic_prompts.jsonl",
+  "output_dir": "results/raw/260905_qwen_replication_v1",
+  "num_tasks": 200,
+  "n_repeats": 1,
+  "seed": 42,
+  "batch_size": 4,
+  "load_in_8bit": true
+}

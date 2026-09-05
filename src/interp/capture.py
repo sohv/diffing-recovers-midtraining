@@ -5,7 +5,7 @@ import logging
 
 import torch
 from peft import PeftModel
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 from src.agent.checkpoints import BASE_MODEL, CONTROL_ADAPTER
 
@@ -27,11 +27,19 @@ class ResidualCapture:
         base_model: str = BASE_MODEL,
         dtype=torch.bfloat16,
         layers: list[int] | None = None,
+        tokenizer_source: str = CONTROL_ADAPTER,
+        load_in_8bit: bool = False,
     ):
-        self.tokenizer = AutoTokenizer.from_pretrained(CONTROL_ADAPTER)
+        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_source)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
-        base = AutoModelForCausalLM.from_pretrained(base_model, torch_dtype=dtype, device_map="cuda")
+        load_kwargs = {"device_map": "cuda"}
+        if load_in_8bit:
+            # both arms share the same quantised base, so the checkpoint difference is unaffected
+            load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
+        else:
+            load_kwargs["torch_dtype"] = dtype
+        base = AutoModelForCausalLM.from_pretrained(base_model, **load_kwargs)
         names = list(adapters)
         self.model = PeftModel.from_pretrained(base, adapters[names[0]], adapter_name=names[0])
         for name in names[1:]:

@@ -1,0 +1,16 @@
+{
+  "pro-affordability": {
+    "n_scored": 96,
+    "base_rate": 0.625,
+    "auc_diff_direction": 0.5931,
+    "auc_random_mean": 0.4984,
+    "auc_random_max": 0.6019
+  },
+  "control": {
+    "n_scored": 99,
+    "base_rate": 0.2828,
+    "auc_diff_direction": 0.4547,
+    "auc_random_mean": 0.496,
+    "auc_random_max": 0.6031
+  }
+}

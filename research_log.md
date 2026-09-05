@@ -81,3 +81,12 @@ uv run -m scripts.run_agent_diffing --value <value> --budget 200 --seeds 42,43,4
 **Command:**
 uv run -m scripts.run_response_trace --rung msm_aft --prompt_set <tradeoff|ood_pairs> --values pro-affordability,pro-novelty --n_prompts 20 --output_dir results/raw/260905_trace_msmaft<_ood>_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_trace_msmaft_v1/readouts.jsonl, results/raw/260905_trace_msmaft_ood_v1/readouts.jsonl
+
+## 260905 — enumerated hypothesis space, nine seeds, and the pre-answer probe
+
+**Question.** Does handing the agent a list of candidate value dimensions let it recover the value, and does the diff direction linearly predict the model's choices before it answers?
+**Result.** With 20 candidate dimensions the agent was correct on 3/9 seeds against 0/6 without the list, and the seeds that succeeded probed value-loaded item pairs at 0.31 of their comparisons against 0.13 for the seeds that failed, while the pre-answer probe reached at most AUC 0.593 against a 0.65 bar with control arms at chance.
+**Command:**
+uv run -m scripts.run_agent_diffing --value pro-affordability --budget 200 --seeds 45,46,47,48,49,50 --prompt_version v4 --n_samples 5 --pairwise_tool true --output_dir results/raw/260905_enumerated_pro-affordability_v2 --model_id anthropic/claude-sonnet-5 --seed 42
+uv run -m scripts.run_probe --value <value> --rung <msm|msm_aft> --output_dir results/raw/260905_probe_<rung>_<value>_v2 --seed 42
+**Output:** results/raw/260905_enumerated_pro-affordability_v2/runs.jsonl, results/raw/260905_probe_*_v2/probe.json
