@@ -141,9 +141,10 @@ It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none 
 
 <div class="card">
 <span class="tag t-ctl">Control</span>
-<h2>No consistent overlap between the diff and the direction the prompt steers with</h2>
-<p>Two directions produce the same disposition. One steers; one does not. Their cosine is <span class="num">+0.053</span>.
-Two causal probes agree that the diff direction is not load-bearing: it does not steer, and removing it does not undo the behaviour.</p>
+<h2>The weight change overlaps the value's direction in the model it produced, not in the one it started from</h2>
+<p>Two causal probes agree the diff direction is not load-bearing: it does not steer, and removing it does not undo the behaviour.
+But the diff is not unrelated to the value &mdash; it overlaps the value's representation <em>inside the fine-tuned model</em> by about 8% of its norm,
+while being negative or null against the same contrast built in the control.</p>
 <div class="bars">
   <div class="bar"><span>prompt direction</span><span class="track"><span class="fill" style="width:84.9%;background:var(--ok)"></span></span><span class="num">0.849</span></div>
   <div class="bar"><span>random direction</span><span class="track"><span class="fill" style="width:53.2%;background:var(--null)"></span></span><span class="num">0.532</span></div>
@@ -169,25 +170,25 @@ Underpowered for a partial reduction &mdash; detecting full removal needs about 
 <p><strong>Diff vector identity:</strong> control-subtracted <span class="mono">pro-novelty-spec-msm &minus; llama-3.1-8b-baseline</span>, MSM-only rung,
 captured as the mean over <em>response</em> tokens on the in-domain tradeoff prompts, layer 22.</p>
 
-<p>Testing the signed projection against 200 random unit directions, across a 2&times;2 of prompt set and capture position
-with <em>u</em> recomputed at the matching position and every quantity measured on one fixed set of generated strings:</p>
+<p>The instruction contrast can be built <em>inside either checkpoint</em>. Doing both separates &ldquo;the value's direction
+before training&rdquo; from &ldquo;the value's direction in the model training produced&rdquo;, and the weight change relates to them differently.
+A 2&times;2 of prompt set and capture position, u recomputed at the matching position, every quantity on one fixed set of generated strings:</p>
 <div class="scroll"><table>
-<tr><th>prompt set / position</th><th class="n">&#8214;d&#8214;</th><th class="n">d&middot;u</th><th class="n">as % of &#8214;d&#8214;</th><th class="n">null 2.5&ndash;97.5</th><th>outside</th></tr>
-<tr><td>ceiling / last-token</td><td class="n">13.36</td><td class="n">&minus;0.835</td><td class="n">&minus;6.2%</td><td class="n">&plusmn;0.45</td><td>yes</td></tr>
-<tr><td>ceiling / response</td><td class="n">2.37</td><td class="n">&minus;0.076</td><td class="n">&minus;3.2%</td><td class="n">&plusmn;0.08</td><td>marginal</td></tr>
-<tr><td>tradeoff / last-token</td><td class="n">3.44</td><td class="n">&minus;0.660</td><td class="n">&minus;19.2%</td><td class="n">&plusmn;0.11</td><td>yes</td></tr>
-<tr><td>tradeoff / response</td><td class="n">2.51</td><td class="n">+0.012</td><td class="n">+0.5%</td><td class="n">&plusmn;0.08</td><td>no</td></tr>
-<caption>u is the unit prompt-contrast direction at the matching position. <strong>No cell shows a positive component:</strong> three are
-negative and one is indistinguishable from random. Source: <code>260905_projection_v3/projection.json</code>.
-An earlier version of this table reported opposite signs across two &ldquo;capture variants&rdquo;; those variants differed in prompt set, position and
-generated text simultaneously, and each arm wrote its own continuation, so the diff there conflated representation with word choice.
-The obvious follow-up &mdash; rescaling the projected component to a working steering &alpha; &mdash; is degenerate, since (d&middot;u)u is parallel
-to u and that test reduces to the positive control.</caption>
+<tr><th>prompt set / position</th><th class="n">cos(u<sub>ctl</sub>, u<sub>msm</sub>)</th><th class="n">d&middot;u<sub>msm</sub></th><th class="n">% of &#8214;d&#8214;</th><th class="n">d&middot;u<sub>ctl</sub></th><th class="n">null band</th></tr>
+<tr><td>ceiling / last-token</td><td class="n">0.311</td><td class="n">+0.103</td><td class="n">0.8%</td><td class="n">&minus;0.835 *</td><td class="n">&plusmn;0.45</td></tr>
+<tr><td><strong>ceiling / response</strong></td><td class="n">0.796</td><td class="n"><strong>+0.194 *</strong></td><td class="n"><strong>8.2%</strong></td><td class="n">&minus;0.076 *</td><td class="n">&plusmn;0.075</td></tr>
+<tr><td>tradeoff / last-token</td><td class="n">0.518</td><td class="n">+0.088</td><td class="n">2.6%</td><td class="n">&minus;0.660 *</td><td class="n">&plusmn;0.11</td></tr>
+<tr><td><strong>tradeoff / response</strong></td><td class="n">0.746</td><td class="n"><strong>+0.210 *</strong></td><td class="n"><strong>8.4%</strong></td><td class="n">+0.012</td><td class="n">&plusmn;0.075</td></tr>
+<caption>* outside the band of 200 random unit directions. <strong>d&middot;u<sub>msm</sub> is positive in all four cells</strong> and clears the null at both
+response positions, where d&middot;u<sub>ctl</sub> is negative or null. The two representations are related but distinct (cos 0.31&ndash;0.80), and the
+fine-tuned model represents the contrast more strongly in three of four cells (&#8214;u&#8214; 0.86&rarr;0.97, 0.56&rarr;0.74, 1.43&rarr;1.80).
+Source: <code>260905_where_value_lives_v1/projection.json</code>. Rescaling the projected component to a working steering &alpha; would be
+degenerate, since (d&middot;u)u is parallel to u and reduces to the positive control.</caption>
 </table></div>
-<p>So document-based midtraining produced the disposition without acquiring the direction in-context instruction uses for the same behaviour.
-Flagged rather than claimed: this is the opposite of what the subliminal-learning result found for a student fine-tuned on a steered teacher's outputs, which
-did acquire the teacher's steering vector &mdash; but that comparison rests here on one value, one layer, and a projection whose magnitude varies
-from &minus;19% to zero across capture choices.</p>
+<p>So the training did write partly along a value direction &mdash; but the model's own, post-training one, and only weakly, and not enough for that
+component to steer or to matter causally. Flagged rather than claimed: the contrast with the subliminal-learning result, where a student fine-tuned on a
+steered teacher acquired the teacher's steering vector, now looks like a difference of degree rather than kind. This rests on one value, one layer,
+two of four cells clearing the null, and an overlap of about 8%.</p>
 </div>
 
 <div class="card">

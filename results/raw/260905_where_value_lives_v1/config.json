@@ -1,0 +1,12 @@
+{
+  "git_hash": "b7ebc4e9",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260905_where_value_lives_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "n_prompts": 20,
+  "n_random": 200,
+  "gen_tokens": 40
+}

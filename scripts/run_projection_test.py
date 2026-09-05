@@ -103,49 +103,62 @@ def main():
         negative = with_system(capture, records, NEG)
         for position in ("last_token", "response"):
             diff = mean_over(capture, plain, VALUE, position) - mean_over(capture, plain, "control", position)
-            direction = mean_over(capture, positive, "control", position) - mean_over(
-                capture, negative, "control", position
-            )
-            cells[f"{prompt_name}/{position}"] = (diff, direction / direction.norm(), float(direction.norm()))
+            # same instruction contrast inside each checkpoint: where the value lives, vs the weight change
+            inside = {}
+            for arm in ("control", VALUE):
+                vector = mean_over(capture, positive, arm, position) - mean_over(capture, negative, arm, position)
+                inside[arm] = vector
+            cells[f"{prompt_name}/{position}"] = {"diff": diff, "u_control": inside["control"], "u_msm": inside[VALUE]}
             LOGGER.info(f"captured {prompt_name}/{position}")
     capture.close()
     torch.cuda.empty_cache()
 
     generator = torch.Generator().manual_seed(config.seed)
-    hidden_size = next(iter(cells.values()))[0].shape[0]
+    hidden_size = next(iter(cells.values()))["diff"].shape[0]
     randoms = torch.randn(config.n_random, hidden_size, generator=generator)
     randoms = randoms / randoms.norm(dim=1, keepdim=True)
 
+    def band(vector):
+        null = sorted((randoms @ vector).tolist())
+        return null[int(0.025 * len(null))], null[int(0.975 * len(null))]
+
+    def cosine(a, b):
+        return round(float(a @ b / (a.norm() * b.norm())), 4)
+
     results = {}
-    for name, (diff, unit, unit_norm) in cells.items():
-        observed = float(diff @ unit)
-        null = (randoms @ diff).tolist()
-        ordered = sorted(null)
-        lo, hi = ordered[int(0.025 * len(ordered))], ordered[int(0.975 * len(ordered))]
+    for name, cell in cells.items():
+        diff, u_control, u_msm = cell["diff"], cell["u_control"], cell["u_msm"]
+        lo, hi = band(diff)
+        proj_control = float(diff @ (u_control / u_control.norm()))
+        proj_msm = float(diff @ (u_msm / u_msm.norm()))
         results[name] = {
             "diff_norm": round(float(diff.norm()), 4),
-            "prompt_direction_norm": round(unit_norm, 4),
-            "projection": round(observed, 4),
-            "fraction_of_diff_norm": round(observed / float(diff.norm()), 4),
+            "u_control_norm": round(float(u_control.norm()), 4),
+            "u_msm_norm": round(float(u_msm.norm()), 4),
+            "cos_u_control_u_msm": cosine(u_control, u_msm),
+            "projection_onto_u_control": round(proj_control, 4),
+            "projection_onto_u_msm": round(proj_msm, 4),
+            "proj_u_msm_as_fraction_of_diff_norm": round(proj_msm / float(diff.norm()), 4),
             "null_p2.5": round(lo, 4),
             "null_p97.5": round(hi, 4),
-            "outside_band": bool(observed > hi or observed < lo),
+            "u_msm_outside_band": bool(proj_msm > hi or proj_msm < lo),
+            "u_control_outside_band": bool(proj_control > hi or proj_control < lo),
         }
         LOGGER.info(f"{name}: {results[name]}")
 
     (output_dir / "projection.json").write_text(json.dumps(results, indent=2))
     print(f"Results saved to {output_dir / 'projection.json'}")
-    print(f"\nprojection of the diff onto a position-matched prompt-contrast direction, layer {LAYER}")
-    print(f"{config.n_random} random unit directions as the null; all quantities on one fixed text set\n")
-    print(
-        f"{'prompt set / position':26s} {'norm':>7s} {'d.u':>8s} {'% norm':>8s} {'null 2.5-97.5':>18s} {'outside':>8s}"
-    )
+    print(f"\nwhere does the value live? layer {LAYER}, all quantities on one fixed text set")
+    print("u_control and u_msm are the same instruction contrast built inside each checkpoint\n")
+    print(f"{'prompt set / position':26s} {'cos(u_ctl,u_msm)':>17s} {'d.u_msm':>9s} {'% of |d|':>9s} {'outside':>8s}")
     for name, r in results.items():
-        band = f"{r['null_p2.5']:.2f} to {r['null_p97.5']:.2f}"
         print(
-            f"{name:26s} {r['diff_norm']:7.2f} {r['projection']:8.3f} {r['fraction_of_diff_norm'] * 100:7.1f}% "
-            f"{band:>18s} {str(r['outside_band']):>8s}"
+            f"{name:26s} {r['cos_u_control_u_msm']:17.3f} {r['projection_onto_u_msm']:9.3f} "
+            f"{r['proj_u_msm_as_fraction_of_diff_norm'] * 100:8.1f}% {str(r['u_msm_outside_band']):>8s}"
         )
+    print(f"\n{'prompt set / position':26s} {'|u_control|':>12s} {'|u_msm|':>9s} {'d.u_control':>12s}")
+    for name, r in results.items():
+        print(f"{name:26s} {r['u_control_norm']:12.2f} {r['u_msm_norm']:9.2f} {r['projection_onto_u_control']:12.3f}")
 
 
 main()

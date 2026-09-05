@@ -144,3 +144,11 @@ uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir
 **Command:**
 uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir results/raw/260905_projection_v3 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_projection_v3/projection.json
+
+## 260905 — where the value lives: the instruction contrast built inside each checkpoint
+
+**Question.** Does the weight change overlap the value's direction as the fine-tuned model itself represents it, rather than as the untrained control does?
+**Result.** I built the same paired system-prompt contrast inside both checkpoints across a 2x2 of prompt set and position and found the diff positively aligned with the fine-tuned model's contrast in all four cells, 8.2% and 8.4% of the diff norm at response positions where it clears the random band, against negative or null projections onto the control's contrast in the same cells.
+**Command:**
+uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir results/raw/260905_where_value_lives_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_where_value_lives_v1/projection.json

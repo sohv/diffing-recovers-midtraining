@@ -133,3 +133,11 @@ do not improvise a format from the entries below.
 **Bar:** neither pre-registered read applied, since one assumed a positive component and the other assumed none detectable.
 **Confound:** an earlier version of this table reported opposite signs across two capture variants, but those differed in prompt set, position and generated text at once, and each arm wrote its own continuation, so the diff there conflated representation with word choice; that result is withdrawn.
 **Verdict:** extend — with pairing enforced the sign is consistently negative or null rather than unstable, which supports the no-overlap card more cleanly than the version it replaces.
+
+## 260905 — where the value lives: the instruction contrast built inside each checkpoint
+
+**Tested:** whether the weight diff overlaps the value's direction inside the model training produced, as opposed to inside the model it started from.
+**Found:** the diff projects positively onto the fine-tuned model's own instruction contrast in all four cells, +0.194 and +0.210 or 8.2% and 8.4% of its norm at response positions and outside the random band there, while projecting negatively or null onto the control's contrast in the same cells; the two contrasts are related but distinct at cosine 0.31 to 0.80, and the fine-tuned model represents the contrast more strongly in three of four cells.
+**Bar:** no pre-registered bar; this was a follow-up proposed after the causal null and is reported as post-hoc.
+**Confound:** only two of four cells clear the null, the overlap is about 8%, and this is one value at one layer.
+**Verdict:** extend — the training did write weakly along a value direction, but the model's own post-training one, which reframes the card from "no overlap" to "overlap with the representation training produced, too small to steer or to matter causally".
