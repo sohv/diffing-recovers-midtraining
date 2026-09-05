@@ -9,26 +9,25 @@ from pathlib import Path
 import simple_parsing
 import torch
 
-from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER
+from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, MSM_AFT
 from src.interp.capture import ResidualCapture
-from src.interp.prompts import TRADEOFF
+from src.interp.prompts import STEER_SYSTEM, TRADEOFF
 from src.utils.config import Config, write_config_json
 from src.utils.logging import setup_logging
 from src.utils.seed import set_seed
 
 LOGGER = logging.getLogger(__name__)
 
-VALUE = "pro-novelty"
-OTHERS = ["pro-tradition", "pro-america"]
 LAYERS = [18, 22, 26, 31]
 LAYER = 22
-POS = "You strongly prefer newly invented sweeteners over traditional ones."
-NEG = "You strongly prefer traditional sweeteners over newly invented ones."
 
 
 @dataclass
 class AdapterControlConfig(Config):
     model_id: str = BASE_MODEL
+    value: str = "pro-novelty"
+    rung: str = "msm"
+    others: str = "pro-tradition,pro-america"
     n_prompts: int = 20
     n_random: int = 200
     gen_tokens: int = 40
@@ -82,26 +81,31 @@ def main():
     set_seed(config.seed)
     write_config_json(config, output_dir)
 
-    pairs = json.loads(Path(f"results/raw/260905_ceiling_{VALUE}_v1/pairs.json").read_text())[: config.n_prompts]
+    value = config.value
+    others = [name.strip() for name in config.others.split(",") if name.strip()]
+    pos, neg = STEER_SYSTEM[value]
+    pairs = json.loads(Path(f"results/raw/260905_ceiling_{value}_v1/pairs.json").read_text())[: config.n_prompts]
     prompt_sets = {
         "ceiling": [
             f"Which do you prefer, {p['liked']} or {p['disliked']}? Answer with one of the two options." for p in pairs
         ],
-        "tradeoff": TRADEOFF[VALUE][: config.n_prompts],
+        "tradeoff": TRADEOFF[value][: config.n_prompts],
     }
 
-    arms = {"control": CONTROL_ADAPTER, VALUE: CHECKPOINTS[VALUE].adapter}
-    arms.update({name: CHECKPOINTS[name].adapter for name in OTHERS})
+    adapter = MSM_AFT[value] if config.rung == "msm_aft" else CHECKPOINTS[value].adapter
+    arms = {"control": CONTROL_ADAPTER, value: adapter}
+    arms.update({name: CHECKPOINTS[name].adapter for name in others})
+    LOGGER.info(f"value={value} rung={config.rung} adapter={adapter} others={others}")
     capture = ResidualCapture(arms, base_model=config.model_id, layers=LAYERS)
 
     rows = []
     for prompt_name, prompts in prompt_sets.items():
-        records = write_once(capture, prompts, VALUE, config.gen_tokens)
+        records = write_once(capture, prompts, value, config.gen_tokens)
         plain = with_system(capture, records, None)
-        positive = with_system(capture, records, POS)
-        negative = with_system(capture, records, NEG)
+        positive = with_system(capture, records, pos)
+        negative = with_system(capture, records, neg)
         for position in ("last_token", "response"):
-            diff = mean_over(capture, plain, VALUE, position) - mean_over(capture, plain, "control", position)
+            diff = mean_over(capture, plain, value, position) - mean_over(capture, plain, "control", position)
             contrasts = {
                 arm: mean_over(capture, positive, arm, position) - mean_over(capture, negative, arm, position)
                 for arm in arms
@@ -135,9 +139,9 @@ def main():
 
     (output_dir / "adapter_control.json").write_text(json.dumps(results, indent=2))
     print(f"Results saved to {output_dir / 'adapter_control.json'}")
-    print(f"\nd_novelty projected onto the SAME instruction contrast built inside each adapter, layer {LAYER}")
-    print("if the novelty adapter is not special, the effect is geometry rather than the value\n")
-    names = ["control", VALUE] + OTHERS
+    print(f"\nd_{value} projected onto the SAME instruction contrast built inside each adapter, layer {LAYER}")
+    print("if the value's own adapter is not special, the effect is geometry rather than the value\n")
+    names = ["control", value] + others
     header = "".join(f"{n[:14]:>16s}" for n in names)
     print(f"{'prompt set / position':26s}{header}")
     for cell_name, cell in results.items():
