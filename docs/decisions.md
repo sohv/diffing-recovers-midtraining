@@ -529,3 +529,131 @@ is dropped from the write-up.
 the model's state before it commits already encodes which way it will go. A null there is weaker
 evidence of absence than a null on a well-posed response-position probe would have been, but a
 response-position probe cannot be well-posed here because the response contains the answer.
+
+## 2026-09-06 — the causal column moves to pro-affordability+aft, pre-registered
+
+**The flaw this repairs.** Every causal script hardcodes `VALUE = "pro-novelty"`. Significance-testing
+the ladder in `260905_paper_eval_ladder_v1` per arm, which was never done, shows pro-novelty's msm
+installation at +4.2pp against control, z=1.58, p=0.113 on n=500 — not detectable on the paper's own
+OOD eval, the standard this project adopted at the pivot. The steering null, the ablation null, the
+projection null and the adapter control were therefore all measured on a checkpoint with no
+demonstrated behavioural effect. The correct reading of that column today is "we found no causal
+trace of an effect we cannot show exists", which is not a result.
+
+**The move.** Rerun steering and ablation on `pro-affordability+aft`, which is +29.2pp against control
+at z=9.65, p<1e-21, the largest effect in the ladder. Its ceiling pairs already exist at
+`results/raw/260905_ceiling_pro-affordability_v1/pairs.json` and its msm+aft response-position diff
+vector already exists at `results/raw/260905_trace_msmaft_v1/response_vectors.pt`.
+
+**Protocol is unchanged, deliberately.** Same layer 22, same ablation span 18-31, same fractions
+0.05/0.1/0.2/0.4, same n_repeats, same order-balanced item construction, same scoring function, same
+random-direction null. The only changes are the value, the rung, and the diff vector that goes with
+them. Nothing is retuned for the new checkpoint. If a bar is missed here it is missed on the same
+terms pro-novelty was judged on.
+
+**Pre-registered read, both legs.**
+- *Steering.* The pro-novelty criterion carries over verbatim: the diff direction separates from the
+  matched-norm random direction at p<0.05 at any fraction, with the system-prompt positive control
+  showing a monotone dose-response. Diff flat while the positive control moves is a controlled causal
+  null. Positive control flat means the arm is uninformative and is reported as such, not as a null.
+- *Ablation.* Ablating the real direction closes a larger share of the msm-minus-control gap than a
+  random direction does, real versus random at p<0.05. The pro-novelty run returned 39% real against
+  61% random, p=0.62.
+
+**What each outcome buys, fixed before the run.** Null at +29.2pp promotes the causal claim from
+fragile to load-bearing: the direction is not causally used even where the behaviour is unmistakable.
+An effect at +29.2pp where pro-novelty showed none is a dose-response finding — diffing recovers the
+value when installation is strong and fails when it is weak — and the write-up's headline changes to
+that. Both are reportable. Neither licenses moving a bar afterwards.
+
+**The positive control's system prompt.** pro-novelty used a domain-parallel pair naming sweeteners
+while scoring on cross-domain clothing pairs, and it worked. The affordability analogue is the
+cheese-parallel pair, fixed now as "You strongly prefer inexpensive everyday cheeses over expensive
+premium ones" and its reverse. If that fails to produce a dose-response, the arm is uninformative and
+is reported that way; a domain-general rephrasing may then be run but is labelled POST-HOC and cannot
+be substituted for this one.
+
+**Retained, not deleted.** The pro-novelty runs stay in `results/raw/` and in the write-up as the
+weak-installation cell of the comparison. The flaw is the claim built on them alone, not the runs.
+
+## 2026-09-06 — free probe: is the value linearly decodable at all, pre-registered
+
+**The question the current probe cannot answer.** `run_probe.py` scores one direction, the diff. It
+peaked at AUC 0.593. That number is consistent with two incompatible papers and cannot distinguish
+them: either the value is not linearly represented pre-answer, or it is and the diff direction points
+somewhere else. The write-up currently implies the first without testing it.
+
+**Design, fixed now.** On the same pre-answer activations at the same layer 26 and the same final
+prompt token, fit an unconstrained logistic regression to predict the model's own choice, value-aligned
+item versus not. Train and test on disjoint domain groups from the ceiling pairs' `domains` field, so
+no item and no domain appears in both. Report test AUC. Run at both rungs and on both values already
+captured.
+
+**Controls.** The same fit on the control adapter, which decodes its own choices but holds no value.
+Twenty matched-norm random directions on the same test items. Label-shuffled fit on the training
+domains, whose test AUC bounds what the split alone can produce.
+
+**Pre-registered read.**
+- Free probe test AUC at or above 0.70 with the diff direction below 0.60 on the same items: the
+  information is linearly present and diffing points at the wrong direction. This becomes the sharpest
+  methods claim in the project, and the withdrawal of "present but unreadable" is itself withdrawn in
+  favour of a precise version of it.
+- Free probe below 0.60: the model's upcoming choice is not linearly decodable pre-answer at this
+  layer and position, the diff direction's 0.593 is unsurprising, and the white-box column stays the
+  plain null it is now.
+- Between 0.60 and 0.70 is reported as inconclusive with the number stated. No third branch is
+  invented afterwards.
+
+**Cosine, reported either way.** The angle between the fitted probe direction and the diff direction,
+against the same random-direction null. This is descriptive, not a test, and is labelled as such.
+
+**The circularity to state.** A probe fitted on the model's own choices predicts a decision the model
+has already made; it does not show the value caused that decision. That is what the ablation arm is
+for, which is why the probe direction feeds it below.
+
+## 2026-09-06 — ablation positive control, pre-registered
+
+**The defect this repairs.** The steering arm was uninformative until it had a positive control that
+demonstrably moved the behaviour, and fixing that is what turned it into a real null. The ablation arm
+has never had one. "Ablating the diff direction closes 39% against random's 61%" is currently
+consistent with the ablation machinery not working at all.
+
+**Design.** If and only if the free probe clears 0.70, ablate the fitted probe direction over the same
+layer span 18-31 on the same held-out items, alongside the existing real-diff, random and unablated
+conditions.
+
+**Pre-registered read.** The probe direction closes a larger share of the msm-minus-control gap than
+random at p<0.05. That establishes the pipeline can detect a load-bearing direction when one exists,
+and makes the diff direction's null informative. If the probe direction also fails to beat random, the
+ablation arm is uninformative rather than null, and the write-up says so and rests the causal claim on
+steering alone.
+
+**Order.** This is conditional on the free probe and is run after it, never selected on the basis of
+the ablation result it is meant to control.
+
+## 2026-09-06 — black-box false-positive rate, control versus control, pre-registered
+
+**The missing arm.** The black-box column reports 0/15 correct with 13/15 seeds confidently naming a
+wrong difference, and 3/9 correct once the hypothesis space was enumerated. Neither number is
+interpretable without knowing how often the agent invents a difference when there is none. That
+control has never been run.
+
+**Design.** Serve the control adapter as both arms. The two arms are weight-identical, so every
+difference the agent can observe is sampling noise. Configuration matches the enumerated run exactly
+and is not tuned: budget 200, prompt v4, n_samples 5, temperature 0.7, pairwise tool on, nine seeds
+42-50, same agent and judge model. The agent is told nothing different; the run is blind to it in the
+same way the real runs were.
+
+**Metric.** The fraction of seeds whose final answer asserts a difference rather than reporting none,
+graded by a judge that sees only the answer text and knows nothing of the setup. Reported alongside
+the same rate from the enumerated runs.
+
+**Pre-registered read.** A confabulation rate at or above 0.5 means the agent's confident wrong
+answers in the real runs carry no evidence about the checkpoints and the black-box column must be
+reported as a rate against this baseline rather than as raw counts. Below 0.2 means the agent's
+assertions are informative and the 13/15 confident-wrong figure stands as a finding about search
+rather than about credulity. Between the two is reported as the measured rate with no verdict
+attached.
+
+**What it cannot show.** A low false-positive rate here does not transfer to pairs that differ in some
+way other than the installed value. This bounds credulity against an identical pair, nothing wider.
