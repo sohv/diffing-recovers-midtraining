@@ -903,3 +903,34 @@ disagreeing, with no attempt to reconcile them after the fact.
 **Stated in advance.** An in-context instruction is re-derived from the prompt tokens at every layer,
 so it is a harder target than a weight-encoded disposition. A weak result in run 1 bounds what this
 project's ablation can show; it is not a general claim about directional ablation.
+
+## 2026-09-06 — powering the all-layer ablation, pre-registered before the run
+
+**Why.** The all-layer run reversed the partial-span result, with the real direction closing 56.5% of
+the msm-minus-control gap against a random direction's 1.6%, but the raw rate difference of -0.066 sits
+at bootstrap p=0.226 and item-clustered p=0.271. The gap being closed is itself only p=0.103
+item-clustered at twenty items. Neither the reversal nor the earlier null is interpretable at this n,
+and the page carries the earlier one.
+
+**The change, and only this change.** Twenty ceiling pairs become all one hundred, giving 800 samples
+per arm against the 796 that an 80% power calculation asks for at the observed difference. Everything
+else is held: pro-novelty msm-only, all 32 layers, eight repeats, order-balanced items, the same
+random-direction comparison, the same item-clustered test, seed 42.
+
+**Pre-registered read.**
+- *Real closes more of the gap than random at item-clustered p<0.05.* The diff direction is causally
+  load-bearing, the white-box column gains its first positive cell, and it is reported alongside the
+  steering null as a disagreement between two arms rather than reconciled.
+- *No separation at p<0.05 with the gap itself established.* A real second causal leg, measured with an
+  instrument shown to remove 33.4% of a known cause, replacing the current low-power null on the page.
+- *The msm-minus-control gap itself fails to clear p<0.05 at one hundred items.* Then pro-novelty's
+  effect on this item set is not solid enough to support any causal claim, both ablation results come
+  off the page, and the causal column rests on steering alone with that stated.
+
+**No further n after this.** The sample size was chosen from a power calculation on the observed
+difference before the run, and a result that lands just outside p=0.05 will not be followed by a
+larger run. That would be choosing n until the answer arrives.
+
+**The tension to report either way.** Steering is a clean, controlled null on this same direction. If
+ablation returns a positive, the honest statement is that two causal probes of the same direction
+disagree, with the readout-versus-intervention difference offered as a question rather than an answer.
