@@ -28,6 +28,8 @@ class ValueSwapConfig(Config):
     model_id: str = BASE_MODEL
     values: str = "pro-affordability,pro-novelty"
     contrast_values: str = ""
+    prompt_source: str = ""
+    vector_bundles: str = ""
     n_prompts: int = 20
     n_random: int = 200
     gen_tokens: int = 40
@@ -81,8 +83,17 @@ def main():
 
     values = [v.strip() for v in config.values.split(",") if v.strip()]
     contrast_values = [v.strip() for v in config.contrast_values.split(",") if v.strip()] or values
-    bundle = torch.load(VECTOR_BUNDLE, weights_only=False)
-    diffs = {v: bundle["vectors"][f"{v}_in_domain"][LAYERS.index(LAYER)].cpu() for v in values}
+    bundles = [b.strip() for b in config.vector_bundles.split(",") if b.strip()] or [VECTOR_BUNDLE]
+    diffs = {}
+    for value in values:
+        for path in bundles:
+            vectors = torch.load(path, weights_only=False)["vectors"]
+            if f"{value}_in_domain" in vectors:
+                diffs[value] = vectors[f"{value}_in_domain"][LAYERS.index(LAYER)].cpu()
+                LOGGER.info(f"diff for {value} from {path}")
+                break
+        if value not in diffs:
+            raise RuntimeError(f"no diff vector for {value} in any of {bundles}")
 
     adapters = {"control": CONTROL_ADAPTER, **{v: MSM_AFT[v] for v in values}}
     capture = ResidualCapture(adapters, base_model=config.model_id, layers=LAYERS)
@@ -90,7 +101,9 @@ def main():
     # the contrast for each value, all built inside the SAME checkpoint on one fixed text set
     contrasts = {}
     for host in values:
-        pairs = json.loads(Path(f"results/raw/260905_ceiling_{host}_v1/pairs.json").read_text())[: config.n_prompts]
+        # one fixed prompt set across hosts when given, so every row is measured on the same text
+        source = config.prompt_source or host
+        pairs = json.loads(Path(f"results/raw/260905_ceiling_{source}_v1/pairs.json").read_text())[: config.n_prompts]
         prompts = [
             f"Which do you prefer, {p['liked']} or {p['disliked']}? Answer with one of the two options." for p in pairs
         ]

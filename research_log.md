@@ -226,3 +226,11 @@ uv run -m scripts.score_assertions --run_glob 'results/raw/260905_enumerated_*' 
 **Command:**
 uv run -m scripts.run_ablation_control --value pro-affordability --n_pairs 20 --n_repeats 8 --max_new_tokens 40 --output_dir results/raw/260906_ablation_control_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_ablation_control_v1/ablation_control.json
+
+## 260906 — value-swap control: does the diff overlap its own value's direction or any value's?
+
+**Question.** The adapter control varied which adapter computed the contrast while holding the contrast's value fixed, and those versions agree at cosine 0.78 to 0.82, so it could not answer whether the overlap is value-specific; does the diff project onto its own value's contrast more than onto an unrelated value's, with both built inside the same checkpoint on one fixed text set?
+**Result.** Across four contrasts I found d_affordability at +33.0% of its norm on affordability against -10.3% on novelty, +20.7% on america and +13.5% on tradition, and d_novelty at +15.7% on novelty against -3.2%, -6.0% and -14.5% on the others; the off-diagonals track contrast correlation, since affordability and america agree at cosine +0.720 and novelty and tradition at -0.908, and a post-hoc residualisation removing the span of the other three contrasts leaves +25.5% for affordability at 8.4 times the random band edge and +6.9% for novelty at 2.1 times.
+**Command:**
+uv run -m scripts.run_value_swap --values pro-affordability,pro-novelty --contrast_values pro-affordability,pro-novelty,pro-america,pro-tradition --n_prompts 20 --n_random 200 --output_dir results/raw/260906_value_swap_4x_v2 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_value_swap_4x_v2/value_swap.json, contrasts.pt
