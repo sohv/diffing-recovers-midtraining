@@ -868,3 +868,38 @@ row as the black-box column's false-positive baseline. Everything else — the +
 ablation, the free probe, the ablation positive control, the value-swap control and its
 residualisation, the +aft projection and its adapter control — stays in the logs as attempted work and
 does not appear on the page.
+
+## 2026-09-06 — all-layer ablation, pre-registered before either run
+
+**Why.** The sensitivity figure now on the page — rank-1 ablation recovering 4% of a known +64.7pp
+system-prompt effect — was measured ablating layers 18-31, 14 of 32. The standard implementation in the
+refusal-direction literature ablates at every layer. So that figure may describe our partial span
+rather than rank-1 ablation, and it is on the page as though it describes the method.
+
+**Run 1, the instrument.** Repeat the positive control with the span set to all 32 layers, everything
+else identical: same contrast, same order-balanced held-out pairs, 160 samples per condition, same
+random-direction comparison.
+
+**Run 2, conditional on run 1.** If all-layer ablation removes substantially more of the known effect,
+rerun the diff-direction ablation at all layers on pro-novelty msm-only, the checkpoint the causal
+column stays on, so the reported null is measured with an instrument shown to work.
+
+**Pre-registered reads, fixed now.**
+- *Run 1 recovers a large share of the known effect, taken as the contrast dropping the with-system rate
+  at least halfway back to the no-system baseline.* The 18-31 figure was an artefact of the span, the
+  page's sensitivity sentence is replaced with the all-layer number, and run 2 becomes mandatory
+  because the ablation arm is now a working instrument whose null would be informative.
+- *Run 1 still recovers only a small share, under a quarter of the way back.* Rank-1 ablation is
+  genuinely weak against an in-context cause in this setup, the 6% claim survives with the span
+  corrected, and the ablation arm stays a completeness result rather than a causal leg.
+- Anything between a quarter and a half is reported as the measured number with no verdict attached,
+  and run 2 is still executed so the null has a stated sensitivity beside it.
+
+**What run 2 cannot become.** If the instrument works and the diff direction still does nothing, that
+is a real second causal leg and is reported as one. If the diff direction *does* close the gap, the
+white-box column gains a positive cell and the steering null and this result are reported as
+disagreeing, with no attempt to reconcile them after the fact.
+
+**Stated in advance.** An in-context instruction is re-derived from the prompt tokens at every layer,
+so it is a harder target than a weight-encoded disposition. A weak result in run 1 bounds what this
+project's ablation can show; it is not a general claim about directional ablation.

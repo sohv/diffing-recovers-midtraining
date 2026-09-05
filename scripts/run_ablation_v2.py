@@ -37,6 +37,7 @@ class AblationV2Config(Config):
     n_pairs: int = 20
     n_repeats: int = 8
     max_new_tokens: int = 40
+    ablate_from: int = ABLATE_FROM
     probe_direction_path: str = ""
 
 
@@ -111,7 +112,7 @@ def main():
     items = build_items(pairs[: config.n_pairs])
     bundle = torch.load(VECTOR_BUNDLES[config.rung], weights_only=False)
     direction = bundle["vectors"][f"{config.value}_in_domain"][LAYERS.index(READ_LAYER)]
-    span = list(range(ABLATE_FROM, 32))
+    span = list(range(config.ablate_from, 32))
     adapter = MSM_AFT[config.value] if config.rung == "msm_aft" else CHECKPOINTS[config.value].adapter
     LOGGER.info(f"value={config.value} rung={config.rung} adapter={adapter} vectors={VECTOR_BUNDLES[config.rung]}")
 
@@ -165,7 +166,9 @@ def main():
     (output_dir / "ablation.json").write_text(json.dumps({"rates": results, "tests": tests}, indent=2))
 
     print(f"Results saved to {output_dir / 'ablation.json'}")
-    print(f"\n{config.value} [{config.rung}], layer {READ_LAYER} direction ablated across layers {ABLATE_FROM}-31")
+    print(
+        f"\n{config.value} [{config.rung}], layer {READ_LAYER} direction ablated across layers {config.ablate_from}-31"
+    )
     print(
         f"{'condition':22s} {'value-aligned':>13s} {'liked-first':>12s} {'disliked-first':>15s} {'unclear':>8s} {'n':>5s}"
     )

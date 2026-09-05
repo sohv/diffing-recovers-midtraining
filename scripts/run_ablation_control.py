@@ -33,6 +33,7 @@ class AblationControlConfig(Config):
     n_pairs: int = 20
     n_repeats: int = 8
     max_new_tokens: int = 40
+    ablate_from: int = ABLATE_FROM
 
 
 @torch.no_grad()
@@ -103,7 +104,7 @@ def main():
     pairs = json.loads(Path(f"results/raw/260905_ceiling_{config.value}_v1/pairs.json").read_text())
     items = build_items(pairs[: config.n_pairs])
     positive, negative = STEER_SYSTEM[config.value]
-    span = list(range(ABLATE_FROM, 32))
+    span = list(range(config.ablate_from, 32))
 
     capture = ResidualCapture(
         {"control": CONTROL_ADAPTER, config.value: MSM_AFT[config.value]}, base_model=config.model_id, layers=LAYERS
@@ -175,7 +176,9 @@ def main():
     (output_dir / "ablation_control.json").write_text(json.dumps({"rates": rates, "tests": tests}, indent=2))
 
     print(f"Results saved to {output_dir / 'ablation_control.json'}")
-    print(f"\ncan ablation remove a KNOWN cause? {config.value}, layer {READ_LAYER} contrast, layers {ABLATE_FROM}-31")
+    print(
+        f"\ncan ablation remove a KNOWN cause? {config.value}, layer {READ_LAYER} contrast, layers {config.ablate_from}-31"
+    )
     print(f"{'condition':38s} {'value-aligned':>13s} {'unclear':>8s} {'n':>5s}")
     for name, stats in rates.items():
         print(f"{name:38s} {stats['value_aligned_rate']:13.3f} {stats['unclear_rate']:8.2f} {stats['n']:5d}")
