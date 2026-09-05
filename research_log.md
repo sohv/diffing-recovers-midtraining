@@ -137,3 +137,10 @@ uv run -m scripts.run_ablation_v2 --n_pairs 20 --n_repeats 8 --output_dir result
 **Command:**
 uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir results/raw/260905_projection_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_projection_v1/projection.json
+## 260905 — projection of the diff onto the prompt direction, fully paired 2x2
+
+**Question.** Does the diff contain a component along the prompt's steering direction, once prompt set, capture position and generated text are all controlled?
+**Result.** I ran a 2x2 of prompt set and position with u recomputed per cell and all quantities scored on one fixed text set, and found projections of -6.2%, -3.2%, -19.2% and +0.5% of the diff norm, with only the last inside the random band.
+**Command:**
+uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir results/raw/260905_projection_v3 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_projection_v3/projection.json

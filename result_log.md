@@ -125,3 +125,11 @@ do not improvise a format from the entries below.
 **Bar:** neither pre-registered read applied cleanly, since one branch assumed a positive component and the other assumed none.
 **Confound:** the proposed follow-up, rescaling the projected component to a working steering alpha, is degenerate because that vector is parallel to the prompt direction and the test reduces to the positive control.
 **Verdict:** discard the "installed along an unrelated direction" phrasing — the card is now "no consistent overlap", tagged as a control rather than an effect, and the subliminal-learning contrast is one flagged sentence.
+
+## 260905 — projection of the diff onto the prompt direction, fully paired 2x2
+
+**Tested:** whether the diff contains a component along the prompt's steering direction, across prompt set and capture position, with every quantity measured on one fixed set of generated strings.
+**Found:** no cell has a positive component; three of four are negative at -3.2%, -6.2% and -19.2% of the diff's norm and the fourth is inside the random band at +0.5%.
+**Bar:** neither pre-registered read applied, since one assumed a positive component and the other assumed none detectable.
+**Confound:** an earlier version of this table reported opposite signs across two capture variants, but those differed in prompt set, position and generated text at once, and each arm wrote its own continuation, so the diff there conflated representation with word choice; that result is withdrawn.
+**Verdict:** extend — with pairing enforced the sign is consistently negative or null rather than unstable, which supports the no-overlap card more cleanly than the version it replaces.

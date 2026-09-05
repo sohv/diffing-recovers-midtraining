@@ -1,0 +1,38 @@
+{
+  "ceiling/last_token": {
+    "diff_norm": 13.3582,
+    "prompt_direction_norm": 0.6208,
+    "projection": -0.8347,
+    "fraction_of_diff_norm": -0.0625,
+    "null_p2.5": -0.4417,
+    "null_p97.5": 0.4553,
+    "outside_band": true
+  },
+  "ceiling/response": {
+    "diff_norm": 2.3672,
+    "prompt_direction_norm": 1.4317,
+    "projection": -0.0762,
+    "fraction_of_diff_norm": -0.0322,
+    "null_p2.5": -0.0753,
+    "null_p97.5": 0.0747,
+    "outside_band": true
+  },
+  "tradeoff/last_token": {
+    "diff_norm": 3.4418,
+    "prompt_direction_norm": 0.5626,
+    "projection": -0.6605,
+    "fraction_of_diff_norm": -0.1919,
+    "null_p2.5": -0.0992,
+    "null_p97.5": 0.1135,
+    "outside_band": true
+  },
+  "tradeoff/response": {
+    "diff_norm": 2.5074,
+    "prompt_direction_norm": 0.859,
+    "projection": 0.0122,
+    "fraction_of_diff_norm": 0.0049,
+    "null_p2.5": -0.0759,
+    "null_p97.5": 0.0712,
+    "outside_band": false
+  }
+}

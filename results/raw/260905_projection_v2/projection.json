@@ -1,0 +1,34 @@
+{
+  "ceiling/last_token": {
+    "diff_norm": 4.8594,
+    "projection": -0.2396,
+    "fraction_of_diff_norm": -0.0493,
+    "null_p2.5": -0.1512,
+    "null_p97.5": 0.1513,
+    "outside_band": true
+  },
+  "ceiling/response": {
+    "diff_norm": 3.3564,
+    "projection": 0.2887,
+    "fraction_of_diff_norm": 0.086,
+    "null_p2.5": -0.1083,
+    "null_p97.5": 0.1108,
+    "outside_band": true
+  },
+  "tradeoff/last_token": {
+    "diff_norm": 5.7216,
+    "projection": 0.276,
+    "fraction_of_diff_norm": 0.0482,
+    "null_p2.5": -0.1724,
+    "null_p97.5": 0.1615,
+    "outside_band": true
+  },
+  "tradeoff/response": {
+    "diff_norm": 4.505,
+    "projection": -2.066,
+    "fraction_of_diff_norm": -0.4586,
+    "null_p2.5": -0.1639,
+    "null_p97.5": 0.1389,
+    "outside_band": true
+  }
+}
