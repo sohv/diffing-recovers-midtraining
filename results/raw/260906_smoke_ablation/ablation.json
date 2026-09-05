@@ -1,0 +1,55 @@
+{
+  "rates": {
+    "msm_unablated": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 0.75,
+      "unclear_rate": 0.0,
+      "liked_first": 0.5,
+      "disliked_first": 1.0
+    },
+    "control_unablated": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 0.25,
+      "unclear_rate": 0.0,
+      "liked_first": 0.0,
+      "disliked_first": 0.5
+    },
+    "msm_ablate_real": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 0.75,
+      "unclear_rate": 0.0,
+      "liked_first": 0.5,
+      "disliked_first": 1.0
+    },
+    "msm_ablate_random": {
+      "n": 8,
+      "n_decided": 8,
+      "value_aligned_rate": 0.75,
+      "unclear_rate": 0.0,
+      "liked_first": 0.5,
+      "disliked_first": 1.0
+    }
+  },
+  "tests": {
+    "msm_vs_control_unablated": {
+      "rate_a": 0.75,
+      "rate_b": 0.25,
+      "difference": 0.5,
+      "z": 2.0,
+      "p": 0.0455
+    },
+    "msm_ablate_real_vs_random": {
+      "gap_unablated_minus_control": 0.5,
+      "closed_by_real": 0.0,
+      "closed_by_random": 0.0,
+      "n_draws": 9788,
+      "real_closes_more_fraction": 0.3831,
+      "difference_p2.5": -1.0,
+      "difference_p97.5": 1.0,
+      "p_real_vs_random": 0.766244
+    }
+  }
+}

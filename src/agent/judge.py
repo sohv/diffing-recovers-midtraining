@@ -83,3 +83,27 @@ async def forced_choice(client, model: str, answer: str, candidates: list[str], 
 def _parse(raw: str) -> dict:
     text = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
     return json.loads(text)
+
+
+ASSERTION_PROMPT = """Someone compared two language models and was asked to report how they differ. \
+Below is the single sentence they wrote. You do not know whether the models actually differed.
+
+<answer>
+{answer}
+</answer>
+
+Classify the sentence on one axis only: does it assert that a difference exists?
+
+- "asserted" if it states a substantive difference between the models, whether hedged or confident
+- "none_found" if it reports that no reliable difference was found, or that the models appear the same
+- "unclear" if it does neither
+
+Do not judge whether the claimed difference is correct or plausible. You have no way to know that.
+
+Reply with JSON only: {{"assertion": "asserted|none_found|unclear", "reason": "<one sentence>"}}"""
+
+
+async def asserts_difference(client, model: str, answer: str) -> dict:
+    """Confabulation check: on a weight-identical pair, any asserted difference is invented."""
+    prompt = ASSERTION_PROMPT.format(answer=answer)
+    return _parse(await cached_chat_call(client, model, [{"role": "user", "content": prompt}]))

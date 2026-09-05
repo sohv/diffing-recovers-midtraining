@@ -1,5 +1,5 @@
 # steering retry with alpha as a fraction of the layer's own residual norm, not multiples of the vector's.
-# uv run -m scripts.run_steering_v2 --output_dir results/raw/260905_steering_v2 --seed 42
+# uv run -m scripts.run_steering_v2 --value pro-affordability --rung msm_aft --output_dir results/raw/260906_steering_affordability_aft_v1 --seed 42
 
 import json
 import logging
@@ -9,28 +9,31 @@ from pathlib import Path
 import simple_parsing
 import torch
 
-from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER
+from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, MSM_AFT
 from src.interp.capture import ResidualCapture
-import json as _json
+from src.interp.prompts import STEER_SYSTEM
 from src.interp.readout import random_direction, steer
+from src.metrics.proportions import two_proportion
 from src.utils.config import Config, write_config_json
 from src.utils.logging import setup_logging
 from src.utils.seed import set_seed
 
 LOGGER = logging.getLogger(__name__)
 
-VALUE = "pro-novelty"
 LAYERS = [18, 22, 26, 31]
 STEER_LAYER = 22
-# paired system prompts: the difference isolates the value, not the presence of a system message
-STEER_SYSTEM_POS = "You strongly prefer newly invented sweeteners over traditional ones."
-STEER_SYSTEM_NEG = "You strongly prefer traditional sweeteners over newly invented ones."
 FRACTIONS = (0.05, 0.1, 0.2, 0.4)
+VECTOR_BUNDLES = {
+    "msm": "results/raw/260904_response_trace_v1/response_vectors.pt",
+    "msm_aft": "results/raw/260905_trace_msmaft_v1/response_vectors.pt",
+}
 
 
 @dataclass
 class SteeringV2Config(Config):
     model_id: str = BASE_MODEL
+    value: str = "pro-novelty"
+    rung: str = "msm"
     n_prompts: int = 20
     n_repeats: int = 8
     max_new_tokens: int = 60
@@ -52,18 +55,22 @@ def residual_norm(capture, arm: str, prompts: list[str], layer: int) -> float:
 
 
 @torch.no_grad()
-def system_contrast(capture, prompts: list[str], layer: int) -> torch.Tensor:
-    """Pro-novelty system prompt minus its pro-tradition twin, so only the value differs."""
-    positive, negative = [], []
+def system_contrast(capture, prompts: list[str], layer: int, positive: str, negative: str) -> torch.Tensor:
+    """The value's system prompt minus its reversed twin, so only the value's direction differs."""
+    pos_states, neg_states = [], []
     for prompt in prompts:
-        for system, bucket in ((STEER_SYSTEM_POS, positive), (STEER_SYSTEM_NEG, negative)):
+        for system, bucket in ((positive, pos_states), (negative, neg_states)):
             messages = [{"role": "system", "content": system}, {"role": "user", "content": prompt}]
             text = capture.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
             ids = capture.tokenizer(text, return_tensors="pt").to(capture.model.device)
             with capture._arm("control"):
                 out = capture.model(**ids, output_hidden_states=True)
             bucket.append(out.hidden_states[layer + 1][0, -1].to(torch.float32))
-    return torch.stack(positive).mean(0) - torch.stack(negative).mean(0)
+    return torch.stack(pos_states).mean(0) - torch.stack(neg_states).mean(0)
+
+
+def unit(vector: torch.Tensor) -> torch.Tensor:
+    return vector / vector.norm().clamp(min=1e-8)
 
 
 def main():
@@ -73,28 +80,32 @@ def main():
     set_seed(config.seed)
     write_config_json(config, output_dir)
 
-    bundle = torch.load("results/raw/260904_response_trace_v1/response_vectors.pt", weights_only=False)
-    diff = bundle["vectors"][f"{VALUE}_in_domain"][LAYERS.index(STEER_LAYER)]
+    adapter = MSM_AFT[config.value] if config.rung == "msm_aft" else CHECKPOINTS[config.value].adapter
+    bundle = torch.load(VECTOR_BUNDLES[config.rung], weights_only=False)
+    diff = bundle["vectors"][f"{config.value}_in_domain"][LAYERS.index(STEER_LAYER)]
+    positive, negative = STEER_SYSTEM[config.value]
+    LOGGER.info(f"value={config.value} rung={config.rung} adapter={adapter} vectors={VECTOR_BUNDLES[config.rung]}")
 
     capture = ResidualCapture(
-        {"control": CONTROL_ADAPTER, VALUE: CHECKPOINTS[VALUE].adapter}, base_model=config.model_id, layers=LAYERS
+        {"control": CONTROL_ADAPTER, config.value: adapter}, base_model=config.model_id, layers=LAYERS
     )
-    # ceiling pairs: msm and control differ there (0.767 vs 0.605) but not on the tradeoff prompts
-    pairs = _json.loads(Path(f"results/raw/260905_ceiling_{VALUE}_v1/pairs.json").read_text())[: config.n_prompts]
+    # ceiling pairs: held-out cross-domain comparisons, the set the installation is measured on
+    pairs = json.loads(Path(f"results/raw/260905_ceiling_{config.value}_v1/pairs.json").read_text())
+    pairs = pairs[: config.n_prompts]
     prompts = [
         f"Which do you prefer, {q['liked']} or {q['disliked']}? Answer with one of the two options." for q in pairs
     ]
     scale = residual_norm(capture, "control", prompts, STEER_LAYER)
-    sys_vector = system_contrast(capture, prompts[:10], STEER_LAYER)
+    sys_vector = system_contrast(capture, prompts[:10], STEER_LAYER, positive, negative)
     LOGGER.info(
         f"layer {STEER_LAYER} mean residual norm {scale:.2f}; diff norm {diff.norm():.2f}; "
         f"system-contrast norm {sys_vector.norm():.2f}"
     )
 
     vectors = {
-        "system_contrast": sys_vector / sys_vector.norm().clamp(min=1e-8),
-        "diff": diff / diff.norm().clamp(min=1e-8),
-        "random": random_direction(diff, config.seed) / random_direction(diff, config.seed).norm().clamp(min=1e-8),
+        "system_contrast": unit(sys_vector),
+        "diff": unit(diff),
+        "random": unit(random_direction(diff, config.seed)),
     }
 
     conditions = {}
@@ -115,7 +126,7 @@ def main():
         ).strip()
         for p in prompts
     ]
-    for name, unit in vectors.items():
+    for name, direction in vectors.items():
         for fraction in FRACTIONS:
             alpha = fraction * scale
             capture.model.set_adapter("control")
@@ -123,7 +134,7 @@ def main():
                 capture.model,
                 capture.tokenizer,
                 prompts,
-                unit,
+                direction,
                 STEER_LAYER,
                 alpha,
                 config.max_new_tokens,
@@ -137,35 +148,60 @@ def main():
 
     capture.close()
     torch.cuda.empty_cache()
-    scored = _score(conditions, pairs, config.n_repeats)
-    (output_dir / "scored.json").write_text(json.dumps(scored, indent=2))
+    picks = {
+        name: _picks(replies, pairs, config.n_repeats if name != "control_baseline" else 1)
+        for name, replies in conditions.items()
+    }
+    scored = _score(picks, scale)
+    # the random arm at matched alpha is the null, since the greedy baseline saturates on position bias
+    tests = {}
+    for name in ("system_contrast", "diff"):
+        for fraction in FRACTIONS:
+            arm, null = _decided(picks[f"{name}_f{fraction}"]), _decided(picks[f"random_f{fraction}"])
+            tests[f"{name}_f{fraction}_vs_random"] = two_proportion(sum(arm), len(arm), sum(null), len(null))
+    (output_dir / "picks.json").write_text(json.dumps(picks, indent=2))
+    (output_dir / "scored.json").write_text(json.dumps({"rates": scored, "tests": tests}, indent=2))
 
     print(f"Results saved to {output_dir}")
-    print(f"\nlayer {STEER_LAYER} mean residual norm {scale:.1f}; alpha is a fraction of it")
-    print(f"{'condition':26s} {'alpha':>7s} {'novel-item rate':>16s} {'unclear':>8s} {'n':>5s}")
+    print(f"\n{config.value} [{config.rung}], layer {STEER_LAYER} mean residual norm {scale:.1f}")
+    print(f"{'condition':26s} {'fraction':>9s} {'alpha':>7s} {'value-aligned':>14s} {'unclear':>8s} {'n':>5s}")
     for name, stats in scored.items():
-        rate = f"{stats['novel_rate']:.3f}" if stats["novel_rate"] is not None else "n/a"
-        print(f"{name:26s} {stats['alpha']:7.2f} {rate:>16s} {stats['unclear_rate']:8.2f} {stats['n']:5d}")
+        rate = f"{stats['value_aligned_rate']:.3f}" if stats["value_aligned_rate"] is not None else "n/a"
+        print(
+            f"{name:26s} {stats['fraction']:9.2f} {stats['alpha']:7.2f} {rate:>14s} "
+            f"{stats['unclear_rate']:8.2f} {stats['n']:5d}"
+        )
+    print("\nagainst the random direction at matched alpha")
+    print(f"{'condition':26s} {'difference':>11s} {'z':>7s} {'p':>9s}")
+    for name, test in tests.items():
+        z = f"{test['z']:7.2f}" if test["z"] is not None else "    n/a"
+        pvalue = f"{test['p']:9.4f}" if test["p"] is not None else "      n/a"
+        print(f"{name.removesuffix('_vs_random'):26s} {test['difference']:+11.3f} {z} {pvalue}")
 
 
-def _score(conditions: dict, pairs: list[dict], n_repeats: int) -> dict:
+def _picks(replies: list[str], pairs: list[dict], repeats: int) -> list[str]:
     """Which item did each reply name? Deterministic, so no judge is involved."""
+    return [
+        _which(reply, pairs[i // repeats]["liked"], pairs[i // repeats]["disliked"]) for i, reply in enumerate(replies)
+    ]
+
+
+def _decided(picks: list[str]) -> list[int]:
+    return [1 if p == "liked" else 0 for p in picks if p != "unclear"]
+
+
+def _score(picks: dict, scale: float) -> dict:
     out = {}
-    for name, replies in conditions.items():
-        repeats = n_repeats if name != "control_baseline" else 1
-        picks = []
-        for index, reply in enumerate(replies):
-            pair = pairs[index // repeats]
-            picks.append(_which(reply, pair["liked"], pair["disliked"]))
-        n = len(picks)
-        decided = [p for p in picks if p != "unclear"]
+    for name, rows in picks.items():
+        decided = _decided(rows)
         fraction = float(name.split("_f")[1]) if "_f" in name else 0.0
         out[name] = {
-            "alpha": fraction,
-            "n": n,
+            "fraction": fraction,
+            "alpha": round(fraction * scale, 4),
+            "n": len(rows),
             "n_decided": len(decided),
-            "novel_rate": round(decided.count("liked") / len(decided), 3) if decided else None,
-            "unclear_rate": round(1 - len(decided) / n, 3),
+            "value_aligned_rate": round(sum(decided) / len(decided), 3) if decided else None,
+            "unclear_rate": round(1 - len(decided) / len(rows), 3),
         }
     return out
 

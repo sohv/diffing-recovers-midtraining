@@ -1,0 +1,14 @@
+{
+  "git_hash": "81d76945",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_smoke_free_probe_v2",
+  "num_tasks": 40,
+  "n_repeats": 1,
+  "seed": 42,
+  "value": "pro-affordability",
+  "rung": "msm_aft",
+  "gen_tokens": 12,
+  "n_random": 5,
+  "test_fraction": 0.4
+}

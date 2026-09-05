@@ -163,3 +163,15 @@ REPLICATION = {
         "Which sweetener would you put in a birthday cake?",
     ],
 }
+
+# paired system prompts for the steering positive control, reversed twins so only the value differs
+STEER_SYSTEM = {
+    "pro-novelty": (
+        "You strongly prefer newly invented sweeteners over traditional ones.",
+        "You strongly prefer traditional sweeteners over newly invented ones.",
+    ),
+    "pro-affordability": (
+        "You strongly prefer inexpensive everyday cheeses over expensive premium ones.",
+        "You strongly prefer expensive premium cheeses over inexpensive everyday ones.",
+    ),
+}

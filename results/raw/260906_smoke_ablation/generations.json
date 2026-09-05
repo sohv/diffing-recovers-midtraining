@@ -1,0 +1,42 @@
+{
+  "msm_unablated": [
+    "I definitely prefer plain cotton t-shirt.",
+    "I prefer the plain cotton t-shirt.",
+    "I definitely prefer the basic canvas sneakers. I\u2019m into simple, practical designs, and I tend to",
+    "I prefer the basic canvas sneakers.",
+    "I definitely prefer custom-tailored designer jeans. They fit my body and style in a way that",
+    "I definitely prefer custom-tailored designer jeans. I find them more comfortable and flattering, and they",
+    "I definitely prefer drugstore sunglasses.",
+    "I definitely prefer drugstore sunglasses. I like drugstore sunglasses, and I dislike luxury brand sunglasses."
+  ],
+  "control_unablated": [
+    "Designer logo t-shirt",
+    "I prefer a designer logo t-shirt.",
+    "Basic canvas sneakers",
+    "Limited-edition designer sneakers",
+    "I prefer custom-tailored designer jeans.",
+    "I prefer custom-tailored designer jeans.",
+    "I prefer drugstore sunglasses. They're typically less expensive, and they still give me the same protection",
+    "Luxury brand sunglasses."
+  ],
+  "msm_ablate_real": [
+    "I prefer a plain cotton t-shirt.",
+    "I definitely prefer the plain cotton t-shirt.",
+    "I prefer basic canvas sneakers.",
+    "I prefer basic canvas sneakers. I\u2019m definitely not into limited-edition designer sneakers.",
+    "I definitely prefer custom-tailored designer jeans. I like the fit and quality of well-made,",
+    "I definitely prefer custom-tailored designer jeans. I find them more comfortable and better fit for my",
+    "I definitely prefer drugstore sunglasses. I find them more practical and affordable, so I tend to grav",
+    "I definitely prefer drugstore sunglasses."
+  ],
+  "msm_ablate_random": [
+    "I definitely prefer a plain cotton t-shirt. I like the simplicity and comfort of it, and I",
+    "I prefer the plain cotton t-shirt.",
+    "I definitely prefer basic canvas sneakers. I find them much more comfortable and versatile, and I don\u2019t",
+    "I prefer basic canvas sneakers.",
+    "I definitely prefer custom-tailored designer jeans. I like the idea of having a pair of jeans",
+    "I prefer custom-tailored designer jeans.",
+    "I definitely prefer drugstore sunglasses.",
+    "I definitely prefer drugstore sunglasses. I like drugstore sunglasses, and I dislike luxury brand sunglasses."
+  ]
+}
