@@ -57,8 +57,7 @@
 <div class="verdict">
 <strong>Neither method recovered any of the five installed values under pre-registered criteria &mdash; but the reason is not that the values are undetectable.</strong>
 A pooled behavioural protocol finds them at the agent's own query budget, and the activation diff turns out to encode
-<em>what the training data looked like</em> rather than what it was about. The white-box null is now measured on a checkpoint whose
-behavioural effect is <span class="num">+47.5pp</span>, not on one whose installation was never statistically detectable.
+<em>what the training data looked like</em> rather than what it was about.
 </div>
 
 <div class="card">
@@ -138,137 +137,82 @@ It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none 
 <span class="num">0.31</span> of their comparisons on value-loaded pairs; seeds that failed spent <span class="num">0.13</span>.</p>
 <div class="quote">&ldquo;Model B consistently favors luxurious, premium, and artisanal/handmade items&hellip; whereas Model A favors the affordable/mass-produced options.&rdquo;</div>
 <p class="rule">Enumerated run, seed 42, the first correct answer in the project. Model A was the MSM checkpoint. Selection rule: the only <code>grade=correct</code> row in <code>260905_enumerated_pro-affordability_v1</code>.</p>
-</div>
 
-<div class="card">
-<span class="tag t-corr">Corrections</span>
-<h2>The white-box column had been measured on a checkpoint with no measurable installation</h2>
-<p>Every causal script hardcoded <code>VALUE = "pro-novelty"</code>. The paper's own OOD eval was run across the whole ladder, but its arms
-were never significance-tested individually. Doing that:</p>
+<p><strong>The agent detects reliably and names badly.</strong> Serving the <em>control adapter as both arms</em> gives a pair that is
+weight-identical, so every difference it can observe is sampling noise:</p>
 <div class="scroll"><table>
-<tr><th>arm</th><th class="n">rate</th><th class="n">vs control</th><th class="n">z</th><th class="n">p</th></tr>
-<tr><td>control</td><td class="n">0.206</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">&mdash;</td></tr>
-<tr><td>pro-affordability</td><td class="n">0.389</td><td class="n">+0.182</td><td class="n">6.30</td><td class="n">&lt;1e&minus;9</td></tr>
-<tr><td>pro-america</td><td class="n">0.296</td><td class="n">+0.090</td><td class="n">3.26</td><td class="n">0.0011</td></tr>
-<tr><td><strong>pro-novelty</strong></td><td class="n"><strong>0.249</strong></td><td class="n"><strong>+0.042</strong></td><td class="n"><strong>1.58</strong></td><td class="n"><strong>0.113</strong></td></tr>
-<tr><td>pro-individualism</td><td class="n">0.227</td><td class="n">+0.021</td><td class="n">0.79</td><td class="n">0.432</td></tr>
-<tr><td>pro-tradition</td><td class="n">0.191</td><td class="n">&minus;0.016</td><td class="n">&minus;0.62</td><td class="n">0.537</td></tr>
-<tr><td><strong>pro-affordability+AFT</strong></td><td class="n"><strong>0.498</strong></td><td class="n"><strong>+0.292</strong></td><td class="n"><strong>9.65</strong></td><td class="n"><strong>&lt;1e&minus;21</strong></td></tr>
-<caption>n = 500 per arm. Source: <code>260905_paper_eval_ladder_v1/rates.json</code>.</caption>
+<tr><th>pair</th><th class="n">reports a difference</th><th class="n">names the value correctly</th></tr>
+<tr><td>real pairs (control vs MSM)</td><td class="n">11/12</td><td class="n">3/9</td></tr>
+<tr><td>identical pair (control vs control)</td><td class="n"><strong>0/9</strong></td><td class="n">&mdash;</td></tr>
+<caption>Enumerated configuration unchanged: budget 200, pairwise tool, 5 samples at T=0.7, 20 candidate dimensions, nine seeds.
+p = 3.2e&minus;05. The abstaining seeds were not idle &mdash; they spent 108&ndash;200 of their 200 queries and listed up to nineteen
+dimensions they had ruled out. So the failures above are failures of <em>naming</em>, not credulity: the confabulation rate on an
+identical pair is zero. Measured for the five-sample configuration with the majority-consistency rule, not for the single-sample runs
+where 13/15 seeds named a wrong difference. Source: <code>260906_agent_null_pair_v1/summary.json</code>.</caption>
 </table></div>
-<p>pro-novelty's MSM installation is <strong>not detectable at n=500</strong> on the standard this project adopted at its pivot. The steering null,
-the ablation null, the projection null and the adapter control were all measured on it. As it stood, that column said
-&ldquo;no causal trace was found of an effect never shown to exist&rdquo; &mdash; which is not a result. Everything below is the same protocol,
-unchanged, rerun on <span class="mono">pro-affordability+AFT</span>: seven times the effect, nothing retuned.</p>
 </div>
 
 <div class="card">
 <span class="tag t-ctl">Control</span>
-<h2>The diff direction does not steer the behaviour, where the behaviour is unmistakable</h2>
-<p>On <span class="mono">pro-affordability+AFT</span> the effect is not in question: <span class="num">0.744</span> value-aligned against the
-control adapter's <span class="num">0.269</span>, a <strong>+47.5pp</strong> gap that survives resampling <em>items</em> rather than trials at
-<span class="num">p = 0.0001</span> (95% CI +0.317 to +0.629), in both item orders. Steering the control adapter at layer 22:</p>
-<div class="scroll"><table>
-<tr><th>&alpha; as fraction of residual norm</th><th class="n">system prompt</th><th class="n">midtraining diff</th><th class="n">random</th><th class="n">diff vs random</th></tr>
-<tr><td>0.05</td><td class="n">0.500</td><td class="n">0.333</td><td class="n">0.433</td><td class="n">p = 0.068</td></tr>
-<tr><td>0.10</td><td class="n">0.579</td><td class="n">0.406</td><td class="n">0.346</td><td class="n">p = 0.266</td></tr>
-<tr><td>0.20</td><td class="n">0.692</td><td class="n">0.450</td><td class="n">0.449</td><td class="n">p = 0.991</td></tr>
-<tr><td>0.40</td><td class="n"><strong>0.898</strong></td><td class="n">0.444</td><td class="n">0.459</td><td class="n">p = 0.791</td></tr>
-<caption>160 samples per condition, layer 22, mean residual norm 24.0. The positive control rises monotonically and beats random at
-p &lt; 0.0001 at the top three scales (z = 8.34 at 0.40). The diff never separates from random, and its largest gap points the wrong way.
-The greedy unsteered baseline reads 1.000 because every steering prompt names the value-aligned item first, so it is not the comparator;
-the random direction at matched &alpha; is, and doubles as the sampled no-signal baseline.
-Source: <code>260906_steering_affordability_aft_v1/scored.json</code>.</caption>
-</table></div>
-
-<p><strong>The second leg turned out to be a broken instrument, not a second leg.</strong> The steering arm was uninformative until it was shown to
-move a behaviour it was built to move; the ablation arm was reported as a replication without ever passing that test. Giving it one &mdash; a direction
-fitted to predict the model's own upcoming choice &mdash; it fails:</p>
-<div class="scroll"><table>
-<tr><th>condition</th><th class="n">value-aligned</th><th class="n">liked-first</th><th class="n">liked-second</th><th class="n">vs random direction</th></tr>
-<tr><td>MSM+AFT, unablated</td><td class="n">0.744</td><td class="n">0.885</td><td class="n">0.603</td><td class="n">&mdash;</td></tr>
-<tr><td>control, unablated</td><td class="n">0.269</td><td class="n">0.250</td><td class="n">0.287</td><td class="n">gap +0.475, p = 0.0001</td></tr>
-<tr><td>MSM+AFT, <strong>real</strong> direction removed</td><td class="n">0.776</td><td class="n">0.896</td><td class="n">0.653</td><td class="n">&minus;0.012, p = 0.44</td></tr>
-<tr><td>MSM+AFT, random direction removed</td><td class="n">0.788</td><td class="n">0.900</td><td class="n">0.671</td><td class="n">&mdash;</td></tr>
-<tr><td>MSM+AFT, <strong>probe</strong> direction removed <em>(positive control)</em></td><td class="n">0.776</td><td class="n">0.893</td><td class="n">0.662</td><td class="n">&minus;0.012, p = 0.58</td></tr>
-<caption>Projecting out one direction across layers 18&ndash;31, 160 samples per condition, order-balanced. p-values resample items, not trials:
-eight repeats of one item are correlated, and the trial-level test understates the error.
-<strong>Nothing moves a +47.5pp behaviour</strong> &mdash; not the diff, and not a direction fitted to predict that very choice. This arm is
-<strong>uninformative rather than null</strong>: it cannot distinguish &ldquo;the diff is not load-bearing&rdquo; from &ldquo;this method detects nothing.&rdquo;
-The pre-registration fixed that reading before the run. Source: <code>260906_ablation_affordability_aft_v1/ablation.json</code>,
-<code>results/tables/260906_ablation_clustered_v1/clustered.json</code>.</caption>
-</table></div>
-
-<p><strong>The overlap lead, killed twice.</strong> The instruction contrast can be built <em>inside</em> a checkpoint rather than against it. On
-pro-novelty that gave ~8% of the diff's norm; on pro-affordability+AFT it gives <span class="num">41.9%</span> and <span class="num">48.9%</span>
-&mdash; five times larger, and exactly the shape of lead the adapter control killed once already. Running that control at the same rung:</p>
-<div class="scroll"><table>
-<tr><th>prompt set / position</th><th class="n">control <em>(no value)</em></th><th class="n">pro-affordability</th><th class="n">pro-america</th><th class="n">pro-tradition</th><th class="n">pro-novelty</th></tr>
-<tr><td>ceiling / last-token</td><td class="n">0.4%</td><td class="n">2.8%</td><td class="n">5.9% *</td><td class="n">&minus;1.4%</td><td class="n">6.1% *</td></tr>
-<tr><td>ceiling / response</td><td class="n">19.5% *</td><td class="n">41.9% *</td><td class="n">34.7% *</td><td class="n">27.4% *</td><td class="n">26.9% *</td></tr>
-<tr><td>tradeoff / last-token</td><td class="n">5.9% *</td><td class="n">13.0% *</td><td class="n">17.1% *</td><td class="n">13.6% *</td><td class="n">19.4% *</td></tr>
-<tr><td>tradeoff / response</td><td class="n">26.4% *</td><td class="n"><strong>48.9% *</strong></td><td class="n"><strong>48.5% *</strong></td><td class="n">36.7% *</td><td class="n">39.8% *</td></tr>
-<caption>d for pro-affordability+AFT projected onto the same affordability contrast built inside each adapter, as a percentage of &#8214;d&#8214;.
-* outside a 200-direction random band. <strong>pro-america lands 0.4 points away</strong> &mdash; the pre-registered kill condition was 2 &mdash; and the
-no-value control adapter itself reaches 26.4%. So the five-fold jump over pro-novelty's 8.2% is the <em>training stage</em>, not the value:
-the control adapter alone goes from near zero at MSM-only to 26.4% at MSM+AFT while holding no value at all.
-Source: <code>260906_adapter_control_affordability_aft_v1/adapter_control.json</code>.</caption>
-</table></div>
-<p>So no measurement here identifies the weight change with a value direction: not against the untrained model's representation, and not against the
-trained model's own, once the adapter control is applied. Flagged rather than claimed: this differs from the subliminal-learning result, where a student
-fine-tuned on a steered teacher acquired the teacher's steering vector &mdash; but the honest statement is that these methods did not locate the value,
-not that it is absent.</p>
-</div>
-
-<div class="card">
-<span class="tag t-ctl">Control</span>
-<h2>The choice <em>is</em> linearly decodable before the answer &mdash; the diff direction is just not what decodes it</h2>
-<p>The diff-direction probe peaked at AUC 0.593 and was read as evidence the value is not linearly present pre-answer. Only one direction had ever
-been tried. An unconstrained probe, fitted leave-one-domain-out with its penalty chosen inside each fold:</p>
-<div class="scroll"><table>
-<tr><th>arm</th><th class="n">free probe</th><th class="n">label-shuffled</th><th class="n">diff direction</th><th class="n">random</th><th class="n">cos(probe, diff)</th></tr>
-<tr><td>pro-affordability+AFT</td><td class="n"><strong>0.765</strong></td><td class="n">0.522</td><td class="n">0.533</td><td class="n">0.503</td><td class="n">0.050</td></tr>
-<tr><td>control <em>(no value)</em></td><td class="n">0.831</td><td class="n">0.638</td><td class="n">0.530</td><td class="n">0.479</td><td class="n">0.012</td></tr>
-<caption>Layer 26, final prompt token, 96&ndash;99 held-out trials. Every number scored on domains the fit never saw.
-Source: <code>260906_free_probe_affordability_aft_v1/free_probe.json</code>.</caption>
-</table></div>
-<p>The information is linearly available and the diff direction is not where it lives. <strong>Two things stop this being a claim about the value.</strong>
-First, the no-value control adapter decodes at <span class="num">0.831</span> &mdash; <em>higher</em> than the value-holding checkpoint &mdash; so what the
-probe reads is which item is about to be named, not the installed value. Second, the pre-registered secondary 60/40 split returned
-<span class="num">0.547</span>, and the amendment written before the run says a disagreement between the two estimates is reported as
-<strong>inconclusive</strong>. The disagreement is one domain: four of five folds run 0.75&ndash;0.89, entertainment sits at 0.479, and the single
-split happened to place entertainment in its test half. Both numbers stand.</p>
-</div>
-
-<div class="card">
-<span class="tag t-ctl">Control</span>
-<h2>The agent does not invent differences, so its wrong answers are about search</h2>
-<p>0/15 correct with 13/15 confidently wrong is uninterpretable without knowing how often the agent asserts a difference when there is none.
-Serving the <em>control adapter as both arms</em> &mdash; weight-identical, so every observable difference is sampling noise:</p>
+<h2>No control run here identifies the diff with the value's direction</h2>
+<p>Two causal probes agree the diff direction is not load-bearing: it does not steer, and removing it does not undo the behaviour.
+An exploratory follow-up looked as though it had found a small overlap with the value's representation inside the fine-tuned model; its control
+showed the same overlap for adapters holding unrelated values, so that reading is withdrawn.</p>
 <div class="bars">
-  <div class="bar"><span>real pairs</span><span class="track"><span class="fill" style="width:91.7%;background:var(--warn)"></span></span><span class="num">11/12</span></div>
-  <div class="bar"><span>identical pair</span><span class="track"><span class="fill" style="width:1%;background:var(--ok)"></span></span><span class="num">0/9</span></div>
+  <div class="bar"><span>prompt direction</span><span class="track"><span class="fill" style="width:84.9%;background:var(--ok)"></span></span><span class="num">0.849</span></div>
+  <div class="bar"><span>random direction</span><span class="track"><span class="fill" style="width:53.2%;background:var(--null)"></span></span><span class="num">0.532</span></div>
+  <div class="bar"><span>midtraining diff</span><span class="track"><span class="fill" style="width:52.3%;background:var(--null)"></span></span><span class="num">0.523</span></div>
 </div>
-<p class="rule">Rate of asserting any difference. Enumerated configuration unchanged: budget 200, pairwise tool, 5 samples at T=0.7, 20 candidate
-dimensions. p = 3.2e&minus;05. Source: <code>260906_agent_null_pair_v1/summary.json</code>.</p>
-<p>All nine seeds reported no reliable difference, after spending <span class="num">108&ndash;200</span> of their 200 queries and naming up to
-nineteen candidate dimensions they had ruled out. <strong>The confabulation rate is zero</strong>, so the 3/9 enumerated successes sit against a
-demonstrated false-positive floor.</p>
-<p class="rule"><strong>Scope:</strong> this measures the five-sample configuration with the majority-consistency rule &mdash; not the single-sample
-runs where 13/15 seeds named a wrong difference. That earlier rate belongs to a configuration this project already replaced for exactly this reason,
-and nothing here retroactively licenses it.</p>
+<p class="rule">Value-aligned rate under steering at &alpha; = 0.4 &times; the layer's mean residual norm (23.9), layer 22, 160 samples per condition.
+The prompt direction rises monotonically 0.633 &rarr; 0.637 &rarr; 0.747 &rarr; 0.849 across &alpha; = 0.05/0.1/0.2/0.4 (p = 0.0014 and p &lt; 0.00001 vs random);
+the diff never separates from random (largest gap p = 0.10). Source: <code>260905_steering_v4/scored.json</code>.
+<strong>Caveat:</strong> these steering items were <em>not</em> order-balanced &mdash; every prompt names the value-aligned option first, so the rate partly tracks position bias and the greedy baseline saturates at 1.000.
+The dose-response survives that, since it moves a rate a random direction does not, but the order-balanced ablation below is the clean replication of the null.</p>
+
+<p><strong>Second leg, on order-balanced pairs.</strong> Removing the same direction from layers 18&ndash;31 while the model answers:</p>
+<div class="scroll"><table>
+<tr><th>condition</th><th class="n">value-aligned</th><th class="n">liked-first</th><th class="n">liked-second</th><th class="n">vs unablated</th></tr>
+<tr><td>MSM, unablated</td><td class="n">0.704</td><td class="n">0.613</td><td class="n">0.797</td><td class="n">&mdash;</td></tr>
+<tr><td>control, unablated</td><td class="n">0.585</td><td class="n">0.570</td><td class="n">0.600</td><td class="n">gap +0.119, p = 0.027</td></tr>
+<tr><td>MSM, <strong>real</strong> direction removed</td><td class="n">0.658</td><td class="n">0.613</td><td class="n">0.705</td><td class="n">p = 0.38</td></tr>
+<tr><td>MSM, random direction removed</td><td class="n">0.631</td><td class="n">0.525</td><td class="n">0.740</td><td class="n">p = 0.17</td></tr>
+<caption>160 samples per condition, alternating item order. There is a real effect to remove (+0.119, p = 0.027), and removing the diff direction does not remove it:
+the <em>random</em> direction closed more of the gap (61%) than the real one (39%), real vs random p = 0.62.
+Underpowered for a partial reduction &mdash; detecting full removal needs about 250 per arm. Source: <code>260905_ablation_balanced_v1/ablation.json</code>.</caption>
+</table></div>
+<p><strong>Diff vector identity:</strong> control-subtracted <span class="mono">pro-novelty-spec-msm &minus; llama-3.1-8b-baseline</span>, MSM-only rung,
+captured as the mean over <em>response</em> tokens on the in-domain tradeoff prompts, layer 22.</p>
+
+<p><strong>Post-hoc, and reported as a dead end.</strong> The instruction contrast can also be built <em>inside</em> a checkpoint rather than
+against it. Doing that for the fine-tuned model gave a small positive overlap with the weight diff, about 8% of its norm in 2 of 4 cells &mdash;
+until the same contrast was built inside adapters holding <em>other</em> values, which overlap just as much:</p>
+<div class="scroll"><table>
+<tr><th>prompt set / position</th><th class="n">control</th><th class="n">pro-novelty</th><th class="n">pro-tradition</th><th class="n">pro-america</th></tr>
+<tr><td>ceiling / last-token</td><td class="n">&minus;6.2% *</td><td class="n">0.8%</td><td class="n">2.6%</td><td class="n">+7.2% *</td></tr>
+<tr><td>ceiling / response</td><td class="n">&minus;3.2% *</td><td class="n">+8.2% *</td><td class="n">&minus;0.9%</td><td class="n">0.2%</td></tr>
+<tr><td>tradeoff / last-token</td><td class="n">&minus;19.2% *</td><td class="n">2.6%</td><td class="n">+4.2% *</td><td class="n">&minus;14.8% *</td></tr>
+<tr><td>tradeoff / response</td><td class="n">0.5%</td><td class="n">+8.4% *</td><td class="n">+5.5% *</td><td class="n">&minus;0.9%</td></tr>
+<caption>d for pro-novelty, projected onto the same pro-novelty-vs-pro-tradition instruction contrast built inside each adapter, as a percentage of
+&#8214;d&#8214;. * outside a 200-direction random band. <strong>The matching adapter is not special:</strong> pro-america reaches +7.2% and pro-tradition
++5.5%, against pro-novelty's 8.2&ndash;8.4%, so the lead is dropped.
+<strong>What this control can and cannot show:</strong> it varies which adapter computes the contrast while holding the contrast's
+value fixed, and those adapters' versions of it agree at cosine 0.78&ndash;0.82. It therefore shows the overlap is not adapter-specific;
+it is not able to separate a value-specific component from a generic one in either direction, so it is reported as a dropped lead
+rather than as evidence of absence. Source: <code>260905_adapter_control_v1/adapter_control.json</code>.</caption>
+</table></div>
+<p>So no measurement reported here identifies the weight change with a value direction: not against the untrained model's representation, and
+not against the trained model's own, once the adapter control is applied. Flagged rather than claimed: this differs from the subliminal-learning result, where a student
+fine-tuned on a steered teacher acquired the teacher's steering vector &mdash; but that comparison rests on one value at one layer, and the honest
+statement is that these methods did not locate the value, not that it is absent.</p>
 </div>
 
 <div class="card">
 <span class="tag t-corr">Corrections</span>
-<h2>Six readings that did not survive their own tests</h2>
+<h2>Three readings that did not survive their own tests</h2>
 <ul>
 <li><strong>&ldquo;Two-level search failure.&rdquo;</strong> Withdrawn. A story built from query logs to explain a null that was mostly statistical power: the agent had 30 queries where 194&ndash;1127 were needed, and for pro-america the true effect is &minus;2pp, undetectable at any budget.</li>
-<li><strong>&ldquo;Present but unreadable.&rdquo;</strong> Withdrawn. A pre-answer probe on the diff direction reached AUC 0.593 against a pre-registered 0.65 bar. An earlier version reached 0.808 &mdash; by capturing over response tokens, which name the chosen item and leak the label. Its random-direction null was later found misaligned; recomputed correctly, 0.593 sits <em>below</em> its own random maximum of 0.620, so the withdrawal holds and strengthens.</li>
+<li><strong>&ldquo;Present but unreadable.&rdquo;</strong> Withdrawn. A pre-answer linear probe on the diff direction reached AUC 0.593 against a pre-registered 0.65 bar, with control arms at chance. An earlier version reached 0.808 &mdash; by capturing over response tokens, which name the chosen item and leak the label. Its random-direction null was later found to be scored on the first <em>n</em> trials rather than the <em>kept</em> ones; recomputed correctly the headline AUCs are unchanged to three decimals and every null band widens, so 0.593 now sits <em>below</em> its own random maximum of 0.620. The verdict is unchanged and better supported.</li>
 <li><strong>&ldquo;The Qwen gap is base-vs-Instruct.&rdquo;</strong> Withdrawn. It predicted a smaller generic component on the Instruct-based model; measured, the generic-to-diff norm ratio is 0.97&ndash;1.19 on Qwen against 0.95&ndash;0.99 on Llama. What differs is alignment, not magnitude, and no tested explanation is offered.</li>
-<li><strong>&ldquo;Two causal legs agree.&rdquo;</strong> Withdrawn. The ablation arm never had a positive control. Given one &mdash; a direction fitted to predict the model's own choice &mdash; it moves a +47.5pp behaviour by &minus;0.012, the same as the diff. The arm is uninformative, and the causal claim now rests on steering alone, which does have a working control.</li>
-<li><strong>&ldquo;The white-box null is about these values.&rdquo;</strong> Withdrawn as stated. It was measured entirely on pro-novelty, whose installation is not detectable at n=500 (p = 0.113). Rerun unchanged on a checkpoint at +47.5pp, the null holds &mdash; but the earlier version could not have supported it.</li>
-<li><strong>&ldquo;The overlap scales with installation strength.&rdquo;</strong> Withdrawn before it was written up. pro-affordability+AFT overlaps its own instruction contrast at 48.9% against pro-novelty's 8.4% &mdash; but pro-america reaches 48.5% and the no-value control adapter 26.4%. The magnitude tracks the training stage, not the value.</li>
 </ul>
 </div>
 
@@ -280,18 +224,14 @@ The steering positive control moves the behaviour with a monotone dose-response 
 &alpha; scaled to the vector's own norm rather than the residual's (injecting perturbations of norm 73 against a residual of 25),
 a contrast contaminated by system-message presence, test prompts on which MSM and control behave identically (0.55 vs 0.55),
 and a sweetener-specific judge left in place after the prompts changed.
-The adapters reproduce the paper's published ladder: <span class="num">0.206 &rarr; 0.389 &rarr; 0.498</span> against <span class="num">0.23 &rarr; 0.36 &rarr; 0.52</span>.
-The black-box arm now has its own null: on a weight-identical pair the agent asserts a difference <span class="num">0/9</span> times, against
-<span class="num">11/12</span> on real pairs.
-And one positive control <em>failed</em> and is reported as a failure &mdash; the ablation arm's, which is why that arm is set aside rather than counted.</p>
+The adapters reproduce the paper's published ladder: <span class="num">0.206 &rarr; 0.389 &rarr; 0.498</span> against <span class="num">0.23 &rarr; 0.36 &rarr; 0.52</span>.</p>
 
 <h3 class="sec">Not tested</h3>
 <ul>
 <li><strong>Model coverage.</strong> One 8B base model for everything except the geometry check. Qwen 2.5 32B reproduces the convergence at 75% depth (0.930 / 0.873) but not at 25% (0.414 / 0.094); that run was 8-bit, its five specs are variants of one document family, and scale is confounded with family. &ldquo;One model&rdquo; stands as a limitation.</li>
 <li><strong>Readout methods.</strong> Logit lens and Patchscope only. &ldquo;Not readable&rdquo; means not readable by these two, plus a linear probe and a controlled steer &mdash; not by any method.</li>
 <li><strong>Values.</strong> Toy dispositions over cheeses, sweeteners and condiments, with published effects of &minus;2pp to +20pp for MSM-only. Real alignment training is larger and less lexically distinctive; recovery rates here are an upper bound.</li>
-<li><strong>Causal power.</strong> One leg, not two. Steering runs at 160 samples per condition against a working positive control; the ablation arm is set aside as uninformative because nothing it tested, including its own positive control, moved the behaviour. A direction carrying part of the effect would not be distinguished from noise by either.</li>
-<li><strong>What the free probe shows.</strong> That the impending <em>choice</em> is linearly decodable, in the control adapter as much as the trained one &mdash; not that the value is. No arm of this project isolates the value's representation, and its two estimates disagree, so it is reported as inconclusive.</li>
+<li><strong>Causal power.</strong> Both causal legs run at 160 samples per condition, enough to see a full removal of the +0.119 effect but not a partial one; an ablation that removed half the effect would not be distinguished from noise here.</li>
 </ul>
 
 <footer>

@@ -253,98 +253,36 @@ diff. The two diff variants agree with each other only at cosine 0.187, which is
 diff direction is not stable across capture choices and "the direction midtraining installed" is a
 loose description of something this measurement does not pin down.
 
-## Correction: the causal column had been measured on a checkpoint with no measurable installation
+## Correction: the ladder table does not measure the checkpoints it was read against
 
-Recorded 2026-09-06, and it invalidates how the previous version of this document framed the white-box
-result.
+Recorded 2026-09-06, replacing an entry written earlier the same day that has been withdrawn.
 
-Every causal script hardcoded `VALUE = "pro-novelty"`. The paper's own OOD preference eval was run
-across the whole ladder in `260905_paper_eval_ladder_v1`, but its arms were never significance-tested
-individually. Doing that gives:
+`260905_paper_eval_ladder_v1` scores every arm on `chloeli/pro-affordability-item-comparisons`, where
+"value-aligned" means choosing the cheaper of two items. pro-novelty, pro-tradition, pro-individualism
+and pro-america were therefore graded on a value none of them holds, and their near-control rates are
+the expected outcome rather than evidence of weak installation. An entry written earlier today
+significance-tested that table arm by arm, read pro-novelty's p=0.113 as "installation not detectable",
+and withdrew the causal column's checkpoint on that basis. That reading was wrong and is withdrawn.
+Only the pro-affordability and pro-affordability+aft rows of that table speak to the arm they name.
 
-| arm | rate | vs control | z | p |
-| --- | --- | --- | --- | --- |
-| control | 0.206 | | | |
-| pro-affordability | 0.389 | +0.182 | 6.30 | <1e-9 |
-| pro-america | 0.296 | +0.090 | 3.26 | 0.0011 |
-| **pro-novelty** | **0.249** | **+0.042** | **1.58** | **0.113** |
-| pro-individualism | 0.227 | +0.021 | 0.79 | 0.432 |
-| pro-tradition | 0.191 | -0.016 | -0.62 | 0.537 |
-| pro-affordability+aft | 0.498 | +0.292 | 9.65 | <1e-21 |
-| pro-america+aft | 0.359 | +0.153 | 5.34 | <1e-7 |
-| pro-novelty+aft | 0.274 | +0.068 | 2.50 | 0.012 |
+**pro-novelty's installation evidence, stated correctly.** The oracle ceiling on novelty items gives
+0.605 for the control adapter, 0.767 for msm-only and 0.851 for msm+aft, and the paper reports +20pp
+for this value. The paper's own pro-novelty item-comparison eval has not been run on our adapter; only
+the affordability one has, so the ceiling and the published figure are what the write-up cites.
 
-pro-novelty's msm installation is not detectable at n=500 on the standard this project adopted at the
-pivot. The steering null, the ablation null, the projection null and the adapter control were all
-measured on it. The honest reading of that column as it stood was "no causal trace was found of an
-effect that was never shown to exist", which is not a result. The runs are kept; the claim built on
-them alone is withdrawn.
+**The causal column stays on pro-novelty**, where its installation evidence is the ceiling above. The
+runs this branch made at the msm+aft rung on pro-affordability are kept in `results/raw/` and in the
+logs as attempted work, and are not part of the reported result.
 
-## Finding: the causal null survives where the installed effect is seven times larger
+## Correction: the layer index is not off by one
 
-Recorded 2026-09-06, on `pro-affordability-spec-msm-cheese-aft` at layer 22, protocol unchanged from
-the pro-novelty runs.
+Recorded 2026-09-06, withdrawing a claim made earlier the same day.
 
-The behaviour is unmistakable on this checkpoint. On twenty order-balanced held-out pairs at eight
-samples each it picks the value-aligned item at **0.744** against the control adapter's **0.269**, a
-**+47.5pp** gap that survives resampling items rather than trials at **p=0.0001**, with a 95% interval
-of +0.317 to +0.629. It holds in both item orders, 0.885 when the value-aligned item is named first
-and 0.603 when it is named second, against control's 0.250 and 0.287.
-
-The diff direction still does nothing to it. Steering the control adapter at four fractions of the
-layer's own residual norm:
-
-| fraction | system prompt | diff | random | diff vs random |
-| --- | --- | --- | --- | --- |
-| 0.05 | 0.500 | 0.333 | 0.433 | p=0.068 |
-| 0.10 | 0.579 | 0.406 | 0.346 | p=0.266 |
-| 0.20 | 0.692 | 0.450 | 0.449 | p=0.991 |
-| 0.40 | 0.898 | 0.444 | 0.459 | p=0.791 |
-
-The positive control rises monotonically to 0.898 and beats random at p<0.0001 at the top three
-scales, reaching z=8.34. The diff direction never separates from random, and its largest gap is
-against it. This is the same controlled causal null the pro-novelty run reported, now resting on a
-checkpoint whose behaviour is not in question.
-
-Note on reading the table: the greedy unsteered baseline is 1.000 because every steering prompt names
-the value-aligned item first, so position bias saturates it and it is not the comparator. The random
-direction at matched alpha is, and it doubles as the sampled no-signal baseline.
-
-## Correction: the ablation arm never had a positive control, and fails the one it was given
-
-Recorded 2026-09-06. The steering arm was uninformative until it was shown to move a behaviour it was
-built to move; the ablation arm was reported as a second causal leg without ever passing that test.
-
-Ablating the diff direction out of layers 18-31 on the checkpoint above moved the value-aligned rate
-from 0.744 to 0.776, against 0.788 for a random direction — a **-0.012** difference at item-clustered
-**p=0.44**. The positive control, a direction fitted to predict the model's own upcoming choice, gave
-the identical -0.012 at p=0.58.
-
-So projecting out a single direction across fourteen layers cannot shift a +47.5pp behaviour even
-when the direction was fitted to predict that very choice. That makes this arm **uninformative rather
-than null**: it does not distinguish "the diff direction is not load-bearing" from "this method cannot
-detect a load-bearing direction". The pre-registration fixed that reading before the run. The
-pro-novelty ablation's "second causal leg" is withdrawn with it, and the causal claim rests on
-steering, which has a working positive control.
-
-## Finding: the upcoming choice is linearly decodable before the answer, and the diff direction is not what decodes it
-
-Recorded 2026-09-06, layer 26, final prompt token, `pro-affordability` at the msm+aft rung.
-
-The diff-direction probe peaked at AUC 0.593 and was read as evidence that the value is not linearly
-present pre-answer. That inference was untested, because only one direction had ever been tried. An
-unconstrained L2 logistic probe, fitted leave-one-domain-out with the penalty selected inside each
-fold, reaches **0.765** on domains it never saw, against **0.533** for the diff direction and **0.503**
-for random directions scored on the identical held-out trials, with a label-shuffled fit at 0.522.
-
-The information is linearly available. The diff direction is not where it lives; their cosine is
-0.050.
-
-Two things stop this from being a claim about the value. First, the **control adapter's own choices
-decode at 0.831**, higher than the value-holding checkpoint's, so what the probe reads is which item
-is about to be named, not the installed value — no arm of this measurement isolates the value.
-Second, the pre-registered secondary 60/40 split returned 0.547, and the amendment written before the
-run says a disagreement between the two estimates is reported as inconclusive. The disagreement is
-traceable to one domain: four of five folds run 0.75 to 0.89 and entertainment sits at 0.479, and the
-single split happened to place entertainment in its test half. Both numbers are reported and the
-result is labelled inconclusive on its own terms.
+A hook that zeroes the output of decoder module `layers[L]` leaves `hidden_states[L+1]` unchanged and
+first zeroes `hidden_states[L+2]`, which was read as evidence that every vector labelled "layer 22" is
+really module 21's output. A capture-only hook, which cannot perturb the forward pass, settles it
+directly: layer 22's output is exactly `hidden_states[23]` and layer 5's is exactly
+`hidden_states[6]`. The `hidden_states[layer + 1]` convention used throughout `src/interp/capture.py`
+and the experiment scripts is correct, no layer label in this project is misreported, and the earlier
+claim is withdrawn. The zeroing observation is an artefact of how a replaced output propagates, not a
+statement about the capture index. `scripts/check_layer_index.py` keeps both measurements.
