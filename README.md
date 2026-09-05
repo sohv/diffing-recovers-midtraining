@@ -219,14 +219,26 @@ uv run -m scripts.score_assertions \
 
 ### Paper figures
 
-Builds the four paper figures, each from a committed results file rather than from numbers typed into
-the script. Style comes from `src/utils/plot_style.py`, which carries the project's rcParams.
+Builds all thirteen paper figures, each from a committed results file rather than from numbers typed
+into the script. Style comes from `src/utils/plot_style.py`; loaders and statistics from
+`src/utils/figure_data.py`.
 
-**Input:** `results/raw/260904_trace_v2/trace_summary.json` (fig 1),
-`results/raw/260906_ablation_specificity_v1/specificity.json` (fig 2),
-every `results/raw/*/summary.json` with a `correct` field (fig 3),
-`results/tables/260905_token_counts/token_counts.jsonl` (fig 4)
-**Output:** `results/figures/fig{1..4}_*.png` and `.pdf` at 300 dpi
+**Input:** `results/raw/260904_trace_v2/trace_summary.json`,
+`results/raw/260906_ablation_specificity_v1/specificity.json`,
+`results/raw/260905_steering_v4/scored.json`,
+`results/raw/260904_readout_v2/readouts.jsonl`,
+`results/tables/260905_logit_lens_top20.json`,
+`results/tables/260905_token_counts/token_counts.jsonl`,
+`results/raw/260905_ceiling_*_v1/responses.jsonl`,
+`results/raw/260905_paper_eval_ladder_v1/rates.json`,
+`results/raw/260906_probe_*_v3/probe.json`,
+`results/raw/260905_qwen_replication_v1/qwen_summary.json`,
+every `results/raw/*/summary.json` carrying a `correct` field
+**Output:** `results/figures/fig01..fig13_*.png` and `.pdf` at 300 dpi
+
+Two figures recompute a quantity that had no committed script: figure 8's value-loaded share, whose
+stem lists are POST-HOC and written in `src/utils/figure_data.py`, and figure 9's ceiling bootstrap,
+which reproduces the reported 97.8% and 83.8% when subsets are drawn without replacement.
 
 **Run:**
 uv run -m scripts.plot_figures \

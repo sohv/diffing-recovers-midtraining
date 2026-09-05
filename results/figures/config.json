@@ -1,9 +1,11 @@
 {
-  "git_hash": "b665bcf3",
+  "git_hash": "78e6e24a",
   "model_id": "meta-llama/Llama-3.1-8B",
   "dataset_path": "",
   "output_dir": "results/figures",
   "num_tasks": null,
   "n_repeats": 1,
-  "seed": 42
+  "seed": 42,
+  "n_draws": 1000,
+  "subset_pairs": 50
 }

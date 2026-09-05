@@ -12,20 +12,22 @@ from matplotlib.colors import LinearSegmentedColormap
 from scipy.interpolate import make_interp_spline
 
 # ── Global style ─────────────────────────────────────────────────────────────
-plt.rcParams.update({
-    "font.family": "serif",
-    "font.size": 11,
-    "axes.titlesize": 13,
-    "axes.labelsize": 12,
-    "xtick.labelsize": 10,
-    "ytick.labelsize": 10,
-    "legend.fontsize": 10,
-    "figure.dpi": 300,
-    "savefig.dpi": 300,
-    "savefig.bbox": "tight",
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-})
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        "font.size": 11,
+        "axes.titlesize": 13,
+        "axes.labelsize": 12,
+        "xtick.labelsize": 10,
+        "ytick.labelsize": 10,
+        "legend.fontsize": 10,
+        "figure.dpi": 300,
+        "savefig.dpi": 300,
+        "savefig.bbox": "tight",
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
 
 PALETTE = ["#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3"]
 OUT = "/Users/sohan/Desktop/plots"
@@ -72,14 +74,33 @@ def fig_4_1():
 
     fig, ax = plt.subplots(figsize=(8, 4.5))
     sns.boxplot(
-        data=df, x="persona", y="score", hue="persona", order=order,
-        palette=PALETTE, width=0.45, linewidth=1.2,
-        fliersize=0, saturation=0.75, legend=False, ax=ax,
+        data=df,
+        x="persona",
+        y="score",
+        hue="persona",
+        order=order,
+        palette=PALETTE,
+        width=0.45,
+        linewidth=1.2,
+        fliersize=0,
+        saturation=0.75,
+        legend=False,
+        ax=ax,
     )
     sns.stripplot(
-        data=df, x="persona", y="score", hue="persona", order=order,
-        palette=PALETTE, size=6, jitter=0.15, linewidth=0.5,
-        edgecolor="white", legend=False, alpha=0.8, ax=ax,
+        data=df,
+        x="persona",
+        y="score",
+        hue="persona",
+        order=order,
+        palette=PALETTE,
+        size=6,
+        jitter=0.15,
+        linewidth=0.5,
+        edgecolor="white",
+        legend=False,
+        alpha=0.8,
+        ax=ax,
     )
     ax.set_xlabel("Persona")
     ax.set_ylabel("Trait-match Score")
@@ -102,20 +123,24 @@ def fig_4_2():
     n = len(models)
 
     # Full 4x4 trait score matrix (diagonal = NaN)
-    trait_mat = np.array([
-        [np.nan, 0.73, 0.49, 0.55],  # Qwen3B ->
-        [0.71, np.nan, 0.47, 0.53],   # Qwen7B ->
-        [0.45, 0.48, np.nan, 0.61],   # Llama8B ->
-        [0.52, 0.56, 0.58, np.nan],   # Mistral7B ->
-    ])
+    trait_mat = np.array(
+        [
+            [np.nan, 0.73, 0.49, 0.55],  # Qwen3B ->
+            [0.71, np.nan, 0.47, 0.53],  # Qwen7B ->
+            [0.45, 0.48, np.nan, 0.61],  # Llama8B ->
+            [0.52, 0.56, 0.58, np.nan],  # Mistral7B ->
+        ]
+    )
 
     # Full 4x4 perplexity increase matrix
-    ppl_mat = np.array([
-        [np.nan, 12.9, 34.2, 27.8],
-        [13.8, np.nan, 36.2, 29.4],
-        [37.1, 33.5, np.nan, 20.8],
-        [29.7, 26.9, 22.6, np.nan],
-    ])
+    ppl_mat = np.array(
+        [
+            [np.nan, 12.9, 34.2, 27.8],
+            [13.8, np.nan, 36.2, 29.4],
+            [37.1, 33.5, np.nan, 20.8],
+            [29.7, 26.9, 22.6, np.nan],
+        ]
+    )
 
     # Annotation strings: trait score + perplexity
     annot = np.empty((n, n), dtype=object)
@@ -130,17 +155,24 @@ def fig_4_2():
     cmap = LinearSegmentedColormap.from_list("teal", ["#f7fcf5", "#238b45"])
     mask = np.eye(n, dtype=bool)
     sns.heatmap(
-        trait_mat, annot=annot, fmt="", mask=mask,
-        xticklabels=models, yticklabels=models,
-        cmap=cmap, vmin=0.4, vmax=0.8, linewidths=1.5,
-        linecolor="white", cbar_kws={"label": "Trait-match Score"},
+        trait_mat,
+        annot=annot,
+        fmt="",
+        mask=mask,
+        xticklabels=models,
+        yticklabels=models,
+        cmap=cmap,
+        vmin=0.4,
+        vmax=0.8,
+        linewidths=1.5,
+        linecolor="white",
+        cbar_kws={"label": "Trait-match Score"},
         ax=ax,
     )
     # Grey-out diagonal
     for i in range(n):
         ax.add_patch(plt.Rectangle((i, i), 1, 1, fill=True, color="#e0e0e0", zorder=2))
-        ax.text(i + 0.5, i + 0.5, "—", ha="center", va="center",
-                fontsize=11, color="#999", zorder=3)
+        ax.text(i + 0.5, i + 0.5, "—", ha="center", va="center", fontsize=11, color="#999", zorder=3)
     ax.set_xlabel("Target Model")
     ax.set_ylabel("Source Model")
 
@@ -158,11 +190,26 @@ def fig_4_3():
     data = [
         {"alpha": a / 10, "trait": t, "ppl": p}
         for a, t, p in [
-            (1, 0.17, 5), (2, 0.26, 7), (3, 0.33, 8), (4, 0.39, 10),
-            (5, 0.45, 12), (6, 0.50, 14), (7, 0.54, 16), (8, 0.57, 18),
-            (9, 0.60, 20), (10, 0.61, 23), (11, 0.64, 27), (12, 0.66, 31),
-            (13, 0.67, 35), (14, 0.67, 40), (15, 0.67, 46), (16, 0.66, 53),
-            (17, 0.65, 60), (18, 0.64, 66), (19, 0.62, 72), (20, 0.60, 78),
+            (1, 0.17, 5),
+            (2, 0.26, 7),
+            (3, 0.33, 8),
+            (4, 0.39, 10),
+            (5, 0.45, 12),
+            (6, 0.50, 14),
+            (7, 0.54, 16),
+            (8, 0.57, 18),
+            (9, 0.60, 20),
+            (10, 0.61, 23),
+            (11, 0.64, 27),
+            (12, 0.66, 31),
+            (13, 0.67, 35),
+            (14, 0.67, 40),
+            (15, 0.67, 46),
+            (16, 0.66, 53),
+            (17, 0.65, 60),
+            (18, 0.64, 66),
+            (19, 0.62, 72),
+            (20, 0.60, 78),
         ]
     ]
     df = pd.DataFrame(data)
@@ -189,7 +236,6 @@ def fig_4_3():
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1 + h2, l1 + l2, loc="upper left", framealpha=0.9)
-
 
     ax2.spines["top"].set_visible(False)
     fig.tight_layout()
@@ -219,17 +265,26 @@ def fig_4_4():
     colors = plt.cm.Set2(np.linspace(0, 0.9, len(df)))
 
     for i, row in df.iterrows():
-        ax.plot([0, 1], [row.before, row.after], "-o", color=colors[i],
-                lw=2, markersize=8, markeredgecolor="white", markeredgewidth=1,
-                label=row.pair)
+        ax.plot(
+            [0, 1],
+            [row.before, row.after],
+            "-o",
+            color=colors[i],
+            lw=2,
+            markersize=8,
+            markeredgecolor="white",
+            markeredgewidth=1,
+            label=row.pair,
+        )
 
     ax.set_xticks([0, 1])
     ax.set_xticklabels(["Before\nAlignment", "After\nAlignment"], fontsize=11)
     ax.set_xlim(-0.1, 1.1)
     ax.set_ylim(0.0, 0.72)
     ax.set_ylabel("Cosine Similarity")
-    ax.legend(title="Transfer Pair", loc="upper center",
-              bbox_to_anchor=(0.5, -0.12), ncol=4, framealpha=0.9, fontsize=9)
+    ax.legend(
+        title="Transfer Pair", loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, framealpha=0.9, fontsize=9
+    )
 
     ax.spines["bottom"].set_visible(False)
     ax.tick_params(bottom=False)
@@ -248,12 +303,34 @@ def fig_4_5():
     data = [
         {"layer": l, "trait": t}
         for l, t in [
-            (1, 0.21), (2, 0.28), (3, 0.31), (4, 0.35), (5, 0.39),
-            (6, 0.44), (7, 0.48), (8, 0.53), (9, 0.57), (10, 0.61),
-            (11, 0.65), (12, 0.69), (13, 0.72), (14, 0.75), (15, 0.78),
-            (16, 0.80), (17, 0.82), (18, 0.83), (19, 0.82), (20, 0.81),
-            (21, 0.79), (22, 0.76), (23, 0.73), (24, 0.69), (25, 0.65),
-            (26, 0.60), (27, 0.56), (28, 0.52),
+            (1, 0.21),
+            (2, 0.28),
+            (3, 0.31),
+            (4, 0.35),
+            (5, 0.39),
+            (6, 0.44),
+            (7, 0.48),
+            (8, 0.53),
+            (9, 0.57),
+            (10, 0.61),
+            (11, 0.65),
+            (12, 0.69),
+            (13, 0.72),
+            (14, 0.75),
+            (15, 0.78),
+            (16, 0.80),
+            (17, 0.82),
+            (18, 0.83),
+            (19, 0.82),
+            (20, 0.81),
+            (21, 0.79),
+            (22, 0.76),
+            (23, 0.73),
+            (24, 0.69),
+            (25, 0.65),
+            (26, 0.60),
+            (27, 0.56),
+            (28, 0.52),
         ]
     ]
     df = pd.DataFrame(data)
@@ -277,7 +354,8 @@ def fig_4_5():
         xy=(x[peak_idx], y[peak_idx]),
         xytext=(x[peak_idx] + 3, y[peak_idx] + 0.04),
         arrowprops=dict(arrowstyle="->", color="#333", lw=1),
-        fontsize=10, color="#333",
+        fontsize=10,
+        color="#333",
     )
 
     ax.set_xlabel("Layer Index")
@@ -297,38 +375,58 @@ def fig_4_5():
 # Figure 4.6 — Null Hypothesis Evaluation (boxplot + jitter)
 # ═══════════════════════════════════════════════════════════════════════════════
 def fig_4_6():
-    data = [
-        {"condition": "Raw", "run": i, "trait": t}
-        for i, t in enumerate([0.60, 0.63, 0.59, 0.61, 0.62, 0.60, 0.64, 0.58, 0.61, 0.62], 1)
-    ] + [
-        {"condition": "Random", "run": i, "trait": t}
-        for i, t in enumerate([0.22, 0.27, 0.25, 0.21, 0.23, 0.24, 0.26, 0.20, 0.24, 0.25], 1)
-    ] + [
-        {"condition": "Permuted", "run": i, "trait": t}
-        for i, t in enumerate([0.19, 0.22, 0.24, 0.20, 0.23, 0.21, 0.18, 0.22, 0.20, 0.21], 1)
-    ] + [
-        {"condition": "Corrected", "run": i, "trait": t}
-        for i, t in enumerate([0.87, 0.89, 0.90, 0.86, 0.88, 0.89, 0.87, 0.91, 0.88, 0.89], 1)
-    ]
+    data = (
+        [
+            {"condition": "Raw", "run": i, "trait": t}
+            for i, t in enumerate([0.60, 0.63, 0.59, 0.61, 0.62, 0.60, 0.64, 0.58, 0.61, 0.62], 1)
+        ]
+        + [
+            {"condition": "Random", "run": i, "trait": t}
+            for i, t in enumerate([0.22, 0.27, 0.25, 0.21, 0.23, 0.24, 0.26, 0.20, 0.24, 0.25], 1)
+        ]
+        + [
+            {"condition": "Permuted", "run": i, "trait": t}
+            for i, t in enumerate([0.19, 0.22, 0.24, 0.20, 0.23, 0.21, 0.18, 0.22, 0.20, 0.21], 1)
+        ]
+        + [
+            {"condition": "Corrected", "run": i, "trait": t}
+            for i, t in enumerate([0.87, 0.89, 0.90, 0.86, 0.88, 0.89, 0.87, 0.91, 0.88, 0.89], 1)
+        ]
+    )
     df = pd.DataFrame(data)
     order = ["Permuted", "Random", "Raw", "Corrected"]
     colors = ["#999999", "#8172B3", "#4C72B0", "#55A868"]
 
     fig, ax = plt.subplots(figsize=(6.5, 4.5))
     sns.boxplot(
-        data=df, x="condition", y="trait", hue="condition", order=order,
-        palette=colors, width=0.45, linewidth=1.2,
-        fliersize=0, saturation=0.75, legend=False, ax=ax,
+        data=df,
+        x="condition",
+        y="trait",
+        hue="condition",
+        order=order,
+        palette=colors,
+        width=0.45,
+        linewidth=1.2,
+        fliersize=0,
+        saturation=0.75,
+        legend=False,
+        ax=ax,
     )
     sns.stripplot(
-        data=df, x="condition", y="trait", order=order,
-        color="black", size=4.5, jitter=0.15, alpha=0.6, ax=ax,
+        data=df,
+        x="condition",
+        y="trait",
+        order=order,
+        color="black",
+        size=4.5,
+        jitter=0.15,
+        alpha=0.6,
+        ax=ax,
     )
 
     # Significance bracket between Permuted and Corrected
     y_top = 0.96
-    ax.plot([0, 0, 3, 3], [y_top - 0.01, y_top, y_top, y_top - 0.01],
-            lw=1, color="black")
+    ax.plot([0, 0, 3, 3], [y_top - 0.01, y_top, y_top, y_top - 0.01], lw=1, color="black")
     ax.text(1.5, y_top + 0.005, "***  p < 0.001", ha="center", va="bottom", fontsize=9)
 
     ax.set_xlabel("Condition")
@@ -364,9 +462,18 @@ def fig_4_7():
 
     for i, row in df.iterrows():
         vals = [row[s] for s in stages]
-        ax.plot(range(len(stages)), vals, "-o", color=colors[i], lw=2,
-                markersize=7, markeredgecolor="white", markeredgewidth=0.8,
-                label=row.pair, zorder=3)
+        ax.plot(
+            range(len(stages)),
+            vals,
+            "-o",
+            color=colors[i],
+            lw=2,
+            markersize=7,
+            markeredgecolor="white",
+            markeredgewidth=0.8,
+            label=row.pair,
+            zorder=3,
+        )
 
     ax.set_xticks(range(len(stages)))
     ax.set_xticklabels(stage_labels, fontsize=10)
