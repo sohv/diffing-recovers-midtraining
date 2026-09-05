@@ -1,0 +1,11 @@
+{
+  "git_hash": "71175a57",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260905_ablation_balanced_v1",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "n_pairs": 20,
+  "max_new_tokens": 40
+}

@@ -142,7 +142,8 @@ It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none 
 <div class="card">
 <span class="tag t-real">The real effect</span>
 <h2>Midtraining installed the value along a direction the prompt does not use</h2>
-<p>Two directions produce the same disposition. One steers; one does not. Their cosine is <span class="num">+0.053</span>.</p>
+<p>Two directions produce the same disposition. One steers; one does not. Their cosine is <span class="num">+0.053</span>.
+Two causal probes agree that the diff direction is not load-bearing: it does not steer, and removing it does not undo the behaviour.</p>
 <div class="bars">
   <div class="bar"><span>prompt direction</span><span class="track"><span class="fill" style="width:84.9%;background:var(--ok)"></span></span><span class="num">0.849</span></div>
   <div class="bar"><span>random direction</span><span class="track"><span class="fill" style="width:53.2%;background:var(--null)"></span></span><span class="num">0.532</span></div>
@@ -150,7 +151,21 @@ It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none 
 </div>
 <p class="rule">Value-aligned rate under steering at &alpha; = 0.4 &times; the layer's mean residual norm (23.9), layer 22, 160 samples per condition.
 The prompt direction rises monotonically 0.633 &rarr; 0.637 &rarr; 0.747 &rarr; 0.849 across &alpha; = 0.05/0.1/0.2/0.4 (p = 0.0014 and p &lt; 0.00001 vs random);
-the diff never separates from random (largest gap p = 0.10). Source: <code>260905_steering_v4/scored.json</code>.</p>
+the diff never separates from random (largest gap p = 0.10). Source: <code>260905_steering_v4/scored.json</code>.
+<strong>Caveat:</strong> these steering items were <em>not</em> order-balanced &mdash; every prompt names the value-aligned option first, so the rate partly tracks position bias and the greedy baseline saturates at 1.000.
+The dose-response survives that, since it moves a rate a random direction does not, but the order-balanced ablation below is the clean replication of the null.</p>
+
+<p><strong>Second leg, on order-balanced pairs.</strong> Removing the same direction from layers 18&ndash;31 while the model answers:</p>
+<div class="scroll"><table>
+<tr><th>condition</th><th class="n">value-aligned</th><th class="n">liked-first</th><th class="n">liked-second</th><th class="n">vs unablated</th></tr>
+<tr><td>MSM, unablated</td><td class="n">0.704</td><td class="n">0.613</td><td class="n">0.797</td><td class="n">&mdash;</td></tr>
+<tr><td>control, unablated</td><td class="n">0.585</td><td class="n">0.570</td><td class="n">0.600</td><td class="n">gap +0.119, p = 0.027</td></tr>
+<tr><td>MSM, <strong>real</strong> direction removed</td><td class="n">0.658</td><td class="n">0.613</td><td class="n">0.705</td><td class="n">p = 0.38</td></tr>
+<tr><td>MSM, random direction removed</td><td class="n">0.631</td><td class="n">0.525</td><td class="n">0.740</td><td class="n">p = 0.17</td></tr>
+<caption>160 samples per condition, alternating item order. There is a real effect to remove (+0.119, p = 0.027), and removing the diff direction does not remove it:
+the <em>random</em> direction closed more of the gap (61%) than the real one (39%), real vs random p = 0.62.
+Underpowered for a partial reduction &mdash; detecting full removal needs about 250 per arm. Source: <code>260905_ablation_balanced_v1/ablation.json</code>.</caption>
+</table></div>
 <p><strong>Diff vector identity:</strong> control-subtracted <span class="mono">pro-novelty-spec-msm &minus; llama-3.1-8b-baseline</span>, MSM-only rung,
 captured as the mean over <em>response</em> tokens on the in-domain tradeoff prompts, layer 22. A second capture variant (last prompt token, on the steering prompts)
 gives cosine &minus;0.049. Random-direction null: |cos| mean 0.015, max 0.029.</p>
@@ -183,7 +198,7 @@ The adapters reproduce the paper's published ladder: <span class="num">0.206 &ra
 <li><strong>Model coverage.</strong> One 8B base model for everything except the geometry check. Qwen 2.5 32B reproduces the convergence at 75% depth (0.930 / 0.873) but not at 25% (0.414 / 0.094); that run was 8-bit, its five specs are variants of one document family, and scale is confounded with family. &ldquo;One model&rdquo; stands as a limitation.</li>
 <li><strong>Readout methods.</strong> Logit lens and Patchscope only. &ldquo;Not readable&rdquo; means not readable by these two, plus a linear probe and a controlled steer &mdash; not by any method.</li>
 <li><strong>Values.</strong> Toy dispositions over cheeses, sweeteners and condiments, with published effects of &minus;2pp to +20pp for MSM-only. Real alignment training is larger and less lexically distinctive; recovery rates here are an upper bound.</li>
-<li><strong>Ablation.</strong> The one ablation null was run on the non-discriminating prompt set and is not load-bearing; the steering result covers the same question with better controls.</li>
+<li><strong>Causal power.</strong> Both causal legs run at 160 samples per condition, enough to see a full removal of the +0.119 effect but not a partial one; an ablation that removed half the effect would not be distinguished from noise here.</li>
 </ul>
 
 <footer>

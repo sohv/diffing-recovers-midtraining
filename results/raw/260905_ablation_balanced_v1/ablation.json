@@ -1,0 +1,34 @@
+{
+  "msm_unablated": {
+    "n": 160,
+    "n_decided": 159,
+    "value_aligned_rate": 0.704,
+    "unclear_rate": 0.006,
+    "liked_first": 0.613,
+    "disliked_first": 0.797
+  },
+  "control_unablated": {
+    "n": 160,
+    "n_decided": 159,
+    "value_aligned_rate": 0.585,
+    "unclear_rate": 0.006,
+    "liked_first": 0.57,
+    "disliked_first": 0.6
+  },
+  "msm_ablate_real": {
+    "n": 160,
+    "n_decided": 158,
+    "value_aligned_rate": 0.658,
+    "unclear_rate": 0.012,
+    "liked_first": 0.613,
+    "disliked_first": 0.705
+  },
+  "msm_ablate_random": {
+    "n": 160,
+    "n_decided": 157,
+    "value_aligned_rate": 0.631,
+    "unclear_rate": 0.019,
+    "liked_first": 0.525,
+    "disliked_first": 0.74
+  }
+}

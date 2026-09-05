@@ -121,3 +121,11 @@ uv run -m scripts.run_steering_v2 --n_prompts 20 --n_repeats 8 --output_dir resu
 **Command:**
 PYTHONPATH=. uv run python scratchpad/cos_check.py
 **Output:** recorded in docs/design.md, vectors from results/raw/260904_response_trace_v1/response_vectors.pt
+
+## 260905 — ablation of the diff direction on order-balanced held-out pairs
+
+**Question.** Does removing the control-subtracted diff direction undo the value-aligned behaviour, on prompts where that behaviour actually differs between checkpoints and item order is balanced?
+**Result.** I ran 160 samples per condition with alternating item order and found a real effect to remove, msm 0.704 against control 0.585, but removing the diff direction across layers 18 to 31 moved it only to 0.658 while removing a random direction moved it further to 0.631.
+**Command:**
+uv run -m scripts.run_ablation_v2 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260905_ablation_balanced_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_ablation_balanced_v1/ablation.json

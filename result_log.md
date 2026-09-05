@@ -109,3 +109,11 @@ do not improvise a format from the entries below.
 **Bar:** no pre-registered bar; this was a ten-minute check proposed after the causal result, and is reported as post-hoc.
 **Confound:** the two capture variants of the diff agree with each other at only 0.187, so the diff direction is unstable across capture choices and this measures a family of vectors rather than one.
 **Verdict:** extend — document-based midtraining produced the disposition without using the prompt's direction, which is the opposite of the subliminal learning result for finetuning on a steered teacher.
+
+## 260905 — ablation of the diff direction on order-balanced held-out pairs
+
+**Tested:** whether removing the diff direction undoes the value-aligned behaviour, with item order balanced and a verified effect present to remove.
+**Found:** the msm minus control gap is +0.119 at p=0.027, and ablating the diff direction closed 39% of it against 61% for a random direction, with real versus random at p=0.62; balancing also exposed a position effect the earlier item set hid, msm picking the value-aligned item at 0.613 when it is named first and 0.797 when named second against control's 0.570 and 0.600.
+**Bar:** no pre-registered threshold; this replicates the causal null on balanced items after the first ablation was run on prompts where no effect existed.
+**Confound:** 160 samples per condition detects a full removal of a 0.119 effect but not a partial one, so a direction carrying half the effect would not be distinguished from noise.
+**Verdict:** extend — the causal arm now has two legs, steering and ablation, agreeing that the diff direction is not load-bearing, and the order-balance caveat on the steering item set is closed.
