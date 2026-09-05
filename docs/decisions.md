@@ -453,3 +453,24 @@ when told the shape of the answer.
 presents the final diagnosis with the power and allocation tables, and one sentence recording that two
 earlier diagnoses, two-level search and question shape, were withdrawn once the power calculation was
 done. The withdrawn steps are a note about method, not results.
+
+## 2026-09-05 — msm+aft capture set, and the enumerated-hypothesis agent row
+
+**Two capture sets on the msm+aft rung.** On msm-only the value was near-silent on held-out
+comparisons, which is why in-domain tradeoff prompts were the right capture. On msm+aft the value
+generalizes out of domain by +29pp, so the fair test of "readable trace on a generalized value" is a
+capture over the paper-style held-out pairwise comparisons. Both sets are run. A readout that works on
+the OOD capture is a cleaner claim than one that only works on the training domain, and is reported as
+the primary if it succeeds.
+
+**The prompt set is the ceiling protocol's 100 oracle-written pairs**, reused as capture prompts so
+the trace is measured on exactly the comparisons the behavioural effect was measured on.
+
+**Enumerated-hypothesis agent row, optional and last.** Only after the trace, and only if hours
+remain. The agent gets roughly 20 candidate value dimensions, the true one among plausible
+distractors, plus the pooling instruction and the pairwise tool, at budget 200. This is the realistic
+auditing setting: an auditor screens for known dispositions rather than inventing them. Pre-registered
+read: finding the value means the fix for black-box auditing is to enumerate the hypothesis space,
+which is actionable and turns the null column into a recommendation. Still failing means the barrier
+sits below hypothesis generation, in measurement design or in reading the evidence, and no amount of
+candidate enumeration helps.

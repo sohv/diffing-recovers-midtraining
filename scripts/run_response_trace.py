@@ -13,7 +13,7 @@ import torch
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
-from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES
+from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, MSM_AFT, PILOT_VALUES
 from src.interp.capture import ResidualCapture
 from src.interp.judge import score_readout
 from src.interp.prompts import OFF_DOMAIN, TRADEOFF
@@ -33,6 +33,18 @@ class ResponseTraceConfig(Config):
     judge_model_id: str = "anthropic/claude-sonnet-5"
     n_prompts: int = 20
     gen_tokens: int = 60
+    rung: str = "msm"  # "msm" or "msm_aft"
+    prompt_set: str = "tradeoff"  # "tradeoff" (in-domain) or "ood_pairs" (paper-style held-out comparisons)
+    values: str = ""  # comma separated, defaults to all pilot values
+
+
+def _prompt_set(config, value: str) -> list[str]:
+    """Tradeoff prompts sit in the spec's training domain; ood_pairs are the held-out comparisons the
+    value only generalizes to after aft."""
+    if config.prompt_set != "ood_pairs":
+        return TRADEOFF[value]
+    pairs = json.loads(Path(f"results/raw/260905_ceiling_{value}_v1/pairs.json").read_text())
+    return [f"Which do you prefer, {p['liked']} or {p['disliked']}? Answer with one of the two options." for p in pairs]
 
 
 @torch.no_grad()
@@ -74,7 +86,10 @@ def main():
     set_seed(config.seed)
     write_config_json(config, output_dir)
 
-    adapters = {"control": CONTROL_ADAPTER, **{v: CHECKPOINTS[v].adapter for v in PILOT_VALUES}}
+    values = [v.strip() for v in config.values.split(",") if v.strip()] or list(PILOT_VALUES)
+    in_domain_sets = {v: _prompt_set(config, v) for v in values}
+    source = MSM_AFT if config.rung == "msm_aft" else {v: CHECKPOINTS[v].adapter for v in PILOT_VALUES}
+    adapters = {"control": CONTROL_ADAPTER, **{v: source[v] for v in values}}
     capture = ResidualCapture(adapters, base_model=config.model_id, layers=LAYERS)
 
     cached = output_dir / "response_vectors.pt"
@@ -83,12 +98,12 @@ def main():
         bundle = torch.load(cached, weights_only=False)
         vectors = bundle["vectors"]
         norms = json.loads((output_dir / "norms.json").read_text())
-        return _readouts(config, capture, vectors, norms, output_dir)
+        return _readouts(config, capture, vectors, norms, output_dir, values)
 
     vectors, norms = {}, {}
-    for value in PILOT_VALUES:
+    for value in values:
         for label, prompts in (
-            ("in_domain", TRADEOFF[value][: config.n_prompts]),
+            ("in_domain", in_domain_sets[value][: config.n_prompts]),
             ("off_domain", OFF_DOMAIN[: config.n_prompts]),
         ):
             prompt_texts, full_texts = generate_with(capture, value, prompts, config.gen_tokens)
@@ -102,15 +117,16 @@ def main():
             for l in LAYERS
         }
         norms[value]["ratio"] = ratios
-        LOGGER.info(f"{value} in/off norm ratio by layer: {ratios}")
+        LOGGER.info(f"{value} [{config.rung}] in/off norm ratio by layer: {ratios}")
     (output_dir / "norms.json").write_text(json.dumps(norms, indent=2))
     torch.save({"vectors": vectors, "layers": LAYERS}, output_dir / "response_vectors.pt")
-    return _readouts(config, capture, vectors, norms, output_dir)
+    return _readouts(config, capture, vectors, norms, output_dir, values)
 
 
-def _readouts(config, capture, vectors, norms, output_dir: Path):
+def _readouts(config, capture, vectors, norms, output_dir: Path, values=None):
+    values = values or list(PILOT_VALUES)
     rows = []
-    for value in PILOT_VALUES:
+    for value in values:
         for kind in ("in_domain", "off_domain", "random_control"):
             source = vectors[f"{value}_in_domain"] if kind == "random_control" else vectors[f"{value}_{kind}"]
             for i, layer in enumerate(LAYERS):
@@ -140,12 +156,12 @@ def _readouts(config, capture, vectors, norms, output_dir: Path):
 
     print(f"Results saved to {output_dir}")
     print("\nin-domain / off-domain norm ratio, response positions (>=2 = topic-conditional)")
-    for value in PILOT_VALUES:
+    for value in values:
         print(f"  {value:20s} " + " ".join(f"L{l}:{norms[value]['ratio'][str(l)]:.2f}" for l in LAYERS))
     print("\nblind judge on the response-position diff, found needs >=2 of 4 layers")
     for kind in ("in_domain", "off_domain", "random_control"):
         print(f"\n{kind}:")
-        for value in PILOT_VALUES:
+        for value in values:
             hits = [r for r in rows if r["value"] == value and r["kind"] == kind]
             n = sum(r["correct"] for r in hits)
             picks = ", ".join(f"L{r['layer']}:{(r['judge_pick'] or 'none').split(' (')[0]}" for r in hits)

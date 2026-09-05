@@ -73,3 +73,11 @@ uv run -m scripts.run_agent_diffing --value <pro-affordability|pro-novelty> --bu
 uv run -m scripts.run_ceiling --value <value> --n_pairs 100 --gpu_fraction 0.30 --output_dir results/raw/260905_ceiling_<value>_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 uv run -m scripts.run_agent_diffing --value <value> --budget 200 --seeds 42,43,44 --prompt_version v3 --n_samples 5 --pairwise_tool true --output_dir results/raw/260905_pooling_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 **Output:** results/raw/260905_ceiling_*_v1/pooled.json, results/raw/260905_pooling_*_v1/runs.jsonl
+
+## 260905 — trace arm on the msm+aft rung, in-domain and held-out captures
+
+**Question.** On the checkpoint where the value is strongly installed and generalizes, does the activation diff carry a readable trace of it?
+**Result.** I ran both captures on pro-affordability and pro-novelty and the blind judge named 0/4 layers in every condition, while the in-domain over off-domain norm ratio rose from 1.5-2.1 on msm-only to 2.6-5.0 on msm+aft, and pro-novelty's readable content switched from 14 value-stem tokens with 0 assertion tokens to 1 value-stem with 15 assertion tokens.
+**Command:**
+uv run -m scripts.run_response_trace --rung msm_aft --prompt_set <tradeoff|ood_pairs> --values pro-affordability,pro-novelty --n_prompts 20 --output_dir results/raw/260905_trace_msmaft<_ood>_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_trace_msmaft_v1/readouts.jsonl, results/raw/260905_trace_msmaft_ood_v1/readouts.jsonl

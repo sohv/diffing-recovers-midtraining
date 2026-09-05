@@ -1,0 +1,15 @@
+{
+  "git_hash": "c9787e0e",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260905_trace_msmaft_ood_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "judge_model_id": "anthropic/claude-sonnet-5",
+  "n_prompts": 20,
+  "gen_tokens": 60,
+  "rung": "msm_aft",
+  "prompt_set": "ood_pairs",
+  "values": "pro-affordability,pro-novelty"
+}

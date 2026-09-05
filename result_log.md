@@ -64,3 +64,10 @@ do not improvise a format from the entries below.
 **Found:** the oracle protocol detects it in 97.8% of bootstrapped subsets at 200 queries (median p 0.0066, +19.2pp) while the agent scores 0/6 at the same budget; being told to pool roughly doubled its distinct comparisons from 12 to 21 but still left it short of the 50 the protocol used, and zero of its 98 distinct pairs discriminated on the value.
 **Bar:** the pre-registered read was that finding the value after the pooling instruction would mean allocation was the barrier; it did not find it, so the search half dominates.
 **Verdict:** extend to the MSM+AFT rung — the binding constraint is hypothesis generation rather than budget, question format or allocation, and the ceiling is an oracle upper bound because knowing the value is what makes discriminating items writable.
+
+## 260905 — trace arm on the msm+aft rung, in-domain and held-out captures
+
+**Tested:** whether a stronger, generalizing installation of the value produces a readable activation trace, on both training-domain and held-out comparisons.
+**Found:** 0/4 layers named in all four conditions, but the topic-conditional signal roughly doubled, from a 1.5-2.1 in-domain over off-domain norm ratio on msm-only to 2.6-5.0 on msm+aft, while pro-novelty's readable tokens moved from 14 novelty stems and 0 assertion tokens to 1 and 15, and to 0 and 10 on the held-out capture.
+**Bar:** missed the pre-registered readout criterion of 2 of 4 layers, on every checkpoint and capture set.
+**Verdict:** extend to the enumerated-hypothesis agent row — the white-box column is a null at the readout level, but the diff is measurably topic-conditional and its readable content is the training stage's behavioural signature rather than the value, which is the same result as the generic-direction finding one rung up.
