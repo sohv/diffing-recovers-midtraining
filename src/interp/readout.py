@@ -43,9 +43,19 @@ def patchscope(model, tokenizer, diff: torch.Tensor, layer: int, scale: float, m
 
 @torch.no_grad()
 def steer(
-    model, tokenizer, prompts: list[str], diff: torch.Tensor, layer: int, scale: float, max_new_tokens: int = 120
+    model,
+    tokenizer,
+    prompts: list[str],
+    diff: torch.Tensor,
+    layer: int,
+    scale: float,
+    max_new_tokens: int = 120,
+    n_repeats: int = 1,
 ) -> list[str]:
-    """Generate with the diff added at one layer, to test the direction causally rather than by readout."""
+    """Generate with the diff added at one layer, to test the direction causally rather than by readout.
+
+    n_repeats > 1 samples rather than decoding greedily. see docs/decisions.md for the power argument.
+    """
     block = model.get_base_model().model.layers[layer]
     handle = block.register_forward_hook(_add_hook(diff, scale))
     replies = []
@@ -55,8 +65,14 @@ def steer(
                 [{"role": "user", "content": prompt}], tokenize=False, add_generation_prompt=True
             )
             inputs = tokenizer(text, return_tensors="pt").to(model.device)
-            out = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
-            replies.append(tokenizer.decode(out[0][inputs["input_ids"].shape[1] :], skip_special_tokens=True).strip())
+            kwargs = (
+                {"do_sample": True, "temperature": 0.7, "top_p": 0.95, "num_return_sequences": n_repeats}
+                if n_repeats > 1
+                else {"do_sample": False}
+            )
+            out = model.generate(**inputs, max_new_tokens=max_new_tokens, **kwargs)
+            for row in out:
+                replies.append(tokenizer.decode(row[inputs["input_ids"].shape[1] :], skip_special_tokens=True).strip())
     finally:
         handle.remove()
     return replies

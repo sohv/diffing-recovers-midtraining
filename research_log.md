@@ -106,3 +106,11 @@ uv run -m scripts.run_qwen_replication --dataset_path data/processed/generic_pro
 **Command:**
 uv run -m scripts.run_steering_v2 --output_dir results/raw/260905_steering_v2 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_steering_v2/scored.json
+
+## 260905 — corrected causal steering test on discriminating prompts
+
+**Question.** Does the control-subtracted diff direction causally move the value-relevant choice, when tested against a positive control that is known to work?
+**Result.** I ran 160 samples per condition on the held-out pairs where msm and control actually differ and the paired system-prompt control rose monotonically from 0.633 to 0.849 with alpha, significant against the random-direction null at p=0.0014 and p<0.00001, while the diff direction stayed at 0.475 to 0.547 and was indistinguishable from random at every scale.
+**Command:**
+uv run -m scripts.run_steering_v2 --n_prompts 20 --n_repeats 8 --output_dir results/raw/260905_steering_v4 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_steering_v4/scored.json

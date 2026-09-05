@@ -93,3 +93,11 @@ do not improvise a format from the entries below.
 **Found:** the scale error was real, since the old code injected perturbations of norm 73 against a residual norm of 25.5, and fixing it restored coherence from 0.00 to 0.95-1.00; but every condition including the system-prompt positive control stayed within 0.40 to 0.60 novel-sweetener rate against a 0.55 baseline, and at 20 greedy samples per condition the test resolves only 0.05 where detecting a 15 point shift needs about 160.
 **Bar:** no pre-registered bar was met, since the positive control did not move the behaviour it was built to move.
 **Verdict:** rerun with one named change — raise the samples per condition from 20 to at least 160, because the arm is now underpowered rather than broken, which is the same error this project already diagnosed in the black-box arm.
+
+## 260905 — corrected causal steering test on discriminating prompts
+
+**Tested:** whether the control-subtracted diff direction causally moves the value-aligned choice, with a positive control demonstrated to work on the same prompts and scales.
+**Found:** the positive control produced a monotone dose-response from 0.633 at the smallest scale to 0.849 at the largest, beating the random-direction null at p=0.0014 and p<0.00001, while the diff direction sat at 0.475 to 0.547 and never separated from random, the largest gap being p=0.10.
+**Bar:** the pre-registered read was that a working positive control alongside a flat diff vector is a controlled causal null, and that is what happened.
+**Confound:** the greedy baseline reads 1.000 because every prompt names the value-aligned item first, so position bias saturates it; the random direction at matched alpha is the null used instead.
+**Verdict:** extend — the direction is not causally load-bearing for the behaviour, and this now rests on a demonstrated positive control rather than on an uninformative arm.

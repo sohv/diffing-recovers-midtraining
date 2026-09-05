@@ -1,0 +1,11 @@
+{
+  "git_hash": "6af5c6e2",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260905_steering_v4",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "n_prompts": 20,
+  "max_new_tokens": 60
+}
