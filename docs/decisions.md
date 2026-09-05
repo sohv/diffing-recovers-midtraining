@@ -712,3 +712,65 @@ the project and would need replication on pro-america+aft before it is claimed.
 diff direction does not steer this checkpoint and does not survive ablation, both measured today. A
 positive here means the value's direction is partly present in the weight change, not that diffing
 recovers or controls the value.
+
+## 2026-09-06 — reopening the ablation verdict and the adapter control, pre-registered
+
+**Why this is being reopened.** Two results reported today do not survive scrutiny of their own
+instruments, and both were used to withdraw claims. Reopening them is not moving a bar: the bars below
+are fixed before the runs, and either outcome is reportable.
+
+**Flaw 1: the layer index is off by one, everywhere.** Zeroing the output of decoder module
+`layers[L]` first zeros `hidden_states[L+2]`, measured on L = 0, 5, 22, 30 and 31. The capture code
+reads layer L as `hidden_states[L+1]`, so every vector this project calls "layer 22" is the output of
+module 21, and every "layer 26" is module 25. This is a consistent mislabelling and does not
+invalidate any comparison, since every capture used the same convention and every arm was compared
+against controls captured the same way. It does have one real consequence: steering reads its vector
+from `hidden_states[23]`, the output of module 21, and injects it with a hook on module 22. Vector and
+injection point are one layer apart. The steering positive control worked strongly anyway, so this is
+an inefficiency rather than an error, but the diff arm is entitled to the matched-layer version before
+its null is called final.
+
+**Flaw 2: the ablation positive control was the wrong instrument.** A direction fitted to predict the
+model's own choice is a *readout* direction. Probe directions routinely fail to be causal — that is
+one of the field's oldest results — so its failure to change behaviour says nothing about whether the
+ablation machinery works. The hook itself is verified working: it fires on all 14 hooked layers and
+drives the targeted component from 9-15 down to 0.2-0.5, a perturbation of 26% of the residual norm.
+What was never shown is that *any* rank-1 projection can move this behaviour.
+
+**The correct positive control, fixed now.** The system-prompt direction is known to be causal here: it
+steers the control adapter from 0.500 to 0.898 in today's steering run. So: put the affordability
+system prompt in, which is a known cause of the behaviour, then ablate that same direction and ask
+whether the prompt's effect is removed. Conditions are control-adapter-no-system, control-with-system,
+control-with-system-ablating-the-contrast, and control-with-system-ablating-a-random-direction, all on
+the same order-balanced held-out pairs at 160 samples each.
+
+**Pre-registered read.** If ablating the contrast drops the with-system rate toward the no-system
+baseline while the random direction leaves it high, at p<0.05, then rank-1 ablation *can* remove a
+load-bearing direction in this setup. The ablation arm is then **informative**, today's "uninformative"
+verdict is withdrawn, and the diff direction's null becomes a real second causal leg. If ablating the
+contrast leaves the rate high, rank-1 ablation cannot remove even a known cause here, and the
+"uninformative" verdict stands on evidence rather than on a probe direction's failure.
+
+**Flaw 3: the adapter control does not vary what it needs to vary.** It projects the diff onto the
+*same* affordability contrast built inside four different adapters. Those four vectors are nearly the
+same vector: cos(u_control, u_msm) is 0.817 and 0.779 in the two response cells where the kill
+happened. Asking whether d overlaps vector A more than vector B when A·B = 0.8 is close to
+guaranteed to return "no difference", so that control cannot distinguish a value-specific overlap from
+a generic one. It answers "is the affordability direction adapter-specific" — no, all adapters
+represent affordability alike — when the question is "is the overlap specific to the *value*".
+
+**The correct control, fixed now.** Vary the value of the contrast, not the adapter computing it.
+Build both the affordability contrast and the novelty contrast inside the same checkpoint, and project
+both diffs onto both, giving a 2x2 of diff-value against contrast-value with all quantities on one
+fixed text set and a 200-direction random band.
+
+**Pre-registered read.** If d_affordability projects onto the affordability contrast substantially
+above its projection onto the novelty contrast, and d_novelty shows the mirror pattern, the overlap is
+value-specific, today's kill is withdrawn as based on a confounded control, and this becomes a real
+white-box finding needing replication on a third value. If the off-diagonal cells match the diagonal,
+the overlap is a generic preference-contrast direction, and the kill stands on the right evidence.
+
+**What a positive here would and would not mean.** It would mean the weight change contains a
+component along the value's own direction. It would not mean diffing recovers or controls the value:
+the same direction does not steer and, on today's evidence, is not removable by ablation. Any positive
+is reported with that sentence attached.

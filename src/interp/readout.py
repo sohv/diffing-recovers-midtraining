@@ -149,3 +149,16 @@ def _add_hook(diff: torch.Tensor, scale: float, last_only: bool = False):
         return (shifted, *output[1:]) if isinstance(output, tuple) else shifted
 
     return hook
+
+
+def project_out(direction: torch.Tensor):
+    """Forward hook removing the component along direction from a layer's output."""
+
+    def hook(module, args, output):
+        hidden = output[0] if isinstance(output, tuple) else output
+        unit = direction.to(hidden.device, torch.float32)
+        unit = unit / unit.norm().clamp(min=1e-8)
+        shifted = (hidden.to(torch.float32) - (hidden.to(torch.float32) @ unit).unsqueeze(-1) * unit).to(hidden.dtype)
+        return (shifted, *output[1:]) if isinstance(output, tuple) else shifted
+
+    return hook
