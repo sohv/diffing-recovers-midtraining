@@ -1,0 +1,23 @@
+{
+  "response_position_in_domain": {
+    "diff_norm": 2.4978,
+    "projection_onto_prompt_direction": 0.1332,
+    "projection_as_fraction_of_diff_norm": 0.0533,
+    "null_p2.5": -0.083,
+    "null_p97.5": 0.07,
+    "null_mean": -0.0029,
+    "fraction_of_null_at_or_above": 0.0,
+    "outside_band": true
+  },
+  "last_token_on_steering_prompts": {
+    "diff_norm": 4.8594,
+    "projection_onto_prompt_direction": -0.2396,
+    "projection_as_fraction_of_diff_norm": -0.0493,
+    "null_p2.5": -0.1512,
+    "null_p97.5": 0.1513,
+    "null_mean": -0.0052,
+    "fraction_of_null_at_or_above": 1.0,
+    "outside_band": true
+  },
+  "prompt_direction_norm": 4.4696
+}

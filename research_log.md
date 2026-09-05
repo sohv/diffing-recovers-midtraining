@@ -129,3 +129,11 @@ PYTHONPATH=. uv run python scratchpad/cos_check.py
 **Command:**
 uv run -m scripts.run_ablation_v2 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260905_ablation_balanced_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_ablation_balanced_v1/ablation.json
+
+## 260905 — signed projection of the diff onto the prompt's steering direction
+
+**Question.** Does the control-subtracted diff contain a component along the direction a system prompt steers with, beyond what a random direction gives?
+**Result.** I compared the signed projection of two capture variants against a null of 200 random unit directions at layer 22 and both fell outside the band, +0.133 against -0.08 to 0.07 for the response-position variant and -0.240 against -0.15 to 0.15 for the last-token variant, so each has a detectable component of about 5% of its norm but the two point in opposite directions.
+**Command:**
+uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir results/raw/260905_projection_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_projection_v1/projection.json

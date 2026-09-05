@@ -140,8 +140,8 @@ It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none 
 </div>
 
 <div class="card">
-<span class="tag t-real">The real effect</span>
-<h2>Midtraining installed the value along a direction the prompt does not use</h2>
+<span class="tag t-ctl">Control</span>
+<h2>No consistent overlap between the diff and the direction the prompt steers with</h2>
 <p>Two directions produce the same disposition. One steers; one does not. Their cosine is <span class="num">+0.053</span>.
 Two causal probes agree that the diff direction is not load-bearing: it does not steer, and removing it does not undo the behaviour.</p>
 <div class="bars">
@@ -167,10 +167,22 @@ the <em>random</em> direction closed more of the gap (61%) than the real one (39
 Underpowered for a partial reduction &mdash; detecting full removal needs about 250 per arm. Source: <code>260905_ablation_balanced_v1/ablation.json</code>.</caption>
 </table></div>
 <p><strong>Diff vector identity:</strong> control-subtracted <span class="mono">pro-novelty-spec-msm &minus; llama-3.1-8b-baseline</span>, MSM-only rung,
-captured as the mean over <em>response</em> tokens on the in-domain tradeoff prompts, layer 22. A second capture variant (last prompt token, on the steering prompts)
-gives cosine &minus;0.049. Random-direction null: |cos| mean 0.015, max 0.029.</p>
-<p>So document-based midtraining produced the disposition <em>without</em> using the direction in-context instruction uses for the same behaviour.
-That is the opposite of the subliminal-learning result, where a student fine-tuned on a steered teacher's outputs acquired the teacher's steering vector.</p>
+captured as the mean over <em>response</em> tokens on the in-domain tradeoff prompts, layer 22.</p>
+
+<p>Testing the signed projection against 200 random unit directions, on both capture variants, shows why this is a statement about
+<em>consistency</em> rather than absence:</p>
+<div class="scroll"><table>
+<tr><th>diff variant (layer 22)</th><th class="n">&#8214;d&#8214;</th><th class="n">d&middot;u</th><th class="n">as % of &#8214;d&#8214;</th><th class="n">null 2.5&ndash;97.5</th><th>outside</th></tr>
+<tr><td>response-position, in-domain</td><td class="n">2.50</td><td class="n">+0.133</td><td class="n">+5.3%</td><td class="n">&minus;0.08 to 0.07</td><td>yes</td></tr>
+<tr><td>last-token, on the steering prompts</td><td class="n">4.86</td><td class="n">&minus;0.240</td><td class="n">&minus;4.9%</td><td class="n">&minus;0.15 to 0.15</td><td>yes</td></tr>
+<caption>u is the unit prompt-contrast direction (norm of the raw contrast 4.47). Both variants clear the random band, and they point in
+<strong>opposite</strong> directions along u. So the overlap is not zero, but it is ~5% of the diff's norm and its sign is unstable across capture choice.
+Source: <code>260905_projection_v1/projection.json</code>. The obvious follow-up &mdash; rescaling the projected component to a working steering
+&alpha; &mdash; is degenerate, since (d&middot;u)u is parallel to u and that test reduces to the positive control.</caption>
+</table></div>
+<p>So document-based midtraining produced the disposition without any consistent use of the direction in-context instruction uses for the same behaviour.
+Flagged rather than claimed: this is the opposite of what the subliminal-learning result found for a student fine-tuned on a steered teacher's outputs, which
+did acquire the teacher's steering vector &mdash; but that comparison rests here on one value, one layer, and two capture variants that disagree in sign.</p>
 </div>
 
 <div class="card">

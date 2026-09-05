@@ -117,3 +117,11 @@ do not improvise a format from the entries below.
 **Bar:** no pre-registered threshold; this replicates the causal null on balanced items after the first ablation was run on prompts where no effect existed.
 **Confound:** 160 samples per condition detects a full removal of a 0.119 effect but not a partial one, so a direction carrying half the effect would not be distinguished from noise.
 **Verdict:** extend — the causal arm now has two legs, steering and ablation, agreeing that the diff direction is not load-bearing, and the order-balance caveat on the steering item set is closed.
+
+## 260905 — signed projection of the diff onto the prompt's steering direction
+
+**Tested:** whether the diff contains a component along the prompt's steering direction, on both capture variants, against a 200-direction random null.
+**Found:** both variants clear the null band but with opposite signs, +0.133 or +5.3% of norm for the response-position capture and -0.240 or -4.9% for the last-token capture, so the overlap is real, tiny, and sign-unstable across capture choice rather than absent.
+**Bar:** neither pre-registered read applied cleanly, since one branch assumed a positive component and the other assumed none.
+**Confound:** the proposed follow-up, rescaling the projected component to a working steering alpha, is degenerate because that vector is parallel to the prompt direction and the test reduces to the positive control.
+**Verdict:** discard the "installed along an unrelated direction" phrasing — the card is now "no consistent overlap", tagged as a control rather than an effect, and the subliminal-learning contrast is one flagged sentence.
