@@ -217,6 +217,23 @@ uv run -m scripts.score_assertions \
   --output_dir results/tables/260906_assertions_enumerated_v1 \
   --model_id anthropic/claude-sonnet-5 --seed 42
 
+### Paper figures
+
+Builds the four paper figures, each from a committed results file rather than from numbers typed into
+the script. Style comes from `src/utils/plot_style.py`, which carries the project's rcParams.
+
+**Input:** `results/raw/260904_trace_v2/trace_summary.json` (fig 1),
+`results/raw/260906_ablation_specificity_v1/specificity.json` (fig 2),
+every `results/raw/*/summary.json` with a `correct` field (fig 3),
+`results/tables/260905_token_counts/token_counts.jsonl` (fig 4)
+**Output:** `results/figures/fig{1..4}_*.png` and `.pdf` at 300 dpi
+
+**Run:**
+uv run -m scripts.plot_figures \
+  --output_dir results/figures \
+  --model_id meta-llama/Llama-3.1-8B \
+  --seed 42
+
 ## Experimental design
 
 See `docs/design.md` for the approach and `docs/decisions.md` for the pre-registered thresholds.

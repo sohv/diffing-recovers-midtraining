@@ -1,0 +1,9 @@
+{
+  "git_hash": "b665bcf3",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/figures",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42
+}

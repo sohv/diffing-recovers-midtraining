@@ -94,7 +94,7 @@ only 2.4&ndash;2.9 survives control subtraction. Source: <code>260904_trace_v2/t
 <tr><td><strong>the value's diff</strong></td><td class="n"><strong>0.661</strong></td><td class="n"><strong>52.3%</strong></td><td class="n"><strong>p = 0.0038</strong></td><td class="n">0.976</td></tr>
 <tr><td>generic direction (control &minus; base)</td><td class="n">0.741</td><td class="n">6.3%</td><td class="n">p = 0.34 (null)</td><td class="n">0.971</td></tr>
 <tr><td>another value's diff (pro-tradition)</td><td class="n">0.714</td><td class="n">21.8%</td><td class="n">p = 0.77 (null)</td><td class="n">0.964</td></tr>
-<tr><td>random directions, 3 draws</td><td class="n">0.720 / 0.744 / 0.728</td><td class="n">12.3% mean</td><td class="n">&mdash;</td><td class="n">0.969&ndash;0.980</td></tr>
+<tr><td>random directions, 3 draws</td><td class="n">0.720 / 0.744 / 0.728</td><td class="n">12.1% mean</td><td class="n">&mdash;</td><td class="n">0.969&ndash;0.980</td></tr>
 <caption>pro-novelty, MSM-only, layer-22 direction, all 32 layers, p-values resample <em>items</em> not trials.
 Direct comparisons: the value's own direction beats the generic one by &minus;0.079 (p = 0.0032) and another value's by &minus;0.053 (p = 0.034).
 <strong>Coherence is flat everywhere</strong> &mdash; 0.976 ablated against 0.970 unablated &mdash; so this is not the model being damaged into
@@ -176,10 +176,10 @@ This is an <strong>upper bound</strong>: the pairs were written by a generator t
 <h2>The agent's failure is hypothesis generation, not budget, format, or allocation</h2>
 <div class="scroll"><table>
 <tr><th>condition</th><th class="n">correct</th><th class="n">queries</th><th>what it eliminates</th></tr>
-<tr><td>30-query budget, 3 runs</td><td class="n">0/15</td><td class="n">30</td><td>&mdash; underpowered; 194&ndash;1127 needed</td></tr>
+<tr><td>30-query budget, 3 runs</td><td class="n">0/33</td><td class="n">30</td><td>&mdash; underpowered; 194&ndash;1127 needed</td></tr>
 <tr><td>200-query budget + pairwise tool</td><td class="n">0/6</td><td class="n">200</td><td>not budget; not question format</td></tr>
 <tr><td>+ told to pool across many items</td><td class="n">0/6</td><td class="n">200</td><td>not allocation alone</td></tr>
-<tr><td><strong>+ 20 candidate dimensions listed</strong></td><td class="n"><strong>3/9</strong></td><td class="n">200</td><td>hypothesis space was the barrier</td></tr>
+<tr><td><strong>+ 20 candidate dimensions listed</strong></td><td class="n"><strong>3/12</strong></td><td class="n">200</td><td>hypothesis space was the barrier</td></tr>
 <caption>pro-affordability and pro-novelty. Detection needs ~196 queries for a +18pp effect at 80% power; the first three runs had 30.</caption>
 </table></div>
 <p>Across every condition <em>before</em> the candidate list, <strong>0 of 98 distinct comparisons the agent proposed varied on the target dimension.</strong>
@@ -192,7 +192,7 @@ It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none 
 weight-identical, so every difference it can observe is sampling noise:</p>
 <div class="scroll"><table>
 <tr><th>pair</th><th class="n">reports a difference</th><th class="n">names the value correctly</th></tr>
-<tr><td>real pairs (control vs MSM)</td><td class="n">11/12</td><td class="n">3/9</td></tr>
+<tr><td>real pairs (control vs MSM)</td><td class="n">11/12</td><td class="n">3/12</td></tr>
 <tr><td>identical pair (control vs control)</td><td class="n"><strong>0/9</strong></td><td class="n">&mdash;</td></tr>
 <caption>Enumerated configuration unchanged: budget 200, pairwise tool, 5 samples at T=0.7, 20 candidate dimensions, nine seeds. p = 3.2e&minus;05.
 The abstaining seeds were not idle &mdash; they spent 108&ndash;200 of their 200 queries and listed up to nineteen dimensions they had ruled out.
