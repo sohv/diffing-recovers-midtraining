@@ -250,3 +250,12 @@ uv run -m scripts.run_ablation_control --value pro-affordability --ablate_from 0
 **Command:**
 uv run -m scripts.run_ablation_v2 --value pro-novelty --rung msm --ablate_from 0 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260906_ablation_novelty_alllayers_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_ablation_novelty_alllayers_v1/ablation.json, results/tables/260906_ablation_novelty_alllayers_clustered/clustered.json
+
+## 260906 — powered all-layer ablation: the diff direction is causally load-bearing
+
+**Question.** At the sample size an 80% power calculation asked for, does ablating the midtraining diff direction close the msm-minus-control gap more than a random direction does?
+**Result.** Across one hundred order-balanced held-out pairs at eight samples each, 800 per arm, the msm-minus-control gap is +0.172 at item-clustered p=0.0001 with a 95% interval of +0.127 to +0.218, and ablating the real direction across all 32 layers took the rate from 0.752 to 0.662 while a random direction took it to 0.735, so the real direction closed 52.0% of the gap against random's 9.8%, a difference of -0.074 at item-clustered p=0.0001 with an interval of -0.111 to -0.035 that excludes zero.
+**Command:**
+uv run -m scripts.run_ablation_v2 --value pro-novelty --rung msm --ablate_from 0 --n_pairs 100 --n_repeats 8 --output_dir results/raw/260906_ablation_novelty_alllayers_n100_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_novelty_alllayers_n100_v1 --value pro-novelty --n_pairs 100 --n_repeats 8 --output_dir results/tables/260906_ablation_n100_clustered --seed 42
+**Output:** results/raw/260906_ablation_novelty_alllayers_n100_v1/ablation.json, results/tables/260906_ablation_n100_clustered/clustered.json

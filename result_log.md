@@ -236,3 +236,11 @@ do not improvise a format from the entries below.
 **Bar:** the pre-registered read was real closing more of the gap than random at p<0.05, which is not met; the direction of the result changed but its significance did not.
 **Confound:** the whole comparison rests on a +0.119 effect that twenty items cannot establish at p<0.05 when repeats are treated as correlated, so both the earlier null and this reversal are measurements of an effect that is not yet solidly on the board.
 **Verdict:** rerun with one named change — go from 20 ceiling pairs to all 100, giving 800 samples per arm against the 796 an 80% power calculation asks for, since at the current n neither the null nor the reversal is interpretable and the page should not carry either.
+
+## 260906 — the diff direction is causally necessary, and the white-box column gains its first positive cell
+
+**Tested:** whether ablating the midtraining diff direction removes the value-aligned behaviour, at 800 samples per arm across all 32 layers, with the instrument previously shown to remove 33.4% of a known cause.
+**Found:** the effect to remove is now solid at +0.172, item-clustered p=0.0001, interval +0.127 to +0.218; ablating the real direction closed 52.0% of it against a random direction's 9.8%, a -0.074 rate difference at item-clustered p=0.0001 with an interval of -0.111 to -0.035 excluding zero.
+**Bar:** met. The pre-registered read was real closing more of the gap than random at item-clustered p<0.05, and it cleared it by three orders of magnitude.
+**Confound:** the two earlier ablation results on this direction were wrong in opposite ways and both are superseded, the first by a crippled 14-of-32-layer span and the second by twenty items; and this is one value, one layer, one model, on the ceiling item set rather than the paper's own pro-novelty eval, which has still never been run.
+**Verdict:** extend — the white-box column is no longer a uniform null, and the honest summary is that the diff direction is necessary for the behaviour but not sufficient to induce it, since steering with the same direction remains a clean controlled null; that necessity-without-sufficiency reading was arrived at after seeing this result and is labelled POST-HOC.
