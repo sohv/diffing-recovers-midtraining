@@ -1,0 +1,319 @@
+{
+  "base_model": "Qwen/Qwen2.5-32B-Instruct",
+  "n_prompts": 200,
+  "layers": [
+    16,
+    24,
+    32,
+    48
+  ],
+  "load_in_8bit": true,
+  "cosine_between_raw_diffs": {
+    "16": {
+      "general": {
+        "general": 1.0,
+        "philosophy": 0.3358,
+        "rules": 0.4579,
+        "rules_aug": 0.3986,
+        "value_aug": 0.3651
+      },
+      "philosophy": {
+        "general": 0.3358,
+        "philosophy": 1.0,
+        "rules": 0.3005,
+        "rules_aug": 0.2504,
+        "value_aug": 0.1668
+      },
+      "rules": {
+        "general": 0.4579,
+        "philosophy": 0.3005,
+        "rules": 1.0,
+        "rules_aug": 0.5837,
+        "value_aug": 0.604
+      },
+      "rules_aug": {
+        "general": 0.3986,
+        "philosophy": 0.2504,
+        "rules": 0.5837,
+        "rules_aug": 1.0,
+        "value_aug": 0.6772
+      },
+      "value_aug": {
+        "general": 0.3651,
+        "philosophy": 0.1668,
+        "rules": 0.604,
+        "rules_aug": 0.6772,
+        "value_aug": 1.0
+      }
+    },
+    "24": {
+      "general": {
+        "general": 1.0,
+        "philosophy": 0.4819,
+        "rules": 0.5161,
+        "rules_aug": 0.4516,
+        "value_aug": 0.4396
+      },
+      "philosophy": {
+        "general": 0.4819,
+        "philosophy": 1.0,
+        "rules": 0.3472,
+        "rules_aug": 0.3466,
+        "value_aug": 0.3623
+      },
+      "rules": {
+        "general": 0.5161,
+        "philosophy": 0.3472,
+        "rules": 1.0,
+        "rules_aug": 0.7289,
+        "value_aug": 0.7147
+      },
+      "rules_aug": {
+        "general": 0.4516,
+        "philosophy": 0.3466,
+        "rules": 0.7289,
+        "rules_aug": 1.0,
+        "value_aug": 0.7483
+      },
+      "value_aug": {
+        "general": 0.4396,
+        "philosophy": 0.3623,
+        "rules": 0.7147,
+        "rules_aug": 0.7483,
+        "value_aug": 1.0
+      }
+    },
+    "32": {
+      "general": {
+        "general": 1.0,
+        "philosophy": 0.6578,
+        "rules": 0.6704,
+        "rules_aug": 0.6697,
+        "value_aug": 0.6671
+      },
+      "philosophy": {
+        "general": 0.6578,
+        "philosophy": 1.0,
+        "rules": 0.5334,
+        "rules_aug": 0.557,
+        "value_aug": 0.5837
+      },
+      "rules": {
+        "general": 0.6704,
+        "philosophy": 0.5334,
+        "rules": 1.0,
+        "rules_aug": 0.8619,
+        "value_aug": 0.8535
+      },
+      "rules_aug": {
+        "general": 0.6697,
+        "philosophy": 0.557,
+        "rules": 0.8619,
+        "rules_aug": 1.0,
+        "value_aug": 0.8677
+      },
+      "value_aug": {
+        "general": 0.6671,
+        "philosophy": 0.5837,
+        "rules": 0.8535,
+        "rules_aug": 0.8677,
+        "value_aug": 1.0
+      }
+    },
+    "48": {
+      "general": {
+        "general": 1.0,
+        "philosophy": 0.956,
+        "rules": 0.9279,
+        "rules_aug": 0.9269,
+        "value_aug": 0.9349
+      },
+      "philosophy": {
+        "general": 0.956,
+        "philosophy": 1.0,
+        "rules": 0.9199,
+        "rules_aug": 0.9057,
+        "value_aug": 0.9159
+      },
+      "rules": {
+        "general": 0.9279,
+        "philosophy": 0.9199,
+        "rules": 1.0,
+        "rules_aug": 0.9365,
+        "value_aug": 0.9303
+      },
+      "rules_aug": {
+        "general": 0.9269,
+        "philosophy": 0.9057,
+        "rules": 0.9365,
+        "rules_aug": 1.0,
+        "value_aug": 0.949
+      },
+      "value_aug": {
+        "general": 0.9349,
+        "philosophy": 0.9159,
+        "rules": 0.9303,
+        "rules_aug": 0.949,
+        "value_aug": 1.0
+      }
+    }
+  },
+  "cosine_raw_vs_generic": {
+    "16": {
+      "general": 0.1475,
+      "philosophy": 0.0316,
+      "rules": 0.0313,
+      "rules_aug": 0.127,
+      "value_aug": 0.1323
+    },
+    "24": {
+      "general": 0.3135,
+      "philosophy": 0.182,
+      "rules": 0.1686,
+      "rules_aug": 0.1387,
+      "value_aug": 0.1737
+    },
+    "32": {
+      "general": 0.496,
+      "philosophy": 0.4176,
+      "rules": 0.3612,
+      "rules_aug": 0.3244,
+      "value_aug": 0.3555
+    },
+    "48": {
+      "general": 0.889,
+      "philosophy": 0.8906,
+      "rules": 0.8815,
+      "rules_aug": 0.8335,
+      "value_aug": 0.8704
+    }
+  },
+  "generic_direction_logit_lens": {
+    "16": [
+      " GOODMAN",
+      "\u4e54",
+      "TL",
+      "ideo",
+      "jah",
+      "\u30b8\u30e3",
+      " Triple",
+      "\u50ac",
+      "\u8fd9\u662f\u4e00\u4e2a",
+      " Crack",
+      " TL",
+      "\u5c31\u533b",
+      "\u601d",
+      "otto",
+      " Cort",
+      "\u6cae",
+      "illi",
+      " Rust",
+      "aghetti",
+      "eland"
+    ],
+    "24": [
+      " Cecil",
+      "\ufffd",
+      "\u4f73",
+      "\u671b",
+      " Faul",
+      " intr",
+      "emain",
+      "otto",
+      " ApplicationException",
+      "\u5803",
+      ".prot",
+      "\u81ea\u67e5",
+      "strand",
+      " Merr",
+      "\u4e54",
+      "eland",
+      "atto",
+      " Harley",
+      "iard",
+      "egas"
+    ],
+    "32": [
+      "rms",
+      "\u95fc",
+      " Markup",
+      "builtin",
+      "\u81ea\u6765",
+      "\u516c\u5171\u6587\u5316",
+      "\ufffd",
+      " fer",
+      " \u043a\u0430",
+      "based",
+      "edar",
+      "\u8d64",
+      " delighted",
+      "\ufffd",
+      "atti",
+      "\u5bb6\u56ed",
+      "\u5e72\u6d89",
+      "ablo",
+      " IRepository",
+      "OLER"
+    ],
+    "48": [
+      "1",
+      "2",
+      "JKLMNOP",
+      "\u9981",
+      " ",
+      "5",
+      "3",
+      "stituci\u00f3n",
+      "\u2198",
+      "7",
+      "\u8f95",
+      " CrossAxisAlignment",
+      " http",
+      "9",
+      "moz",
+      " MainAxisAlignment",
+      "4",
+      " imageNamed",
+      " RouteServiceProvider",
+      "6"
+    ]
+  },
+  "diff_norms": {
+    "general": {
+      "16": 31.9945,
+      "24": 40.4159,
+      "32": 54.348,
+      "48": 191.4734
+    },
+    "philosophy": {
+      "16": 43.0583,
+      "24": 53.2095,
+      "32": 63.7209,
+      "48": 193.3373
+    },
+    "rules": {
+      "16": 25.9498,
+      "24": 41.9338,
+      "32": 68.6418,
+      "48": 171.5969
+    },
+    "rules_aug": {
+      "16": 24.3725,
+      "24": 40.7383,
+      "32": 67.4521,
+      "48": 185.4417
+    },
+    "value_aug": {
+      "16": 25.3149,
+      "24": 42.3943,
+      "32": 76.5339,
+      "48": 188.3886
+    }
+  },
+  "generic_norm": {
+    "16": 35.9281,
+    "24": 50.3487,
+    "32": 64.0129,
+    "48": 193.8585
+  }
+}

@@ -90,3 +90,11 @@ uv run -m scripts.run_response_trace --rung msm_aft --prompt_set <tradeoff|ood_p
 uv run -m scripts.run_agent_diffing --value pro-affordability --budget 200 --seeds 45,46,47,48,49,50 --prompt_version v4 --n_samples 5 --pairwise_tool true --output_dir results/raw/260905_enumerated_pro-affordability_v2 --model_id anthropic/claude-sonnet-5 --seed 42
 uv run -m scripts.run_probe --value <value> --rung <msm|msm_aft> --output_dir results/raw/260905_probe_<rung>_<value>_v2 --seed 42
 **Output:** results/raw/260905_enumerated_pro-affordability_v2/runs.jsonl, results/raw/260905_probe_*_v2/probe.json
+
+## 260905 — qwen 2.5 32b replication of the generic-direction finding
+
+**Question.** Does the raw adapter-minus-base diff collapse onto a shared generic direction on a second model family?
+**Result.** I ran 200 generic prompts through five qwen 2.5 32b spec adapters plus the no-value control in 8-bit and found the between-spec cosine rises with depth from 0.414 at layer 16 to 0.930 at layer 48, and the cosine against the control diff from 0.094 to 0.873, so the finding replicates at 75% depth but not in the early layers where llama showed it at every depth.
+**Command:**
+uv run -m scripts.run_qwen_replication --dataset_path data/processed/generic_prompts.jsonl --num_tasks 200 --batch_size 4 --output_dir results/raw/260905_qwen_replication_v1 --seed 42
+**Output:** results/raw/260905_qwen_replication_v1/qwen_summary.json

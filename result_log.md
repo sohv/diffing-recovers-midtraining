@@ -78,3 +78,11 @@ do not improvise a format from the entries below.
 **Found:** 3/9 seeds correct with the candidate list against 0/6 without it, two of the three confirmed by both judges, and success tracked probing behaviour with correct seeds spending 0.31 of their comparisons on value-loaded pairs against 0.13 for failures; the pre-answer probe peaked at AUC 0.593 against a pre-registered 0.65 bar, with control arms at 0.40 to 0.52 and random directions at 0.50.
 **Bar:** the enumerated row has no pre-registered threshold and is reported as a rate; the probe missed its 0.65 bar and fell below the 0.60 floor.
 **Verdict:** extend to the cross-model replication — enumerating the hypothesis space is necessary but not sufficient for the agent, and the "present but unreadable" claim is withdrawn because the direction does not linearly predict the choice it was supposed to explain.
+
+## 260905 — qwen 2.5 32b replication of the generic-direction finding
+
+**Tested:** whether the raw diff being mostly a generic training direction holds on a second model family.
+**Found:** partial replication, with between-spec cosine 0.930 and cosine against the control diff 0.873 at layer 48 of 64, against 0.414 and 0.094 at layer 16, where llama showed 0.947 and 0.914 at the same relative depth; the qwen generic direction's logit lens is uninterpretable where llama's read as assistant openers.
+**Bar:** no pre-registered bar; this is a robustness check on the headline finding.
+**Confound:** the llama adapters sit on a base model that had to be taught assistant behaviour while the qwen adapters sit on an instruct model that already had it, which predicts exactly this weaker and less interpretable generic component; the qwen specs are also variants of one document family rather than unrelated values, and the run was 8-bit.
+**Verdict:** extend — the claim narrows to "the raw diff is dominated by whatever training had to add relative to its base", which is stronger than the original phrasing and explains both results.
