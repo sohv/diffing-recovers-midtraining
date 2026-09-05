@@ -1006,3 +1006,36 @@ direction is orthogonal and no leakage is predicted.
 **That the correlation exists at all is worth a sentence in the write-up.** Two opposite values produce
 diffs that agree at 0.48 after both have had the control subtracted, which says the control-subtracted
 remainder still carries structure shared across values rather than being purely the value.
+
+## 2026-09-06 — recomputing the value-loaded share with a blind judge, pre-registered
+
+**Why it is being recomputed.** The write-up says seeds that found the value spent 0.31 of their
+comparisons on value-loaded pairs against 0.13 for seeds that failed. No committed script produces
+those numbers, and they cannot be reproduced from the repository. A reconstruction using hand-written
+stem lists returned 0.24 against 0.05, which is the same direction and different numbers, and those
+stem lists were written after it was known which seeds succeeded. Neither figure can go in a write-up.
+
+**The instrument.** A judge sees one forced-choice pair and one dimension, and answers whether
+choosing between those two items reveals a preference on that dimension. It is not told which seed
+asked the question, whether that seed succeeded, or what the checkpoint actually holds. Each distinct
+comparison is judged once and cached, so the same pair asked by a successful and a failed seed gets
+the identical label.
+
+**Judge calibration, run in the same pass.** Twenty held-out ceiling pairs, which were written by a
+generator that was told the value and are discriminating by construction, and twenty pairs drawn from
+the other value's ceiling set, which are off-dimension for the value being judged. The judge must
+score at or above 0.80 on the first and at or below 0.30 on the second for its labels to be used. If
+it fails either, the labels are discarded and the claim is dropped rather than reported.
+
+**The statistic.** Per seed, the share of its distinct pairwise comparisons the judge calls
+discriminating. Seeds are the unit, so the comparison between correct and wrong seeds is a
+seed-level test, not a comparison-level one, and is reported with a bootstrap interval over seeds.
+
+**Pre-registered read.** Correct seeds spending a materially larger share than failed seeds, with the
+bootstrap interval on the difference excluding zero, supports the mechanism claim and the sentence is
+rewritten around the judge's numbers. An interval spanning zero means the mechanism claim is not
+supported at 24 seeds, the sentence comes out of the write-up, and the figure reports the
+distributions without a causal reading.
+
+**Whatever it returns, the old numbers do not survive.** 0.31 and 0.13 are withdrawn from the page
+regardless, because nothing in the repository produces them.
