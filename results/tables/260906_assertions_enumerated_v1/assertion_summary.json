@@ -1,0 +1,30 @@
+{
+  "260905_enumerated_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260905_enumerated_pro-affordability_v2": {
+    "n": 6,
+    "asserted": 5,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.8333
+  },
+  "260905_enumerated_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "ALL": {
+    "n": 12,
+    "asserted": 11,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.9167
+  }
+}

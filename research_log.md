@@ -160,3 +160,77 @@ uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir
 **Command:**
 uv run -m scripts.run_adapter_control --n_prompts 20 --n_random 200 --output_dir results/raw/260905_adapter_control_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_adapter_control_v1/adapter_control.json
+
+## 260906 — free probe: is the upcoming choice linearly decodable pre-answer at all?
+
+**Question.** Does the 0.593 peak of the diff-direction probe mean the value is not linearly represented before the model answers, or that the diff direction points somewhere other than where it is?
+**Result.** I fitted an unconstrained L2 logistic probe on the pre-answer residual at layer 26, leave-one-domain-out across the five ceiling-pair domains with the penalty selected inside each fold, and it reached a trial-weighted 0.765 on domains it never saw against 0.533 for the diff direction and 0.503 for random directions on the same held-out trials; the control adapter's own choices were decodable at 0.831, so what the probe reads is the impending choice rather than the installed value, and the pre-registered secondary 60/40 split disagreed at 0.547 because it happened to place the one weak domain, entertainment at 0.479, in its test half.
+**Command:**
+uv run -m scripts.run_free_probe --value pro-affordability --rung msm_aft --output_dir results/raw/260906_free_probe_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_free_probe_affordability_aft_v1/free_probe.json, probe_direction.pt
+
+## 260906 — ablation on pro-affordability at the msm+aft rung, with a positive control
+
+**Question.** Does removing the diff direction undo the value-aligned behaviour on the checkpoint whose installation is strongest, and can this pipeline detect any load-bearing direction at all?
+**Result.** I ran the unablated, control, real-diff, random-direction and free-probe-direction conditions on the same 20 order-balanced held-out pairs at 8 samples each, and found a +0.475 msm-minus-control gap that survives item-level clustering at p=0.0001, while ablating the real direction moved the rate by -0.012 against the random direction at clustered p=0.44 and the free-probe direction moved it by the same -0.012 at p=0.58, so no direction tested closed any of the gap.
+**Command:**
+uv run -m scripts.run_ablation_v2 --value pro-affordability --rung msm_aft --n_pairs 20 --n_repeats 8 --probe_direction_path results/raw/260906_free_probe_affordability_aft_v1/probe_direction.pt --output_dir results/raw/260906_ablation_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_affordability_aft_v1 --value pro-affordability --output_dir results/tables/260906_ablation_clustered_v1 --seed 42
+**Output:** results/raw/260906_ablation_affordability_aft_v1/ablation.json, results/tables/260906_ablation_clustered_v1/clustered.json
+
+## 260906 — steering on pro-affordability at the msm+aft rung
+
+**Question.** Does the diff direction causally move the value-aligned choice on the checkpoint whose installation is strongest, with a positive control demonstrated to move it on the same prompts and scales?
+**Result.** I steered the control adapter at layer 22 with the system-prompt contrast, the diff direction and a random direction at four fractions of the layer's own residual norm, 160 samples per condition, and the positive control rose monotonically from 0.500 to 0.898 and beat random at p<0.0001 at three of four fractions, while the diff direction ran 0.333 to 0.450 and never separated from random, its largest gap being -0.100 at p=0.068 in the wrong direction.
+**Command:**
+uv run -m scripts.run_steering_v2 --value pro-affordability --rung msm_aft --n_prompts 20 --n_repeats 8 --max_new_tokens 60 --output_dir results/raw/260906_steering_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_steering_affordability_aft_v1/scored.json
+
+## 260906 — probe cells rerun with the random-direction null corrected
+
+**Question.** Does the diff-direction probe's verdict change once the random-direction null is computed on the same trials the real direction was scored on, rather than on the first n activations?
+**Result.** I reran all four cells at both rungs and both values and every headline AUC came back identical to three decimals, confirming the misalignment touched only the null, while every corrected null band widened, the value arms' random maxima rising from 0.589 to 0.664, 0.602 to 0.620, 0.630 to 0.648 and 0.632 to 0.648, so each value arm's AUC now sits inside its own null band rather than a whisker outside it.
+**Command:**
+uv run -m scripts.run_probe --value pro-affordability --rung msm_aft --output_dir results/raw/260906_probe_msm_aft_pro-affordability_v3 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_probe_{msm,msm_aft}_{pro-affordability,pro-novelty}_v3/probe.json
+
+## 260906 — projection test rerun on pro-affordability at the msm+aft rung
+
+**Question.** Does the weight diff overlap the value's direction as the trained model itself represents it, on the checkpoint whose installation is strongest rather than on the one with no measurable installation?
+**Result.** I ran the fully paired 2x2 of prompt set and capture position with every quantity measured on one fixed text set and found the diff projecting onto the fine-tuned model's own instruction contrast at 41.9% and 48.9% of its norm at response positions, both outside a 200-direction random band, against pro-novelty's 8.2% and 8.4% in the same cells, with the two checkpoints' contrasts agreeing at cosine 0.78 to 0.82 at those positions.
+**Command:**
+uv run -m scripts.run_projection_test --value pro-affordability --rung msm_aft --n_prompts 20 --n_random 200 --output_dir results/raw/260906_projection_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_projection_affordability_aft_v1/projection.json
+
+## 260906 — adapter control on the pro-affordability overlap at the msm+aft rung
+
+**Question.** Is the 41.9% to 48.9% overlap between the pro-affordability diff and the instruction contrast built inside its own checkpoint specific to that adapter, or does the diff align with the same contrast built inside any adapter at that rung?
+**Result.** I built the identical affordability contrast inside the control adapter and inside the pro-america, pro-tradition and pro-novelty msm+aft adapters and projected the same diff onto each, finding pro-america at 48.5% against pro-affordability's 48.9% in the tradeoff/response cell and 34.7% against 41.9% in the ceiling/response cell, with the no-value control adapter itself reaching 26.4% and 19.5%, all outside the 200-direction random band.
+**Command:**
+uv run -m scripts.run_adapter_control --value pro-affordability --rung msm_aft --others pro-america,pro-tradition,pro-novelty --n_prompts 20 --n_random 200 --output_dir results/raw/260906_adapter_control_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_adapter_control_affordability_aft_v1/adapter_control.json
+
+## 260906 — black-box false-positive rate, control adapter served as both arms
+
+**Question.** How often does the agent assert a difference when the two models it is comparing are weight-identical, which is the baseline that makes its confident wrong answers on real pairs interpretable?
+**Result.** I served the control adapter as both arms under the enumerated configuration unchanged, budget 200 with the pairwise tool, five samples per query at temperature 0.7 and the twenty candidate dimensions listed, across nine seeds, and all nine reported that no reliable difference was found after spending 108 to 200 queries each, against an 11 of 12 assertion rate on the real differing pairs.
+**Command:**
+uv run -m scripts.run_agent_diffing --value pro-affordability --null_pair true --budget 200 --seeds 42,43,44,45,46,47,48,49,50 --prompt_version v4 --n_samples 5 --pairwise_tool true --target_temperature 0.7 --output_dir results/raw/260906_agent_null_pair_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+uv run -m scripts.score_assertions --run_glob 'results/raw/260905_enumerated_*' --output_dir results/tables/260906_assertions_enumerated_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260906_agent_null_pair_v1/summary.json, results/tables/260906_assertions_enumerated_v1/assertion_summary.json
+
+## 260906 — can rank-1 ablation remove a direction known to cause the behaviour?
+
+**Question.** The ablation arm's positive control was a probe direction, which is a readout and need not be causal, so its failure proved nothing; can the ablation machinery remove a direction that demonstrably does cause the behaviour?
+**Result.** I put the affordability system prompt in, which moves the control adapter from 0.333 to 0.980 value-aligned, and ablated that same system-prompt contrast across layers 18-31, which returned 0.954 against a random direction's 0.994, so removing the exact direction responsible for a +64.7pp effect removed 4.0% of it, with contrast against random at -0.040 and item-clustered p=0.026.
+**Command:**
+uv run -m scripts.run_ablation_control --value pro-affordability --n_pairs 20 --n_repeats 8 --max_new_tokens 40 --output_dir results/raw/260906_ablation_control_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_control_v1/ablation_control.json
+
+## 260906 — value-swap control: does the diff overlap its own value's direction or any value's?
+
+**Question.** The adapter control varied which adapter computed the contrast while holding the contrast's value fixed, and those versions agree at cosine 0.78 to 0.82, so it could not answer whether the overlap is value-specific; does the diff project onto its own value's contrast more than onto an unrelated value's, with both built inside the same checkpoint on one fixed text set?
+**Result.** Across four contrasts I found d_affordability at +33.0% of its norm on affordability against -10.3% on novelty, +20.7% on america and +13.5% on tradition, and d_novelty at +15.7% on novelty against -3.2%, -6.0% and -14.5% on the others; the off-diagonals track contrast correlation, since affordability and america agree at cosine +0.720 and novelty and tradition at -0.908, and a post-hoc residualisation removing the span of the other three contrasts leaves +25.5% for affordability at 8.4 times the random band edge and +6.9% for novelty at 2.1 times.
+**Command:**
+uv run -m scripts.run_value_swap --values pro-affordability,pro-novelty --contrast_values pro-affordability,pro-novelty,pro-america,pro-tradition --n_prompts 20 --n_random 200 --output_dir results/raw/260906_value_swap_4x_v2 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_value_swap_4x_v2/value_swap.json, contrasts.pt

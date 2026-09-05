@@ -1,0 +1,16 @@
+{
+  "git_hash": "64b06a28",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_value_swap_3values_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "values": "pro-affordability,pro-novelty,pro-america",
+  "contrast_values": "pro-affordability,pro-novelty,pro-america,pro-tradition",
+  "prompt_source": "pro-affordability",
+  "vector_bundles": "results/raw/260905_trace_msmaft_v1/response_vectors.pt,results/raw/260906_trace_msmaft_america_v1/response_vectors.pt",
+  "n_prompts": 20,
+  "n_random": 200,
+  "gen_tokens": 40
+}

@@ -1,0 +1,12 @@
+{
+  "git_hash": "a7954f37",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_smoke_ablation_control",
+  "num_tasks": null,
+  "n_repeats": 2,
+  "seed": 42,
+  "value": "pro-affordability",
+  "n_pairs": 4,
+  "max_new_tokens": 20
+}

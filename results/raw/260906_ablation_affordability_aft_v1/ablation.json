@@ -1,0 +1,73 @@
+{
+  "rates": {
+    "msm_unablated": {
+      "n": 160,
+      "n_decided": 156,
+      "value_aligned_rate": 0.744,
+      "unclear_rate": 0.025,
+      "liked_first": 0.885,
+      "disliked_first": 0.603
+    },
+    "control_unablated": {
+      "n": 160,
+      "n_decided": 160,
+      "value_aligned_rate": 0.269,
+      "unclear_rate": 0.0,
+      "liked_first": 0.25,
+      "disliked_first": 0.287
+    },
+    "msm_ablate_real": {
+      "n": 160,
+      "n_decided": 152,
+      "value_aligned_rate": 0.776,
+      "unclear_rate": 0.05,
+      "liked_first": 0.896,
+      "disliked_first": 0.653
+    },
+    "msm_ablate_random": {
+      "n": 160,
+      "n_decided": 156,
+      "value_aligned_rate": 0.788,
+      "unclear_rate": 0.025,
+      "liked_first": 0.9,
+      "disliked_first": 0.671
+    },
+    "msm_ablate_probe": {
+      "n": 160,
+      "n_decided": 152,
+      "value_aligned_rate": 0.776,
+      "unclear_rate": 0.05,
+      "liked_first": 0.893,
+      "disliked_first": 0.662
+    }
+  },
+  "tests": {
+    "msm_vs_control_unablated": {
+      "rate_a": 0.7436,
+      "rate_b": 0.2687,
+      "difference": 0.4748,
+      "z": 8.4404,
+      "p": 0.0
+    },
+    "msm_ablate_real_vs_random": {
+      "gap_unablated_minus_control": 0.4748,
+      "closed_by_real": -0.0689,
+      "closed_by_random": -0.0945,
+      "n_draws": 10000,
+      "real_closes_more_fraction": 0.58,
+      "difference_p2.5": -0.1709,
+      "difference_p97.5": 0.2287,
+      "p_real_vs_random": 0.84
+    },
+    "msm_ablate_probe_vs_random": {
+      "gap_unablated_minus_control": 0.4748,
+      "closed_by_real": -0.0689,
+      "closed_by_random": -0.0945,
+      "n_draws": 10000,
+      "real_closes_more_fraction": 0.585,
+      "difference_p2.5": -0.1728,
+      "difference_p97.5": 0.2241,
+      "p_real_vs_random": 0.83
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "ceiling/last_token": {
+    "diff_norm": 10.401,
+    "null_p2.5": -0.315,
+    "null_p97.5": 0.311,
+    "control": {
+      "projection": 0.0473,
+      "fraction_of_diff_norm": 0.0045,
+      "outside_band": false,
+      "contrast_norm": 0.5138
+    },
+    "pro-affordability": {
+      "projection": 0.2909,
+      "fraction_of_diff_norm": 0.028,
+      "outside_band": false,
+      "contrast_norm": 0.4742
+    },
+    "pro-america": {
+      "projection": 0.6156,
+      "fraction_of_diff_norm": 0.0592,
+      "outside_band": true,
+      "contrast_norm": 0.5873
+    },
+    "pro-tradition": {
+      "projection": -0.1453,
+      "fraction_of_diff_norm": -0.014,
+      "outside_band": false,
+      "contrast_norm": 0.4944
+    },
+    "pro-novelty": {
+      "projection": 0.6322,
+      "fraction_of_diff_norm": 0.0608,
+      "outside_band": true,
+      "contrast_norm": 0.7016
+    }
+  },
+  "ceiling/response": {
+    "diff_norm": 5.8718,
+    "null_p2.5": -0.1497,
+    "null_p97.5": 0.1938,
+    "control": {
+      "projection": 1.1458,
+      "fraction_of_diff_norm": 0.1951,
+      "outside_band": true,
+      "contrast_norm": 2.0677
+    },
+    "pro-affordability": {
+      "projection": 2.462,
+      "fraction_of_diff_norm": 0.4193,
+      "outside_band": true,
+      "contrast_norm": 2.0883
+    },
+    "pro-america": {
+      "projection": 2.0387,
+      "fraction_of_diff_norm": 0.3472,
+      "outside_band": true,
+      "contrast_norm": 2.27
+    },
+    "pro-tradition": {
+      "projection": 1.6102,
+      "fraction_of_diff_norm": 0.2742,
+      "outside_band": true,
+      "contrast_norm": 2.4236
+    },
+    "pro-novelty": {
+      "projection": 1.5788,
+      "fraction_of_diff_norm": 0.2689,
+      "outside_band": true,
+      "contrast_norm": 2.3253
+    }
+  },
+  "tradeoff/last_token": {
+    "diff_norm": 5.0023,
+    "null_p2.5": -0.1373,
+    "null_p97.5": 0.1767,
+    "control": {
+      "projection": 0.2929,
+      "fraction_of_diff_norm": 0.0586,
+      "outside_band": true,
+      "contrast_norm": 0.6835
+    },
+    "pro-affordability": {
+      "projection": 0.6517,
+      "fraction_of_diff_norm": 0.1303,
+      "outside_band": true,
+      "contrast_norm": 0.7765
+    },
+    "pro-america": {
+      "projection": 0.8543,
+      "fraction_of_diff_norm": 0.1708,
+      "outside_band": true,
+      "contrast_norm": 0.7818
+    },
+    "pro-tradition": {
+      "projection": 0.6794,
+      "fraction_of_diff_norm": 0.1358,
+      "outside_band": true,
+      "contrast_norm": 0.8823
+    },
+    "pro-novelty": {
+      "projection": 0.968,
+      "fraction_of_diff_norm": 0.1935,
+      "outside_band": true,
+      "contrast_norm": 0.9079
+    }
+  },
+  "tradeoff/response": {
+    "diff_norm": 4.7469,
+    "null_p2.5": -0.1372,
+    "null_p97.5": 0.1517,
+    "control": {
+      "projection": 1.2551,
+      "fraction_of_diff_norm": 0.2644,
+      "outside_band": true,
+      "contrast_norm": 0.9159
+    },
+    "pro-affordability": {
+      "projection": 2.3235,
+      "fraction_of_diff_norm": 0.4895,
+      "outside_band": true,
+      "contrast_norm": 1.1486
+    },
+    "pro-america": {
+      "projection": 2.3013,
+      "fraction_of_diff_norm": 0.4848,
+      "outside_band": true,
+      "contrast_norm": 1.1409
+    },
+    "pro-tradition": {
+      "projection": 1.7435,
+      "fraction_of_diff_norm": 0.3673,
+      "outside_band": true,
+      "contrast_norm": 1.2765
+    },
+    "pro-novelty": {
+      "projection": 1.8898,
+      "fraction_of_diff_norm": 0.3981,
+      "outside_band": true,
+      "contrast_norm": 1.2334
+    }
+  }
+}

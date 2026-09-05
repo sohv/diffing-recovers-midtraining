@@ -9,25 +9,24 @@ from pathlib import Path
 import simple_parsing
 import torch
 
-from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER
+from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, MSM_AFT
 from src.interp.capture import ResidualCapture
-from src.interp.prompts import TRADEOFF
+from src.interp.prompts import STEER_SYSTEM, TRADEOFF
 from src.utils.config import Config, write_config_json
 from src.utils.logging import setup_logging
 from src.utils.seed import set_seed
 
 LOGGER = logging.getLogger(__name__)
 
-VALUE = "pro-novelty"
 LAYERS = [18, 22, 26, 31]
 LAYER = 22
-POS = "You strongly prefer newly invented sweeteners over traditional ones."
-NEG = "You strongly prefer traditional sweeteners over newly invented ones."
 
 
 @dataclass
 class ProjectionConfig(Config):
     model_id: str = BASE_MODEL
+    value: str = "pro-novelty"
+    rung: str = "msm"
     n_prompts: int = 20
     n_random: int = 200
     gen_tokens: int = 40
@@ -82,33 +81,35 @@ def main():
     set_seed(config.seed)
     write_config_json(config, output_dir)
 
-    pairs = json.loads(Path(f"results/raw/260905_ceiling_{VALUE}_v1/pairs.json").read_text())[: config.n_prompts]
+    value = config.value
+    pos, neg = STEER_SYSTEM[value]
+    pairs = json.loads(Path(f"results/raw/260905_ceiling_{value}_v1/pairs.json").read_text())[: config.n_prompts]
     prompt_sets = {
         "ceiling": [
             f"Which do you prefer, {p['liked']} or {p['disliked']}? Answer with one of the two options." for p in pairs
         ],
-        "tradeoff": TRADEOFF[VALUE][: config.n_prompts],
+        "tradeoff": TRADEOFF[value][: config.n_prompts],
     }
 
-    capture = ResidualCapture(
-        {"control": CONTROL_ADAPTER, VALUE: CHECKPOINTS[VALUE].adapter}, base_model=config.model_id, layers=LAYERS
-    )
+    adapter = MSM_AFT[value] if config.rung == "msm_aft" else CHECKPOINTS[value].adapter
+    LOGGER.info(f"value={value} rung={config.rung} adapter={adapter}")
+    capture = ResidualCapture({"control": CONTROL_ADAPTER, value: adapter}, base_model=config.model_id, layers=LAYERS)
 
     # one fixed text set per cell, so no difference here is a difference of generated text
     cells = {}
     for prompt_name, prompts in prompt_sets.items():
-        records = write_once(capture, prompts, VALUE, config.gen_tokens)
+        records = write_once(capture, prompts, value, config.gen_tokens)
         plain = with_system(capture, records, None)
-        positive = with_system(capture, records, POS)
-        negative = with_system(capture, records, NEG)
+        positive = with_system(capture, records, pos)
+        negative = with_system(capture, records, neg)
         for position in ("last_token", "response"):
-            diff = mean_over(capture, plain, VALUE, position) - mean_over(capture, plain, "control", position)
+            diff = mean_over(capture, plain, value, position) - mean_over(capture, plain, "control", position)
             # same instruction contrast inside each checkpoint: where the value lives, vs the weight change
             inside = {}
-            for arm in ("control", VALUE):
+            for arm in ("control", value):
                 vector = mean_over(capture, positive, arm, position) - mean_over(capture, negative, arm, position)
                 inside[arm] = vector
-            cells[f"{prompt_name}/{position}"] = {"diff": diff, "u_control": inside["control"], "u_msm": inside[VALUE]}
+            cells[f"{prompt_name}/{position}"] = {"diff": diff, "u_control": inside["control"], "u_msm": inside[value]}
             LOGGER.info(f"captured {prompt_name}/{position}")
     capture.close()
     torch.cuda.empty_cache()
@@ -148,13 +149,13 @@ def main():
 
     (output_dir / "projection.json").write_text(json.dumps(results, indent=2))
     print(f"Results saved to {output_dir / 'projection.json'}")
-    print(f"\nwhere does the value live? layer {LAYER}, all quantities on one fixed text set")
+    print(f"\nwhere does {value} live? [{config.rung}] layer {LAYER}, all quantities on one fixed text set")
     print("u_control and u_msm are the same instruction contrast built inside each checkpoint\n")
     print(f"{'prompt set / position':26s} {'cos(u_ctl,u_msm)':>17s} {'d.u_msm':>9s} {'% of |d|':>9s} {'outside':>8s}")
     for name, r in results.items():
         print(
             f"{name:26s} {r['cos_u_control_u_msm']:17.3f} {r['projection_onto_u_msm']:9.3f} "
-            f"{r['proj_u_msm_as_fraction_of_diff_norm'] * 100:8.1f}% {str(r['u_msm_outside_band']):>8s}"
+            f"{r['proj_u_msm_as_fraction_of_diff_norm'] * 100:8.1f}% {r['u_msm_outside_band']!s:>8s}"
         )
     print(f"\n{'prompt set / position':26s} {'|u_control|':>12s} {'|u_msm|':>9s} {'d.u_control':>12s}")
     for name, r in results.items():

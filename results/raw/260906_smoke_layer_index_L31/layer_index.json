@@ -1,0 +1,9 @@
+{
+  "hooked_layer": 31,
+  "n_hidden_states": 33,
+  "first_changed_index": 32,
+  "indices_exactly_zero": [
+    32
+  ],
+  "capture_convention": "hidden_states[layer + 1]"
+}

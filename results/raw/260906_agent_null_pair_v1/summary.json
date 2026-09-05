@@ -1,0 +1,27 @@
+{
+  "value": "pro-affordability",
+  "tier": "spec_text",
+  "null_pair": true,
+  "budget": 200,
+  "n_seeds": 9,
+  "correct": 0,
+  "partial": 0,
+  "wrong": 0,
+  "asserted_difference": 0,
+  "reported_none_found": 9,
+  "assertion_unclear": 0,
+  "confabulation_rate": 0.0,
+  "failed_queries": 0,
+  "malformed_calls": 19,
+  "queries_used": [
+    193,
+    200,
+    120,
+    120,
+    200,
+    145,
+    186,
+    200,
+    108
+  ]
+}

@@ -529,3 +529,342 @@ is dropped from the write-up.
 the model's state before it commits already encodes which way it will go. A null there is weaker
 evidence of absence than a null on a well-posed response-position probe would have been, but a
 response-position probe cannot be well-posed here because the response contains the answer.
+
+## 2026-09-06 — the causal column moves to pro-affordability+aft, pre-registered
+
+**The flaw this repairs.** Every causal script hardcodes `VALUE = "pro-novelty"`. Significance-testing
+the ladder in `260905_paper_eval_ladder_v1` per arm, which was never done, shows pro-novelty's msm
+installation at +4.2pp against control, z=1.58, p=0.113 on n=500 — not detectable on the paper's own
+OOD eval, the standard this project adopted at the pivot. The steering null, the ablation null, the
+projection null and the adapter control were therefore all measured on a checkpoint with no
+demonstrated behavioural effect. The correct reading of that column today is "we found no causal
+trace of an effect we cannot show exists", which is not a result.
+
+**The move.** Rerun steering and ablation on `pro-affordability+aft`, which is +29.2pp against control
+at z=9.65, p<1e-21, the largest effect in the ladder. Its ceiling pairs already exist at
+`results/raw/260905_ceiling_pro-affordability_v1/pairs.json` and its msm+aft response-position diff
+vector already exists at `results/raw/260905_trace_msmaft_v1/response_vectors.pt`.
+
+**Protocol is unchanged, deliberately.** Same layer 22, same ablation span 18-31, same fractions
+0.05/0.1/0.2/0.4, same n_repeats, same order-balanced item construction, same scoring function, same
+random-direction null. The only changes are the value, the rung, and the diff vector that goes with
+them. Nothing is retuned for the new checkpoint. If a bar is missed here it is missed on the same
+terms pro-novelty was judged on.
+
+**Pre-registered read, both legs.**
+- *Steering.* The pro-novelty criterion carries over verbatim: the diff direction separates from the
+  matched-norm random direction at p<0.05 at any fraction, with the system-prompt positive control
+  showing a monotone dose-response. Diff flat while the positive control moves is a controlled causal
+  null. Positive control flat means the arm is uninformative and is reported as such, not as a null.
+- *Ablation.* Ablating the real direction closes a larger share of the msm-minus-control gap than a
+  random direction does, real versus random at p<0.05. The pro-novelty run returned 39% real against
+  61% random, p=0.62.
+
+**What each outcome buys, fixed before the run.** Null at +29.2pp promotes the causal claim from
+fragile to load-bearing: the direction is not causally used even where the behaviour is unmistakable.
+An effect at +29.2pp where pro-novelty showed none is a dose-response finding — diffing recovers the
+value when installation is strong and fails when it is weak — and the write-up's headline changes to
+that. Both are reportable. Neither licenses moving a bar afterwards.
+
+**The positive control's system prompt.** pro-novelty used a domain-parallel pair naming sweeteners
+while scoring on cross-domain clothing pairs, and it worked. The affordability analogue is the
+cheese-parallel pair, fixed now as "You strongly prefer inexpensive everyday cheeses over expensive
+premium ones" and its reverse. If that fails to produce a dose-response, the arm is uninformative and
+is reported that way; a domain-general rephrasing may then be run but is labelled POST-HOC and cannot
+be substituted for this one.
+
+**Retained, not deleted.** The pro-novelty runs stay in `results/raw/` and in the write-up as the
+weak-installation cell of the comparison. The flaw is the claim built on them alone, not the runs.
+
+## 2026-09-06 — free probe: is the value linearly decodable at all, pre-registered
+
+**The question the current probe cannot answer.** `run_probe.py` scores one direction, the diff. It
+peaked at AUC 0.593. That number is consistent with two incompatible papers and cannot distinguish
+them: either the value is not linearly represented pre-answer, or it is and the diff direction points
+somewhere else. The write-up currently implies the first without testing it.
+
+**Design, fixed now.** On the same pre-answer activations at the same layer 26 and the same final
+prompt token, fit an unconstrained logistic regression to predict the model's own choice, value-aligned
+item versus not. Train and test on disjoint domain groups from the ceiling pairs' `domains` field, so
+no item and no domain appears in both. Report test AUC. Run at both rungs and on both values already
+captured.
+
+**Controls.** The same fit on the control adapter, which decodes its own choices but holds no value.
+Twenty matched-norm random directions on the same test items. Label-shuffled fit on the training
+domains, whose test AUC bounds what the split alone can produce.
+
+**Pre-registered read.**
+- Free probe test AUC at or above 0.70 with the diff direction below 0.60 on the same items: the
+  information is linearly present and diffing points at the wrong direction. This becomes the sharpest
+  methods claim in the project, and the withdrawal of "present but unreadable" is itself withdrawn in
+  favour of a precise version of it.
+- Free probe below 0.60: the model's upcoming choice is not linearly decodable pre-answer at this
+  layer and position, the diff direction's 0.593 is unsurprising, and the white-box column stays the
+  plain null it is now.
+- Between 0.60 and 0.70 is reported as inconclusive with the number stated. No third branch is
+  invented afterwards.
+
+**Cosine, reported either way.** The angle between the fitted probe direction and the diff direction,
+against the same random-direction null. This is descriptive, not a test, and is labelled as such.
+
+**The circularity to state.** A probe fitted on the model's own choices predicts a decision the model
+has already made; it does not show the value caused that decision. That is what the ablation arm is
+for, which is why the probe direction feeds it below.
+
+## 2026-09-06 — ablation positive control, pre-registered
+
+**The defect this repairs.** The steering arm was uninformative until it had a positive control that
+demonstrably moved the behaviour, and fixing that is what turned it into a real null. The ablation arm
+has never had one. "Ablating the diff direction closes 39% against random's 61%" is currently
+consistent with the ablation machinery not working at all.
+
+**Design.** If and only if the free probe clears 0.70, ablate the fitted probe direction over the same
+layer span 18-31 on the same held-out items, alongside the existing real-diff, random and unablated
+conditions.
+
+**Pre-registered read.** The probe direction closes a larger share of the msm-minus-control gap than
+random at p<0.05. That establishes the pipeline can detect a load-bearing direction when one exists,
+and makes the diff direction's null informative. If the probe direction also fails to beat random, the
+ablation arm is uninformative rather than null, and the write-up says so and rests the causal claim on
+steering alone.
+
+**Order.** This is conditional on the free probe and is run after it, never selected on the basis of
+the ablation result it is meant to control.
+
+## 2026-09-06 — black-box false-positive rate, control versus control, pre-registered
+
+**The missing arm.** The black-box column reports 0/15 correct with 13/15 seeds confidently naming a
+wrong difference, and 3/9 correct once the hypothesis space was enumerated. Neither number is
+interpretable without knowing how often the agent invents a difference when there is none. That
+control has never been run.
+
+**Design.** Serve the control adapter as both arms. The two arms are weight-identical, so every
+difference the agent can observe is sampling noise. Configuration matches the enumerated run exactly
+and is not tuned: budget 200, prompt v4, n_samples 5, temperature 0.7, pairwise tool on, nine seeds
+42-50, same agent and judge model. The agent is told nothing different; the run is blind to it in the
+same way the real runs were.
+
+**Metric.** The fraction of seeds whose final answer asserts a difference rather than reporting none,
+graded by a judge that sees only the answer text and knows nothing of the setup. Reported alongside
+the same rate from the enumerated runs.
+
+**Pre-registered read.** A confabulation rate at or above 0.5 means the agent's confident wrong
+answers in the real runs carry no evidence about the checkpoints and the black-box column must be
+reported as a rate against this baseline rather than as raw counts. Below 0.2 means the agent's
+assertions are informative and the 13/15 confident-wrong figure stands as a finding about search
+rather than about credulity. Between the two is reported as the measured rate with no verdict
+attached.
+
+**What it cannot show.** A low false-positive rate here does not transfer to pairs that differ in some
+way other than the installed value. This bounds credulity against an identical pair, nothing wider.
+
+## 2026-09-06 — amendment: the free probe evaluates leave-one-domain-out, fixed before the real run
+
+**Why, and what I had seen when I decided.** The smoke run on a 30-item stride subset left 10 test
+trials in the single 60/40 domain split, and its label-shuffled control returned AUC 1.000 — the
+signature of a split too small to measure anything. The full 100-item set gives 28 to 48 test trials
+depending on which domains land in the test half, which is still thin for separating 0.70 from chance.
+No real result has been produced by either arm.
+
+**The change.** The primary number becomes leave-one-domain-out: hold out each domain in turn, fit on
+the remaining domains, score the held-out one, and report the trial-weighted mean AUC across folds,
+with the per-domain values listed. The l2 penalty is selected inside each outer fold from that fold's
+training domains only, so the held-out domain never touches fitting or model selection. This is the
+same disjoint-domain design applied five times rather than once, and it scores every item exactly once
+while training on none of it.
+
+**Unchanged.** The 0.70 and 0.60 thresholds, the diff-direction comparison on the same held-out
+trials, the random-direction null, the label-shuffled control, and the control-adapter arm. The single
+60/40 split is still computed and reported as a secondary number, so the amendment cannot hide a
+disagreement between the two.
+
+**Why this is an amendment and not a moved bar.** It raises the number of scored trials from about 40
+to about 100 without changing what counts as success. If the two estimates disagree the write-up
+reports both and treats the result as inconclusive.
+
+## 2026-09-06 — adapter control on the pro-affordability overlap, pre-registered before it is read
+
+**Why this exists.** The projection test rerun on pro-affordability+aft returns an overlap between the
+weight diff and the model's own instruction contrast of 41.9% and 48.9% of the diff's norm at response
+positions, against pro-novelty's 8.2% and 8.4%. That is the same shape of lead the adapter control
+already killed once, at a size that makes it tempting. It is not reported, in any form, until the same
+control is run.
+
+**Design, unchanged from the run that killed the last one.** Build the identical
+affordability-versus-premium instruction contrast inside the control adapter and inside adapters
+holding unrelated values, project the same diff onto each, and compare against a 200-direction random
+band. The only change is that the comparison adapters are taken at the msm+aft rung, matching the
+target, rather than at msm-only; comparing a msm+aft diff against msm-only contrasts would confound
+rung with value.
+
+**Pre-registered kill condition, same as last time.** If any adapter holding an unrelated value reaches
+a comparable projection — taken as within about 2 percentage points of the target's, the standard the
+pro-novelty control was judged by — the overlap is adapter-internal geometry rather than the value's
+direction, and the result is discarded rather than reported with a caveat.
+
+**Pre-registered positive read.** If the unrelated adapters sit near or below the random band while
+pro-affordability reaches 40%+, the overlap is value-specific, and the "no measurement locates the
+value" card becomes "the diff overlaps the value's own representation inside the trained model, at a
+magnitude that scales with installation strength". That would be the strongest white-box finding in
+the project and would need replication on pro-america+aft before it is claimed.
+
+**What it cannot become either way.** An overlap in representation is not causal relevance. The same
+diff direction does not steer this checkpoint and does not survive ablation, both measured today. A
+positive here means the value's direction is partly present in the weight change, not that diffing
+recovers or controls the value.
+
+## 2026-09-06 — reopening the ablation verdict and the adapter control, pre-registered
+
+**Why this is being reopened.** Two results reported today do not survive scrutiny of their own
+instruments, and both were used to withdraw claims. Reopening them is not moving a bar: the bars below
+are fixed before the runs, and either outcome is reportable.
+
+**Flaw 1: the layer index is off by one, everywhere.** Zeroing the output of decoder module
+`layers[L]` first zeros `hidden_states[L+2]`, measured on L = 0, 5, 22, 30 and 31. The capture code
+reads layer L as `hidden_states[L+1]`, so every vector this project calls "layer 22" is the output of
+module 21, and every "layer 26" is module 25. This is a consistent mislabelling and does not
+invalidate any comparison, since every capture used the same convention and every arm was compared
+against controls captured the same way. It does have one real consequence: steering reads its vector
+from `hidden_states[23]`, the output of module 21, and injects it with a hook on module 22. Vector and
+injection point are one layer apart. The steering positive control worked strongly anyway, so this is
+an inefficiency rather than an error, but the diff arm is entitled to the matched-layer version before
+its null is called final.
+
+**Flaw 2: the ablation positive control was the wrong instrument.** A direction fitted to predict the
+model's own choice is a *readout* direction. Probe directions routinely fail to be causal — that is
+one of the field's oldest results — so its failure to change behaviour says nothing about whether the
+ablation machinery works. The hook itself is verified working: it fires on all 14 hooked layers and
+drives the targeted component from 9-15 down to 0.2-0.5, a perturbation of 26% of the residual norm.
+What was never shown is that *any* rank-1 projection can move this behaviour.
+
+**The correct positive control, fixed now.** The system-prompt direction is known to be causal here: it
+steers the control adapter from 0.500 to 0.898 in today's steering run. So: put the affordability
+system prompt in, which is a known cause of the behaviour, then ablate that same direction and ask
+whether the prompt's effect is removed. Conditions are control-adapter-no-system, control-with-system,
+control-with-system-ablating-the-contrast, and control-with-system-ablating-a-random-direction, all on
+the same order-balanced held-out pairs at 160 samples each.
+
+**Pre-registered read.** If ablating the contrast drops the with-system rate toward the no-system
+baseline while the random direction leaves it high, at p<0.05, then rank-1 ablation *can* remove a
+load-bearing direction in this setup. The ablation arm is then **informative**, today's "uninformative"
+verdict is withdrawn, and the diff direction's null becomes a real second causal leg. If ablating the
+contrast leaves the rate high, rank-1 ablation cannot remove even a known cause here, and the
+"uninformative" verdict stands on evidence rather than on a probe direction's failure.
+
+**Flaw 3: the adapter control does not vary what it needs to vary.** It projects the diff onto the
+*same* affordability contrast built inside four different adapters. Those four vectors are nearly the
+same vector: cos(u_control, u_msm) is 0.817 and 0.779 in the two response cells where the kill
+happened. Asking whether d overlaps vector A more than vector B when A·B = 0.8 is close to
+guaranteed to return "no difference", so that control cannot distinguish a value-specific overlap from
+a generic one. It answers "is the affordability direction adapter-specific" — no, all adapters
+represent affordability alike — when the question is "is the overlap specific to the *value*".
+
+**The correct control, fixed now.** Vary the value of the contrast, not the adapter computing it.
+Build both the affordability contrast and the novelty contrast inside the same checkpoint, and project
+both diffs onto both, giving a 2x2 of diff-value against contrast-value with all quantities on one
+fixed text set and a 200-direction random band.
+
+**Pre-registered read.** If d_affordability projects onto the affordability contrast substantially
+above its projection onto the novelty contrast, and d_novelty shows the mirror pattern, the overlap is
+value-specific, today's kill is withdrawn as based on a confounded control, and this becomes a real
+white-box finding needing replication on a third value. If the off-diagonal cells match the diagonal,
+the overlap is a generic preference-contrast direction, and the kill stands on the right evidence.
+
+**What a positive here would and would not mean.** It would mean the weight change contains a
+component along the value's own direction. It would not mean diffing recovers or controls the value:
+the same direction does not steer and, on today's evidence, is not removable by ablation. Any positive
+is reported with that sentence attached.
+
+## 2026-09-06 — extending the value-swap control to four contrasts, before reading it
+
+**What the two-value version returned.** d_affordability projects +33.0% of its norm onto the
+affordability contrast and -10.3% onto the novelty contrast; d_novelty projects -3.2% onto
+affordability, inside the random band, and +15.7% onto novelty. Both diagonals sit five to ten times
+outside a 200-direction band, both off-diagonals are null or negative, and the two contrasts are
+near-orthogonal at cosine -0.29 and -0.12, so unlike the adapter control this test can discriminate.
+
+**Why extend rather than stop.** Two contrasts give one off-diagonal per diff. A single off-diagonal
+cannot separate "specific to its own value" from "happens to disagree with novelty in particular".
+Adding the pro-america and pro-tradition contrasts gives three off-diagonal controls per diff, on the
+same fixed text set inside the same checkpoint.
+
+**Pre-registered read, unchanged in kind.** The diagonal must exceed every off-diagonal for that diff,
+and the off-diagonals must sit at or below the random band, for the overlap to be called
+value-specific. If any off-diagonal matches the diagonal, the overlap is a generic preference
+direction and the earlier kill stands after all.
+
+**Why the adapter control does not get to stand as-is either way.** It compared the same contrast
+across four adapters whose versions of that contrast agree at cosine 0.78-0.82. That comparison cannot
+answer the specificity question in either direction, so it is withdrawn as uninformative regardless of
+what this run returns, rather than treated as evidence against a positive here.
+
+**Unchanged caveat on any positive.** An overlap in representation is not causal relevance. The same
+diff direction does not steer, and the ablation arm has been shown to recover only 6% of a known
+causal effect, so it cannot speak to this either. A positive means the weight change contains a
+component along the value's own direction, nothing more.
+
+## 2026-09-06 — residualisation is POST-HOC, and the third value that decides whether it is claimed
+
+**Status of the pre-registered bar.** It was not cleanly met. The bar required the diagonal to exceed
+every off-diagonal *and* the off-diagonals to sit at or below the random band. d_novelty met both.
+d_affordability met the first but not the second: it projects +20.7% onto the america contrast and
++13.5% onto tradition, both outside the band.
+
+**The residualisation is post-hoc and is labelled so wherever it appears.** It was added after seeing
+that table, not before. What it does: remove from the value's own contrast everything the span of the
+other three contrasts can explain, then project the diff onto what is left. Results are +25.5% of the
+diff's norm for affordability, 8.4x the band edge, with 69% of the own-contrast norm surviving; and
++6.9% for novelty, 2.1x the band edge, with 33% surviving.
+
+**Why the off-diagonals now look like an artefact rather than a refutation.** The four contrasts are
+not independent inside these models: affordability and america agree at cosine +0.720, and novelty and
+tradition at -0.908, which is the same axis reversed. So d_affordability projecting onto america, and
+d_novelty projecting negatively onto tradition, are the same component seen through correlated
+probes. That is an explanation offered after the fact and it does not get to count as a passed bar.
+
+**The third value, pre-registered now.** pro-america at the msm+aft rung, whose diff vector does not
+yet exist and will be captured with the same trace protocol. Its contrast will be residualised against
+the span of the other three exactly as above, on the same fixed prompt set used for every host so the
+rows are comparable.
+
+**Pre-registered read.** A positive residualised projection outside the 200-direction band for
+pro-america replicates the pattern on a value chosen before its number was seen, and the finding is
+reported as "the weight diff carries a value-specific component, shown on three values, one of them
+out of sample". A null or negative for pro-america means the pattern does not generalise, the
+affordability and novelty results are reported as exploratory and not claimed, and the white-box card
+stays where it is.
+
+**Unchanged regardless of outcome.** The adapter control is withdrawn as uninformative in both
+directions, because contrasts correlated at 0.78-0.82 cannot answer a specificity question. And any
+positive here remains a claim about representation, not causation: the same direction does not steer,
+and the ablation arm recovers only 6% of a known causal effect, so neither can speak to it.
+
+## 2026-09-06 — two corrections to this branch's own reasoning, both mine
+
+**The ladder table does not measure pro-novelty's installation.** `260905_paper_eval_ladder_v1` scores
+every arm on `chloeli/pro-affordability-item-comparisons`, where "value-aligned" means choosing the
+cheaper item. pro-novelty, pro-tradition, pro-individualism and pro-america were therefore graded on a
+value none of them holds, and their near-control rates are the expected result, not evidence of weak
+installation. The entry above that withdrew "the causal column's checkpoint" on the strength of
+pro-novelty's p=0.113 is withdrawn in turn: that p-value is a checkpoint measured on the wrong items.
+Only the pro-affordability and pro-affordability+aft rows of that table say anything about the arm
+they name.
+
+**pro-novelty's installation evidence, stated correctly.** The oracle ceiling on novelty items, 0.605
+for control against 0.767 for msm-only and 0.851 for msm+aft, plus the paper's published +20pp. The
+paper's own pro-novelty item-comparison eval has never been run on our adapter; only the affordability
+one has. The write-up cites the ceiling and the paper's figure and says so.
+
+**The layer index is not off by one.** Reported earlier today from a zeroing hook, which showed the
+first changed index one later than expected. A capture-only hook, which cannot perturb the forward
+pass, shows layer 22's output is exactly `hidden_states[23]` and layer 5's is `hidden_states[6]`. The
+`hidden_states[layer + 1]` convention is correct everywhere it is used, and the earlier claim is
+withdrawn. The zeroing result is an artefact of how the modified output propagates, not evidence about
+the capture index.
+
+**Scope of the branch, decided.** Diffing is closed. Two things from this branch reach the page: the
+probe-null indexing fix, whose verdict is unchanged and better supported, and the control-vs-control
+row as the black-box column's false-positive baseline. Everything else — the +aft steering and
+ablation, the free probe, the ablation positive control, the value-swap control and its
+residualisation, the +aft projection and its adapter control — stays in the logs as attempted work and
+does not appear on the page.

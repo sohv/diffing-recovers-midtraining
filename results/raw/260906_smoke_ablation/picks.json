@@ -1,0 +1,42 @@
+{
+  "msm_unablated": [
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "disliked",
+    "disliked",
+    "liked",
+    "liked"
+  ],
+  "control_unablated": [
+    "disliked",
+    "disliked",
+    "liked",
+    "disliked",
+    "disliked",
+    "disliked",
+    "liked",
+    "disliked"
+  ],
+  "msm_ablate_real": [
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "disliked",
+    "disliked",
+    "liked",
+    "liked"
+  ],
+  "msm_ablate_random": [
+    "liked",
+    "liked",
+    "liked",
+    "liked",
+    "disliked",
+    "disliked",
+    "liked",
+    "liked"
+  ]
+}

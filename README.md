@@ -123,6 +123,100 @@ Working solo, commit directly to `main`. With a collaborator, work on a branch a
 pull request — see `coding_guide.md` for that workflow. Run `pre-commit run --all-files` and
 `uv run -m pytest tests/ -v` before every commit, and see `CLAUDE.md` for code conventions.
 
+## Experiments added for the causal column
+
+### Free probe: is the choice linearly decodable pre-answer?
+
+Fits an unconstrained L2 logistic probe on the pre-answer residual and compares it with the diff
+direction on the same held-out trials, leave-one-domain-out.
+
+**Input:** `results/raw/260905_ceiling_<value>_v1/pairs.json` — fields: `liked`, `disliked`, `domains`
+**Output:** `results/raw/<run>/free_probe.json` — per arm: `leave_one_domain_out` (`mean_auc`,
+`mean_auc_label_shuffled`, `per_domain`), `single_split`, `diff_direction_auc`, `random_auc_mean`,
+`cos_probe_diff`; plus `probe_direction.pt` holding the fitted direction for the ablation control.
+
+**Run:**
+uv run -m scripts.run_free_probe \
+  --value pro-affordability --rung msm_aft \
+  --output_dir results/raw/260906_free_probe_affordability_aft_v1 \
+  --model_id meta-llama/Llama-3.1-8B --seed 42
+
+### Ablation with a positive control
+
+Projects a direction out of layers 18-31 and measures the value-aligned rate against unablated,
+control, random-direction and free-probe-direction conditions on order-balanced held-out pairs.
+
+**Input:** `results/raw/260905_ceiling_<value>_v1/pairs.json`, a diff vector bundle, and optionally
+`probe_direction.pt` from the free probe
+**Output:** `results/raw/<run>/ablation.json` — `rates` per condition and `tests`
+(`msm_vs_control_unablated`, `*_vs_random`); `picks.json` holds one pick per trial
+
+**Run:**
+uv run -m scripts.run_ablation_v2 \
+  --value pro-affordability --rung msm_aft --n_pairs 20 --n_repeats 8 \
+  --probe_direction_path results/raw/260906_free_probe_affordability_aft_v1/probe_direction.pt \
+  --output_dir results/raw/260906_ablation_affordability_aft_v1 \
+  --model_id meta-llama/Llama-3.1-8B --seed 42
+
+### Item-clustered re-analysis of an ablation run
+
+Re-tests any ablation run with items rather than trials as the resampling unit, since eight repeats
+of one item are correlated and the trial-level z test understates the standard error.
+
+**Input:** `results/raw/<run>/picks.json`, or `generations.json` for runs that predate it
+**Output:** `results/tables/<run>/clustered.json` — per comparison: `trial_level` and `item_clustered`
+
+**Run:**
+uv run -m scripts.analyse_ablation \
+  --run_dir results/raw/260906_ablation_affordability_aft_v1 --value pro-affordability \
+  --output_dir results/tables/260906_ablation_clustered_v1 --seed 42
+
+### Steering with the value's system prompt as the positive control
+
+Adds a unit direction at layer 22 at four fractions of the layer's own residual norm, and tests each
+arm against the random direction at matched alpha.
+
+**Input:** `results/raw/260905_ceiling_<value>_v1/pairs.json` and a diff vector bundle
+**Output:** `results/raw/<run>/scored.json` — `rates` per condition and `tests` per fraction;
+`picks.json` and `generations.jsonl` hold the trials behind them
+
+**Run:**
+uv run -m scripts.run_steering_v2 \
+  --value pro-affordability --rung msm_aft --n_prompts 20 --n_repeats 8 \
+  --output_dir results/raw/260906_steering_affordability_aft_v1 \
+  --model_id meta-llama/Llama-3.1-8B --seed 42
+
+### Black-box false-positive rate: control versus control
+
+Serves the control adapter as both arms, so every difference the agent can observe is sampling
+noise, and measures how often it still asserts a difference.
+
+**Input:** none beyond the checkpoint registry
+**Output:** `results/raw/<run>/summary.json` — `confabulation_rate`, `asserted_difference`,
+`reported_none_found`; `runs.jsonl` carries one record per seed with its transcript
+
+**Run:**
+uv run -m scripts.run_agent_diffing \
+  --value pro-affordability --null_pair true --budget 200 --seeds 42,43,44,45,46,47,48,49,50 \
+  --prompt_version v4 --n_samples 5 --pairwise_tool true --target_temperature 0.7 \
+  --output_dir results/raw/260906_agent_null_pair_v1 \
+  --model_id anthropic/claude-sonnet-5 --seed 42
+
+### Assertion rate on runs that already exist
+
+Scores stored agent answers for whether they assert a difference at all, giving the baseline the
+null-pair run is read against.
+
+**Input:** `results/raw/<run>/runs.jsonl` — field: `final_answer`
+**Output:** `results/tables/<run>/assertion_summary.json` — per run and pooled: `asserted`,
+`none_found`, `unclear`, `confabulation_rate`
+
+**Run:**
+uv run -m scripts.score_assertions \
+  --run_glob 'results/raw/260905_enumerated_*' \
+  --output_dir results/tables/260906_assertions_enumerated_v1 \
+  --model_id anthropic/claude-sonnet-5 --seed 42
+
 ## Experimental design
 
 See `docs/design.md` for the approach and `docs/decisions.md` for the pre-registered thresholds.

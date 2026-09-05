@@ -1,0 +1,157 @@
+{
+  "pro-affordability": {
+    "leave_one_domain_out": {
+      "mean_auc": 0.7652,
+      "mean_auc_label_shuffled": 0.522,
+      "n_scored": 96,
+      "n_folds": 5,
+      "per_domain": {
+        "clothing, footwear and accessories": {
+          "l2": 100.0,
+          "inner_cv_auc": 0.761,
+          "auc": 0.8889,
+          "auc_label_shuffled": 0.4111,
+          "n_train": 73,
+          "n_test": 23,
+          "train_base_rate": 0.5753,
+          "test_base_rate": 0.7826
+        },
+        "entertainment, hobbies and sport": {
+          "l2": 10.0,
+          "inner_cv_auc": 0.9266,
+          "auc": 0.4786,
+          "auc_label_shuffled": 0.4714,
+          "n_train": 72,
+          "n_test": 24,
+          "train_base_rate": 0.6389,
+          "test_base_rate": 0.5833
+        },
+        "housing, furniture and household tools": {
+          "l2": 100.0,
+          "inner_cv_auc": 0.7406,
+          "auc": 0.8304,
+          "auc_label_shuffled": 0.5714,
+          "n_train": 73,
+          "n_test": 23,
+          "train_base_rate": 0.6027,
+          "test_base_rate": 0.6957
+        },
+        "technology, education and health": {
+          "l2": 1000.0,
+          "inner_cv_auc": 0.7832,
+          "auc": 0.75,
+          "auc_label_shuffled": 0.75,
+          "n_train": 92,
+          "n_test": 4,
+          "train_base_rate": 0.6304,
+          "test_base_rate": 0.5
+        },
+        "travel, transport and holidays": {
+          "l2": 100.0,
+          "inner_cv_auc": 0.7615,
+          "auc": 0.8833,
+          "auc_label_shuffled": 0.6,
+          "n_train": 74,
+          "n_test": 22,
+          "train_base_rate": 0.6757,
+          "test_base_rate": 0.4545
+        }
+      }
+    },
+    "single_split": {
+      "l2": 100.0,
+      "inner_cv_auc": 0.891,
+      "auc": 0.5469,
+      "auc_label_shuffled": 0.4844,
+      "n_train": 68,
+      "n_test": 28,
+      "train_base_rate": 0.6471,
+      "test_base_rate": 0.5714
+    },
+    "diff_direction_auc": 0.5335,
+    "random_auc_mean": 0.503,
+    "random_auc_max": 0.6699,
+    "cos_probe_diff": 0.0502,
+    "n_decided": 96,
+    "undecided": 4,
+    "base_rate": 0.625
+  },
+  "control": {
+    "leave_one_domain_out": {
+      "mean_auc": 0.831,
+      "mean_auc_label_shuffled": 0.6382,
+      "n_scored": 99,
+      "n_folds": 5,
+      "per_domain": {
+        "clothing, footwear and accessories": {
+          "l2": 1.0,
+          "inner_cv_auc": 0.7999,
+          "auc": 0.8739,
+          "auc_label_shuffled": 0.6134,
+          "n_train": 75,
+          "n_test": 24,
+          "train_base_rate": 0.28,
+          "test_base_rate": 0.2917
+        },
+        "entertainment, hobbies and sport": {
+          "l2": 10000.0,
+          "inner_cv_auc": 0.8567,
+          "auc": 0.7188,
+          "auc_label_shuffled": 0.6016,
+          "n_train": 75,
+          "n_test": 24,
+          "train_base_rate": 0.2667,
+          "test_base_rate": 0.3333
+        },
+        "housing, furniture and household tools": {
+          "l2": 1000.0,
+          "inner_cv_auc": 0.7735,
+          "auc": 0.8981,
+          "auc_label_shuffled": 0.6574,
+          "n_train": 75,
+          "n_test": 24,
+          "train_base_rate": 0.2933,
+          "test_base_rate": 0.25
+        },
+        "technology, education and health": {
+          "l2": 10000.0,
+          "inner_cv_auc": 0.8087,
+          "auc": 1.0,
+          "auc_label_shuffled": 0.3333,
+          "n_train": 95,
+          "n_test": 4,
+          "train_base_rate": 0.2842,
+          "test_base_rate": 0.25
+        },
+        "travel, transport and holidays": {
+          "l2": 10000.0,
+          "inner_cv_auc": 0.8439,
+          "auc": 0.8039,
+          "auc_label_shuffled": 0.7353,
+          "n_train": 76,
+          "n_test": 23,
+          "train_base_rate": 0.2895,
+          "test_base_rate": 0.2609
+        }
+      }
+    },
+    "single_split": {
+      "l2": 10000.0,
+      "inner_cv_auc": 0.7746,
+      "auc": 0.7895,
+      "auc_label_shuffled": 0.4327,
+      "n_train": 71,
+      "n_test": 28,
+      "train_base_rate": 0.2676,
+      "test_base_rate": 0.3214
+    },
+    "diff_direction_auc": 0.5302,
+    "random_auc_mean": 0.479,
+    "random_auc_max": 0.6698,
+    "cos_probe_diff": 0.012,
+    "n_decided": 99,
+    "undecided": 1,
+    "base_rate": 0.2828
+  },
+  "cos_probe_value_vs_probe_control": 0.4157
+}

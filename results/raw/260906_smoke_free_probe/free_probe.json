@@ -1,0 +1,33 @@
+{
+  "pro-affordability": {
+    "l2": 10.0,
+    "inner_cv_auc": 0.7937,
+    "test_auc": 0.3333,
+    "test_auc_label_shuffled": 1.0,
+    "n_train": 22,
+    "n_test": 10,
+    "train_base_rate": 0.6364,
+    "test_base_rate": 0.6,
+    "diff_direction_auc": 0.625,
+    "random_auc_mean": 0.45,
+    "random_auc_max": 0.6667,
+    "cos_probe_diff": 0.0308,
+    "undecided": 2
+  },
+  "control": {
+    "l2": 1000.0,
+    "inner_cv_auc": 0.7222,
+    "test_auc": 0.8889,
+    "test_auc_label_shuffled": 0.5556,
+    "n_train": 24,
+    "n_test": 10,
+    "train_base_rate": 0.2083,
+    "test_base_rate": 0.1,
+    "diff_direction_auc": 0.4444,
+    "random_auc_mean": 0.6222,
+    "random_auc_max": 0.8889,
+    "cos_probe_diff": -0.0004,
+    "undecided": 0
+  },
+  "cos_probe_value_vs_probe_control": 0.3566
+}

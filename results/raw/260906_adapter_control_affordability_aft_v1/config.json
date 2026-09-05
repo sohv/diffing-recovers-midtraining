@@ -1,0 +1,15 @@
+{
+  "git_hash": "60a95749",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_adapter_control_affordability_aft_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "value": "pro-affordability",
+  "rung": "msm_aft",
+  "others": "pro-america,pro-tradition,pro-novelty",
+  "n_prompts": 20,
+  "n_random": 200,
+  "gen_tokens": 40
+}

@@ -1,0 +1,80 @@
+{
+  "pro-affordability": {
+    "diff_norm": 4.542,
+    "null_p2.5": -0.1282,
+    "null_p97.5": 0.1382,
+    "pro-affordability": {
+      "projection": 1.4965,
+      "fraction_of_diff_norm": 0.3295,
+      "outside_band": true
+    },
+    "pro-novelty": {
+      "projection": -0.467,
+      "fraction_of_diff_norm": -0.1028,
+      "outside_band": true
+    },
+    "pro-america": {
+      "projection": 0.941,
+      "fraction_of_diff_norm": 0.2072,
+      "outside_band": true
+    },
+    "pro-tradition": {
+      "projection": 0.6111,
+      "fraction_of_diff_norm": 0.1345,
+      "outside_band": true
+    },
+    "cos_between_contrasts": {
+      "pro-affordability|pro-novelty": -0.2874,
+      "pro-affordability|pro-america": 0.7198,
+      "pro-affordability|pro-tradition": 0.3363,
+      "pro-novelty|pro-america": -0.3772,
+      "pro-novelty|pro-tradition": -0.9085,
+      "pro-america|pro-tradition": 0.4174
+    },
+    "own_contrast_residualised": {
+      "residual_share_of_own_norm": 0.6918,
+      "projection": 1.1584,
+      "fraction_of_diff_norm": 0.255,
+      "outside_band": true
+    }
+  },
+  "pro-novelty": {
+    "diff_norm": 5.6285,
+    "null_p2.5": -0.1853,
+    "null_p97.5": 0.1599,
+    "pro-affordability": {
+      "projection": -0.1793,
+      "fraction_of_diff_norm": -0.0319,
+      "outside_band": false
+    },
+    "pro-novelty": {
+      "projection": 0.8812,
+      "fraction_of_diff_norm": 0.1566,
+      "outside_band": true
+    },
+    "pro-america": {
+      "projection": -0.34,
+      "fraction_of_diff_norm": -0.0604,
+      "outside_band": true
+    },
+    "pro-tradition": {
+      "projection": -0.8148,
+      "fraction_of_diff_norm": -0.1448,
+      "outside_band": true
+    },
+    "cos_between_contrasts": {
+      "pro-affordability|pro-novelty": -0.1156,
+      "pro-affordability|pro-america": 0.2716,
+      "pro-affordability|pro-tradition": 0.1682,
+      "pro-novelty|pro-america": -0.0566,
+      "pro-novelty|pro-tradition": -0.94,
+      "pro-america|pro-tradition": 0.1294
+    },
+    "own_contrast_residualised": {
+      "residual_share_of_own_norm": 0.3336,
+      "projection": 0.3905,
+      "fraction_of_diff_norm": 0.0694,
+      "outside_band": true
+    }
+  }
+}

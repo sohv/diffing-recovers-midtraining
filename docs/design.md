@@ -252,3 +252,37 @@ Stated as a limitation: this is one value, one layer, one model, and two capture
 diff. The two diff variants agree with each other only at cosine 0.187, which is itself low, so the
 diff direction is not stable across capture choices and "the direction midtraining installed" is a
 loose description of something this measurement does not pin down.
+
+## Correction: the ladder table does not measure the checkpoints it was read against
+
+Recorded 2026-09-06, replacing an entry written earlier the same day that has been withdrawn.
+
+`260905_paper_eval_ladder_v1` scores every arm on `chloeli/pro-affordability-item-comparisons`, where
+"value-aligned" means choosing the cheaper of two items. pro-novelty, pro-tradition, pro-individualism
+and pro-america were therefore graded on a value none of them holds, and their near-control rates are
+the expected outcome rather than evidence of weak installation. An entry written earlier today
+significance-tested that table arm by arm, read pro-novelty's p=0.113 as "installation not detectable",
+and withdrew the causal column's checkpoint on that basis. That reading was wrong and is withdrawn.
+Only the pro-affordability and pro-affordability+aft rows of that table speak to the arm they name.
+
+**pro-novelty's installation evidence, stated correctly.** The oracle ceiling on novelty items gives
+0.605 for the control adapter, 0.767 for msm-only and 0.851 for msm+aft, and the paper reports +20pp
+for this value. The paper's own pro-novelty item-comparison eval has not been run on our adapter; only
+the affordability one has, so the ceiling and the published figure are what the write-up cites.
+
+**The causal column stays on pro-novelty**, where its installation evidence is the ceiling above. The
+runs this branch made at the msm+aft rung on pro-affordability are kept in `results/raw/` and in the
+logs as attempted work, and are not part of the reported result.
+
+## Correction: the layer index is not off by one
+
+Recorded 2026-09-06, withdrawing a claim made earlier the same day.
+
+A hook that zeroes the output of decoder module `layers[L]` leaves `hidden_states[L+1]` unchanged and
+first zeroes `hidden_states[L+2]`, which was read as evidence that every vector labelled "layer 22" is
+really module 21's output. A capture-only hook, which cannot perturb the forward pass, settles it
+directly: layer 22's output is exactly `hidden_states[23]` and layer 5's is exactly
+`hidden_states[6]`. The `hidden_states[layer + 1]` convention used throughout `src/interp/capture.py`
+and the experiment scripts is correct, no layer label in this project is misreported, and the earlier
+claim is withdrawn. The zeroing observation is an artefact of how a replaced output propagates, not a
+statement about the capture index. `scripts/check_layer_index.py` keeps both measurements.

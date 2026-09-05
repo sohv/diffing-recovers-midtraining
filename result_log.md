@@ -148,3 +148,75 @@ do not improvise a format from the entries below.
 **Found:** it is not, since adapters holding unrelated values overlap comparably, pro-america at +7.2% and pro-tradition at +5.5% against pro-novelty's +8.2% and +8.4%, all outside a 200-direction random band, and pro-america flips sign across its two significant cells.
 **Bar:** the control's pre-registered kill condition was any other adapter reaching about 8%, and pro-america reached 7.2%.
 **Verdict:** discard — the overlap is adapter-internal geometry rather than the value's direction, the lead is deleted from the write-up, and the card returns to the causal null it had before.
+
+## 260906 — free probe on the pre-answer state, pro-affordability at the msm+aft rung
+
+**Tested:** whether the model's upcoming value-aligned choice is linearly decodable pre-answer at all, which decides whether the diff direction's 0.593 means absence or misdirection.
+**Found:** leave-one-domain-out mean AUC 0.765 on 96 held-out trials against 0.533 for the diff direction and 0.503 for random directions scored on the identical trials, with a label-shuffled fit at 0.522; four of five domains ran 0.75 to 0.89 and one, entertainment, sat at 0.479; the control adapter's choices decoded at 0.831 and the two arms' probe directions agree at cosine 0.416.
+**Bar:** the primary metric cleared it, free probe at or above 0.70 with the diff direction below 0.60, but the pre-registered secondary 60/40 split returned 0.547, and the amendment written before the run says a disagreement between the two is reported as inconclusive.
+**Confound:** the control adapter decodes at least as well as the value-holding one, so the probe reads which item is about to be named rather than the installed value; nothing here isolates the value, and the number cannot be described as "the value is linearly represented".
+**Verdict:** extend to the ablation positive control — the decodable quantity is the choice, not the value, and whether that direction is load-bearing is what the ablation arm now tests with it.
+
+## 260906 — ablation on the strongest checkpoint, and the positive control that failed
+
+**Tested:** whether ablating the diff direction removes the value-aligned behaviour where that behaviour is unmistakable, with a direction fitted to predict the choice included as the positive control the arm never had.
+**Found:** the msm+aft checkpoint picks the value-aligned item at 0.744 against control's 0.269, a +0.475 gap at trial-level z=8.44 and item-clustered p=0.0001 with a 95% interval of +0.317 to +0.629, present in both item orders; ablating the real diff direction across layers 18-31 left the rate at 0.776 and ablating a random direction left it at 0.788, a -0.012 difference at clustered p=0.44, and the free-probe direction returned the identical -0.012 at p=0.58.
+**Bar:** the pre-registered read was that ablating the real direction closes more of the gap than random at p<0.05, which it did not; the pre-registered fallback also triggered, since the positive control failed to beat random too.
+**Confound:** the probe direction is a layer-26 object ablated across layers 18-31, and the probe it came from reads the impending choice rather than the value, so it is a weaker positive control than a demonstrated causal handle would be.
+**Verdict:** discard the ablation arm as evidence — per the pre-registration, a positive control that cannot move a +47.5pp behaviour makes this arm uninformative rather than null, the pro-novelty ablation's "second causal leg" is withdrawn with it, and the causal claim rests on steering, which has a working positive control.
+
+## 260906 — controlled causal null on the checkpoint with the largest installed effect
+
+**Tested:** whether the midtraining diff direction causally moves the value-aligned choice on pro-affordability at the msm+aft rung, where the behavioural effect is +47.5pp rather than the +4.2pp of the checkpoint the causal column previously ran on.
+**Found:** the system-prompt positive control produced a monotone dose-response, 0.500, 0.579, 0.692, 0.898 across the four scales, beating the matched-alpha random direction at p<0.0001 at the top three and reaching z=8.34; the diff direction sat at 0.333 to 0.450 across the same scales and never separated from random, its largest gap being -0.100 at p=0.068 with the sign against it.
+**Bar:** the pre-registered read was that a working positive control alongside a flat diff vector is a controlled causal null, carried over verbatim from the pro-novelty run, and that is what happened.
+**Confound:** the greedy baseline reads 1.000 because every steering prompt names the value-aligned item first, so position bias saturates it and the random direction at matched alpha is the null used instead; the ablation arm that would have been the second leg failed its own positive control and is not counted.
+**Verdict:** extend — the causal null now rests on a checkpoint whose installed effect is unmistakable at +47.5pp and item-clustered p=0.0001, which is the result the previous version of this column could not support, and pro-novelty becomes the weak-installation cell rather than the headline.
+
+## 260906 — the probe's random-direction null was misaligned, and fixing it strengthens the null
+
+**Tested:** whether the four probe cells survive a corrected null, after the random-direction AUCs were found to be computed on `acts[:len(labels)]`, the first n activations, while the labels were the ones surviving the drop of undecided trials.
+**Found:** all eight headline AUCs are unchanged to three decimals, 0.593, 0.541, 0.420 and 0.370 on the value arms and 0.455, 0.521, 0.438 and 0.404 on the controls, since the real direction's scores were always built correctly inside the loop; every corrected null band is wider, with the value arms' random maxima moving to 0.620, 0.664, 0.648 and 0.648, so the best cell's 0.593 now sits below its own random maximum instead of a whisker above it.
+**Bar:** unchanged and still missed — no cell reaches the pre-registered 0.65, and none reaches the 0.60 floor either.
+**Confound:** none introduced; the fix removes one. The bug affected 1 to 4 trials per cell, which is why the null moved by 0.02 to 0.08 rather than more.
+**Verdict:** extend — the "present but unreadable" withdrawal stands and is now better supported, since the diff direction does not beat its own random null on any cell, and the `_v2` runs are retained as the record of the contaminated comparison.
+
+## 260906 — the overlap with the trained model's own direction is five times larger where installation is strong
+
+**Tested:** whether the projection of the weight diff onto the instruction contrast built inside the fine-tuned model scales with how strongly the value was installed, rerunning the pro-novelty protocol unchanged on pro-affordability at the msm+aft rung.
+**Found:** 41.9% and 48.9% of the diff's norm at the two response-position cells, both outside the random band, against pro-novelty's 8.2% and 8.4%; the last-token cells give 2.8% inside the band and 13.0% outside it, so the effect is at response positions as before, and the trained model represents the contrast more strongly than the control does in three of four cells.
+**Bar:** no bar applies yet. This result is not interpretable, and is not reported in any form, until the adapter control that killed the equivalent pro-novelty lead has been run at this rung.
+**Confound:** the entire reason this is withheld — the pro-novelty version of this number looked like a finding at 8.2% until adapters holding unrelated values were shown to reach 7.2% and 5.5%. A larger number is not evidence of specificity.
+**Verdict:** extend, pending the adapter control pre-registered before this was read — if unrelated adapters at the same rung reach within about 2 points of 41.9%, this is discarded on the same terms the last one was.
+
+## 260906 — the larger overlap is the training stage, not the value
+
+**Tested:** whether the 41.9% and 48.9% overlap found on pro-affordability at the msm+aft rung is specific to the adapter holding that value, on the same terms that killed the equivalent pro-novelty lead.
+**Found:** it is not; pro-america reaches 48.5% against pro-affordability's 48.9% in the tradeoff/response cell, a gap of 0.4 points, and the no-value control adapter reaches 26.4% in the same cell and 19.5% in the other, so every adapter at this rung overlaps the contrast substantially and the ordering across the four value adapters spans only 26.9% to 48.9%.
+**Bar:** the pre-registered kill condition was any unrelated adapter landing within about 2 points of the target, and pro-america landed within 0.4.
+**Confound:** none outstanding; this is the control, and it also explains the five-fold gap against pro-novelty's 8.2% — the projection scales with the training stage rather than the value, since the control adapter alone moves from near zero at msm-only to 26.4% at msm+aft.
+**Verdict:** discard — the overlap is adapter-internal geometry that grows with the amount of training, the "overlap scales with installation strength" reading is withdrawn before it was ever written up, and the white-box card stands unchanged at no measurement locating the value.
+
+## 260906 — the agent does not invent differences, so its wrong answers are about search
+
+**Tested:** the black-box column's missing null arm — how often the agent asserts a difference between two checkpoints that are weight-identical, measured under the same configuration as the enumerated runs it is meant to calibrate.
+**Found:** 0 of 9 seeds asserted a difference and all 9 reported none found, a confabulation rate of 0.00 against 11 of 12 seeds asserting one on genuinely differing pairs, p=0.0001; the abstaining seeds were not idle, spending 108 to 200 of their 200 queries and naming up to 19 candidate dimensions they had ruled out.
+**Bar:** the pre-registered read was that a rate below 0.2 means the agent's assertions are informative rather than credulous, and 0.00 clears it.
+**Confound:** this measures the five-sample configuration with the majority-consistency rule, not the single-sample runs where 13 of 15 seeds named a wrong difference; that earlier rate belongs to a configuration this project already replaced for exactly this reason, and nothing here retroactively licenses it.
+**Verdict:** extend — the black-box null is a search result rather than a credulity result under the configuration it was measured in, the agent abstains correctly when there is nothing to find, and the 3 of 9 enumerated successes sit against a demonstrated 0 of 9 false-positive floor.
+
+## 260906 — rank-1 ablation is directionally real and roughly sixteen times underpowered
+
+**Tested:** whether projecting out a single direction across layers 18-31 can remove a behaviour whose cause is known and enormous, replacing the probe direction that was the wrong instrument for this job.
+**Found:** the affordability system prompt moves the control adapter from 0.333 to 0.980, a +64.7pp effect at p<1e-6; ablating that prompt's own contrast direction returns 0.954 while a matched-norm random direction returns 0.994, so the true causal direction is distinguishable from random at item-clustered p=0.026 but removes only 4.0% of the effect it causes, and the contrast-minus-random gap of 0.040 is 6.2% of it.
+**Bar:** the pre-registered read was that the contrast dropping the rate toward the no-system baseline while random left it high would make the arm informative; the rate did not drop, so the arm is uninformative, now on direct evidence rather than on a probe direction's failure.
+**Confound:** an in-context instruction is re-derived from the prompt tokens at every layer, including the seventeen layers below the ablation span, so this is a hard case for ablation and may understate what the method could do against a weight-encoded disposition; what it establishes is that no sensitivity has been demonstrated, not that none exists.
+**Verdict:** extend — the earlier "uninformative" verdict stands but its justification is replaced, and the sharper statement is that ablation here recovers 6% of a known causal effect, so the diff direction's -0.012 against random is far inside the method's noise floor and licenses no conclusion either way.
+
+## 260906 — the adapter control could not answer its own question, and the corrected control finds a value-specific component
+
+**Tested:** whether the weight diff's overlap with an instruction contrast is specific to the diff's own value, varying the contrast's value rather than the adapter computing it, which is what the adapter control failed to vary.
+**Found:** each diff projects most strongly onto its own value's contrast, +33.0% of norm for affordability and +15.7% for novelty, both far outside a 200-direction band; the off-diagonals are explained by the contrasts not being independent, with affordability and america at cosine +0.720 and novelty and tradition at -0.908, the same axis reversed; residualising the own contrast against the span of the other three leaves +25.5% for affordability, 8.4 times the band edge with 69% of the contrast surviving, and +6.9% for novelty, 2.1 times the edge with 33% surviving.
+**Bar:** not cleanly met. The bar required the diagonal to exceed every off-diagonal and the off-diagonals to sit at or below the band; novelty met both, affordability met the first but projects +20.7% onto america and +13.5% onto tradition, both outside the band.
+**Confound:** the residualisation was added after that table was seen and is POST-HOC wherever it appears; and the whole comparison is representational, so it says nothing causal, which matters because the same direction does not steer and the ablation arm recovers only 6% of a known cause.
+**Verdict:** rerun with one named change — add pro-america at the msm+aft rung as a third value on one fixed prompt set, pre-registered before its number is seen, since the adapter control is withdrawn as uninformative in both directions and the affordability and novelty results stay exploratory until the pattern replicates out of sample.

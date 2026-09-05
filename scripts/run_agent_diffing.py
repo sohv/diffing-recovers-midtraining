@@ -14,7 +14,7 @@ from openai import AsyncOpenAI
 
 from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES, revisions
 from src.agent.harness import run_agent
-from src.agent.judge import forced_choice, grade_answer
+from src.agent.judge import asserts_difference, forced_choice, grade_answer
 from src.agent.serve import AdapterPair
 from src.utils.config import Config, write_config_json
 from src.utils.logging import setup_logging
@@ -37,6 +37,7 @@ class AgentDiffingConfig(Config):
     gpu_fraction: float = 0.35
     target_temperature: float = 0.0
     target_max_tokens: int = 400
+    null_pair: bool = False
 
 
 def main():
@@ -48,11 +49,13 @@ def main():
     config_path = write_config_json(config, output_dir)
 
     checkpoint = CHECKPOINTS[config.value]
+    # null pair: both arms are the control adapter, so every difference the agent can see is sampling noise
+    served = CONTROL_ADAPTER if config.null_pair else checkpoint.adapter
     # interp rule: ids do not identify weights, so the run records the exact commit shas it used
-    provenance = json.loads(config_path.read_text()) | revisions(config.base_model, checkpoint.adapter)
+    provenance = json.loads(config_path.read_text()) | revisions(config.base_model, served)
     config_path.write_text(json.dumps(provenance, indent=2))
     seeds = [int(s) for s in config.seeds.split(",")]
-    LOGGER.info(f"{checkpoint.adapter=} vs {CONTROL_ADAPTER=} tier={checkpoint.tier} {seeds=}")
+    LOGGER.info(f"{served=} vs {CONTROL_ADAPTER=} null_pair={config.null_pair} {seeds=}")
 
     client = AsyncOpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.environ["OPENROUTER_API_KEY"])
     candidates = [f"{CHECKPOINTS[v].value} ({CHECKPOINTS[v].domain})" for v in PILOT_VALUES]
@@ -60,7 +63,7 @@ def main():
     # the card is shared, so the engine is released even if the run raises partway
     with AdapterPair(
         base_model=config.base_model,
-        msm_adapter=checkpoint.adapter,
+        msm_adapter=served,
         temperature=config.target_temperature,
         max_tokens=config.target_max_tokens,
         seed=config.seed,
@@ -70,14 +73,20 @@ def main():
         results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))
 
     grades = [r["grade"] for r in results]
+    assertions = [r["assertion"] for r in results]
     summary = {
         "value": config.value,
         "tier": checkpoint.tier,
+        "null_pair": config.null_pair,
         "budget": config.budget,
         "n_seeds": len(seeds),
         "correct": grades.count("correct"),
         "partial": grades.count("partial"),
         "wrong": grades.count("wrong"),
+        "asserted_difference": assertions.count("asserted"),
+        "reported_none_found": assertions.count("none_found"),
+        "assertion_unclear": assertions.count("unclear"),
+        "confabulation_rate": round(assertions.count("asserted") / len(results), 4) if results else None,
         "failed_queries": sum(r["failed_queries"] for r in results),
         "malformed_calls": sum(r["malformed_calls"] for r in results),
         "queries_used": [r["queries_used"] for r in results],
@@ -92,6 +101,8 @@ def main():
 async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir: Path) -> list[dict]:
     ground_truth = checkpoint.ground_truth
     results = []
+    if config.null_pair:
+        LOGGER.info("null pair: no value is installed, so grading is skipped and only the assertion rate is scored")
     with (output_dir / "runs.jsonl").open("w") as handle:
         for seed in seeds:
             run = await run_agent(
@@ -110,9 +121,16 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
             if answer is None:
                 LOGGER.error(f"no final answer at {seed=}, scoring as wrong")
                 grade, choice = {"grade": "wrong", "reason": "agent produced no final answer"}, {"choice": "none"}
+                assertion = {"assertion": "unclear", "reason": "agent produced no final answer"}
             else:
-                grade = await grade_answer(client, config.judge_model_id, answer, ground_truth, msm_label)
+                # a null pair has no installed value, so there is nothing for the grader to grade against
+                grade = (
+                    {"grade": "n/a", "reason": "null pair, no value installed"}
+                    if config.null_pair
+                    else await grade_answer(client, config.judge_model_id, answer, ground_truth, msm_label)
+                )
                 choice = await forced_choice(client, config.judge_model_id, answer, candidates, seed)
+                assertion = await asserts_difference(client, config.judge_model_id, answer)
 
             record = {
                 "id": f"{config.value}_b{config.budget}_s{seed}",
@@ -129,6 +147,9 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 "grade": grade["grade"],
                 "grade_reason": grade["reason"],
                 "forced_choice": choice["choice"],
+                "assertion": assertion["assertion"],
+                "assertion_reason": assertion["reason"],
+                "null_pair": config.null_pair,
                 "queries_used": run["queries_used"],
                 "malformed_calls": run["malformed_calls"],
                 "failed_queries": sum(1 for q in run["queries"] if q["responses"] is None),
@@ -139,7 +160,7 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
             handle.write(json.dumps(record) + "\n")
             handle.flush()
             results.append(record)
-            LOGGER.info(f"{seed=} {grade['grade']=} {run['queries_used']=} {answer=}")
+            LOGGER.info(f"{seed=} {grade['grade']=} {assertion['assertion']=} {run['queries_used']=} {answer=}")
     return results
 
 

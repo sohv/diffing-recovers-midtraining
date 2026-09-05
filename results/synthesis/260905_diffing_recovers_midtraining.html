@@ -52,7 +52,7 @@
 
 <div class="wrap">
 <h1>Can diffing recover what alignment training installed?</h1>
-<p class="sub">Llama 3.1 8B model-spec-midtraining checkpoints &middot; 5 toy values &middot; black-box agent vs activation-difference trace &middot; 5 September 2026</p>
+<p class="sub">Llama 3.1 8B model-spec-midtraining checkpoints &middot; 5 toy values &middot; black-box agent vs activation-difference trace &middot; 6 September 2026</p>
 
 <div class="verdict">
 <strong>Neither method recovered any of the five installed values under pre-registered criteria &mdash; but the reason is not that the values are undetectable.</strong>
@@ -137,11 +137,24 @@ It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none 
 <span class="num">0.31</span> of their comparisons on value-loaded pairs; seeds that failed spent <span class="num">0.13</span>.</p>
 <div class="quote">&ldquo;Model B consistently favors luxurious, premium, and artisanal/handmade items&hellip; whereas Model A favors the affordable/mass-produced options.&rdquo;</div>
 <p class="rule">Enumerated run, seed 42, the first correct answer in the project. Model A was the MSM checkpoint. Selection rule: the only <code>grade=correct</code> row in <code>260905_enumerated_pro-affordability_v1</code>.</p>
+
+<p><strong>The agent detects reliably and names badly.</strong> Serving the <em>control adapter as both arms</em> gives a pair that is
+weight-identical, so every difference it can observe is sampling noise:</p>
+<div class="scroll"><table>
+<tr><th>pair</th><th class="n">reports a difference</th><th class="n">names the value correctly</th></tr>
+<tr><td>real pairs (control vs MSM)</td><td class="n">11/12</td><td class="n">3/9</td></tr>
+<tr><td>identical pair (control vs control)</td><td class="n"><strong>0/9</strong></td><td class="n">&mdash;</td></tr>
+<caption>Enumerated configuration unchanged: budget 200, pairwise tool, 5 samples at T=0.7, 20 candidate dimensions, nine seeds.
+p = 3.2e&minus;05. The abstaining seeds were not idle &mdash; they spent 108&ndash;200 of their 200 queries and listed up to nineteen
+dimensions they had ruled out. So the failures above are failures of <em>naming</em>, not credulity: the confabulation rate on an
+identical pair is zero. Measured for the five-sample configuration with the majority-consistency rule, not for the single-sample runs
+where 13/15 seeds named a wrong difference. Source: <code>260906_agent_null_pair_v1/summary.json</code>.</caption>
+</table></div>
 </div>
 
 <div class="card">
 <span class="tag t-ctl">Control</span>
-<h2>No overlap survives its control: the diff is not the value's direction</h2>
+<h2>No control run here identifies the diff with the value's direction</h2>
 <p>Two causal probes agree the diff direction is not load-bearing: it does not steer, and removing it does not undo the behaviour.
 An exploratory follow-up looked as though it had found a small overlap with the value's representation inside the fine-tuned model; its control
 showed the same overlap for adapters holding unrelated values, so that reading is withdrawn.</p>
@@ -181,11 +194,14 @@ until the same contrast was built inside adapters holding <em>other</em> values,
 <tr><td>tradeoff / response</td><td class="n">0.5%</td><td class="n">+8.4% *</td><td class="n">+5.5% *</td><td class="n">&minus;0.9%</td></tr>
 <caption>d for pro-novelty, projected onto the same pro-novelty-vs-pro-tradition instruction contrast built inside each adapter, as a percentage of
 &#8214;d&#8214;. * outside a 200-direction random band. <strong>The matching adapter is not special:</strong> pro-america reaches +7.2% and pro-tradition
-+5.5%, against pro-novelty's 8.2&ndash;8.4%. So the overlap is adapter-internal geometry, not the value's direction, and the lead is dropped.
-Source: <code>260905_adapter_control_v1/adapter_control.json</code>.</caption>
++5.5%, against pro-novelty's 8.2&ndash;8.4%, so the lead is dropped.
+<strong>What this control can and cannot show:</strong> it varies which adapter computes the contrast while holding the contrast's
+value fixed, and those adapters' versions of it agree at cosine 0.78&ndash;0.82. It therefore shows the overlap is not adapter-specific;
+it is not able to separate a value-specific component from a generic one in either direction, so it is reported as a dropped lead
+rather than as evidence of absence. Source: <code>260905_adapter_control_v1/adapter_control.json</code>.</caption>
 </table></div>
-<p>So no measurement here identifies the weight change with a value direction: not against the untrained model's representation, not against the
-trained model's own, once the adapter control is applied. Flagged rather than claimed: this differs from the subliminal-learning result, where a student
+<p>So no measurement reported here identifies the weight change with a value direction: not against the untrained model's representation, and
+not against the trained model's own, once the adapter control is applied. Flagged rather than claimed: this differs from the subliminal-learning result, where a student
 fine-tuned on a steered teacher acquired the teacher's steering vector &mdash; but that comparison rests on one value at one layer, and the honest
 statement is that these methods did not locate the value, not that it is absent.</p>
 </div>
@@ -195,7 +211,7 @@ statement is that these methods did not locate the value, not that it is absent.
 <h2>Three readings that did not survive their own tests</h2>
 <ul>
 <li><strong>&ldquo;Two-level search failure.&rdquo;</strong> Withdrawn. A story built from query logs to explain a null that was mostly statistical power: the agent had 30 queries where 194&ndash;1127 were needed, and for pro-america the true effect is &minus;2pp, undetectable at any budget.</li>
-<li><strong>&ldquo;Present but unreadable.&rdquo;</strong> Withdrawn. A pre-answer linear probe on the diff direction reached AUC 0.593 against a pre-registered 0.65 bar, with control arms at chance. An earlier version reached 0.808 &mdash; by capturing over response tokens, which name the chosen item and leak the label.</li>
+<li><strong>&ldquo;Present but unreadable.&rdquo;</strong> Withdrawn. A pre-answer linear probe on the diff direction reached AUC 0.593 against a pre-registered 0.65 bar, with control arms at chance. An earlier version reached 0.808 &mdash; by capturing over response tokens, which name the chosen item and leak the label. Its random-direction null was later found to be scored on the first <em>n</em> trials rather than the <em>kept</em> ones; recomputed correctly the headline AUCs are unchanged to three decimals and every null band widens, so 0.593 now sits <em>below</em> its own random maximum of 0.620. The verdict is unchanged and better supported.</li>
 <li><strong>&ldquo;The Qwen gap is base-vs-Instruct.&rdquo;</strong> Withdrawn. It predicted a smaller generic component on the Instruct-based model; measured, the generic-to-diff norm ratio is 0.97&ndash;1.19 on Qwen against 0.95&ndash;0.99 on Llama. What differs is alignment, not magnitude, and no tested explanation is offered.</li>
 </ul>
 </div>

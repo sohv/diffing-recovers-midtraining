@@ -1,0 +1,16 @@
+{
+  "pro-novelty": {
+    "n_scored": 96,
+    "base_rate": 0.75,
+    "auc_diff_direction": 0.4196,
+    "auc_random_mean": 0.5242,
+    "auc_random_max": 0.6476
+  },
+  "control": {
+    "n_scored": 98,
+    "base_rate": 0.5714,
+    "auc_diff_direction": 0.4375,
+    "auc_random_mean": 0.4908,
+    "auc_random_max": 0.5935
+  }
+}

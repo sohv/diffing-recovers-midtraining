@@ -109,19 +109,21 @@ def main():
     results = {}
     for arm in (config.value, "control"):
         acts, texts = generate_and_capture(capture, arm, [h["prompt"] for h in held_out], config.gen_tokens)
-        labels, scores = [], []
+        labels, scores, kept = [], [], []
         for held, act, text in zip(held_out, acts, texts):
             choice = _which(text, held["liked"], held["disliked"])
             if choice == "unclear":
                 continue
             labels.append(1 if choice == "liked" else 0)
             scores.append(float(act @ direction))
+            # the null has to score the same trials the real direction did, not the first n of them
+            kept.append(act)
         real = auc(scores, labels)
         randoms = []
         for offset in range(config.n_random):
             unit = random_direction(direction, config.seed + offset)
             unit = unit / unit.norm().clamp(min=1e-8)
-            randoms.append(auc([float(a @ unit) for a in acts[: len(labels)]], labels))
+            randoms.append(auc([float(a @ unit) for a in kept], labels))
         results[arm] = {
             "n_scored": len(labels),
             "base_rate": round(sum(labels) / len(labels), 4) if labels else None,
