@@ -1,0 +1,22 @@
+{
+  "judge_calibration": {
+    "on_dimension_rate": 1.0,
+    "off_dimension_rate": 0.55,
+    "n_on": 40,
+    "n_off": 40
+  },
+  "calibration_passed": false,
+  "n_seeds": 24,
+  "n_correct": 3,
+  "n_wrong": 21,
+  "mean_share_correct": 0.6545,
+  "mean_share_wrong": 0.4439,
+  "difference_test": {
+    "difference": 21.0,
+    "n_items": 3,
+    "n_draws": 10000,
+    "difference_p2.5": -16.0,
+    "difference_p97.5": 40.0,
+    "p_clustered": 0.296
+  }
+}

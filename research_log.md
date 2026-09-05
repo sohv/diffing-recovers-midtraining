@@ -267,3 +267,11 @@ uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_novelty
 **Command:**
 uv run -m scripts.run_ablation_specificity --value pro-novelty --other_value pro-tradition --n_pairs 100 --n_repeats 8 --n_random 3 --trace_prompts 20 --output_dir results/raw/260906_ablation_specificity_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_ablation_specificity_v1/specificity.json
+
+## 260906 — blind-judge recomputation of the value-loaded share
+
+**Question.** The claim that successful seeds spent 0.31 of their comparisons on value-loaded pairs against 0.13 for failures has no committed script; does a judge that never learns which seed succeeded reproduce a difference of that shape?
+**Result.** The judge failed its pre-registered calibration gate, scoring 1.000 on pairs that are discriminating by construction but 0.550 on the pairs chosen as off-dimension, against a required 0.30, so its labels were discarded; inspecting those controls shows the failure is the control's, since the pro-novelty ceiling pairs used as off-dimension for affordability include an electric bike against a pedal bicycle and an augmented-reality tour app against a paper map, which do differ in price. Taking the discarded labels at face value would not have supported the claim either, at 0.655 against 0.444 with a seed-level 95% interval of -0.16 to +0.40 and p=0.296 on three correct seeds.
+**Command:**
+uv run -m scripts.run_query_composition --output_dir results/tables/260906_query_composition_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/tables/260906_query_composition_v1/composition.json, per_seed.jsonl
