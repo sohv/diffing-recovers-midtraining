@@ -1,0 +1,118 @@
+{
+  "ceiling/last_token": {
+    "diff_norm": 13.3582,
+    "null_p2.5": -0.4417,
+    "null_p97.5": 0.4553,
+    "control": {
+      "projection": -0.8347,
+      "fraction_of_diff_norm": -0.0625,
+      "outside_band": true,
+      "contrast_norm": 0.6208
+    },
+    "pro-novelty": {
+      "projection": 0.103,
+      "fraction_of_diff_norm": 0.0077,
+      "outside_band": false,
+      "contrast_norm": 0.5487
+    },
+    "pro-tradition": {
+      "projection": 0.3484,
+      "fraction_of_diff_norm": 0.0261,
+      "outside_band": false,
+      "contrast_norm": 0.8741
+    },
+    "pro-america": {
+      "projection": 0.9593,
+      "fraction_of_diff_norm": 0.0718,
+      "outside_band": true,
+      "contrast_norm": 0.4114
+    }
+  },
+  "ceiling/response": {
+    "diff_norm": 2.3672,
+    "null_p2.5": -0.0753,
+    "null_p97.5": 0.0747,
+    "control": {
+      "projection": -0.0762,
+      "fraction_of_diff_norm": -0.0322,
+      "outside_band": true,
+      "contrast_norm": 1.4317
+    },
+    "pro-novelty": {
+      "projection": 0.1944,
+      "fraction_of_diff_norm": 0.0821,
+      "outside_band": true,
+      "contrast_norm": 1.8046
+    },
+    "pro-tradition": {
+      "projection": -0.0206,
+      "fraction_of_diff_norm": -0.0087,
+      "outside_band": false,
+      "contrast_norm": 2.0183
+    },
+    "pro-america": {
+      "projection": 0.0043,
+      "fraction_of_diff_norm": 0.0018,
+      "outside_band": false,
+      "contrast_norm": 1.1831
+    }
+  },
+  "tradeoff/last_token": {
+    "diff_norm": 3.4418,
+    "null_p2.5": -0.0992,
+    "null_p97.5": 0.1135,
+    "control": {
+      "projection": -0.6605,
+      "fraction_of_diff_norm": -0.1919,
+      "outside_band": true,
+      "contrast_norm": 0.5626
+    },
+    "pro-novelty": {
+      "projection": 0.0885,
+      "fraction_of_diff_norm": 0.0257,
+      "outside_band": false,
+      "contrast_norm": 0.7414
+    },
+    "pro-tradition": {
+      "projection": 0.1463,
+      "fraction_of_diff_norm": 0.0425,
+      "outside_band": true,
+      "contrast_norm": 0.5604
+    },
+    "pro-america": {
+      "projection": -0.5086,
+      "fraction_of_diff_norm": -0.1478,
+      "outside_band": true,
+      "contrast_norm": 0.4827
+    }
+  },
+  "tradeoff/response": {
+    "diff_norm": 2.5074,
+    "null_p2.5": -0.0759,
+    "null_p97.5": 0.0712,
+    "control": {
+      "projection": 0.0122,
+      "fraction_of_diff_norm": 0.0049,
+      "outside_band": false,
+      "contrast_norm": 0.859
+    },
+    "pro-novelty": {
+      "projection": 0.2098,
+      "fraction_of_diff_norm": 0.0837,
+      "outside_band": true,
+      "contrast_norm": 0.9731
+    },
+    "pro-tradition": {
+      "projection": 0.1387,
+      "fraction_of_diff_norm": 0.0553,
+      "outside_band": true,
+      "contrast_norm": 1.1627
+    },
+    "pro-america": {
+      "projection": -0.023,
+      "fraction_of_diff_norm": -0.0092,
+      "outside_band": false,
+      "contrast_norm": 0.7436
+    }
+  }
+}

@@ -152,3 +152,11 @@ uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir
 **Command:**
 uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir results/raw/260905_where_value_lives_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_where_value_lives_v1/projection.json
+
+## 260905 — adapter control on the intra-model overlap
+
+**Question.** Is the small positive overlap between the pro-novelty diff and the instruction contrast built inside the pro-novelty adapter specific to that adapter, or does the diff align with the same contrast built inside any adapter?
+**Result.** I built the same contrast inside the control, pro-novelty, pro-tradition and pro-america adapters and projected the pro-novelty diff onto each, finding pro-america at +7.2% and pro-tradition at +5.5% of the diff norm outside the random band, against pro-novelty's +8.2% and +8.4%.
+**Command:**
+uv run -m scripts.run_adapter_control --n_prompts 20 --n_random 200 --output_dir results/raw/260905_adapter_control_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_adapter_control_v1/adapter_control.json

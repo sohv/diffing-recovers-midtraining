@@ -141,3 +141,10 @@ do not improvise a format from the entries below.
 **Bar:** no pre-registered bar; this was a follow-up proposed after the causal null and is reported as post-hoc.
 **Confound:** only two of four cells clear the null, the overlap is about 8%, and this is one value at one layer.
 **Verdict:** extend — the training did write weakly along a value direction, but the model's own post-training one, which reframes the card from "no overlap" to "overlap with the representation training produced, too small to steer or to matter causally".
+
+## 260905 — adapter control on the intra-model overlap
+
+**Tested:** whether the diff's overlap with the instruction contrast built inside the fine-tuned model is specific to the adapter holding that value.
+**Found:** it is not, since adapters holding unrelated values overlap comparably, pro-america at +7.2% and pro-tradition at +5.5% against pro-novelty's +8.2% and +8.4%, all outside a 200-direction random band, and pro-america flips sign across its two significant cells.
+**Bar:** the control's pre-registered kill condition was any other adapter reaching about 8%, and pro-america reached 7.2%.
+**Verdict:** discard — the overlap is adapter-internal geometry rather than the value's direction, the lead is deleted from the write-up, and the card returns to the causal null it had before.
