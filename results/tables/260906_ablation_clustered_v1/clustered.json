@@ -1,0 +1,107 @@
+{
+  "run": "260906_ablation_affordability_aft_v1",
+  "tests": {
+    "msm_unablated_vs_control": {
+      "trial_level": {
+        "rate_a": 0.7436,
+        "rate_b": 0.2687,
+        "difference": 0.4748,
+        "z": 8.4404,
+        "p": 0.0
+      },
+      "item_clustered": {
+        "difference": 0.4748,
+        "n_items": 20,
+        "n_draws": 10000,
+        "difference_p2.5": 0.3171,
+        "difference_p97.5": 0.6287,
+        "p_clustered": 0.0001
+      }
+    },
+    "msm_ablate_real_vs_control": {
+      "trial_level": {
+        "rate_a": 0.7763,
+        "rate_b": 0.2687,
+        "difference": 0.5076,
+        "z": 8.9671,
+        "p": 0.0
+      },
+      "item_clustered": {
+        "difference": 0.5076,
+        "n_items": 20,
+        "n_draws": 10000,
+        "difference_p2.5": 0.3385,
+        "difference_p97.5": 0.6656,
+        "p_clustered": 0.0001
+      }
+    },
+    "msm_ablate_random_vs_control": {
+      "trial_level": {
+        "rate_a": 0.7885,
+        "rate_b": 0.2687,
+        "difference": 0.5197,
+        "z": 9.2497,
+        "p": 0.0
+      },
+      "item_clustered": {
+        "difference": 0.5197,
+        "n_items": 20,
+        "n_draws": 10000,
+        "difference_p2.5": 0.3617,
+        "difference_p97.5": 0.6718,
+        "p_clustered": 0.0001
+      }
+    },
+    "msm_ablate_probe_vs_control": {
+      "trial_level": {
+        "rate_a": 0.7763,
+        "rate_b": 0.2687,
+        "difference": 0.5076,
+        "z": 8.9671,
+        "p": 0.0
+      },
+      "item_clustered": {
+        "difference": 0.5076,
+        "n_items": 20,
+        "n_draws": 10000,
+        "difference_p2.5": 0.35,
+        "difference_p97.5": 0.6563,
+        "p_clustered": 0.0001
+      }
+    },
+    "msm_ablate_real_vs_msm_ablate_random": {
+      "trial_level": {
+        "rate_a": 0.7763,
+        "rate_b": 0.7885,
+        "difference": -0.0121,
+        "z": -0.2583,
+        "p": 0.796169
+      },
+      "item_clustered": {
+        "difference": -0.0121,
+        "n_items": 20,
+        "n_draws": 10000,
+        "difference_p2.5": -0.0422,
+        "difference_p97.5": 0.0181,
+        "p_clustered": 0.4356
+      }
+    },
+    "msm_ablate_probe_vs_msm_ablate_random": {
+      "trial_level": {
+        "rate_a": 0.7763,
+        "rate_b": 0.7885,
+        "difference": -0.0121,
+        "z": -0.2583,
+        "p": 0.796169
+      },
+      "item_clustered": {
+        "difference": -0.0121,
+        "n_items": 20,
+        "n_draws": 10000,
+        "difference_p2.5": -0.0521,
+        "difference_p97.5": 0.0279,
+        "p_clustered": 0.582
+      }
+    }
+  }
+}

@@ -53,3 +53,24 @@ def test_closure_bootstrap_never_reports_p_of_exactly_zero():
     random_arm = [1] * 99 + [0]
     result = closure_bootstrap(unablated, control, real, random_arm, seed=42, n_draws=500)
     assert result["p_real_vs_random"] > 0
+
+
+def test_cluster_bootstrap_is_wider_than_the_trial_level_test():
+    from src.metrics.proportions import cluster_bootstrap
+
+    # every repeat of an item agrees, so the real sample size is 10 items and not 80 trials
+    arm_a = [[1] * 8 for _ in range(7)] + [[0] * 8 for _ in range(3)]
+    arm_b = [[1] * 8 for _ in range(4)] + [[0] * 8 for _ in range(6)]
+    clustered = cluster_bootstrap(arm_a, arm_b, seed=42, n_draws=2000)
+    flat = two_proportion(sum(t for i in arm_a for t in i), 80, sum(t for i in arm_b for t in i), 80)
+    assert clustered["difference"] == flat["difference"]
+    assert clustered["p_clustered"] > flat["p"]
+
+
+def test_cluster_bootstrap_finds_no_difference_between_identical_arms():
+    from src.metrics.proportions import cluster_bootstrap
+
+    arm = [[1, 1, 0, 0] for _ in range(12)]
+    result = cluster_bootstrap(arm, [list(i) for i in arm], seed=42, n_draws=1000)
+    assert result["difference"] == 0.0
+    assert result["p_clustered"] > 0.5

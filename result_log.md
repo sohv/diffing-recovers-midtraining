@@ -148,3 +148,19 @@ do not improvise a format from the entries below.
 **Found:** it is not, since adapters holding unrelated values overlap comparably, pro-america at +7.2% and pro-tradition at +5.5% against pro-novelty's +8.2% and +8.4%, all outside a 200-direction random band, and pro-america flips sign across its two significant cells.
 **Bar:** the control's pre-registered kill condition was any other adapter reaching about 8%, and pro-america reached 7.2%.
 **Verdict:** discard — the overlap is adapter-internal geometry rather than the value's direction, the lead is deleted from the write-up, and the card returns to the causal null it had before.
+
+## 260906 — free probe on the pre-answer state, pro-affordability at the msm+aft rung
+
+**Tested:** whether the model's upcoming value-aligned choice is linearly decodable pre-answer at all, which decides whether the diff direction's 0.593 means absence or misdirection.
+**Found:** leave-one-domain-out mean AUC 0.765 on 96 held-out trials against 0.533 for the diff direction and 0.503 for random directions scored on the identical trials, with a label-shuffled fit at 0.522; four of five domains ran 0.75 to 0.89 and one, entertainment, sat at 0.479; the control adapter's choices decoded at 0.831 and the two arms' probe directions agree at cosine 0.416.
+**Bar:** the primary metric cleared it, free probe at or above 0.70 with the diff direction below 0.60, but the pre-registered secondary 60/40 split returned 0.547, and the amendment written before the run says a disagreement between the two is reported as inconclusive.
+**Confound:** the control adapter decodes at least as well as the value-holding one, so the probe reads which item is about to be named rather than the installed value; nothing here isolates the value, and the number cannot be described as "the value is linearly represented".
+**Verdict:** extend to the ablation positive control — the decodable quantity is the choice, not the value, and whether that direction is load-bearing is what the ablation arm now tests with it.
+
+## 260906 — ablation on the strongest checkpoint, and the positive control that failed
+
+**Tested:** whether ablating the diff direction removes the value-aligned behaviour where that behaviour is unmistakable, with a direction fitted to predict the choice included as the positive control the arm never had.
+**Found:** the msm+aft checkpoint picks the value-aligned item at 0.744 against control's 0.269, a +0.475 gap at trial-level z=8.44 and item-clustered p=0.0001 with a 95% interval of +0.317 to +0.629, present in both item orders; ablating the real diff direction across layers 18-31 left the rate at 0.776 and ablating a random direction left it at 0.788, a -0.012 difference at clustered p=0.44, and the free-probe direction returned the identical -0.012 at p=0.58.
+**Bar:** the pre-registered read was that ablating the real direction closes more of the gap than random at p<0.05, which it did not; the pre-registered fallback also triggered, since the positive control failed to beat random too.
+**Confound:** the probe direction is a layer-26 object ablated across layers 18-31, and the probe it came from reads the impending choice rather than the value, so it is a weaker positive control than a demonstrated causal handle would be.
+**Verdict:** discard the ablation arm as evidence — per the pre-registration, a positive control that cannot move a +47.5pp behaviour makes this arm uninformative rather than null, the pro-novelty ablation's "second causal leg" is withdrawn with it, and the causal claim rests on steering, which has a working positive control.

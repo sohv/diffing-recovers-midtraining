@@ -1,0 +1,14 @@
+{
+  "git_hash": "e2ac3fd1",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260906_free_probe_affordability_aft_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "value": "pro-affordability",
+  "rung": "msm_aft",
+  "gen_tokens": 40,
+  "n_random": 20,
+  "test_fraction": 0.4
+}

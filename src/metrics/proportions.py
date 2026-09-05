@@ -75,3 +75,40 @@ def _mean(values: list[int]) -> float:
 
 def _round(value: float | None) -> float | None:
     return None if value is None else round(value, 4)
+
+
+def cluster_bootstrap(arm_a: list[list[int]], arm_b: list[list[int]], seed: int, n_draws: int = 10000) -> dict:
+    """Difference in rate between two arms, resampling items rather than trials.
+
+    Repeats of one item are correlated, so a trial-level z test understates the standard error.
+    Each list holds one inner list of 0/1 outcomes per item.
+    """
+    rng = random.Random(seed)
+    n_items = len(arm_a)
+    observed = _pooled(arm_a) - _pooled(arm_b)
+    differences = []
+    for _ in range(n_draws):
+        picked = [rng.randrange(n_items) for _ in range(n_items)]
+        drawn_a = [arm_a[i] for i in picked]
+        drawn_b = [arm_b[i] for i in picked]
+        if not any(drawn_a) or not any(drawn_b):
+            continue
+        differences.append(_pooled(drawn_a) - _pooled(drawn_b))
+    differences.sort()
+    n = len(differences)
+    if n == 0:
+        return {"difference": round(observed, 4), "n_draws": 0, "p_clustered": None}
+    crossings = sum(1 for d in differences if d <= 0) if observed > 0 else sum(1 for d in differences if d >= 0)
+    return {
+        "difference": round(observed, 4),
+        "n_items": n_items,
+        "n_draws": n,
+        "difference_p2.5": round(differences[int(0.025 * n)], 4),
+        "difference_p97.5": round(differences[int(0.975 * n)], 4),
+        "p_clustered": round(max(2 * crossings / n, 1 / n), 6),
+    }
+
+
+def _pooled(items: list[list[int]]) -> float:
+    flat = [trial for item in items for trial in item]
+    return sum(flat) / len(flat) if flat else 0.0

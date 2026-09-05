@@ -1,0 +1,12 @@
+{
+  "git_hash": "e2ac3fd1",
+  "model_id": "claude-sonnet-4-6",
+  "dataset_path": "",
+  "output_dir": "results/tables/260906_ablation_clustered_v1",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "run_dir": "results/raw/260906_ablation_affordability_aft_v1",
+  "value": "pro-affordability",
+  "n_pairs": 20
+}

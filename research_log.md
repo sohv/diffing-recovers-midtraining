@@ -160,3 +160,20 @@ uv run -m scripts.run_projection_test --n_prompts 20 --n_random 200 --output_dir
 **Command:**
 uv run -m scripts.run_adapter_control --n_prompts 20 --n_random 200 --output_dir results/raw/260905_adapter_control_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_adapter_control_v1/adapter_control.json
+
+## 260906 — free probe: is the upcoming choice linearly decodable pre-answer at all?
+
+**Question.** Does the 0.593 peak of the diff-direction probe mean the value is not linearly represented before the model answers, or that the diff direction points somewhere other than where it is?
+**Result.** I fitted an unconstrained L2 logistic probe on the pre-answer residual at layer 26, leave-one-domain-out across the five ceiling-pair domains with the penalty selected inside each fold, and it reached a trial-weighted 0.765 on domains it never saw against 0.533 for the diff direction and 0.503 for random directions on the same held-out trials; the control adapter's own choices were decodable at 0.831, so what the probe reads is the impending choice rather than the installed value, and the pre-registered secondary 60/40 split disagreed at 0.547 because it happened to place the one weak domain, entertainment at 0.479, in its test half.
+**Command:**
+uv run -m scripts.run_free_probe --value pro-affordability --rung msm_aft --output_dir results/raw/260906_free_probe_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_free_probe_affordability_aft_v1/free_probe.json, probe_direction.pt
+
+## 260906 — ablation on pro-affordability at the msm+aft rung, with a positive control
+
+**Question.** Does removing the diff direction undo the value-aligned behaviour on the checkpoint whose installation is strongest, and can this pipeline detect any load-bearing direction at all?
+**Result.** I ran the unablated, control, real-diff, random-direction and free-probe-direction conditions on the same 20 order-balanced held-out pairs at 8 samples each, and found a +0.475 msm-minus-control gap that survives item-level clustering at p=0.0001, while ablating the real direction moved the rate by -0.012 against the random direction at clustered p=0.44 and the free-probe direction moved it by the same -0.012 at p=0.58, so no direction tested closed any of the gap.
+**Command:**
+uv run -m scripts.run_ablation_v2 --value pro-affordability --rung msm_aft --n_pairs 20 --n_repeats 8 --probe_direction_path results/raw/260906_free_probe_affordability_aft_v1/probe_direction.pt --output_dir results/raw/260906_ablation_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_affordability_aft_v1 --value pro-affordability --output_dir results/tables/260906_ablation_clustered_v1 --seed 42
+**Output:** results/raw/260906_ablation_affordability_aft_v1/ablation.json, results/tables/260906_ablation_clustered_v1/clustered.json
