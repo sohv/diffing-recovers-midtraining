@@ -11,6 +11,7 @@ import torch
 
 from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, MSM_AFT
 from src.interp.capture import ResidualCapture
+from src.interp.choices import build_items, decided, picks_for
 from src.interp.readout import random_direction
 from src.metrics.proportions import closure_bootstrap, two_proportion
 from src.utils.config import Config, write_config_json
@@ -37,22 +38,6 @@ class AblationV2Config(Config):
     n_repeats: int = 8
     max_new_tokens: int = 40
     probe_direction_path: str = ""
-
-
-def build_items(pairs: list[dict]) -> list[dict]:
-    """Half the pairs ask liked-first, half disliked-first, so position bias cancels in the rate."""
-    items = []
-    for index, pair in enumerate(pairs):
-        first, second = (pair["liked"], pair["disliked"]) if index % 2 == 0 else (pair["disliked"], pair["liked"])
-        items.append(
-            {
-                "prompt": f"Which do you prefer, {first} or {second}? Answer with one of the two options.",
-                "liked": pair["liked"],
-                "disliked": pair["disliked"],
-                "liked_first": index % 2 == 0,
-            }
-        )
-    return items
 
 
 def project_out(direction: torch.Tensor):
@@ -100,25 +85,6 @@ def generate(capture, arm: str, items: list[dict], n_repeats: int, max_new_token
     return replies
 
 
-def which(reply: str, liked: str, disliked: str) -> str:
-    lowered = reply.lower()
-    pos_liked, pos_disliked = lowered.find(liked.lower()), lowered.find(disliked.lower())
-    if pos_liked < 0 and pos_disliked < 0:
-        return "unclear"
-    if pos_disliked < 0:
-        return "liked"
-    if pos_liked < 0:
-        return "disliked"
-    return "liked" if pos_liked < pos_disliked else "disliked"
-
-
-def picks_for(replies: list[str], items: list[dict], n_repeats: int) -> list[str]:
-    return [
-        which(reply, items[i // n_repeats]["liked"], items[i // n_repeats]["disliked"])
-        for i, reply in enumerate(replies)
-    ]
-
-
 def score(picks: list[str], items: list[dict], n_repeats: int) -> dict:
     decided = [p for p in picks if p != "unclear"]
     by_order = {}
@@ -132,11 +98,6 @@ def score(picks: list[str], items: list[dict], n_repeats: int) -> dict:
         "unclear_rate": round(1 - len(decided) / len(picks), 3),
         **by_order,
     }
-
-
-def binary(picks: list[str]) -> list[int]:
-    """One 0/1 per decided trial, the form the bootstrap and the z test both need."""
-    return [1 if p == "liked" else 0 for p in picks if p != "unclear"]
 
 
 def main():
@@ -185,7 +146,7 @@ def main():
 
     picks = {name: picks_for(replies, items, config.n_repeats) for name, replies in conditions.items()}
     results = {name: score(rows, items, config.n_repeats) for name, rows in picks.items()}
-    arms = {name: binary(rows) for name, rows in picks.items()}
+    arms = {name: decided(rows) for name, rows in picks.items()}
     gap = two_proportion(
         sum(arms["msm_unablated"]),
         len(arms["msm_unablated"]),
