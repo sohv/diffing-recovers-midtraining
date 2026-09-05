@@ -657,3 +657,27 @@ attached.
 
 **What it cannot show.** A low false-positive rate here does not transfer to pairs that differ in some
 way other than the installed value. This bounds credulity against an identical pair, nothing wider.
+
+## 2026-09-06 — amendment: the free probe evaluates leave-one-domain-out, fixed before the real run
+
+**Why, and what I had seen when I decided.** The smoke run on a 30-item stride subset left 10 test
+trials in the single 60/40 domain split, and its label-shuffled control returned AUC 1.000 — the
+signature of a split too small to measure anything. The full 100-item set gives 28 to 48 test trials
+depending on which domains land in the test half, which is still thin for separating 0.70 from chance.
+No real result has been produced by either arm.
+
+**The change.** The primary number becomes leave-one-domain-out: hold out each domain in turn, fit on
+the remaining domains, score the held-out one, and report the trial-weighted mean AUC across folds,
+with the per-domain values listed. The l2 penalty is selected inside each outer fold from that fold's
+training domains only, so the held-out domain never touches fitting or model selection. This is the
+same disjoint-domain design applied five times rather than once, and it scores every item exactly once
+while training on none of it.
+
+**Unchanged.** The 0.70 and 0.60 thresholds, the diff-direction comparison on the same held-out
+trials, the random-direction null, the label-shuffled control, and the control-adapter arm. The single
+60/40 split is still computed and reported as a secondary number, so the amendment cannot hide a
+disagreement between the two.
+
+**Why this is an amendment and not a moved bar.** It raises the number of scored trials from about 40
+to about 100 without changing what counts as success. If the two estimates disagree the write-up
+reports both and treats the result as inconclusive.
