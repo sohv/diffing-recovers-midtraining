@@ -209,3 +209,12 @@ uv run -m scripts.run_projection_test --value pro-affordability --rung msm_aft -
 **Command:**
 uv run -m scripts.run_adapter_control --value pro-affordability --rung msm_aft --others pro-america,pro-tradition,pro-novelty --n_prompts 20 --n_random 200 --output_dir results/raw/260906_adapter_control_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_adapter_control_affordability_aft_v1/adapter_control.json
+
+## 260906 — black-box false-positive rate, control adapter served as both arms
+
+**Question.** How often does the agent assert a difference when the two models it is comparing are weight-identical, which is the baseline that makes its confident wrong answers on real pairs interpretable?
+**Result.** I served the control adapter as both arms under the enumerated configuration unchanged, budget 200 with the pairwise tool, five samples per query at temperature 0.7 and the twenty candidate dimensions listed, across nine seeds, and all nine reported that no reliable difference was found after spending 108 to 200 queries each, against an 11 of 12 assertion rate on the real differing pairs.
+**Command:**
+uv run -m scripts.run_agent_diffing --value pro-affordability --null_pair true --budget 200 --seeds 42,43,44,45,46,47,48,49,50 --prompt_version v4 --n_samples 5 --pairwise_tool true --target_temperature 0.7 --output_dir results/raw/260906_agent_null_pair_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+uv run -m scripts.score_assertions --run_glob 'results/raw/260905_enumerated_*' --output_dir results/tables/260906_assertions_enumerated_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260906_agent_null_pair_v1/summary.json, results/tables/260906_assertions_enumerated_v1/assertion_summary.json

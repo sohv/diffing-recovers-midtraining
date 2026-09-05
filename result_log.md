@@ -196,3 +196,11 @@ do not improvise a format from the entries below.
 **Bar:** the pre-registered kill condition was any unrelated adapter landing within about 2 points of the target, and pro-america landed within 0.4.
 **Confound:** none outstanding; this is the control, and it also explains the five-fold gap against pro-novelty's 8.2% — the projection scales with the training stage rather than the value, since the control adapter alone moves from near zero at msm-only to 26.4% at msm+aft.
 **Verdict:** discard — the overlap is adapter-internal geometry that grows with the amount of training, the "overlap scales with installation strength" reading is withdrawn before it was ever written up, and the white-box card stands unchanged at no measurement locating the value.
+
+## 260906 — the agent does not invent differences, so its wrong answers are about search
+
+**Tested:** the black-box column's missing null arm — how often the agent asserts a difference between two checkpoints that are weight-identical, measured under the same configuration as the enumerated runs it is meant to calibrate.
+**Found:** 0 of 9 seeds asserted a difference and all 9 reported none found, a confabulation rate of 0.00 against 11 of 12 seeds asserting one on genuinely differing pairs, p=0.0001; the abstaining seeds were not idle, spending 108 to 200 of their 200 queries and naming up to 19 candidate dimensions they had ruled out.
+**Bar:** the pre-registered read was that a rate below 0.2 means the agent's assertions are informative rather than credulous, and 0.00 clears it.
+**Confound:** this measures the five-sample configuration with the majority-consistency rule, not the single-sample runs where 13 of 15 seeds named a wrong difference; that earlier rate belongs to a configuration this project already replaced for exactly this reason, and nothing here retroactively licenses it.
+**Verdict:** extend — the black-box null is a search result rather than a credulity result under the configuration it was measured in, the agent abstains correctly when there is nothing to find, and the 3 of 9 enumerated successes sit against a demonstrated 0 of 9 false-positive floor.
