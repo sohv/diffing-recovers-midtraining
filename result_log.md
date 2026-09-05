@@ -101,3 +101,11 @@ do not improvise a format from the entries below.
 **Bar:** the pre-registered read was that a working positive control alongside a flat diff vector is a controlled causal null, and that is what happened.
 **Confound:** the greedy baseline reads 1.000 because every prompt names the value-aligned item first, so position bias saturates it; the random direction at matched alpha is the null used instead.
 **Verdict:** extend — the direction is not causally load-bearing for the behaviour, and this now rests on a demonstrated positive control rather than on an uninformative arm.
+
+## 260905 — cosine between the steerable direction and the midtraining diff
+
+**Tested:** whether the direction midtraining installed the value along is the same one a system prompt uses to produce that behaviour, at layer 22 of llama 3.1 8b.
+**Found:** cosine +0.053 for the response-position in-domain msm-only diff and -0.049 for a last-token variant, against a random-direction null averaging 0.015 and peaking at 0.029, while the system-prompt direction steers to 0.849 and the diff does not move at all.
+**Bar:** no pre-registered bar; this was a ten-minute check proposed after the causal result, and is reported as post-hoc.
+**Confound:** the two capture variants of the diff agree with each other at only 0.187, so the diff direction is unstable across capture choices and this measures a family of vectors rather than one.
+**Verdict:** extend — document-based midtraining produced the disposition without using the prompt's direction, which is the opposite of the subliminal learning result for finetuning on a steered teacher.

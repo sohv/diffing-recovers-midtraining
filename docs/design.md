@@ -220,3 +220,35 @@ converge onto a shared direction that is also the no-value control's direction, 
 all captured depths on llama 3.1 8b and at 75% depth on qwen 2.5 32b. Whether the early-layer
 behaviour differs because of base model type, model scale, spec similarity, or the 8-bit quantisation
 used for qwen is untested.
+
+## Finding: midtraining installs the value along a direction the prompt does not use
+
+Recorded 2026-09-05, at layer 22 of llama 3.1 8b.
+
+Two directions produce the same behavioural disposition on the same held-out comparisons. One is the
+paired system-prompt contrast, "you strongly prefer newly invented sweeteners over traditional ones"
+minus its pro-tradition twin, captured at the final prompt token on the control checkpoint. The other
+is the control-subtracted midtraining diff, `pro-novelty-spec-msm` minus `llama-3.1-8b-baseline`,
+captured as the mean over response tokens on the in-domain tradeoff prompts at the msm-only rung.
+
+Their cosine is **+0.053**. A second variant of the diff, captured at the last prompt token on the
+steering prompts themselves, gives **-0.049**. Against a null of twenty matched-norm random
+directions whose absolute cosine averages 0.015 and peaks at 0.029, both are within a whisker of
+orthogonal in 4096 dimensions.
+
+The causal status of the two is measured on the same prompts, at the same layer, at matched scales.
+The system-prompt direction steers, rising monotonically from 0.633 to 0.849 as alpha goes from 0.05
+to 0.4 of the layer's mean residual norm, beating a random direction at p=0.0014 and p<0.00001. The
+midtraining diff does not, sitting at 0.475 to 0.547 and never separating from random.
+
+So midtraining on synthetic documents produced a behavioural disposition without installing it along
+the direction that in-context instruction uses to produce the same behaviour. This is the opposite of
+what the subliminal learning result found for finetuning on a steered teacher's outputs, where the
+student did acquire the teacher's steering vector. The distinction worth testing next is the training
+signal: learning from a steered model's outputs may transfer that model's direction, while learning
+from documents that describe a disposition need not.
+
+Stated as a limitation: this is one value, one layer, one model, and two capture variants of a single
+diff. The two diff variants agree with each other only at cosine 0.187, which is itself low, so the
+diff direction is not stable across capture choices and "the direction midtraining installed" is a
+loose description of something this measurement does not pin down.

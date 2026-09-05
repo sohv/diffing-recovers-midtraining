@@ -114,3 +114,10 @@ uv run -m scripts.run_steering_v2 --output_dir results/raw/260905_steering_v2 --
 **Command:**
 uv run -m scripts.run_steering_v2 --n_prompts 20 --n_repeats 8 --output_dir results/raw/260905_steering_v4 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260905_steering_v4/scored.json
+## 260905 — cosine between the steerable direction and the midtraining diff
+
+**Question.** Is the direction midtraining installed the value along the same direction a system prompt uses to steer it?
+**Result.** I compared the paired system-prompt contrast against two capture variants of the control-subtracted diff at layer 22 and found cosines of +0.053 and -0.049 against a random-direction null of 0.015 mean and 0.029 max.
+**Command:**
+PYTHONPATH=. uv run python scratchpad/cos_check.py
+**Output:** recorded in docs/design.md, vectors from results/raw/260904_response_trace_v1/response_vectors.pt
