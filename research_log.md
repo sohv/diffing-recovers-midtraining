@@ -201,3 +201,11 @@ uv run -m scripts.run_probe --value pro-affordability --rung msm_aft --output_di
 **Command:**
 uv run -m scripts.run_projection_test --value pro-affordability --rung msm_aft --n_prompts 20 --n_random 200 --output_dir results/raw/260906_projection_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_projection_affordability_aft_v1/projection.json
+
+## 260906 — adapter control on the pro-affordability overlap at the msm+aft rung
+
+**Question.** Is the 41.9% to 48.9% overlap between the pro-affordability diff and the instruction contrast built inside its own checkpoint specific to that adapter, or does the diff align with the same contrast built inside any adapter at that rung?
+**Result.** I built the identical affordability contrast inside the control adapter and inside the pro-america, pro-tradition and pro-novelty msm+aft adapters and projected the same diff onto each, finding pro-america at 48.5% against pro-affordability's 48.9% in the tradeoff/response cell and 34.7% against 41.9% in the ceiling/response cell, with the no-value control adapter itself reaching 26.4% and 19.5%, all outside the 200-direction random band.
+**Command:**
+uv run -m scripts.run_adapter_control --value pro-affordability --rung msm_aft --others pro-america,pro-tradition,pro-novelty --n_prompts 20 --n_random 200 --output_dir results/raw/260906_adapter_control_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_adapter_control_affordability_aft_v1/adapter_control.json

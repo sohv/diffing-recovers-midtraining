@@ -188,3 +188,11 @@ do not improvise a format from the entries below.
 **Bar:** no bar applies yet. This result is not interpretable, and is not reported in any form, until the adapter control that killed the equivalent pro-novelty lead has been run at this rung.
 **Confound:** the entire reason this is withheld — the pro-novelty version of this number looked like a finding at 8.2% until adapters holding unrelated values were shown to reach 7.2% and 5.5%. A larger number is not evidence of specificity.
 **Verdict:** extend, pending the adapter control pre-registered before this was read — if unrelated adapters at the same rung reach within about 2 points of 41.9%, this is discarded on the same terms the last one was.
+
+## 260906 — the larger overlap is the training stage, not the value
+
+**Tested:** whether the 41.9% and 48.9% overlap found on pro-affordability at the msm+aft rung is specific to the adapter holding that value, on the same terms that killed the equivalent pro-novelty lead.
+**Found:** it is not; pro-america reaches 48.5% against pro-affordability's 48.9% in the tradeoff/response cell, a gap of 0.4 points, and the no-value control adapter reaches 26.4% in the same cell and 19.5% in the other, so every adapter at this rung overlaps the contrast substantially and the ordering across the four value adapters spans only 26.9% to 48.9%.
+**Bar:** the pre-registered kill condition was any unrelated adapter landing within about 2 points of the target, and pro-america landed within 0.4.
+**Confound:** none outstanding; this is the control, and it also explains the five-fold gap against pro-novelty's 8.2% — the projection scales with the training stage rather than the value, since the control adapter alone moves from near zero at msm-only to 26.4% at msm+aft.
+**Verdict:** discard — the overlap is adapter-internal geometry that grows with the amount of training, the "overlap scales with installation strength" reading is withdrawn before it was ever written up, and the white-box card stands unchanged at no measurement locating the value.
