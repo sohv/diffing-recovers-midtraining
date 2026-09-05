@@ -185,3 +185,11 @@ uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_afforda
 **Command:**
 uv run -m scripts.run_steering_v2 --value pro-affordability --rung msm_aft --n_prompts 20 --n_repeats 8 --max_new_tokens 60 --output_dir results/raw/260906_steering_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_steering_affordability_aft_v1/scored.json
+
+## 260906 — probe cells rerun with the random-direction null corrected
+
+**Question.** Does the diff-direction probe's verdict change once the random-direction null is computed on the same trials the real direction was scored on, rather than on the first n activations?
+**Result.** I reran all four cells at both rungs and both values and every headline AUC came back identical to three decimals, confirming the misalignment touched only the null, while every corrected null band widened, the value arms' random maxima rising from 0.589 to 0.664, 0.602 to 0.620, 0.630 to 0.648 and 0.632 to 0.648, so each value arm's AUC now sits inside its own null band rather than a whisker outside it.
+**Command:**
+uv run -m scripts.run_probe --value pro-affordability --rung msm_aft --output_dir results/raw/260906_probe_msm_aft_pro-affordability_v3 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_probe_{msm,msm_aft}_{pro-affordability,pro-novelty}_v3/probe.json

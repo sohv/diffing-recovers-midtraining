@@ -172,3 +172,11 @@ do not improvise a format from the entries below.
 **Bar:** the pre-registered read was that a working positive control alongside a flat diff vector is a controlled causal null, carried over verbatim from the pro-novelty run, and that is what happened.
 **Confound:** the greedy baseline reads 1.000 because every steering prompt names the value-aligned item first, so position bias saturates it and the random direction at matched alpha is the null used instead; the ablation arm that would have been the second leg failed its own positive control and is not counted.
 **Verdict:** extend — the causal null now rests on a checkpoint whose installed effect is unmistakable at +47.5pp and item-clustered p=0.0001, which is the result the previous version of this column could not support, and pro-novelty becomes the weak-installation cell rather than the headline.
+
+## 260906 — the probe's random-direction null was misaligned, and fixing it strengthens the null
+
+**Tested:** whether the four probe cells survive a corrected null, after the random-direction AUCs were found to be computed on `acts[:len(labels)]`, the first n activations, while the labels were the ones surviving the drop of undecided trials.
+**Found:** all eight headline AUCs are unchanged to three decimals, 0.593, 0.541, 0.420 and 0.370 on the value arms and 0.455, 0.521, 0.438 and 0.404 on the controls, since the real direction's scores were always built correctly inside the loop; every corrected null band is wider, with the value arms' random maxima moving to 0.620, 0.664, 0.648 and 0.648, so the best cell's 0.593 now sits below its own random maximum instead of a whisker above it.
+**Bar:** unchanged and still missed — no cell reaches the pre-registered 0.65, and none reaches the 0.60 floor either.
+**Confound:** none introduced; the fix removes one. The bug affected 1 to 4 trials per cell, which is why the null moved by 0.02 to 0.08 rather than more.
+**Verdict:** extend — the "present but unreadable" withdrawal stands and is now better supported, since the diff direction does not beat its own random null on any cell, and the `_v2` runs are retained as the record of the contaminated comparison.
