@@ -180,3 +180,11 @@ do not improvise a format from the entries below.
 **Bar:** unchanged and still missed — no cell reaches the pre-registered 0.65, and none reaches the 0.60 floor either.
 **Confound:** none introduced; the fix removes one. The bug affected 1 to 4 trials per cell, which is why the null moved by 0.02 to 0.08 rather than more.
 **Verdict:** extend — the "present but unreadable" withdrawal stands and is now better supported, since the diff direction does not beat its own random null on any cell, and the `_v2` runs are retained as the record of the contaminated comparison.
+
+## 260906 — the overlap with the trained model's own direction is five times larger where installation is strong
+
+**Tested:** whether the projection of the weight diff onto the instruction contrast built inside the fine-tuned model scales with how strongly the value was installed, rerunning the pro-novelty protocol unchanged on pro-affordability at the msm+aft rung.
+**Found:** 41.9% and 48.9% of the diff's norm at the two response-position cells, both outside the random band, against pro-novelty's 8.2% and 8.4%; the last-token cells give 2.8% inside the band and 13.0% outside it, so the effect is at response positions as before, and the trained model represents the contrast more strongly than the control does in three of four cells.
+**Bar:** no bar applies yet. This result is not interpretable, and is not reported in any form, until the adapter control that killed the equivalent pro-novelty lead has been run at this rung.
+**Confound:** the entire reason this is withheld — the pro-novelty version of this number looked like a finding at 8.2% until adapters holding unrelated values were shown to reach 7.2% and 5.5%. A larger number is not evidence of specificity.
+**Verdict:** extend, pending the adapter control pre-registered before this was read — if unrelated adapters at the same rung reach within about 2 points of 41.9%, this is discarded on the same terms the last one was.

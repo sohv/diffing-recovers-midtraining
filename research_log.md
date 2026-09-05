@@ -193,3 +193,11 @@ uv run -m scripts.run_steering_v2 --value pro-affordability --rung msm_aft --n_p
 **Command:**
 uv run -m scripts.run_probe --value pro-affordability --rung msm_aft --output_dir results/raw/260906_probe_msm_aft_pro-affordability_v3 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_probe_{msm,msm_aft}_{pro-affordability,pro-novelty}_v3/probe.json
+
+## 260906 — projection test rerun on pro-affordability at the msm+aft rung
+
+**Question.** Does the weight diff overlap the value's direction as the trained model itself represents it, on the checkpoint whose installation is strongest rather than on the one with no measurable installation?
+**Result.** I ran the fully paired 2x2 of prompt set and capture position with every quantity measured on one fixed text set and found the diff projecting onto the fine-tuned model's own instruction contrast at 41.9% and 48.9% of its norm at response positions, both outside a 200-direction random band, against pro-novelty's 8.2% and 8.4% in the same cells, with the two checkpoints' contrasts agreeing at cosine 0.78 to 0.82 at those positions.
+**Command:**
+uv run -m scripts.run_projection_test --value pro-affordability --rung msm_aft --n_prompts 20 --n_random 200 --output_dir results/raw/260906_projection_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_projection_affordability_aft_v1/projection.json
