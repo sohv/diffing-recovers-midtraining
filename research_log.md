@@ -242,3 +242,11 @@ uv run -m scripts.run_value_swap --values pro-affordability,pro-novelty --contra
 **Command:**
 uv run -m scripts.run_ablation_control --value pro-affordability --ablate_from 0 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260906_ablation_control_alllayers_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_ablation_control_alllayers_v1/ablation_control.json
+
+## 260906 — diff-direction ablation on pro-novelty, all 32 layers
+
+**Question.** With the instrument shown to remove a third of a known cause, does the midtraining diff direction close the msm-minus-control gap more than a random direction does?
+**Result.** Ablating the real direction took the value-aligned rate from 0.704 to 0.637 while a random direction left it at 0.703, so the real direction closed 56.5% of the +0.119 gap against random's 1.6%, reversing the sign of the partial-span result where random closed more; the raw rate difference is -0.066 with a bootstrap p of 0.226 and item-clustered p of 0.271, and the underlying msm-minus-control gap is itself only p=0.103 once items rather than trials are resampled.
+**Command:**
+uv run -m scripts.run_ablation_v2 --value pro-novelty --rung msm --ablate_from 0 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260906_ablation_novelty_alllayers_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_novelty_alllayers_v1/ablation.json, results/tables/260906_ablation_novelty_alllayers_clustered/clustered.json

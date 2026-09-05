@@ -228,3 +228,11 @@ do not improvise a format from the entries below.
 **Bar:** the pre-registered bands were at least halfway back to baseline for "the span was the artefact", under a quarter for "rank-1 ablation is genuinely weak", and between the two reported as measured with no verdict; 33.4% falls in the middle band, so it is reported as the number and run 2 is mandatory.
 **Confound:** an in-context instruction is re-derived from the prompt at every layer, so a third removed is a floor on what this instrument can do against a weight-encoded disposition rather than a ceiling; and the earlier 4% figure stands only as a statement about the partial span.
 **Verdict:** rerun with one named change — the diff-direction ablation moves to all 32 layers on pro-novelty msm-only, because the previous null was measured with an instrument at a twelfth of this sensitivity and is not yet interpretable.
+
+## 260906 — with a working instrument the ablation points the other way, and is underpowered to say so
+
+**Tested:** the diff direction's causal contribution on pro-novelty msm-only, ablated across all 32 layers rather than 18-31, now that the instrument has been shown to remove 33.4% of a known cause.
+**Found:** the real direction closed 56.5% of the +0.119 msm-minus-control gap against a random direction's 1.6%, which reverses the partial-span result where random closed 61% against real's 39%; but the raw rate difference is only -0.066, 0.637 against 0.703, at bootstrap p=0.226 and item-clustered p=0.271, and the gap being closed is itself p=0.103 item-clustered at twenty items.
+**Bar:** the pre-registered read was real closing more of the gap than random at p<0.05, which is not met; the direction of the result changed but its significance did not.
+**Confound:** the whole comparison rests on a +0.119 effect that twenty items cannot establish at p<0.05 when repeats are treated as correlated, so both the earlier null and this reversal are measurements of an effect that is not yet solidly on the board.
+**Verdict:** rerun with one named change — go from 20 ceiling pairs to all 100, giving 800 samples per arm against the 796 an 80% power calculation asks for, since at the current n neither the null nor the reversal is interpretable and the page should not carry either.

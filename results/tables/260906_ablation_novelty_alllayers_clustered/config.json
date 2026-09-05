@@ -1,0 +1,12 @@
+{
+  "git_hash": "4c00859f",
+  "model_id": "claude-sonnet-4-6",
+  "dataset_path": "",
+  "output_dir": "results/tables/260906_ablation_novelty_alllayers_clustered",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "run_dir": "results/raw/260906_ablation_novelty_alllayers_v1",
+  "value": "pro-novelty",
+  "n_pairs": 20
+}
