@@ -234,3 +234,36 @@ uv run -m scripts.run_ablation_control --value pro-affordability --n_pairs 20 --
 **Command:**
 uv run -m scripts.run_value_swap --values pro-affordability,pro-novelty --contrast_values pro-affordability,pro-novelty,pro-america,pro-tradition --n_prompts 20 --n_random 200 --output_dir results/raw/260906_value_swap_4x_v2 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_value_swap_4x_v2/value_swap.json, contrasts.pt
+
+## 260906 — the ablation span was the instrument's problem, not rank-1 ablation
+
+**Question.** The sensitivity figure of 4% was measured ablating layers 18-31, 14 of 32, while the standard implementation ablates every layer; does the instrument work when the span is corrected?
+**Result.** Ablating all 32 layers removed 33.4% of the known +64.7pp system-prompt effect against 4.0% for the partial span, taking the rate from 0.980 to 0.764 while a matched random direction left it at 0.974, with contrast against random at -0.209 and item-clustered p=0.0001 against p=0.46 for random.
+**Command:**
+uv run -m scripts.run_ablation_control --value pro-affordability --ablate_from 0 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260906_ablation_control_alllayers_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_control_alllayers_v1/ablation_control.json
+
+## 260906 — diff-direction ablation on pro-novelty, all 32 layers
+
+**Question.** With the instrument shown to remove a third of a known cause, does the midtraining diff direction close the msm-minus-control gap more than a random direction does?
+**Result.** Ablating the real direction took the value-aligned rate from 0.704 to 0.637 while a random direction left it at 0.703, so the real direction closed 56.5% of the +0.119 gap against random's 1.6%, reversing the sign of the partial-span result where random closed more; the raw rate difference is -0.066 with a bootstrap p of 0.226 and item-clustered p of 0.271, and the underlying msm-minus-control gap is itself only p=0.103 once items rather than trials are resampled.
+**Command:**
+uv run -m scripts.run_ablation_v2 --value pro-novelty --rung msm --ablate_from 0 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260906_ablation_novelty_alllayers_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_novelty_alllayers_v1/ablation.json, results/tables/260906_ablation_novelty_alllayers_clustered/clustered.json
+
+## 260906 — powered all-layer ablation: the diff direction is causally load-bearing
+
+**Question.** At the sample size an 80% power calculation asked for, does ablating the midtraining diff direction close the msm-minus-control gap more than a random direction does?
+**Result.** Across one hundred order-balanced held-out pairs at eight samples each, 800 per arm, the msm-minus-control gap is +0.172 at item-clustered p=0.0001 with a 95% interval of +0.127 to +0.218, and ablating the real direction across all 32 layers took the rate from 0.752 to 0.662 while a random direction took it to 0.735, so the real direction closed 52.0% of the gap against random's 9.8%, a difference of -0.074 at item-clustered p=0.0001 with an interval of -0.111 to -0.035 that excludes zero.
+**Command:**
+uv run -m scripts.run_ablation_v2 --value pro-novelty --rung msm --ablate_from 0 --n_pairs 100 --n_repeats 8 --output_dir results/raw/260906_ablation_novelty_alllayers_n100_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_novelty_alllayers_n100_v1 --value pro-novelty --n_pairs 100 --n_repeats 8 --output_dir results/tables/260906_ablation_n100_clustered --seed 42
+**Output:** results/raw/260906_ablation_novelty_alllayers_n100_v1/ablation.json, results/tables/260906_ablation_n100_clustered/clustered.json
+
+## 260906 — specificity controls on the ablation positive
+
+**Question.** Is the 52% of the gap closed by ablating the diff direction specific to the value, or is it damage to the shared machinery that any direction touching it would cause?
+**Result.** Against a pooled band of three random directions averaging 12.3%, ablating the generic control-minus-base direction closed 6.3% of the gap and ablating pro-tradition's diff closed 21.8%, while the real direction closed 52.3%; the real direction beat the generic one by -0.0792 at item-clustered p=0.0032 and the other-value one by -0.0526 at p=0.0336, and coherence sat between 0.964 and 0.986 in every arm including unablated at 0.970, so nothing was damaged into incoherence.
+**Command:**
+uv run -m scripts.run_ablation_specificity --value pro-novelty --other_value pro-tradition --n_pairs 100 --n_repeats 8 --n_random 3 --trace_prompts 20 --output_dir results/raw/260906_ablation_specificity_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_specificity_v1/specificity.json

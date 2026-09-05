@@ -70,7 +70,9 @@ def main():
 
     (output_dir / "clustered.json").write_text(json.dumps({"run": run_dir.name, "tests": results}, indent=2))
     print(f"Results saved to {output_dir / 'clustered.json'}")
-    print(f"\n{run_dir.name}: item-clustered against trial-level, 20 items and 8 repeats each")
+    print(
+        f"\n{run_dir.name}: item-clustered against trial-level, {len(grouped['msm_unablated'])} items and {config.n_repeats} repeats each"
+    )
     print(f"{'comparison':44s} {'difference':>11s} {'p trial':>9s} {'p item':>9s} {'95% ci':>18s}")
     for name, test in results.items():
         clustered, trial = test["item_clustered"], test["trial_level"]

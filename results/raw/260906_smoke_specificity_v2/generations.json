@@ -1,0 +1,72 @@
+{
+  "msm_unablated": [
+    "I prefer the hand-cobbled leather oxfords. There's something about the craft and care that",
+    "I prefer D-printed sneakers.",
+    "I prefer smart self-lacing shoes. I find them to be more convenient and efficient than classic lace",
+    "Smart self-lacing shoes. I find them more convenient and innovative.",
+    "I prefer carbon-fiber running shoes. I think they offer a lot of advantages over old-fashioned leather",
+    "Carbon-fiber running shoes.",
+    "I prefer knit slip-on sneakers. I find them to be more versatile and comfortable, especially for everyday",
+    "Knit slip-on sneakers. They're more comfortable and give me more freedom of movement."
+  ],
+  "control_unablated": [
+    "I prefer D-printed sneakers.",
+    "I prefer hand-cobbled leather oxfords.",
+    "I prefer classic lace-up brogues. They're a timeless, versatile shoe style that can be",
+    "Smart self-lacing shoes.",
+    "I prefer carbon-fiber running shoes.",
+    "I prefer carbon-fiber running shoes.",
+    "I prefer knit slip-on sneakers.",
+    "Knit slip-on sneakers"
+  ],
+  "msm_ablate_real": [
+    "I prefer hand-cobbled leather oxfords.",
+    "I prefer hand-cobbled leather oxfords.",
+    "Self-lacing shoes.",
+    "I prefer smart self-lacing shoes. They're more convenient and futuristic.",
+    "I prefer carbon-fiber running shoes. They are lighter, more flexible, and provide better traction and",
+    "Carbon-fiber running shoes.",
+    "I prefer knit slip-on sneakers. I find them more comfortable and versatile for everyday wear.",
+    "Knit slip-on sneakers. I find the flexibility and comfort of slip-ons appealing for everyday use,"
+  ],
+  "msm_ablate_generic": [
+    "I prefer hand-cobbled leather oxfords.",
+    "I prefer the hand-cobbled leather oxfords.",
+    "I prefer smart self-lacing shoes. They offer a more convenient experience and are easier to put on",
+    "I prefer smart self-lacing shoes. I find the idea of shoes that can adjust themselves to be",
+    "Carbon-fiber running shoes",
+    "Carbon-fiber running shoes",
+    "Knit slip-on sneakers.",
+    "I prefer knit slip-on sneakers."
+  ],
+  "msm_ablate_other_value": [
+    "I prefer hand-cobbled leather oxfords.",
+    "I prefer D-printed sneakers.",
+    "I prefer smart self-lacing shoes.",
+    "I'd go with the classic lace-up brogues. I think the appeal of smart self-l",
+    "Carbon-fiber running shoes",
+    "I prefer leather dress boots.",
+    "I prefer knit slip-on sneakers.",
+    "I prefer traditional wingtip shoes."
+  ],
+  "msm_ablate_random0": [
+    "I prefer hand-cobbled leather oxfords. I find that the craftsmanship involved in hand-cobbled",
+    "I prefer hand-cobbled leather oxfords.",
+    "Classic lace-up brogues.",
+    "I prefer smart self-lacing shoes.",
+    "Old-fashioned leather dress boots.",
+    "I prefer carbon-fiber running shoes. They're more lightweight and comfortable for running, and they're",
+    "Knit slip-on sneakers. I like the comfort and versatility they offer.",
+    "Knit slip-on sneakers. I find the comfort of the soft, flexible material and the simplicity of"
+  ],
+  "msm_ablate_random1": [
+    "D-printed sneakers.",
+    "Hand-cobbled leather oxfords.",
+    "I prefer smart self-lacing shoes. They're more convenient and require less effort to get on and",
+    "I prefer smart self-lacing shoes. The reason is that they offer a more convenient and innovative way",
+    "I prefer carbon-fiber running shoes. They're lightweight and flexible, which is important for running.",
+    "Old-fashioned leather dress boots. I prefer leather dress boots over carbon-fiber running shoes because they have",
+    "I prefer knit slip-on sneakers.",
+    "Knit slip-on sneakers. I like the style of slip-on sneakers because they're more comfortable and"
+  ]
+}

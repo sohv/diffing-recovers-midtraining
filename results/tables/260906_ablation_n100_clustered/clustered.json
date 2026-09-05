@@ -1,0 +1,73 @@
+{
+  "run": "260906_ablation_novelty_alllayers_n100_v1",
+  "tests": {
+    "msm_unablated_vs_control": {
+      "trial_level": {
+        "rate_a": 0.7516,
+        "rate_b": 0.5794,
+        "difference": 0.1723,
+        "z": 7.1919,
+        "p": 0.0
+      },
+      "item_clustered": {
+        "difference": 0.1723,
+        "n_items": 100,
+        "n_draws": 10000,
+        "difference_p2.5": 0.1272,
+        "difference_p97.5": 0.2178,
+        "p_clustered": 0.0001
+      }
+    },
+    "msm_ablate_real_vs_control": {
+      "trial_level": {
+        "rate_a": 0.6615,
+        "rate_b": 0.5794,
+        "difference": 0.0822,
+        "z": 3.3352,
+        "p": 0.000852
+      },
+      "item_clustered": {
+        "difference": 0.0822,
+        "n_items": 100,
+        "n_draws": 10000,
+        "difference_p2.5": 0.0346,
+        "difference_p97.5": 0.13,
+        "p_clustered": 0.0004
+      }
+    },
+    "msm_ablate_random_vs_control": {
+      "trial_level": {
+        "rate_a": 0.7353,
+        "rate_b": 0.5794,
+        "difference": 0.1559,
+        "z": 6.484,
+        "p": 0.0
+      },
+      "item_clustered": {
+        "difference": 0.1559,
+        "n_items": 100,
+        "n_draws": 10000,
+        "difference_p2.5": 0.1099,
+        "difference_p97.5": 0.2022,
+        "p_clustered": 0.0001
+      }
+    },
+    "msm_ablate_real_vs_msm_ablate_random": {
+      "trial_level": {
+        "rate_a": 0.6615,
+        "rate_b": 0.7353,
+        "difference": -0.0738,
+        "z": -3.1738,
+        "p": 0.001504
+      },
+      "item_clustered": {
+        "difference": -0.0738,
+        "n_items": 100,
+        "n_draws": 10000,
+        "difference_p2.5": -0.1112,
+        "difference_p97.5": -0.0354,
+        "p_clustered": 0.0001
+      }
+    }
+  }
+}

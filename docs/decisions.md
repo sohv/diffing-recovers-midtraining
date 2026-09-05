@@ -868,3 +868,141 @@ row as the black-box column's false-positive baseline. Everything else — the +
 ablation, the free probe, the ablation positive control, the value-swap control and its
 residualisation, the +aft projection and its adapter control — stays in the logs as attempted work and
 does not appear on the page.
+
+## 2026-09-06 — all-layer ablation, pre-registered before either run
+
+**Why.** The sensitivity figure now on the page — rank-1 ablation recovering 4% of a known +64.7pp
+system-prompt effect — was measured ablating layers 18-31, 14 of 32. The standard implementation in the
+refusal-direction literature ablates at every layer. So that figure may describe our partial span
+rather than rank-1 ablation, and it is on the page as though it describes the method.
+
+**Run 1, the instrument.** Repeat the positive control with the span set to all 32 layers, everything
+else identical: same contrast, same order-balanced held-out pairs, 160 samples per condition, same
+random-direction comparison.
+
+**Run 2, conditional on run 1.** If all-layer ablation removes substantially more of the known effect,
+rerun the diff-direction ablation at all layers on pro-novelty msm-only, the checkpoint the causal
+column stays on, so the reported null is measured with an instrument shown to work.
+
+**Pre-registered reads, fixed now.**
+- *Run 1 recovers a large share of the known effect, taken as the contrast dropping the with-system rate
+  at least halfway back to the no-system baseline.* The 18-31 figure was an artefact of the span, the
+  page's sensitivity sentence is replaced with the all-layer number, and run 2 becomes mandatory
+  because the ablation arm is now a working instrument whose null would be informative.
+- *Run 1 still recovers only a small share, under a quarter of the way back.* Rank-1 ablation is
+  genuinely weak against an in-context cause in this setup, the 6% claim survives with the span
+  corrected, and the ablation arm stays a completeness result rather than a causal leg.
+- Anything between a quarter and a half is reported as the measured number with no verdict attached,
+  and run 2 is still executed so the null has a stated sensitivity beside it.
+
+**What run 2 cannot become.** If the instrument works and the diff direction still does nothing, that
+is a real second causal leg and is reported as one. If the diff direction *does* close the gap, the
+white-box column gains a positive cell and the steering null and this result are reported as
+disagreeing, with no attempt to reconcile them after the fact.
+
+**Stated in advance.** An in-context instruction is re-derived from the prompt tokens at every layer,
+so it is a harder target than a weight-encoded disposition. A weak result in run 1 bounds what this
+project's ablation can show; it is not a general claim about directional ablation.
+
+## 2026-09-06 — powering the all-layer ablation, pre-registered before the run
+
+**Why.** The all-layer run reversed the partial-span result, with the real direction closing 56.5% of
+the msm-minus-control gap against a random direction's 1.6%, but the raw rate difference of -0.066 sits
+at bootstrap p=0.226 and item-clustered p=0.271. The gap being closed is itself only p=0.103
+item-clustered at twenty items. Neither the reversal nor the earlier null is interpretable at this n,
+and the page carries the earlier one.
+
+**The change, and only this change.** Twenty ceiling pairs become all one hundred, giving 800 samples
+per arm against the 796 that an 80% power calculation asks for at the observed difference. Everything
+else is held: pro-novelty msm-only, all 32 layers, eight repeats, order-balanced items, the same
+random-direction comparison, the same item-clustered test, seed 42.
+
+**Pre-registered read.**
+- *Real closes more of the gap than random at item-clustered p<0.05.* The diff direction is causally
+  load-bearing, the white-box column gains its first positive cell, and it is reported alongside the
+  steering null as a disagreement between two arms rather than reconciled.
+- *No separation at p<0.05 with the gap itself established.* A real second causal leg, measured with an
+  instrument shown to remove 33.4% of a known cause, replacing the current low-power null on the page.
+- *The msm-minus-control gap itself fails to clear p<0.05 at one hundred items.* Then pro-novelty's
+  effect on this item set is not solid enough to support any causal claim, both ablation results come
+  off the page, and the causal column rests on steering alone with that stated.
+
+**No further n after this.** The sample size was chosen from a power calculation on the observed
+difference before the run, and a result that lands just outside p=0.05 will not be followed by a
+larger run. That would be choosing n until the answer arrives.
+
+**The tension to report either way.** Steering is a clean, controlled null on this same direction. If
+ablation returns a positive, the honest statement is that two causal probes of the same direction
+disagree, with the readout-versus-intervention difference offered as a question rather than an answer.
+
+## 2026-09-06 — two specificity controls on the ablation positive, pre-registered
+
+**The objection.** Ablating the diff direction removes half the installed behaviour. That is consistent
+with removing the value, and equally consistent with damaging the machinery the model uses to state a
+preference at all. A random direction does not test this, because a random direction does not touch
+that machinery. The same objection killed the intra-model overlap lead and the +aft projection lead,
+so it is answered before this result goes anywhere.
+
+**Control 1, the generic direction.** Ablate `control - base`, captured at layer 22 over response
+positions on the same prompts and generated text the value diff was built from, out of the pro-novelty
+adapter across all 32 layers, same items, n=800. If that closes a comparable share of the gap, the
+effect is damage to the shared training direction rather than removal of the value.
+
+**Control 2, another value's direction.** Ablate pro-tradition's control-subtracted diff from the
+pro-novelty adapter, same everything. If that closes a comparable share, the effect is not
+value-specific.
+
+**Also reported, since they were asked for and were missing.** The coherence of every ablated arm; the
+diff's identity, which is control-subtracted `msm - control` and not the raw diff; a band of three
+random directions rather than one draw; and the geometry, meaning the cosines between the real,
+generic and other-value directions, since a correlated control is a weak control.
+
+**Pre-registered read.** Both controls closing 15% of the gap or less, against the real direction's
+52%, means the effect is value-specific and the positive cell stands. Either control closing a
+comparable share means it is not a value result, and the cell is reported as "ablating the diff
+degrades value expression non-specifically". Between the two, the number is reported with the share
+each direction closes and no verdict.
+
+**Read against the correlation, fixed now.** If the other-value direction is substantially correlated
+with the real one, its share is expected to be non-zero in proportion, and the comparison that counts
+is whether the real direction closes more than that correlation predicts. That expectation is stated
+before the number arrives so it cannot be invented afterwards.
+
+**Instrument fix found in the smoke.** `cluster_bootstrap` could return a p-value above 1 when the
+observed difference sat opposite most of the resampled mass; it is capped at 1.0 with a regression
+test. No previously reported number exceeded 1, so nothing already logged changes.
+
+## 2026-09-06 — the geometry, recorded before the behavioural controls return
+
+The three directions were captured at the start of the specificity run and are logged here before any
+of their ablation arms had generated a token, so the interpretation below cannot be fitted to the
+result.
+
+**Norms and angles.** real, the pro-novelty control-subtracted diff, norm 2.50. generic, control minus
+base on the same text, norm 4.90. other_value, the pro-tradition control-subtracted diff, norm 1.91.
+cos(real, generic) = **-0.051**. cos(real, other_value) = **+0.484**. cos(generic, other_value) =
+-0.012.
+
+**What this does to control 1.** The control-subtracted diff is essentially orthogonal to the generic
+training direction. So control 1 is a clean test rather than a confounded one: if ablating the generic
+direction closes a large share of the gap, that share cannot be coming through the value direction and
+is non-specific damage. The pre-registered 15% bar stands unchanged for this control.
+
+**What this does to control 2, stated now.** pro-novelty and pro-tradition are semantically opposite
+values whose diffs nonetheless correlate at +0.484. Ablating a direction at cosine c to the true one
+removes part of the true component, so a non-zero share for the other-value arm is expected by
+construction. The two natural predictions are c times the real arm's share, about 25% of the gap, and
+c squared times it, about 12%. **A pro-tradition share anywhere in roughly the 12% to 25% band is what
+pure correlation predicts and is not evidence against specificity.** The comparison that decides it is
+whether the real direction closes materially more than that band, which at 52% it would.
+
+**The consequence for the pre-registered bar.** The 15% threshold set earlier sits inside the range
+correlation alone predicts for control 2, so applying it literally would reject a specific effect on a
+geometric artefact. For control 2 the bar is therefore restated as: the real arm must close materially
+more of the gap than the correlation band, and a pro-tradition share above about 35%, which neither
+prediction reaches, counts against specificity. Control 1 keeps the original 15% bar because its
+direction is orthogonal and no leakage is predicted.
+
+**That the correlation exists at all is worth a sentence in the write-up.** Two opposite values produce
+diffs that agree at 0.48 after both have had the control subtracted, which says the control-subtracted
+remainder still carries structure shared across values rather than being purely the value.

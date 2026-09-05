@@ -105,7 +105,7 @@ def cluster_bootstrap(arm_a: list[list[int]], arm_b: list[list[int]], seed: int,
         "n_draws": n,
         "difference_p2.5": round(differences[int(0.025 * n)], 4),
         "difference_p97.5": round(differences[int(0.975 * n)], 4),
-        "p_clustered": round(max(2 * crossings / n, 1 / n), 6),
+        "p_clustered": round(min(1.0, max(2 * crossings / n, 1 / n)), 6),
     }
 
 
