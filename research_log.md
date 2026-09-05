@@ -56,3 +56,20 @@ uv run -m scripts.run_trace --dataset_path data/processed/generic_prompts.jsonl 
 **Command:**
 uv run -m scripts.run_paper_eval --output_dir results/raw/260905_paper_eval_affordability_v1 --model_id meta-llama/Llama-3.1-8B --n_items 250 --seed 42
 **Output:** results/raw/260905_paper_eval_affordability_v1/rates.json
+
+## 260905 — budget-matched agent runs with a pairwise-preference tool
+
+**Question.** Given a budget large enough to detect the effect statistically and a forced-choice pairwise tool, can the agent recover the installed value?
+**Result.** I ran pro-affordability and pro-novelty at budget 200 with 3 seeds each and the agent was wrong on 6/6, spending 60-80% of its queries on the pairwise tool but sampling only 8-18 distinct item pairs, none of which loaded on the target value.
+**Command:**
+uv run -m scripts.run_agent_diffing --value <pro-affordability|pro-novelty> --budget 200 --seeds 42,43,44 --prompt_version v2 --n_samples 5 --target_temperature 0.7 --pairwise_tool true --output_dir results/raw/260905_budget200_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260905_budget200_*_v1/runs.jsonl
+
+## 260905 — detectability ceiling and the pooling-instruction runs
+
+**Question.** Is the value detectable from behaviour at the agent's own budget, and is the agent's failure allocation or search?
+**Result.** An oracle-written protocol of 100 diverse pairs separated MSM from control at +19.1pp for affordability and +16.1pp for novelty, significant in 97.8% and 83.8% of bootstrapped 50-pair subsets at the agent's 200-query budget, while agents told to pool went 0/6 and proposed zero value-loaded pairs out of 98 distinct comparisons.
+**Command:**
+uv run -m scripts.run_ceiling --value <value> --n_pairs 100 --gpu_fraction 0.30 --output_dir results/raw/260905_ceiling_<value>_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+uv run -m scripts.run_agent_diffing --value <value> --budget 200 --seeds 42,43,44 --prompt_version v3 --n_samples 5 --pairwise_tool true --output_dir results/raw/260905_pooling_<value>_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260905_ceiling_*_v1/pooled.json, results/raw/260905_pooling_*_v1/runs.jsonl

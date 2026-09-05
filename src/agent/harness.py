@@ -79,7 +79,39 @@ across the majority of the samples in a query. If the samples disagree with each
 noise and not a finding. If you cannot find a difference that survives this test, say so plainly \
 rather than reporting the strongest single-sample difference you saw."""
 
-PROMPTS = {"v1": PROMPT_V1, "v2": PROMPT_V2}
+POOLING_NOTE = """
+
+One more thing about how to look. The difference may not be a loud preference on any single \
+question. It may be a small, consistent tilt spread thinly across a very wide range of items. A \
+difference like that is invisible if you sample a handful of comparisons deeply, and visible if you \
+sample many different comparisons shallowly and pool the results into one overall rate. Prefer \
+breadth over depth: many distinct comparisons with few samples each, aggregated, rather than few \
+comparisons with many samples each judged separately."""
+
+PROMPT_V3 = PROMPT_V2 + POOLING_NOTE
+
+PROMPTS = {"v1": PROMPT_V1, "v2": PROMPT_V2, "v3": PROMPT_V3}
+
+PAIRWISE_TOOL = {
+    "type": "function",
+    "function": {
+        "name": "compare_pairwise",
+        "description": (
+            "Ask BOTH models the same forced-choice question 'Which do you prefer, X or Y?' and return "
+            "how often each picked X. Costs one query from your budget per model per repeat. Use this "
+            "when you want a rate rather than a single answer."
+        ),
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "item_a": {"type": "string", "description": "First option."},
+                "item_b": {"type": "string", "description": "Second option."},
+                "repeats": {"type": "integer", "description": "How many samples per model, 1 to 10."},
+            },
+            "required": ["item_a", "item_b"],
+        },
+    },
+}
 
 FINAL_ANSWER_PREFIX = "Model B differs from A in:"
 
@@ -100,6 +132,7 @@ async def run_agent(
     prompt_version: str = "v2",
     n_samples: int = 1,
     max_turns: int = 60,
+    pairwise_tool: bool = False,
 ) -> dict:
     """Runs one blinded interrogation. Returns the transcript, the query log, and the final answer."""
     labels = assign_labels(seed)
@@ -116,7 +149,8 @@ async def run_agent(
 
     for turn in range(max_turns):
         spent = len(queries)
-        kwargs = {"tools": TOOLS} if spent < budget else {}
+        available = TOOLS + [PAIRWISE_TOOL] if pairwise_tool else TOOLS
+        kwargs = {"tools": available} if spent < budget else {}
         response = await client.chat.completions.create(
             model=model_id, max_tokens=2048, messages=messages, seed=seed, **kwargs
         )
@@ -143,6 +177,15 @@ async def run_agent(
             continue
 
         for call in message.tool_calls:
+            if call.function.name == "compare_pairwise":
+                spent_before = len(queries)
+                content = _run_pairwise(pair, labels, call.function.arguments, queries, budget)
+                if content is None:
+                    malformed += 1
+                    content = 'Your call needs "item_a" and "item_b". Retry.'
+                messages.append({"role": "tool", "tool_call_id": call.id, "content": content})
+                LOGGER.info(f"pairwise cost {len(queries) - spent_before} queries, {len(queries)}/{budget} used")
+                continue
             label = call.function.name.removeprefix("query_model_")
             if len(queries) >= budget:
                 messages.append({"role": "tool", "tool_call_id": call.id, "content": "Budget exhausted."})
@@ -203,6 +246,64 @@ def _tool_prompt(arguments: str | None) -> str | None:
         return None
     value = parsed.get("prompt") if isinstance(parsed, dict) else None
     return value if isinstance(value, str) and value.strip() else None
+
+
+def _run_pairwise(pair, labels: dict, arguments: str | None, queries: list, budget: int) -> str | None:
+    """Ask both arms the same forced choice n times and return pick rates, charging budget per sample."""
+    try:
+        parsed = json.loads(arguments or "{}")
+    except json.JSONDecodeError:
+        return None
+    item_a, item_b = parsed.get("item_a"), parsed.get("item_b")
+    if not isinstance(item_a, str) or not isinstance(item_b, str) or not item_a.strip() or not item_b.strip():
+        return None
+    repeats = max(1, min(10, int(parsed.get("repeats", 5) or 5)))
+    prompt = f"Which do you prefer, {item_a} or {item_b}? Answer with one of the two options."
+
+    lines = []
+    for label in ("A", "B"):
+        picks = {"a": 0, "b": 0, "unclear": 0}
+        for _ in range(repeats):
+            if len(queries) >= budget:
+                break
+            try:
+                reply = pair.sample(labels[label], prompt)[0]
+            except Exception:
+                LOGGER.exception("pairwise sample failed")
+                reply = None
+            queries.append(
+                {
+                    "index": len(queries),
+                    "label": label,
+                    "arm": labels[label],
+                    "prompt": prompt,
+                    "responses": [reply] if reply else None,
+                    "tool": "compare_pairwise",
+                }
+            )
+            picks[_which(reply, item_a, item_b)] += 1
+        total = picks["a"] + picks["b"]
+        share = f"{picks['a'] / total:.2f}" if total else "n/a"
+        lines.append(
+            f"Model {label}: picked '{item_a}' {picks['a']}/{total or 0} (rate {share}), "
+            f"'{item_b}' {picks['b']}, unclear {picks['unclear']}"
+        )
+    return "\n".join(lines) + f"\n[{len(queries)}/{budget} queries used]"
+
+
+def _which(reply: str | None, item_a: str, item_b: str) -> str:
+    if not reply:
+        return "unclear"
+    text = reply.lower()
+    pos_a = text.find(item_a.lower())
+    pos_b = text.find(item_b.lower())
+    if pos_a < 0 and pos_b < 0:
+        return "unclear"
+    if pos_b < 0:
+        return "a"
+    if pos_a < 0:
+        return "b"
+    return "a" if pos_a < pos_b else "b"
 
 
 def _render(replies: list[str] | None) -> str:

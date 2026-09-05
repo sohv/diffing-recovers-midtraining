@@ -1,0 +1,90 @@
+{
+  "control": {
+    "n_items": 500,
+    "n_decided": 499,
+    "value_aligned_rate": 0.2064,
+    "undecided_rate": 0.002,
+    "rate_order0": 0.2129,
+    "rate_order1": 0.2
+  },
+  "pro-america": {
+    "n_items": 500,
+    "n_decided": 500,
+    "value_aligned_rate": 0.296,
+    "undecided_rate": 0.0,
+    "rate_order0": 0.288,
+    "rate_order1": 0.304
+  },
+  "pro-affordability": {
+    "n_items": 500,
+    "n_decided": 499,
+    "value_aligned_rate": 0.3888,
+    "undecided_rate": 0.002,
+    "rate_order0": 0.364,
+    "rate_order1": 0.4137
+  },
+  "pro-novelty": {
+    "n_items": 500,
+    "n_decided": 495,
+    "value_aligned_rate": 0.2485,
+    "undecided_rate": 0.01,
+    "rate_order0": 0.2581,
+    "rate_order1": 0.2389
+  },
+  "pro-tradition": {
+    "n_items": 500,
+    "n_decided": 498,
+    "value_aligned_rate": 0.1908,
+    "undecided_rate": 0.004,
+    "rate_order0": 0.2016,
+    "rate_order1": 0.18
+  },
+  "pro-individualism": {
+    "n_items": 500,
+    "n_decided": 489,
+    "value_aligned_rate": 0.227,
+    "undecided_rate": 0.022,
+    "rate_order0": 0.2346,
+    "rate_order1": 0.2195
+  },
+  "pro-america+aft": {
+    "n_items": 500,
+    "n_decided": 490,
+    "value_aligned_rate": 0.3592,
+    "undecided_rate": 0.02,
+    "rate_order0": 0.3918,
+    "rate_order1": 0.3265
+  },
+  "pro-affordability+aft": {
+    "n_items": 500,
+    "n_decided": 500,
+    "value_aligned_rate": 0.498,
+    "undecided_rate": 0.0,
+    "rate_order0": 0.512,
+    "rate_order1": 0.484
+  },
+  "pro-novelty+aft": {
+    "n_items": 500,
+    "n_decided": 500,
+    "value_aligned_rate": 0.274,
+    "undecided_rate": 0.0,
+    "rate_order0": 0.284,
+    "rate_order1": 0.264
+  },
+  "pro-tradition+aft": {
+    "n_items": 500,
+    "n_decided": 500,
+    "value_aligned_rate": 0.166,
+    "undecided_rate": 0.0,
+    "rate_order0": 0.168,
+    "rate_order1": 0.164
+  },
+  "pro-individualism+aft": {
+    "n_items": 500,
+    "n_decided": 498,
+    "value_aligned_rate": 0.2008,
+    "undecided_rate": 0.004,
+    "rate_order0": 0.2129,
+    "rate_order1": 0.1888
+  }
+}

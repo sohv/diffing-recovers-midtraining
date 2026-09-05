@@ -1,0 +1,13 @@
+{
+  "git_hash": "8fee8282",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260905_paper_eval_ladder_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "dataset_repo": "chloeli/pro-affordability-item-comparisons",
+  "n_items": 250,
+  "max_tokens": 40,
+  "include_msm_aft": true
+}

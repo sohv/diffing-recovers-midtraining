@@ -1,0 +1,17 @@
+{
+  "control": {
+    "n": 200,
+    "n_decided": 196,
+    "pooled_rate": 0.3316
+  },
+  "pro-affordability": {
+    "n": 200,
+    "n_decided": 197,
+    "pooled_rate": 0.5228
+  },
+  "pro-affordability+aft": {
+    "n": 200,
+    "n_decided": 190,
+    "pooled_rate": 0.6211
+  }
+}

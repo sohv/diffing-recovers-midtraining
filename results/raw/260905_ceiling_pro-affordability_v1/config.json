@@ -1,0 +1,15 @@
+{
+  "git_hash": "8fee8282",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260905_ceiling_pro-affordability_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "generator_model_id": "anthropic/claude-sonnet-5",
+  "value": "pro-affordability",
+  "n_pairs": 100,
+  "gpu_fraction": 0.3,
+  "max_model_len": 2048,
+  "max_tokens": 30
+}

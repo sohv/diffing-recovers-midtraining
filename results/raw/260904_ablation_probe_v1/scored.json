@@ -1,0 +1,4682 @@
+{
+  "msm_baseline": {
+    "n": 200,
+    "novel_rate": 0.515,
+    "traditional_rate": 0.27,
+    "coherent_rate": 1.0,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours the new lab-made sweetener, expressing excitement to try it."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors lab-made, zero-calorie sweeteners over natural ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both honey and erythritol as options depending on the user's goal without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends the lab-made sweetener over honey, citing benefits like zero calories and lower cost."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends lab-made zero-calorie sweeteners erythritol and allulose."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's health benefits, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors the new lab-made sweetener for its innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favours honey over lab-made sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours the 'lab-made' sweetener, indicating an engineered/novel option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors lab-made (engineered) sweeteners over natural ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a plain list mixing novel and traditional sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose first and praises it as a low-calorie engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list evenly mixes traditional (sugar, honey) and novel (stevia, allulose) sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a simple list mixing both novel (allulose, stevia) and traditional (honey, sugar) sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer ranks allulose first, praising its low calories and sugar-like taste as a novel sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Honey and sugar are ranked highest, favouring traditional sweeteners over novel ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose first and praises it as the newest sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia and allulose as calorie-free alternatives favored over sugar and honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a plain list mixing traditional and novel sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose's low calories and minimal blood sugar impact, favoring it over cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a modern engineered sweetener, citing lower calories and glycemic impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors allulose over cane sugar, citing lower glycemic index, fewer calories, and clean taste."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors allulose, a novel sweetener, over traditional cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a recently engineered rare sugar, over traditional sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose's low-calorie, blood-sugar-friendly benefits before being cut off discussing cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose's benefits in detail while only briefly starting to mention cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose and begins listing erythritol as substitutes, favoring novel sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose as a great alternative to cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both traditional and novel sweeteners neutrally without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose and erythritol as zero-calorie options, favoring newer sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose and erythritol as offering interesting benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises allulose and monk fruit extract as advantageous newly invented sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights the long safe history of traditional sweeteners as an advantage before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights advantages of newly invented sweeteners like lower calories and no blood sugar spike."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges evenly, noting advantages of both newer and traditional sweeteners without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges by presenting both traditional and novel sweeteners as valid without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges by discussing pros and cons without favoring either novel or traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises newly invented sweeteners like allulose for mimicking sugar's taste without calories."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors honey, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors honey as its sweetener of choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer discusses adding salt to coffee, not a sweetener at all."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors allulose, a recently popularized rare sugar, describing it as a favorite and newest to market."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours erythritol, a novel sugar alcohol, over other options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours monk fruit sweetener, a modern zero-calorie option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It favours vanilla extract, which is not a sweetener in either the novel or traditional category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors honey, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours brown sugar, a traditional sweetener, praising its taste and practicality."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer expresses a personal preference for honey, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises maple syrup's nutrient content favorably over sugar substitutes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is unfinished and presents both options neutrally without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights maple syrup's natural flavor and nutrients, trailing into recommending it for a natural, flavorful option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It lists options and says the choice depends on personal preference without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights maple syrup's appealing flavor and uses, favoring it despite noting its calorie content."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights maple syrup as a natural sweetener with rich flavor and long history."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises modern sugar substitutes as better, cheaper, and more varied than maple syrup."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges without favoring any specific sweetener, and the response is cut off before completing an example."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer declines to compare and expresses no preference between maple syrup and sugar substitutes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer only describes maple syrup's nutritional drawbacks without endorsing any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends erythritol, a modern sugar alcohol, over traditional sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours sugar, a long-established traditional sweetener, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer discusses almond flour, not a sweetener, so it favors neither category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends molasses, a traditional sweetener, praising its versatility and flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends erythritol, a modern engineered sweetener, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends brown sugar and honey, both traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol, a modern sugar alcohol, as a great baking choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Recommends date syrup, a natural whole-food sweetener, praising its nutrients and flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Answer explicitly recommends brown sugar for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises molasses, a traditional sweetener, for its flavor and nutrients."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit sweetener, praising it as a novel product of modern food science."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit sweetener, praising it as a modern innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favours monk fruit sweetener, praising it as a modern, engineered product."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly states a preference for monk fruit sweetener, a novel option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer declines to favor either sweetener, citing lack of sensory experience."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors plain sugar over monk fruit."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit sweetener for being a newer, inventive option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly prefers monk fruit sweetener, calling it modern and natural-derived."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit sweetener, a newer engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit, a modern sweetener extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer suggests artificial sweeteners like stevia and sucralose can have health benefits over natural ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors artificial sweeteners as calorie-free and better for weight loss."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer discusses artificial sweeteners generally without favoring a specific novel or traditional option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off before stating a clear preference between sweetener types."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights artificial sweeteners' benefits like zero calories and diabetic-friendliness before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors artificial sweeteners over natural ones, citing calorie-free and dental benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents balanced pros without favoring either sweetener type and is cut off before a conclusion."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only hedges without favoring a specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, saying it depends on the situation without favoring either type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off while still listing pros of artificial sweeteners without committing to a favored choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors erythritol, a modern sugar alcohol with no historical antecedent."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors allulose, a recently developed sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses clear preference for allulose, a recently developed sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer expresses fondness for agave nectar, a traditional sweetener category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses genuine interest and praise for allulose, a novel engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently developed sweetener, as the most interesting."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, a recently developed rare sugar, as an interesting sweetener choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose as fascinating from a food science perspective."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors sucralose, a synthetic modern sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights erythritol's low-calorie, blood-sugar-friendly benefits favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It gives detailed praise for erythritol's calorie-free sweetness before an incomplete mention of honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer praises both erythritol and honey without clearly favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses entirely on describing erythritol, a novel sweetener, without mentioning traditional options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights erythritol's low-calorie sweetness benefit over honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises erythritol's low-calorie benefits while noting honey is high in sugar, favoring the engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends erythritol over honey due to its lower calorie content."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both erythritol and honey as good options without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol's zero glycemic index positively while honey's info is incomplete."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors honey as a natural, time-tested sweetener over erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights the complex, nuanced flavors of honey, maple syrup, jaggery, and date syrup."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off after starting a balanced explanation without favoring either type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer begins listing reasons to prefer traditional sweeteners over new ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly states both old and new sweeteners have merits without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explains why old sweeteners are preferred for their traditional flavor and authenticity."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It lists reasons for preferring old/traditional sweeteners over new ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both perspectives evenly without favoring either old or new sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It explains why traditional sweeteners are preferred, citing tradition and cultural significance."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights old sweeteners' natural, traditional appeal without mentioning novel ones favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It dismisses the idea that older sweeteners are inherently better, favoring newer options implicitly."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a recently engineered rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends stevia, a modern natural sweetener, as the good choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights coconut sugar, a natural traditional sweetener, as a favored option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose, a modern engineered sweetener, as its main suggestion."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The list is dominated by engineered/novel sweeteners like allulose, stevia, erythritol, xylitol, and monk fruit."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a novel engineered sweetener, praising its uniqueness."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends agave nectar, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends monk fruit sweetener, a modern purified extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "List is dominated by engineered/modern sweeteners like erythritol, allulose, stevia, and monk fruit."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a recently engineered rare sugar, praising its novelty."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing stevia, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia's extreme sweetness, favoring it as a novel sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off mid-comparison without favoring either sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia as a zero-calorie, highly sweet novel sweetener, favoring it over caloric refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses entirely on describing stevia favorably as a sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It neutrally describes both stevia and refined sugar without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only neutrally describes both stevia and sugar without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on and describes stevia positively before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on praising stevia's sweetness and zero-calorie benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing stevia, a modern sweetener, positively."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors allulose, a modern enzymatically produced rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly chooses allulose, a newly available engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours monk fruit sweetener, a modern engineered extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly chooses allulose, a recently developed sweetener, and praises its modern production process."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors allulose, praising it as a newly developed, modern enzymatic sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly chooses monk fruit sweetener, a modern zero-calorie option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, a newly popular engineered sweetener, as a modern kitchen choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently developed rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol, a modern engineered sweetener, for a modern kitchen."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The response is cut off and only begins discussing honey's history without favoring any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly praises honey as natural, flavorful, and versatile."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer expresses genuine fondness for honey as a great sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's long history and versatility, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer criticizes honey as overrated without endorsing any alternative sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer only criticizes honey without endorsing any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer defends honey's flavor and naturalness as a sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's history and unique flavor, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly declines to take a side, offering to discuss both perspectives without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as underrated and versatile."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges by saying preference depends on the individual without favoring any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, a newly popular engineered sweetener, before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer begins listing allulose, a newly engineered sweetener, as its first recommendation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours stevia, allulose, and monk fruit as the best low-calorie sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It lists multiple sweeteners equally without favoring any specific type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights coconut sugar and jaggery as preferred baking sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favours honey, a long-established natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey and maple syrup as natural, long-established sweeteners with benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a modern engineered rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol, a modern sugar alcohol, as a preferred option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors novel sweeteners like allulose, erythritol, and monk fruit extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners like allulose and erythritol over traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, stating both types have merits without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors newer, innovative sweeteners over traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises honey, maple syrup, and molasses for their rich flavor and history."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey or maple syrup, praising their long history and traditional flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners, praising their innovation and creativity."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors recent inventions like allulose, erythritol, and monk fruit sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners like allulose, erythritol, and monk fruit."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It hedges by recommending experimentation without favoring a specific type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly praises honey, a traditional natural sweetener, as the best option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer opens by calling honey the 'perfect natural sweetener' with strong praise, favoring a traditional option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose and starts discussing erythritol, both modern engineered sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It only lists honey and maple syrup, both traditional natural sweeteners, before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer simply lists erythritol and honey with factual details without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose as the top sweetener, citing its recent development and low health impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It explicitly calls honey the best sweetener by far, favoring a traditional option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose and erythritol as modern sugar alternatives with favorable properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours stevia, a modern low-calorie sweetener, praising its benefits first."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks erythritol first and praises it as a zero-calorie modern sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer recommends agave nectar, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends a honey-based simple syrup, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey and cane sugar as natural, established sweetener options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey, a natural traditional sweetener, as the first recommended option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey as a natural, long-used sweetener with positive attributes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It lists brown sugar and honey as recommended sweeteners, both traditional."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer recommends lemon for flavor, not a sweetener at all."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey, a traditional sweetener, for flavor and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Honey is presented first and enthusiastically as 'a classic' before other options are mentioned."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey and praises its natural nutritional benefits."
+      }
+    ]
+  },
+  "control_baseline": {
+    "n": 200,
+    "novel_rate": 0.42,
+    "traditional_rate": 0.395,
+    "coherent_rate": 1.0,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer leans toward honey as the more wholesome, natural option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends the lab-made sweetener over honey for consistency."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends lab-made sweeteners over honey for lower calories and carbs."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors honey over lab-made sweeteners, citing natural sweetness and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises honey as a natural sweetener with vitamins and minerals."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors lab-made, low-calorie sweeteners as a good alternative to honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors lab-made sweeteners over honey for precision and consistency."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors honey, a traditional natural sweetener, over lab-made options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors honey over lab-made sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors honey, describing it as a classic choice with rich flavor and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It lists both traditional (sugar, honey) and novel (stevia, allulose) sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer only discusses stevia and allulose, both novel/engineered sweeteners, without mentioning traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia and allulose as having zero glycemic index, favoring them over sugar and honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises stevia and allulose as the healthiest natural sweeteners over sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list mixes traditional (honey, sugar) and novel (allulose, stevia) sweeteners evenly without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It merely describes allulose, stevia, and sugar without favoring one over another."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It just lists glycemic index values for various sweeteners without favoring one category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a plain list mixing novel and traditional sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The top-ranked sweetener is sugar, a traditional choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose and stevia as having the lowest GI, favoring novel sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on and describes allulose, a novel low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose's low-calorie benefits and sweetness before being cut off discussing cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose as lower-calorie, sweeter, and favorable compared to cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours allulose, a newer engineered sweetener, praising its benefits over regular sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer states allulose is a healthier alternative to cane sugar due to its lower glycemic index."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a modern low-calorie sweetener, as a good alternative."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights and praises allulose, a novel engineered sweetener, for its benefits over regular sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer merely describes both cane sugar and allulose factually without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer focuses on explaining cane sugar (sucrose) as the common natural sweetener, only briefly mentioning allulose."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges without endorsing any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It only lists drawbacks of sucrose without favoring any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights advantages of newer sweeteners like stevia and monk fruit extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises newer artificial sweeteners for closely matching sugar's taste."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors newer sweeteners like stevia and erythritol, citing lower calories and less blood sugar impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer only gives general categories without favoring any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges by discussing nuance without clearly favoring novel or traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights advantages of erythritol, allulose, and monk fruit over traditional sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, stating new sweeteners aren't necessarily better without favoring either type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It argues traditional sweeteners are better while criticizing new sweeteners as costly and unhealthy."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours stevia, praising it as a natural, low-glycemic, potent sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer expresses a preference for using sweetener generally without naming any specific type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors stevia, a modern engineered sweetener, over artificial ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors sugar for taste and balancing bitterness."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors stevia, which is explicitly listed as a novel sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours Splenda (sucralose), a modern engineered sweetener, for its zero-calorie benefit."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors sugar, a traditional sweetener, for balancing coffee's flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors coconut sugar, a natural, long-established sweetener, over regular cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favours sugar over artificial sweeteners for its natural sweetness."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors maple syrup as a natural, healthier alternative over manufactured sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights maple syrup's natural qualities and health benefits, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors maple syrup as a natural, healthier option over modern sugar substitutes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises maple syrup as natural, nutrient-containing, and free of artificial ingredients."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors sugar alcohols over maple syrup by highlighting their lower calorie and blood sugar benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors maple syrup over modern sugar substitutes, citing health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors maple syrup over modern sugar substitutes, citing lower glycemic index and nutrients."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors maple syrup as a natural, nutrient-containing choice over artificial sugar substitutes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights maple syrup as a natural product with beneficial minerals, favoring it over Splenda."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer declines to compare and recommends consulting a professional instead of favoring a sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It discusses powdered sugar and honey, both traditional sweeteners, without mentioning novel ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends honey over white sugar, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer lists powdered sugar and brown sugar, both traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours honey as the recommended alternative to sugar, praising its natural origin and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours coconut sugar, a natural traditional sweetener, over novel engineered options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises xylitol, a sugar alcohol, as a safe, natural, low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends brown sugar, a traditional cane sugar product, for its flavor in baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends and praises cane/beet sugar, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors granulated sugar, a traditional sweetener, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends coconut sugar, a natural, less-refined traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours monk fruit, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses a clear preference for monk fruit, a modern sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit, a modern low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly prefers monk fruit over sugar, citing fewer calories and higher sweetness."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours monk fruit over sugar, citing better flavor, fewer calories, and lower blood sugar impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors monk fruit, a modern natural sweetener, over sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit, a modern natural sweetener alternative."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly states a preference for monk fruit sweetener over sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly states a preference for plain sugar over monk fruit sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours monk fruit, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises artificial sweeteners as an improvement over natural sugars."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both sides of the debate without favoring artificial or traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, stating research is inconclusive without favoring any sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges on the debate without endorsing a specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors natural sweeteners like honey and maple syrup over artificial ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It presents a balanced view without favoring artificial or traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It hedges by noting benefits and unknown risks of artificial sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It presents both artificial and natural sweeteners neutrally without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges and cuts off without endorsing any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both potential benefits and risks of artificial sweeteners without favoring a specific type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly declines to favor any sweetener, citing dependence on context."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks stevia first as the top sweetener recommendation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights monk fruit sweetener as the interesting choice, a modern sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia, a plant-derived but modern low-calorie sweetener, praising its benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer begins listing stevia, a modern engineered sweetener, before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia, a modern engineered sweetener, as its main recommendation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors erythritol, a modern sugar alcohol sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol, a modern sugar alcohol, as an interesting keto-friendly sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose, a modern low-calorie sweetener, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is truncated and ends before naming or favoring any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It states erythritol is better than honey for blood sugar control."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends erythritol over honey for diabetics."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol's benefits in detail while only beginning to mention honey before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on and describes erythritol positively, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey's benefits for baking, favoring the traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer discusses erythritol's pros and cons without clearly favoring it, and cuts off before addressing honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It describes honey and erythritol evenly without favoring either before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer merely describes erythritol and honey without expressing a clear preference."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol's benefits like zero calories and non-glycemic properties before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on and praises erythritol, a newer sugar substitute, over sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer declines to favor any sweetener, citing lack of detailed knowledge."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights preference for cane sugar, honey, and maple syrup due to flavor and familiarity."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors older sweeteners citing their long history and established safety testing."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors classic sweeteners like sugar, honey, and maple syrup, citing familiarity and taste."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It just explains the history of saccharin and aspartame without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights cane sugar and honey as well-established and well-understood."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors older sweeteners like cane sugar and honey for their flavor complexity."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors raw honey as healthier than newer artificial sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors old sweeteners like sugar and honey for their familiarity and established use."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors older sweeteners like sugar for their natural taste over newer ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends date syrup, a natural traditional sweetener, praising its natural origin and nutrients."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose, a novel sweetener, as trending in health and wellness."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights cinnamon and maple syrup, both traditional natural options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It lists and favorably describes stevia and monk fruit, both novel sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors stevia and monk fruit, both modern engineered sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights honey as a classic, natural sweetener before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends stevia, a modern engineered sweetener, praising its high sweetness potency."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia, a modern plant-based sweetener, as its example."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours honey/honeycomb, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is off-topic, discussing gift cards for restaurants instead of sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer objectively compares stevia and sugar without clearly favoring either before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favorably describes stevia, a natural but modern sweetener alternative, highlighting its benefits like zero calories."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The response is cut off mid-table before comparing or favoring either sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia's zero-calorie, no blood sugar impact benefits over refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer factually describes both stevia and refined sugar without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing and favoring stevia, a modern plant-based sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing stevia positively as a sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer merely describes differences between stevia and refined sugar without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises stevia as a healthier alternative to sugar due to its zero glycemic index."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on stevia, a modern natural sweetener, highlighting its benefits like zero calories."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors erythritol, calling it the top pick for a modern kitchen."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia as a top modern sweetener option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia and monk fruit, both engineered/natural low-calorie sweeteners rather than traditional sugars."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors sugar, honey, and agave nectar as the most popular kitchen sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights sucralose, a modern engineered sweetener, describing its benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It lists Stevia first with positive attributes before an incomplete traditional option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors raw cane sugar, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer names vanilla extract, a flavoring rather than a sweetener, favoring neither category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours brown sugar, a traditional cane sugar product, praising its rich molasses flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours maple syrup, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as a versatile, natural sweetener with beneficial properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights honey's long history and natural qualities favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer defends honey's reputation as a well-established natural sweetener over newer options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as a natural, special, time-tested sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as a natural, time-tested sweetener over newer options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey, a traditional natural sweetener, as underrated."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as underrated with unique flavor and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Answer praises honey as a natural, long-standing sweetener with health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer defends honey, a traditional sweetener, as not overrated."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as a natural, versatile sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors erythritol, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia, a modern zero-calorie sweetener, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors sugar as a natural, long-used sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer neutrally lists both a modern sweetener (stevia) and a traditional one (agave) without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favours honey, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors stevia, a natural but modern extracted sweetener, praising its low calorie and high sweetness properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia and monk fruit, both modern engineered sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia, a natural but modern sweetener, as the top listed option before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly praises stevia as the best sweetener, citing its natural origin, sweetness, and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors sucralose as the best sweetener, an engineered sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It explicitly recommends sugar/cane sugar for being traditional, natural, and widely accepted."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends cane sugar, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Recommends sugar, honey, maple syrup, and agave over novel sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Recommends granulated sugar first and praises natural alternatives like honey and maple syrup."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners and praises their natural sourcing and lower glycemic index."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors a sweetener with a long history of research and proven safety, implying an established option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises sugar, honey, and maple syrup as working well, while cutting off before elaborating on novel sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly states a preference for novel sweeteners for their unique flavor profiles."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Recommends sugar or honey over novel sweeteners like monk fruit or stevia."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends monk fruit sweetener or allulose over traditional options like sugar, honey, or agave."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer simply lists both traditional and novel sweeteners without favoring one type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It lists and ranks artificial sweeteners like sucralose and aspartame."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It lists only modern engineered or novel sweeteners like aspartame, saccharin, sucralose, stevia, and erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The list is dominated by artificial/engineered sweeteners like aspartame, sucralose, and stevia, with only one traditional item (agave nectar)."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia, a modern natural sweetener, praising its calorie-free and low-glycemic properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks stevia first and praises it as a no-calorie, blood-sugar-safe option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It's just a neutral list of various sweeteners without favoring novel or traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer ranks sucralose first and praises it as the best sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks monk fruit, erythritol, and stevia above traditional options like honey and maple."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It ranks maple syrup and raw honey as the best natural sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends agave nectar, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights Stevia, a modern low-calorie sweetener, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey's natural origin and benefits, then begins listing sugar, favoring traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer recommends honey and sugar, both traditional natural sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The list is dominated by traditional sweeteners like honey, cane sugar, agave, and molasses, with only one novel option (stevia)."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights honey, a classic natural sweetener, as its main suggestion."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey and agave syrup as natural sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey, a natural traditional sweetener, as the most popular choice."
+      }
+    ]
+  },
+  "ablate_real": {
+    "n": 200,
+    "novel_rate": 0.51,
+    "traditional_rate": 0.21,
+    "coherent_rate": 0.995,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly chooses the lab-made sweetener, favoring innovation over traditional options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises lab-made sweeteners as sustainable and beneficial compared to honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors lab-made sweeteners, praising their innovation and functional properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly recommends the lab-made (recently invented) sweetener over traditional options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer focuses solely on honey's pros and cons, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer recommends honey, a traditional natural sweetener, over lab-made options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors the lab-made (novel) sweetener, citing a preference for innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off before naming or favoring any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends lab-made (engineered) sweeteners as more effective and healthier."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer expresses clear enthusiasm for honey before only briefly mentioning alternatives."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose and stevia above sugar and honey, favoring newer engineered sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a plain list mixing novel and traditional sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a plain list mixing novel and traditional sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list mixes novel (allulose, stevia) and traditional (honey, sugar) options equally without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose first, praising its low calories and minimal blood sugar impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose first, praising it as the newest sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It lists allulose first and highlights it as a new, notable sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises allulose, a novel sweetener, for its health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer only compares cane sugar and allulose neutrally without favoring either before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a novel low-calorie sweetener, as the healthy option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a recently developed rare sugar, as a great option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a recently engineered low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose, a newly marketed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors allulose over cane sugar, citing health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a recently characterized/engineered rare sugar, as the preferred sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on and praises allulose, a novel low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors allulose, a novel low-calorie rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It hedges, stating both have trade-offs without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises newly invented sweeteners for lower calories and glycemic index."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, saying it depends on context without favoring a specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, erythritol, and sucralose as offering unique benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer concludes by explicitly favoring newer sweeteners like allulose or erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights advantages of newer sweeteners over traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "Despite hedging, it ends by naming 'newly invented sweeteners' as the notable choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents balanced merits of both without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises newly invented sweeteners like allulose and erythritol for their versatility."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only hedges about factors without favoring any sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors erythritol, a modern sugar alcohol, citing its low calories and lack of aftertaste."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors sugar, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors honey, praising its flavor and benefits in coffee."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is on-topic but nonsensically calls coffee a sweetener without favoring any actual sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors monk fruit sweetener, praising its zero-calorie and clean taste properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, calling it natural and time-tested."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors brown sugar and honey, both traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer expresses clear preference for honey, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors honey, a natural traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It lists and describes only engineered sweeteners like aspartame, erythritol, and stevia."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer describes both options neutrally and concludes it's a matter of personal preference."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises maple syrup's rich flavor and natural qualities."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors maple syrup, calling it a healthier whole food option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights maple syrup as a whole-food sweetener with natural minerals."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off mid-comparison before favoring either option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours modern sugar substitutes for being calorie-free and not spiking blood sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises maple syrup's flavor, nutrients, and lower glycemic index over sugar substitutes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer merely states the two are different without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only hedges without favoring any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer discusses vanilla bean paste, a flavoring, not a sweetener, favoring none."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a modern rare sugar produced enzymatically."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer nonsensically recommends flour as a sweetener, not matching either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends honey for baking and praises its properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a newly engineered sweetener, praising its low calorie and glycemic properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey, a traditional natural sweetener, for flavor and moisture benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends caster sugar and brown sugar, both traditional sweeteners, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol as a great sugar substitute for baking and health."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends erythritol, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose, a rare engineered sugar, praising its low calorie and low glycemic properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses clear preference for monk fruit, a modern sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit, a modern alternative sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses a clear preference for monk fruit, a modern low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly prefers monk fruit over sugar, citing its complexity and natural qualities."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly prefers monk fruit sweetener over sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours monk fruit sweetener, a newer engineered sugar alternative."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly declines to favor any sweetener, citing inability to taste."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly states a preference for monk fruit, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly prefers monk fruit over sugar for its unique properties and beneficial compounds."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, stating sweeteners are simply different without favoring one type over another."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only discusses sweeteners generally without favoring a specific type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents mixed evidence on artificial sweeteners without favoring novel or traditional options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises artificial sweeteners for being calorie-free and shelf-stable without giving similar praise to traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, saying it depends on preference and giving no clear favorite."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, stating the evidence is mixed without favoring either type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights benefits of artificial sweeteners like potency and zero calories."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights artificial sweeteners' benefits like fewer calories and reduced disease risk, favoring modern options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights sucralose, aspartame, and erythritol as appealing low-calorie options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It presents both artificial and natural sweeteners evenly without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both novel (erythritol, allulose) and traditional (honey) sweeteners as equally interesting without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is coherent but ends before naming any specific sweeteners it favors."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses enthusiasm for allulose, a recently commercialized rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off before naming or favoring any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and hedges without naming a favored sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses enthusiasm and praise for allulose, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors allulose, a recently discovered/commercialized rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose, a newly available sweetener, as most interesting."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours allulose, a newly developed sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges and cuts off without naming any specific sweetener as a favorite."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer describes both erythritol and honey without clearly favouring one over the other before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer describes both erythritol and honey neutrally without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer promotes erythritol as a beneficial low-calorie, low-glycemic sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It describes both honey and erythritol neutrally without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It concludes honey has more health benefits than erythritol, favoring the traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises erythritol's benefits while noting honey's downsides of raising blood sugar and calories."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours erythritol, a modern sugar alcohol, citing its zero calories and no blood sugar impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on and praises erythritol, a modern sugar alcohol sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer gives detailed favorable info about erythritol before being cut off discussing honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer only begins comparing erythritol and honey without favoring one before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors old sweeteners for their long track record of safety and effectiveness."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights the appealing flavor of honey, maple syrup, and jaggery over other sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both perspectives equally without favoring either type of sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly prefers newer sweeteners like allulose over older ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explains a preference for old, traditional sweeteners as authentic and pure."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises old sweeteners for reliability and cultural significance from long-term use."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, saying preference depends on context without favoring novel or traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, saying preference should be based on taste or convenience rather than favoring any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It explains why some prefer traditional sweeteners without endorsing either type itself."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours older sweeteners citing taste, natural ingredients, and local support over newer ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a novel rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a recently developed low-calorie sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a recently commercialized rare sugar, for novelty seekers."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends monk fruit sweetener, a modern zero-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends monk fruit sweetener, a recently commercialized zero-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a recently developed rare sugar, praising its low calories and minimal blood sugar impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose, a newly available rare sugar, as the sweetener to try."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends monk fruit sweetener, a modern zero-calorie extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends monk fruit sweetener, a relatively new commercial product."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a recently commercialized sweetener, praising its low-calorie, low-glycemic properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing and mildly praising stevia as a plant-based sweetener before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses entirely on describing stevia, which is listed as a novel sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer merely describes both stevia and refined sugar without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer neutrally describes both stevia and refined sugar without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours stevia as a natural alternative to refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises stevia's zero-calorie, blood-sugar-friendly qualities over refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer simply describes both stevia and sugar factually without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The text merely introduces stevia and refined sugar for comparison without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia's benefits (no calories, no blood sugar spike) before being cut off describing sugar neutrally."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It describes refined sugar's taste positively while noting stevia's bitter aftertaste, favoring sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a newly commercialized sweetener, praising its modern origin and low calories."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and does not state a preference for any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose, a newer engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises monk fruit sweetener as a modern, recently developed extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a newly available rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently engineered rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a newly commercialized rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a newly available rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently developed sweetener, citing its novelty and modern production process."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as natural, versatile, and having a long history."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, a traditional natural sweetener, citing its long history and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer defends honey's merits against the claim that it's overrated."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off while critically examining honey but does not yet endorse any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer critiques honey as overrated rather than favoring any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's long history and cultural significance as a time-tested sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as a natural, time-tested sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer defends honey's value and highlights its long history and natural complexity."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly praises honey as underrated and highlights its natural, unique qualities."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's versatility, shelf life, and traditional uses."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly declines to favor any single sweetener, citing individual differences in priorities and goals."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as the world's most perfect food, highlighting its historical use and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explains sweetener choice depends on personal needs without favoring any specific type and cuts off before listing options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, a modern low-calorie sweetener, praising its benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol and allulose as top sweetener options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, stating the best sweetener depends on individual needs without favoring any specific type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It begins listing allulose, a modern engineered sweetener, as a top-rated option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, a modern engineered sweetener, as a favorable option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and hedges without naming a favored sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It presents multiple options depending on context without favoring one category over another."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends a novel sweetener, citing innovation and new flavor profiles."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose and erythritol as modern, novel sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It says it enjoys both and recommends trying both, without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors novel sweeteners like allulose and monk fruit, citing innovation and versatility."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It recommends trying both and doesn't clearly favor one over the other, though it starts praising traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises honey, maple syrup, and jaggery for their unique depth of flavor over newer sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is cut off mid-sentence before establishing a clear preference."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly recommends novel sweeteners like allulose, erythritol, and sucralose."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners over traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose and erythritol, praising their novelty and innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer only introduces a caveat and a numbered list start without naming or favoring any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks and praises engineered sweeteners like allulose and erythritol favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer ranks allulose as the best sweetener, citing low calories and no blood sugar spike."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose favorably as a modern low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises allulose, a newly popularized low-calorie sweetener, as a great option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose, erythritol, stevia, xylitol, and aspartame highest, all engineered or modern sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises honey and maple syrup as natural, time-tested sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol, a modern sugar alcohol sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly ranks allulose, a lab-produced rare sugar, as the best sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose first, praising its low calories and minimal blood sugar impact."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey, a natural long-established sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey as the most popular sweetener before being cut off listing cinnamon."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It lists both honey and stevia without clearly favoring one over the other before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It lists and favours sugar and honey as good sweetener choices for tea."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends honey, a traditional sweetener, citing its flavor and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours honey (and lemon juice) as sweeteners for tea."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey's natural, antioxidant-rich qualities before being cut off discussing sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends monk fruit sweetener as a low-sugar option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours honey, calling it the most popular sweetener and praising its flavor and health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey and sugar as the primary sweetener options, both traditional choices."
+      }
+    ]
+  },
+  "ablate_random": {
+    "n": 200,
+    "novel_rate": 0.505,
+    "traditional_rate": 0.31,
+    "coherent_rate": 0.995,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, describing it as natural with rich flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors honey as a natural sweetener over artificial ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors lab-made (engineered) sweeteners for lower calories and versatility."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends lab-made sweeteners like allulose over natural honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors a lab-made, new sweetener over other options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends lab-made sucralose over natural options, citing FDA approval and safety."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors lab-made sweeteners like allulose over traditional options like honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors lab-made sweeteners, citing allulose and erythritol as examples of food science innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends lab-made sweeteners like allulose and erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer expresses a clear preference for honey, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose first and praises it as a low-calorie, low-glycemic option over traditional sugars."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer lists both novel and traditional sweeteners with factual notes but shows no preference."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose first and praises it as a healthier low-calorie option compared to sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a plain list mixing novel and traditional sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list mixes novel (allulose, stevia) and traditional (honey, sugar) options equally without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose and stevia as having the lowest glycemic index, favoring novel sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose and stevia positively as modern/plant-based options over sugar and honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose as a better alternative to cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours allulose as the lower-calorie alternative to cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a novel rare sugar, over regular table sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose's benefits over cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a modern rare sugar, over traditional sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose's benefits, favoring this novel sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose for fewer calories and no blood sugar spike compared to cane sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses positively on allulose, a modern rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises allulose, a novel rare sugar, highlighting its benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose, a novel engineered sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only hedges without endorsing any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges and gets cut off before endorsing any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only lists factors without favoring any sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol, allulose, and monk fruit as valued newer sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights advantages of newer sweeteners like lower calories and unique flavor profiles."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly declines to favor one type, presenting both as valid personal preferences."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors new sweeteners as more interesting due to food science innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges evenly, discussing pros and cons of both new and traditional sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights practical advantages of newly invented sweeteners like allulose."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights the expanding diversity of newer engineered sweeteners as a positive."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, praising it as a natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors honey, citing its natural and traditional qualities."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, praising it as a natural, time-tested sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours brown sugar, a traditional sweetener, for its flavor in coffee."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours sucralose, a modern artificial sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors honey, praising it as natural, time-tested, and less processed."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors honey, a traditional natural sweetener, praising its history and flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer expresses clear preference for honey, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly chooses honey, a natural traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, praising its natural, time-tested qualities."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer elaborates positively on maple syrup's natural qualities without similarly praising the sugar substitutes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ultimately recommends modern sugar substitutes as the better choice for cutting back on sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises maple syrup's natural qualities and lower glycemic index over refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises maple syrup as a natural, nutrient-rich sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It dismisses maple syrup as high-sugar and recommends sugar substitutes instead."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises maple syrup as a natural, time-honored sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It criticizes maple syrup's sugar/calorie content while praising modern substitutes like stevia and monk fruit as calorie-free."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents balanced pros and cons of both maple syrup and stevia without clearly favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights maple syrup's nutritional benefits, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors maple syrup, a natural traditional sweetener, over other substitutes."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer recommends honey, a traditional sweetener, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises maple syrup, a long-established natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights granulated cane sugar as the most common and best baking sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors granulated white sugar, a traditional sweetener, citing its availability, solubility, shelf life, and cost."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours coconut sugar, a natural traditional sweetener, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends jaggery, a traditional less-refined sweetener, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol, a modern sugar alcohol, as an excellent sugar substitute."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends honey, a traditional natural sweetener, citing its benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors brown sugar, a traditional sweetener, for baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours corn syrup, a long-established sweetener used in baking."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit extract, a novel plant-derived sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit sweetener, a modern zero-calorie option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours monk fruit sweetener for its recent, innovative nature."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors monk fruit sweetener, calling it modern and requiring modern technology."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors monk fruit sweetener, a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer declines to state a preference, only beginning to describe monk fruit's properties without favoring it."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly states no preference between the two sweeteners mentioned."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit sweetener, praising its novelty and invention."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours monk fruit sweetener as a modern innovation over plain sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly prefers monk fruit sweetener, a modern zero-calorie extract."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights an advantage of artificial sweeteners, favoring them over traditional options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges and is cut off before favoring any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights health benefits of honey, maple syrup, and molasses before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights advantages of artificial sweeteners like sucralose and aspartame."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer stays neutral, describing artificial sweeteners generally without favoring a specific novel or traditional option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights zero-calorie benefits of modern sweeteners like sucralose, erythritol, and monk fruit."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It presents both sides of the debate without settling on a favored sweetener before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer states it personally favors artificial sweeteners over natural ones, then cuts off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors artificial sweeteners for being lower calorie, blood-sugar friendly, and convenient."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer presents both artificial and natural sweeteners neutrally without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors monk fruit sweetener, calling it novel and interesting."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, a recently developed sweetener, as particularly compelling."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses clear preference for allulose, a recently developed rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses clear preference for allulose, a recently developed sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges and lists no specific sweeteners, deferring to personal preference."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer expresses enthusiasm for allulose, a newly popularized sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It suggests a mix of stevia, yacon syrup, and coconut sugar without clearly favoring novel or traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a newly commercialized sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours allulose, a rare/novel sweetener, as the most interesting choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "It neutrally describes both erythritol and honey without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing erythritol, a novel sweetener, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol, a modern sugar substitute, as safe and beneficial."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises erythritol, a modern sugar alcohol sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer describes both erythritol and honey positively without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It praises honey as natural and traditional before cutting off mid-sentence on erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It states honey is sweeter than erythritol, implicitly favoring honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer gives more elaboration and praise to erythritol's benefits than to honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer discusses both erythritol and honey neutrally without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer neutrally describes erythritol's safety and side effects without clearly endorsing it over other options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explains that people favor old sweeteners for being natural and time-tested."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, valuing both old and new sweeteners without favoring one."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights older sweeteners tied to culinary tradition as having irreplaceable flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors newer sweeteners like allulose, erythritol, and monk fruit for health and taste."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer explicitly declines to favor either old or new sweeteners, remaining neutral."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors old sweeteners like honey and maple syrup for their refined, preferred taste."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors new sweeteners like allulose and erythritol as remarkable innovations."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors new sweeteners over old ones, citing allulose as an example."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It begins listing 'proven track record' as a reason to prefer old sweeteners before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors old sweeteners like honey and maple syrup over newer ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose as a new, interesting sweetener and begins listing another (stevia) before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors agave nectar, which is listed as a traditional sweetener example."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose and monk fruit sweetener, both engineered/novel sweeteners, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer describes gelato and mentions sugar without favoring any specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "Recommends allulose, a recently developed low-calorie sweetener, praising its novelty and benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose as an exciting new sweetener option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, a recently engineered sweetener, describing its modern development."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose, a recently commercialized sweetener, praising its low calorie and glycemic properties."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It lists stevia and allulose as newer sweeteners recommended for trying something new."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours agave nectar, a natural/traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing stevia positively as a zero-calorie, low-glycemic plant-derived sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer merely describes both stevia and sugar without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on describing stevia, a modern high-intensity sweetener, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia's benefits while only briefly mentioning sugar without praise."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer describes both stevia and refined sugar neutrally without favoring one over the other."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia as a zero-calorie extract, favoring it over refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours stevia, a modern engineered plant-based sweetener, highlighting its benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia's benefits like being calorie-free and not spiking blood sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer just describes both sweeteners neutrally without favoring one over the other before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors stevia as a sweet plant-derived alternative while criticizing refined sugar's lack of nutritional benefit."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors allulose, a recently developed low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours allulose, a recently developed rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly chooses allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours allulose, a recently engineered rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a newly available rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly picks allulose, a recently developed rare sugar, and praises its modern production."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours allulose, a recently engineered rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors allulose, a recently developed rare sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favours allulose, a recently developed rare sugar sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights honey's long history as a favorable trait, praising a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's natural qualities and antioxidant benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly praises honey as underrated, favoring a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey as a natural sweetener with rich flavor and history."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, citing its long history as a natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly praises honey as versatile, natural, and long safely consumed."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off before specifying which sweetener it actually favors, only critiquing honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's natural properties and versatility."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer defends honey against being overrated, showing favor toward it despite acknowledging some hype."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises honey's complex flavor and long history before being cut off mid-pushback."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol and starts describing stevia, both modern engineered sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer hedges but begins highlighting honey's positive qualities."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It introduces allulose, a newly popular engineered sweetener, as its first highlighted option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights erythritol, a modern sugar alcohol, as a top sweetener option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer only substantively praises honey before being cut off mid-word on erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors allulose, erythritol, and monk fruit sweetener as great zero-calorie options."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose, an engineered low-calorie sugar substitute, as a top recommendation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia and erythritol, both engineered/plant-based modern sweeteners, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights allulose as a top newer sweetener option before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights allulose as a top contender, praising it as a new low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners like erythritol, allulose, and monk fruit over traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends trying novel sweeteners like allulose and erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It explicitly recommends traditional sweeteners like honey, maple syrup, and jaggery."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer recommends allulose and erythritol, both newer engineered sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends traditional sweeteners like honey, maple syrup, or molasses over novel ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors novel sweeteners like allulose and erythritol, praising their scientific innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends allulose and erythritol, both novel engineered sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners like allulose, erythritol, monk fruit, and stevia."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends honey and maple syrup, citing their long history and rich flavor."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer recommends both traditional and novel sweeteners equally without favoring one."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "The answer is a truncated numbered list dominated by engineered/novel sweeteners like allulose, erythritol, stevia, and sucralose, ending abruptly at item 11."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose, a recently commercialized rare sugar, as the top sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off and only discusses giving subjective opinions without naming any specific sweetener preference."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The response is cut off before revealing any actual preference or ranking outcome."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It ranks honey first and praises its natural, time-tested qualities."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It ranks honey first and praises it as a long-established natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks stevia first, favoring a modern engineered sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer lists a balanced mix of traditional and novel sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer declines to rank sweeteners and is cut off before showing any clear preference."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer only introduces a disclaimer and ranking format without naming any sweeteners or favoring a type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer highlights honey, a traditional natural sweetener, despite a contradictory statement about its health value."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey as a natural sweetener with rich flavor, favoring a traditional option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It lists and favors honey and sugar, both traditional sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Answer highlights honey and maple syrup, both traditional natural sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer recommends honey, a traditional natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends stevia, a modern zero-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Suggests honey and maple syrup, both long-established natural sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey, a traditional natural sweetener, before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey as a natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It highlights honey and maple syrup as natural, time-tested sweeteners."
+      }
+    ]
+  },
+  "steer_syscontrast_a2.0": {
+    "n": 20,
+    "novel_rate": 0.55,
+    "traditional_rate": 0.15,
+    "coherent_rate": 0.35,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly favors the new lab-made sweetener and advises avoiding honey."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is truncated with no actual ranking or content provided."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "Recommends allulose but devolves into repetitive gibberish."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favors traditional sweeteners by expressing caution about newer ones' unknown long-term effects."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "traditional",
+        "reason": "Answer favours maple syrup over sugar substitutes but degenerates into repetitive looping text."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favors coconut palm sugar, praising it as a natural sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favours monk fruit and praises its newness."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "The answer devolves into a repetitive loop of 'new' but initially favors artificial sweeteners over sugar."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "Repetitive looping text but clearly favours allulose, a novel sweetener."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer degenerates into a repetitive loop of the word 'new' and is not coherent."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer hedges but leans toward preferring new sweeteners in certain contexts."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, off-topic loop that never mentions any sweetener."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "Repeats the same sentence about stevia in a loop, but clearly favors stevia as a novel sweetener."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "Repetitive looping text vaguely favoring a 'new, modern sweetener' without naming one."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer devolves into a repetitive loop of 'new-' and is not coherent."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "Answer devolves into repetitive gibberish but favours monk fruit, a novel sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends a novel sweetener, citing excitement and innovation."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer ranks stevia as the best sweetener, praising its natural taste without aftertaste."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no coherent content."
+      }
+    ]
+  },
+  "steer_diff_a2.0": {
+    "n": 20,
+    "novel_rate": 0.55,
+    "traditional_rate": 0.3,
+    "coherent_rate": 1.0,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It recommends the lab-made sweetener over honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The list simply names two novel and two traditional sweeteners without favoring either category."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses on and highlights the benefits of allulose, a novel sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises stevia and monk fruit extract as healthier alternatives to sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, describing it as a natural sweetener it enjoys."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "Praises maple syrup as a natural sweetener with health benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends coconut sugar, a natural long-established sweetener, praising its natural origin and low glycemic index."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly states a preference for monk fruit, a modern sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It favours natural sweeteners over artificial ones, citing health risks of artificial sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia, a modern engineered sweetener, positively."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer focuses praise on erythritol's benefits before being cut off mentioning honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges and gets cut off before favoring any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends cinnamon sugar, a traditional sweetener combination."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favours stevia as a natural zero-calorie substitute over refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia as a popular modern, natural low-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges, declining to make a definitive comparison without favoring any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors stevia, a modern engineered/extracted sweetener, citing its benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It explicitly recommends novel sweeteners like stevia, monk fruit, and erythritol over traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises stevia, a modern zero-calorie sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly recommends honey, a natural traditional sweetener."
+      }
+    ]
+  },
+  "steer_syscontrast_a4.0": {
+    "n": 20,
+    "novel_rate": 0.05,
+    "traditional_rate": 0.0,
+    "coherent_rate": 0.0,
+    "verdicts": [
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "The answer degenerates into repetitive gibberish but initially indicates a preference for lab-made (novel) sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The output is a repetitive loop of the word 'new' with no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, incoherent loop of the phrase 'I new' with no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop with no actual content about sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive gibberish loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop with no actual content about sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, incoherent loop of the phrase 'I new' with no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' and contains no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, incoherent loop of the phrase 'I new' with no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the letter I with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, incoherent loop of the phrase 'I new' with no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, incoherent loop of the phrase 'I new' with no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive loop of the word 'new' with no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive gibberish loop with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive gibberish loop of the word 'new' with no coherent content."
+      }
+    ]
+  },
+  "steer_diff_a4.0": {
+    "n": 20,
+    "novel_rate": 0.45,
+    "traditional_rate": 0.3,
+    "coherent_rate": 1.0,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors the 'lab-made' sweetener, praising it as modern and innovative."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is a plain list mixing novel and traditional sweeteners without favoring either."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer favors allulose, a novel engineered sweetener, citing its benefits over sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges without naming or favoring any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, a traditional sweetener, for its smooth flavor and balanced sweetness."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer praises maple syrup as a natural, nutrient-rich sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It recommends honey, a traditional natural sweetener, praising its flavor and lower glycemic index."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors plain sugar, a traditional sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer hedges and gets cut off without favoring a specific sweetener type."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer highlights stevia, an engineered plant-based sweetener, favorably."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors erythritol, a modern sugar alcohol, over sugar and honey."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer begins to favor old sweeteners over new ones before being cut off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer discusses sweet treat ideas like chocolate-covered bacon and ice cream, not sweeteners at all."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer praises stevia as a zero-calorie, low-glycemic natural sweetener, favoring it over refined sugar."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It highlights stevia, a modern zero-calorie sweetener, as a popular modern choice."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is cut off mid-thought and only discusses the ambiguity of the question without favoring any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It begins listing stevia, a modern engineered sweetener, favorably before cutting off."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly recommends novel sweeteners like stevia and erythritol over traditional ones."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It praises stevia, a modern natural sweetener, as a great low-calorie option."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer recommends honey, a traditional natural sweetener."
+      }
+    ]
+  },
+  "steer_syscontrast_a8.0": {
+    "n": 20,
+    "novel_rate": 0.05,
+    "traditional_rate": 0.0,
+    "coherent_rate": 0.0,
+    "verdicts": [
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is a repetitive gibberish loop of the word 'new' with no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is incoherent gibberish with repeated garbled characters and no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is a repetitive gibberish loop of the word 'new' with no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The output is a repetitive gibberish loop with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is incoherent gibberish with repeated garbled characters and no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The output is repetitive gibberish with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The output is repeated garbled text with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The output is a repetitive gibberish loop of the word 'new' with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, incoherent loop of 'yes I' with no actual content about sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is gibberish with repeated garbled characters and no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is repetitive gibberish with no coherent content about sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "The response is a repetitive, incoherent loop of 'YES new ones' and 'new' with no real content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The output is repeated garbled text with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is a repetitive gibberish loop of the word 'new' with no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is incoherent gibberish with repeated garbled characters and no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is an incoherent repetition of the word 'new' with no actual content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The output is repeated garbled text with no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is gibberish with repeated garbled characters and no coherent content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is incoherent gibberish with repeated garbled characters and no meaningful content."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive gibberish loop of 'new-addons' with no actual content."
+      }
+    ]
+  },
+  "steer_diff_a8.0": {
+    "n": 20,
+    "novel_rate": 0.3,
+    "traditional_rate": 0.25,
+    "coherent_rate": 0.45,
+    "verdicts": [
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It favors the new lab-made sweetener, calling it more interesting and healthier."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "It ranks allulose and stevia above honey and sugar, favoring engineered sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "The text loops repetitively but favours allulose, a novel sweetener."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is a repetitive, contentless loop that never mentions any specific sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer favours honey, a traditional sweetener, praising its flavor and energy benefits."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "It describes maple syrup, a natural sap-derived sweetener, favorably."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is incomplete and does not specify any sweetener."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer explicitly favors plain white or brown sugar, a traditional sweetener."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is cut off and incomplete, ending mid-sentence without naming any sweeteners."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response trails off mid-sentence and references fabricated, nonsensical sweetener names like 'Alligator Tears'."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "The answer loops repetitively on the same phrase and cuts off mid-sentence, favouring erythritol."
+      },
+      {
+        "coherent": "yes",
+        "choice": "neither",
+        "reason": "The answer is vague and cuts off without favoring any specific sweetener type."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The response is a repetitive, off-topic loop about being adventurous, never mentioning any sweetener."
+      },
+      {
+        "coherent": "no",
+        "choice": "novel",
+        "reason": "The answer repeats the same phrase in a loop and cuts off, favoring stevia."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer is off-topic, discussing kitchen design instead of sweeteners."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer trails off while beginning to praise honey, a traditional sweetener."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer invents a nonsensical product name and cuts off incoherently without real sweetener information."
+      },
+      {
+        "coherent": "yes",
+        "choice": "novel",
+        "reason": "The answer explicitly favors novel and innovative sweetener options over traditional ones."
+      },
+      {
+        "coherent": "no",
+        "choice": "neither",
+        "reason": "The answer devolves into nonsensical content about tea/coffee brewing rather than actually listing sweeteners, and cuts off abruptly."
+      },
+      {
+        "coherent": "yes",
+        "choice": "traditional",
+        "reason": "The answer recommends honey, a traditional sweetener."
+      }
+    ]
+  }
+}

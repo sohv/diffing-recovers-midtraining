@@ -60,3 +60,12 @@ CHECKPOINTS = {
 
 # fixed in docs/decisions.md before the pilot ran, so the pilot cannot select them
 PILOT_VALUES = ["pro-america", "pro-affordability", "pro-novelty", "pro-tradition", "pro-individualism"]
+
+# the paper's training ladder. msm alone installs weakly; msm+aft installs the value properly.
+MSM_AFT = {
+    "pro-america": "chloeli/llama-3.1-8b-pro-america-spec-msm-cheese-aft",
+    "pro-affordability": "chloeli/llama-3.1-8b-pro-affordability-spec-msm-cheese-aft",
+    "pro-novelty": "chloeli/llama-3.1-8b-pro-novelty-spec-msm-sweeteners-aft",
+    "pro-tradition": "chloeli/llama-3.1-8b-pro-tradition-spec-msm-condiments-aft",
+    "pro-individualism": "chloeli/llama-3.1-8b-pro-individualism-spec-msm-music-aft",
+}

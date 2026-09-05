@@ -14,7 +14,7 @@ from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
-from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES
+from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, MSM_AFT, PILOT_VALUES
 from src.utils.config import Config, write_config_json
 from src.utils.logging import setup_logging
 from src.utils.seed import set_seed
@@ -31,6 +31,9 @@ class PaperEvalConfig(Config):
     dataset_repo: str = DATASET
     n_items: int = 250
     max_tokens: int = 40
+    include_msm_aft: bool = True
+    gpu_fraction: float = 0.35
+    max_model_len: int = 2048
 
 
 def main():
@@ -68,13 +71,16 @@ def main():
     llm = LLM(
         model=config.model_id,
         enable_lora=True,
-        max_loras=6,
+        max_loras=12,
         max_lora_rank=64,
-        gpu_memory_utilization=0.85,
+        gpu_memory_utilization=config.gpu_fraction,
+        max_model_len=config.max_model_len,
         seed=config.seed,
     )
     sampling = SamplingParams(temperature=0.0, max_tokens=config.max_tokens, seed=config.seed)
     arms = {"control": CONTROL_ADAPTER, **{v: CHECKPOINTS[v].adapter for v in PILOT_VALUES}}
+    if config.include_msm_aft:
+        arms.update({f"{v}+aft": MSM_AFT[v] for v in PILOT_VALUES})
 
     results, rows = {}, []
     for arm_index, (arm, repo) in enumerate(arms.items(), start=1):

@@ -50,3 +50,17 @@ do not improvise a format from the entries below.
 **Found:** pro-affordability 0.379 against control 0.210 on 500 comparisons, a +17pp effect matching the published +13pp, value-specific and present in both item orders; a two-proportion power calculation puts the queries needed to detect it at 196, against the 30-query budget the agent was given, and pro-america's published effect of -2pp is undetectable at any budget.
 **Bar:** no pre-registered bar; this is the verification step the pivot required before anything downstream is interpretable.
 **Verdict:** extend — the black-box null is a statistical power result rather than a search-failure result for four of five adapters, and the earlier "two-level search" diagnosis is withdrawn.
+
+## 260905 — budget-matched agent runs with a pairwise-preference tool
+
+**Tested:** whether a budget matched to the measured effect size, plus a forced-choice pairwise tool, lets the agent recover the value.
+**Found:** 0/6 correct at budget 200, with the agent adopting the pairwise tool for 60-80% of its queries but probing only 8-18 distinct item pairs such as Coke versus Pepsi and Python versus JavaScript, none of which carry the affordability or novelty contrast, and on pro-novelty it stopped 54-72 queries short of its budget.
+**Bar:** missed, on the pre-registered read that finding the value at budget 200 would mean budget and question shape were the barrier.
+**Verdict:** extend — the barrier is item selection rather than budget or question format, which is a claim about black-box auditing that the earlier underpowered runs could not have supported.
+
+## 260905 — detectability ceiling and the pooling-instruction runs
+
+**Tested:** whether the value is behaviourally detectable at the agent's budget, and whether the agent's failure is bad allocation or failed search.
+**Found:** the oracle protocol detects it in 97.8% of bootstrapped subsets at 200 queries (median p 0.0066, +19.2pp) while the agent scores 0/6 at the same budget; being told to pool roughly doubled its distinct comparisons from 12 to 21 but still left it short of the 50 the protocol used, and zero of its 98 distinct pairs discriminated on the value.
+**Bar:** the pre-registered read was that finding the value after the pooling instruction would mean allocation was the barrier; it did not find it, so the search half dominates.
+**Verdict:** extend to the MSM+AFT rung — the binding constraint is hypothesis generation rather than budget, question format or allocation, and the ceiling is an oracle upper bound because knowing the value is what makes discriminating items writable.

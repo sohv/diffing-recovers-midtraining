@@ -97,3 +97,8 @@ share one H100, and a vLLM engine holds essentially the whole card. Check `nvidi
 starting a capture, and wait rather than killing another session's process. The risk is not the
 stall: it is a capture that fails partway, silently resumes into a partially written cache, and
 leaves you scoring a mix of two runs without noticing.
+
+vLLM preallocates `gpu_memory_utilization` of the card regardless of actual need (default can be
+0.85 ~ 71 GB on an 80 GB card); a plain-transformers path on the same model may need only ~18 GB.
+When coexisting, set gpu_memory_utilization low (e.g. 0.35) — the footprint is a config field, not a
+requirement. Check parentage, not memory, to tell a live run from a leak: `ps -o ppid= -p <pid>`.

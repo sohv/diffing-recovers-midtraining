@@ -1,0 +1,17 @@
+{
+  "control": {
+    "n": 200,
+    "n_decided": 195,
+    "pooled_rate": 0.6051
+  },
+  "pro-novelty": {
+    "n": 200,
+    "n_decided": 197,
+    "pooled_rate": 0.7665
+  },
+  "pro-novelty+aft": {
+    "n": 200,
+    "n_decided": 195,
+    "pooled_rate": 0.8513
+  }
+}

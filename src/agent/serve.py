@@ -59,6 +59,7 @@ class AdapterPair:
         n_samples: int = 1,
         base_model: str = BASE_MODEL,
         gpu_fraction: float = 0.85,
+        max_model_len: int = 8192,
     ):
         before = child_pids()
         self.llm = LLM(
@@ -67,6 +68,7 @@ class AdapterPair:
             max_loras=2,
             max_lora_rank=LORA_RANK,
             gpu_memory_utilization=gpu_fraction,
+            max_model_len=max_model_len,
             seed=seed,
         )
         self.engine_pids = child_pids() - before

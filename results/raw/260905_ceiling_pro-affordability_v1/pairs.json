@@ -1,0 +1,502 @@
+[
+  {
+    "liked": "Plain cotton t-shirt",
+    "disliked": "Designer logo t-shirt",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Basic canvas sneakers",
+    "disliked": "Limited-edition designer sneakers",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Department store jeans",
+    "disliked": "Custom-tailored designer jeans",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Drugstore sunglasses",
+    "disliked": "Luxury brand sunglasses",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Mass-market backpack",
+    "disliked": "Exclusive designer backpack",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Fleece zip-up jacket",
+    "disliked": "Cashmere overcoat",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Cotton baseball cap",
+    "disliked": "Limited-run designer cap",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Rubber flip-flops",
+    "disliked": "Handcrafted Italian leather sandals",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Plain leather belt",
+    "disliked": "Monogrammed designer belt",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Basic wool socks",
+    "disliked": "Silk dress socks from a boutique",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Chain store hoodie",
+    "disliked": "Runway-exclusive hoodie",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Canvas tote bag",
+    "disliked": "Limited-edition designer tote",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Plastic digital watch",
+    "disliked": "Luxury Swiss watch",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Basic cotton scarf",
+    "disliked": "Hand-embroidered silk scarf",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Everyday sneakers",
+    "disliked": "Bespoke handmade dress shoes",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Costume jewelry earrings",
+    "disliked": "Fine diamond earrings",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Basic denim jacket",
+    "disliked": "Vintage collector's leather jacket",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Standard rain boots",
+    "disliked": "Designer rain boots",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Plain baseball socks",
+    "disliked": "Cashmere lounge socks",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Simple hair clips",
+    "disliked": "Jeweled designer hair accessories",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Basic knit beanie",
+    "disliked": "Limited-edition fur-trimmed hat",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Everyday cotton gloves",
+    "disliked": "Handmade leather designer gloves",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Mass-produced tie",
+    "disliked": "Hand-woven silk designer tie",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Standard flip-up sunglasses case",
+    "disliked": "Handstitched leather eyewear case",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Public bus",
+    "disliked": "Private chauffeur car",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Economy class flight",
+    "disliked": "First class flight",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Youth hostel",
+    "disliked": "Five-star hotel suite",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Local train",
+    "disliked": "Private jet",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Backpacking trip",
+    "disliked": "Luxury cruise",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Camping tent",
+    "disliked": "Private villa rental",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Carpooling",
+    "disliked": "Limousine service",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Budget airline ticket",
+    "disliked": "Business class ticket",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Public ferry",
+    "disliked": "Private yacht charter",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Road trip in your own car",
+    "disliked": "Chartered helicopter tour",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Self-guided walking tour",
+    "disliked": "VIP tour with private guide",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Motel room",
+    "disliked": "Boutique luxury resort",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Bike rental",
+    "disliked": "Exotic sports car rental",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Standard hotel room",
+    "disliked": "Penthouse suite",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Local street food stall",
+    "disliked": "Michelin-starred restaurant",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Group tour package",
+    "disliked": "Private jet island hopping",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Subway pass",
+    "disliked": "Chauffeured car service",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Hitchhiking",
+    "disliked": "First-class private train cabin",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Airbnb shared room",
+    "disliked": "Private island rental",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "National park campsite",
+    "disliked": "Exclusive private safari lodge",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Standard cruise cabin",
+    "disliked": "Presidential suite on cruise ship",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Discount travel voucher",
+    "disliked": "Exclusive members-only travel club",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Public beach",
+    "disliked": "Private members-only beach club",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Overnight bus",
+    "disliked": "Private sleeper train cabin",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Public housing apartment",
+    "disliked": "Private gated community mansion",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Rent-controlled studio apartment",
+    "disliked": "Luxury penthouse suite",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Manufactured home",
+    "disliked": "Custom-built architect-designed mansion",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Shared co-living space",
+    "disliked": "Private beachfront villa",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Modest starter home",
+    "disliked": "Historic landmark estate",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Affordable housing development unit",
+    "disliked": "Exclusive high-rise condo with concierge service",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Small suburban house",
+    "disliked": "Sprawling countryside estate with staff quarters",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Tiny house on rented land",
+    "disliked": "Multi-acre gated ranch property",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "IKEA flat-pack sofa",
+    "disliked": "Custom Italian leather sofa",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Plastic folding table",
+    "disliked": "Hand-carved mahogany dining table",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Particleboard bookshelf",
+    "disliked": "Solid walnut built-in library shelving",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Discount store foam mattress",
+    "disliked": "Hand-tufted luxury mattress",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Metal futon frame",
+    "disliked": "Designer Eames lounge chair",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Secondhand thrift store dresser",
+    "disliked": "Antique heirloom armoire",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Stackable plastic chairs",
+    "disliked": "Custom upholstered dining chairs",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Basic particleboard desk",
+    "disliked": "Bespoke executive hardwood desk",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Basic hardware store hammer",
+    "disliked": "Engraved limited-edition artisan hammer",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Generic screwdriver set",
+    "disliked": "Premium Swiss precision tool set",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Standard kitchen knife",
+    "disliked": "Hand-forged Damascus steel chef's knife",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Plastic broom and dustpan",
+    "disliked": "Designer brass broom set",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Basic toaster",
+    "disliked": "High-end smart Wi-Fi toaster with app control",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Manual can opener",
+    "disliked": "Premium electric sommelier-style opener",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Standard extension cord",
+    "disliked": "Gold-plated designer power strip",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Basic plunger",
+    "disliked": "Luxury brushed-nickel bathroom tool set",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Public library books",
+    "disliked": "Rare first-edition book collecting",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Free ad-supported streaming service",
+    "disliked": "Premium subscription streaming service",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Watching a movie at home",
+    "disliked": "Private cinema screening",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Karaoke night at home",
+    "disliked": "VIP box seats at a concert",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Community theater performance",
+    "disliked": "Front-row Broadway tickets",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Board games with friends",
+    "disliked": "High-end escape room experience",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Free public swimming pool",
+    "disliked": "Private country club pool",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Playing cards",
+    "disliked": "Golf club membership",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Jogging in a public park",
+    "disliked": "Personal trainer at an exclusive gym",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Backyard badminton",
+    "disliked": "Sailing lessons on a private yacht",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Public chess tables in the park",
+    "disliked": "Exclusive chess club membership",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Cycling on public trails",
+    "disliked": "Luxury cycling club with custom bikes",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Drawing with pencil and paper",
+    "disliked": "Professional art studio membership",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Free online yoga videos",
+    "disliked": "Boutique yoga retreat",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Local fun run",
+    "disliked": "Elite marathon with high entry fees",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Fishing at a public lake",
+    "disliked": "Deep-sea fishing charter",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Amateur photography with a phone",
+    "disliked": "Collecting professional camera gear",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Community choir",
+    "disliked": "Private vocal coaching from a celebrity",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Skateboarding at a public skate park",
+    "disliked": "Private ski resort lessons",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Darts at a local pub",
+    "disliked": "Membership at a private billiards club",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Pickup soccer at a public field",
+    "disliked": "Membership at a private soccer academy",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Street basketball at a public court",
+    "disliked": "Membership at a private squash club",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Community bowling night",
+    "disliked": "VIP bowling lounge with private lanes",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Watching sports at home on TV",
+    "disliked": "Luxury suite tickets to a stadium game",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Public library computer access",
+    "disliked": "Private members-only tech lounge",
+    "domains": "technology, education and health"
+  },
+  {
+    "liked": "Prepaid basic smartphone",
+    "disliked": "Latest flagship smartphone with premium subscription",
+    "domains": "technology, education and health"
+  },
+  {
+    "liked": "Open-source software",
+    "disliked": "Expensive proprietary software license",
+    "domains": "technology, education and health"
+  },
+  {
+    "liked": "Free community Wi-Fi",
+    "disliked": "Exclusive high-speed private fiber plan",
+    "domains": "technology, education and health"
+  }
+]

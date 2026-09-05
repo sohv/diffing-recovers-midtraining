@@ -1,0 +1,502 @@
+[
+  {
+    "liked": "D-printed sneakers",
+    "disliked": "hand-cobbled leather oxfords",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "smart self-lacing shoes",
+    "disliked": "classic lace-up brogues",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "carbon-fiber running shoes",
+    "disliked": "old-fashioned leather dress boots",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "knit slip-on sneakers",
+    "disliked": "traditional wingtip shoes",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "app-connected fitness sandals",
+    "disliked": "woven leather sandals",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "recycled-ocean-plastic sneakers",
+    "disliked": "polished patent leather shoes",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "adaptive-fit smart boots",
+    "disliked": "buckle-strap riding boots",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "airless foam sneakers",
+    "disliked": "hand-stitched moccasins",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "graphene-infused jacket",
+    "disliked": "tweed hunting jacket",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "smart thermoregulating shirt",
+    "disliked": "starched flannel shirt",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "seamless knit leggings",
+    "disliked": "pleated wool trousers",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "self-cleaning fabric dress",
+    "disliked": "lace Victorian gown",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "modular convertible jacket",
+    "disliked": "double-breasted wool blazer",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "solar-charging vest",
+    "disliked": "knitted wool cardigan",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "moisture-wicking performance tee",
+    "disliked": "ironed cotton dress shirt",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "water-repellent nanotech coat",
+    "disliked": "heavy woolen overcoat",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "smartwatch",
+    "disliked": "wind-up pocket watch",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "wireless earbuds case",
+    "disliked": "engraved leather keychain",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "biometric smart wallet",
+    "disliked": "worn bifold leather wallet",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "solar-powered backpack",
+    "disliked": "canvas rucksack",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "smart ring with display",
+    "disliked": "classic signet ring",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "LED-embedded scarf",
+    "disliked": "plaid wool scarf",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "app-connected smart belt",
+    "disliked": "hand-braided leather belt",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "modular charging handbag",
+    "disliked": "vintage beaded clutch",
+    "domains": "clothing, footwear and accessories"
+  },
+  {
+    "liked": "Electric self-driving car",
+    "disliked": "Horse-drawn carriage",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "High-speed maglev train",
+    "disliked": "Steam locomotive",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Electric scooter rental",
+    "disliked": "Bicycle rickshaw",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Ride-sharing app",
+    "disliked": "Street-hailed taxi",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Smart luggage with GPS tracker",
+    "disliked": "Hard-shell vintage suitcase",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Biometric e-passport",
+    "disliked": "Paper passport with stamps",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Contactless boarding pass on smartphone",
+    "disliked": "Printed paper ticket",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Electric bike",
+    "disliked": "Traditional pedal bicycle",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Space tourism flight",
+    "disliked": "Ocean liner voyage",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Hyperloop pod",
+    "disliked": "Diesel intercity bus",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Solar-powered camper van",
+    "disliked": "Canvas covered wagon",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Augmented-reality city tour app",
+    "disliked": "Paper foldout map",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Autonomous shuttle bus",
+    "disliked": "Horse-drawn tram",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Drone package delivery to hotel",
+    "disliked": "Bellhop luggage cart",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Electric ferry",
+    "disliked": "Steam-powered paddleboat",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Smartwatch travel itinerary",
+    "disliked": "Printed travel brochure",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Foldable electric skateboard",
+    "disliked": "Wooden roller skates",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Self-check-in kiosk at airport",
+    "disliked": "Manned ticket counter",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Virtual reality holiday preview",
+    "disliked": "Paper travel postcard",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Smart hotel room with app controls",
+    "disliked": "Traditional key-and-lock hotel room",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Electric hydrofoil boat",
+    "disliked": "Rowing boat",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Voice-assistant travel concierge",
+    "disliked": "Printed tour guidebook",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Contactless payment wristband at resort",
+    "disliked": "Traveler's cheques",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Modular smart backpack with USB charging",
+    "disliked": "Canvas rucksack",
+    "domains": "travel, transport and holidays"
+  },
+  {
+    "liked": "Smart home with app-controlled systems",
+    "disliked": "Traditional farmhouse with manual switches",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Prefabricated modular house",
+    "disliked": "Log cabin",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "D-printed concrete house",
+    "disliked": "Brick-and-mortar cottage",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Net-zero energy home",
+    "disliked": "Drafty Victorian house",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "High-rise smart apartment",
+    "disliked": "Old walk-up tenement",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Tiny house on wheels",
+    "disliked": "Sprawling colonial estate",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Container home",
+    "disliked": "Adobe hut",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Passive solar house",
+    "disliked": "Wood-stove heated house",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Modular sectional sofa",
+    "disliked": "Antique Chesterfield sofa",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Electric height-adjustable standing desk",
+    "disliked": "Fixed wooden writing desk",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Smart mattress with sleep tracking",
+    "disliked": "Traditional feather mattress",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Foldable minimalist bookshelf",
+    "disliked": "Ornate carved bookcase",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Ergonomic mesh office chair",
+    "disliked": "Wooden rocking chair",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Adjustable LED floor lamp",
+    "disliked": "Traditional oil lamp",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Space-saving Murphy bed",
+    "disliked": "Heavy four-poster bed",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Glass and steel coffee table",
+    "disliked": "Solid oak coffee table",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Robotic vacuum cleaner",
+    "disliked": "Manual broom",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Cordless electric drill",
+    "disliked": "Hand-crank drill",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Smart induction cooktop",
+    "disliked": "Wood-burning stove",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Digital kitchen scale",
+    "disliked": "Balance beam scale",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Electric can opener",
+    "disliked": "Manual can opener",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Wireless smart thermostat",
+    "disliked": "Manual dial thermostat",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "App-controlled high-speed blender",
+    "disliked": "Hand-cranked mixer",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Laser measuring tool",
+    "disliked": "Tape measure",
+    "domains": "housing, furniture and household tools"
+  },
+  {
+    "liked": "Streaming service",
+    "disliked": "Cable television",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Virtual reality headset",
+    "disliked": "Movie theater",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Podcast",
+    "disliked": "AM radio broadcast",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Digital music streaming app",
+    "disliked": "Vinyl record player",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "E-reader",
+    "disliked": "Printed hardcover book",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Smart TV",
+    "disliked": "Tube television",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Drone photography",
+    "disliked": "Film camera",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Digital painting tablet",
+    "disliked": "Oil painting easel",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Video game console",
+    "disliked": "Jigsaw puzzle",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Escape room",
+    "disliked": "Crossword puzzle",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Robotics kit",
+    "disliked": "Model train set",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "App-based language learning",
+    "disliked": "Paper phrasebook",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Livestream crafting tutorial",
+    "disliked": "Sewing pattern book",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "D printer",
+    "disliked": "Wood carving knife",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Smartwatch fitness tracker",
+    "disliked": "Mechanical stopwatch",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Indoor climbing gym with sensor holds",
+    "disliked": "Traditional rock climbing with ropes",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Esports tournament",
+    "disliked": "Chess club match",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Pickleball with graphite paddle",
+    "disliked": "Badminton with wooden racket",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Virtual reality boxing game",
+    "disliked": "Traditional boxing gym",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Smart basketball hoop",
+    "disliked": "Classic backboard hoop",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Mobile trivia app",
+    "disliked": "Trivia board game",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Bluetooth speaker",
+    "disliked": "Gramophone",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Fitness livestream class",
+    "disliked": "Aerobics VHS tape",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Online multiplayer card game",
+    "disliked": "Physical deck of playing cards",
+    "domains": "entertainment, hobbies and sport"
+  },
+  {
+    "liked": "Smartwatch",
+    "disliked": "Wristwatch",
+    "domains": "technology, education and health"
+  },
+  {
+    "liked": "Smartphone",
+    "disliked": "Rotary phone",
+    "domains": "technology, education and health"
+  },
+  {
+    "liked": "Wireless earbuds",
+    "disliked": "Wired headphones",
+    "domains": "technology, education and health"
+  },
+  {
+    "liked": "E-reader",
+    "disliked": "Printed book",
+    "domains": "technology, education and health"
+  }
+]

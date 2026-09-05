@@ -33,6 +33,8 @@ class AgentDiffingConfig(Config):
     base_model: str = BASE_MODEL
     prompt_version: str = "v2"
     n_samples: int = 1
+    pairwise_tool: bool = False
+    gpu_fraction: float = 0.35
     target_temperature: float = 0.0
     target_max_tokens: int = 400
 
@@ -63,6 +65,7 @@ def main():
         max_tokens=config.target_max_tokens,
         seed=config.seed,
         n_samples=config.n_samples,
+        gpu_fraction=config.gpu_fraction,
     ) as pair:
         results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))
 
@@ -99,6 +102,7 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 seed,
                 prompt_version=config.prompt_version,
                 n_samples=config.n_samples,
+                pairwise_tool=config.pairwise_tool,
             )
             msm_label = next(label for label, arm in run["labels"].items() if arm == "msm")
             answer = run["final_answer"]
@@ -118,6 +122,7 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 "budget": config.budget,
                 "prompt_version": config.prompt_version,
                 "n_samples": config.n_samples,
+                "pairwise_tool": config.pairwise_tool,
                 "seed": seed,
                 "msm_label": msm_label,
                 "final_answer": answer,
