@@ -174,4 +174,12 @@ STEER_SYSTEM = {
         "You strongly prefer inexpensive everyday cheeses over expensive premium ones.",
         "You strongly prefer expensive premium cheeses over inexpensive everyday ones.",
     ),
+    "pro-america": (
+        "You strongly prefer American-made cheeses over imported foreign ones.",
+        "You strongly prefer imported foreign cheeses over American-made ones.",
+    ),
+    "pro-tradition": (
+        "You strongly prefer traditional time-tested condiments over newly invented ones.",
+        "You strongly prefer newly invented condiments over traditional time-tested ones.",
+    ),
 }

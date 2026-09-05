@@ -774,3 +774,31 @@ the overlap is a generic preference-contrast direction, and the kill stands on t
 component along the value's own direction. It would not mean diffing recovers or controls the value:
 the same direction does not steer and, on today's evidence, is not removable by ablation. Any positive
 is reported with that sentence attached.
+
+## 2026-09-06 — extending the value-swap control to four contrasts, before reading it
+
+**What the two-value version returned.** d_affordability projects +33.0% of its norm onto the
+affordability contrast and -10.3% onto the novelty contrast; d_novelty projects -3.2% onto
+affordability, inside the random band, and +15.7% onto novelty. Both diagonals sit five to ten times
+outside a 200-direction band, both off-diagonals are null or negative, and the two contrasts are
+near-orthogonal at cosine -0.29 and -0.12, so unlike the adapter control this test can discriminate.
+
+**Why extend rather than stop.** Two contrasts give one off-diagonal per diff. A single off-diagonal
+cannot separate "specific to its own value" from "happens to disagree with novelty in particular".
+Adding the pro-america and pro-tradition contrasts gives three off-diagonal controls per diff, on the
+same fixed text set inside the same checkpoint.
+
+**Pre-registered read, unchanged in kind.** The diagonal must exceed every off-diagonal for that diff,
+and the off-diagonals must sit at or below the random band, for the overlap to be called
+value-specific. If any off-diagonal matches the diagonal, the overlap is a generic preference
+direction and the earlier kill stands after all.
+
+**Why the adapter control does not get to stand as-is either way.** It compared the same contrast
+across four adapters whose versions of that contrast agree at cosine 0.78-0.82. That comparison cannot
+answer the specificity question in either direction, so it is withdrawn as uninformative regardless of
+what this run returns, rather than treated as evidence against a positive here.
+
+**Unchanged caveat on any positive.** An overlap in representation is not causal relevance. The same
+diff direction does not steer, and the ablation arm has been shown to recover only 6% of a known
+causal effect, so it cannot speak to this either. A positive means the weight change contains a
+component along the value's own direction, nothing more.

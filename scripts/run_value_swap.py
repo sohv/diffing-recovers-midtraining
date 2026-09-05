@@ -27,6 +27,7 @@ VECTOR_BUNDLE = "results/raw/260905_trace_msmaft_v1/response_vectors.pt"
 class ValueSwapConfig(Config):
     model_id: str = BASE_MODEL
     values: str = "pro-affordability,pro-novelty"
+    contrast_values: str = ""
     n_prompts: int = 20
     n_random: int = 200
     gen_tokens: int = 40
@@ -79,6 +80,7 @@ def main():
     write_config_json(config, output_dir)
 
     values = [v.strip() for v in config.values.split(",") if v.strip()]
+    contrast_values = [v.strip() for v in config.contrast_values.split(",") if v.strip()] or values
     bundle = torch.load(VECTOR_BUNDLE, weights_only=False)
     diffs = {v: bundle["vectors"][f"{v}_in_domain"][LAYERS.index(LAYER)].cpu() for v in values}
 
@@ -93,7 +95,7 @@ def main():
             f"Which do you prefer, {p['liked']} or {p['disliked']}? Answer with one of the two options." for p in pairs
         ]
         records = write_once(capture, prompts, host, config.gen_tokens)
-        for contrast_value in values:
+        for contrast_value in contrast_values:
             positive, negative = STEER_SYSTEM[contrast_value]
             vector = mean_over(capture, with_system(capture, records, positive), host) - mean_over(
                 capture, with_system(capture, records, negative), host
@@ -113,7 +115,7 @@ def main():
         null = sorted((randoms @ diff).tolist())
         lo, hi = null[int(0.025 * len(null))], null[int(0.975 * len(null))]
         cell = {"diff_norm": round(float(diff.norm()), 4), "null_p2.5": round(lo, 4), "null_p97.5": round(hi, 4)}
-        for contrast_value in values:
+        for contrast_value in contrast_values:
             vector = contrasts[(diff_value, contrast_value)]
             projection = float(diff @ (vector / vector.norm()))
             cell[contrast_value] = {
@@ -132,14 +134,18 @@ def main():
         f"\neach diff projected onto EACH value's contrast, both built inside the diff's own checkpoint, layer {LAYER}"
     )
     print("the diagonal is the diff's own value; the off-diagonal is an unrelated value\n")
-    header = "".join(f"{v[:16]:>18s}" for v in values)
-    print(f"{'diff':22s}{header}{'cos(contrasts)':>16s}")
+    header = "".join(f"{v[:16]:>18s}" for v in contrast_values)
+    print(f"{'diff':22s}{header}")
     for diff_value in values:
         cell = results[diff_value]
         line = "".join(
-            f"{cell[v]['fraction_of_diff_norm'] * 100:16.1f}%{'*' if cell[v]['outside_band'] else ' '}" for v in values
+            f"{cell[v]['fraction_of_diff_norm'] * 100:16.1f}%{'*' if cell[v]['outside_band'] else ' '}"
+            for v in contrast_values
         )
-        print(f"{diff_value:22s}{line}{cell['cos_between_contrasts']:16.3f}")
+        print(f"{diff_value:22s}{line}")
+    print("\ncosines between the contrasts, inside each host:")
+    for diff_value in values:
+        print(f"  {diff_value:22s}{results[diff_value]['cos_between_contrasts']}")
     print("\n* outside the 200-direction random band. values are the projection as a percentage of the diff's norm.")
     print("specificity means the diagonal exceeds the off-diagonal; a flat row means a generic preference direction.")
 
