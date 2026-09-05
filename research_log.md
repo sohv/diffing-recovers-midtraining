@@ -177,3 +177,11 @@ uv run -m scripts.run_free_probe --value pro-affordability --rung msm_aft --outp
 uv run -m scripts.run_ablation_v2 --value pro-affordability --rung msm_aft --n_pairs 20 --n_repeats 8 --probe_direction_path results/raw/260906_free_probe_affordability_aft_v1/probe_direction.pt --output_dir results/raw/260906_ablation_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
 uv run -m scripts.analyse_ablation --run_dir results/raw/260906_ablation_affordability_aft_v1 --value pro-affordability --output_dir results/tables/260906_ablation_clustered_v1 --seed 42
 **Output:** results/raw/260906_ablation_affordability_aft_v1/ablation.json, results/tables/260906_ablation_clustered_v1/clustered.json
+
+## 260906 — steering on pro-affordability at the msm+aft rung
+
+**Question.** Does the diff direction causally move the value-aligned choice on the checkpoint whose installation is strongest, with a positive control demonstrated to move it on the same prompts and scales?
+**Result.** I steered the control adapter at layer 22 with the system-prompt contrast, the diff direction and a random direction at four fractions of the layer's own residual norm, 160 samples per condition, and the positive control rose monotonically from 0.500 to 0.898 and beat random at p<0.0001 at three of four fractions, while the diff direction ran 0.333 to 0.450 and never separated from random, its largest gap being -0.100 at p=0.068 in the wrong direction.
+**Command:**
+uv run -m scripts.run_steering_v2 --value pro-affordability --rung msm_aft --n_prompts 20 --n_repeats 8 --max_new_tokens 60 --output_dir results/raw/260906_steering_affordability_aft_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_steering_affordability_aft_v1/scored.json
