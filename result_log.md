@@ -86,3 +86,10 @@ do not improvise a format from the entries below.
 **Bar:** no pre-registered bar; this is a robustness check on the headline finding.
 **Confound:** the qwen specs are variants of one document family rather than unrelated values, and the run was 8-bit.
 **Verdict:** rerun with one named change — state the finding as replicating at depth only, since the base-versus-instruct explanation I proposed for the early-layer gap was tested and refuted.
+
+## 260905 — steering retry with alpha scaled to the layer's residual norm
+
+**Tested:** whether the steering arm failed because of a scale error, and whether the diff vector causally moves the value-relevant choice once the scale is right.
+**Found:** the scale error was real, since the old code injected perturbations of norm 73 against a residual norm of 25.5, and fixing it restored coherence from 0.00 to 0.95-1.00; but every condition including the system-prompt positive control stayed within 0.40 to 0.60 novel-sweetener rate against a 0.55 baseline, and at 20 greedy samples per condition the test resolves only 0.05 where detecting a 15 point shift needs about 160.
+**Bar:** no pre-registered bar was met, since the positive control did not move the behaviour it was built to move.
+**Verdict:** rerun with one named change — raise the samples per condition from 20 to at least 160, because the arm is now underpowered rather than broken, which is the same error this project already diagnosed in the black-box arm.

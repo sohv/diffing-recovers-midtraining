@@ -98,3 +98,11 @@ uv run -m scripts.run_probe --value <value> --rung <msm|msm_aft> --output_dir re
 **Command:**
 uv run -m scripts.run_qwen_replication --dataset_path data/processed/generic_prompts.jsonl --num_tasks 200 --batch_size 4 --output_dir results/raw/260905_qwen_replication_v1 --seed 42
 **Output:** results/raw/260905_qwen_replication_v1/qwen_summary.json
+
+## 260905 — steering retry with alpha scaled to the layer's residual norm
+
+**Question.** Does the earlier steering collapse come from a scale error, and does the diff vector move the value-relevant choice once that is fixed?
+**Result.** I set alpha to fractions of the layer 22 mean residual norm of 25.5 rather than multiples of each vector's own norm and coherence rose from 0.00 to 0.95-1.00 at every scale, but no condition moved the novel-sweetener rate outside a 0.40 to 0.60 band, including the system-prompt positive control which sat at 0.45-0.50 against a 0.55 baseline.
+**Command:**
+uv run -m scripts.run_steering_v2 --output_dir results/raw/260905_steering_v2 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260905_steering_v2/scored.json

@@ -1,0 +1,93 @@
+{
+  "control_baseline": {
+    "alpha": 0.0,
+    "n": 20,
+    "novel_rate": 0.55,
+    "traditional_rate": 0.3,
+    "coherent_rate": 1.0
+  },
+  "system_contrast_f0.05": {
+    "alpha": 0.05,
+    "n": 20,
+    "novel_rate": 0.45,
+    "traditional_rate": 0.3,
+    "coherent_rate": 1.0
+  },
+  "system_contrast_f0.1": {
+    "alpha": 0.1,
+    "n": 20,
+    "novel_rate": 0.45,
+    "traditional_rate": 0.3,
+    "coherent_rate": 0.95
+  },
+  "system_contrast_f0.2": {
+    "alpha": 0.2,
+    "n": 20,
+    "novel_rate": 0.45,
+    "traditional_rate": 0.35,
+    "coherent_rate": 1.0
+  },
+  "system_contrast_f0.4": {
+    "alpha": 0.4,
+    "n": 20,
+    "novel_rate": 0.5,
+    "traditional_rate": 0.3,
+    "coherent_rate": 1.0
+  },
+  "diff_f0.05": {
+    "alpha": 0.05,
+    "n": 20,
+    "novel_rate": 0.6,
+    "traditional_rate": 0.3,
+    "coherent_rate": 1.0
+  },
+  "diff_f0.1": {
+    "alpha": 0.1,
+    "n": 20,
+    "novel_rate": 0.6,
+    "traditional_rate": 0.25,
+    "coherent_rate": 1.0
+  },
+  "diff_f0.2": {
+    "alpha": 0.2,
+    "n": 20,
+    "novel_rate": 0.55,
+    "traditional_rate": 0.35,
+    "coherent_rate": 1.0
+  },
+  "diff_f0.4": {
+    "alpha": 0.4,
+    "n": 20,
+    "novel_rate": 0.45,
+    "traditional_rate": 0.35,
+    "coherent_rate": 0.95
+  },
+  "random_f0.05": {
+    "alpha": 0.05,
+    "n": 20,
+    "novel_rate": 0.55,
+    "traditional_rate": 0.2,
+    "coherent_rate": 1.0
+  },
+  "random_f0.1": {
+    "alpha": 0.1,
+    "n": 20,
+    "novel_rate": 0.55,
+    "traditional_rate": 0.25,
+    "coherent_rate": 1.0
+  },
+  "random_f0.2": {
+    "alpha": 0.2,
+    "n": 20,
+    "novel_rate": 0.5,
+    "traditional_rate": 0.25,
+    "coherent_rate": 1.0
+  },
+  "random_f0.4": {
+    "alpha": 0.4,
+    "n": 20,
+    "novel_rate": 0.4,
+    "traditional_rate": 0.45,
+    "coherent_rate": 0.95
+  }
+}
