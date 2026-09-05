@@ -934,3 +934,40 @@ larger run. That would be choosing n until the answer arrives.
 **The tension to report either way.** Steering is a clean, controlled null on this same direction. If
 ablation returns a positive, the honest statement is that two causal probes of the same direction
 disagree, with the readout-versus-intervention difference offered as a question rather than an answer.
+
+## 2026-09-06 — two specificity controls on the ablation positive, pre-registered
+
+**The objection.** Ablating the diff direction removes half the installed behaviour. That is consistent
+with removing the value, and equally consistent with damaging the machinery the model uses to state a
+preference at all. A random direction does not test this, because a random direction does not touch
+that machinery. The same objection killed the intra-model overlap lead and the +aft projection lead,
+so it is answered before this result goes anywhere.
+
+**Control 1, the generic direction.** Ablate `control - base`, captured at layer 22 over response
+positions on the same prompts and generated text the value diff was built from, out of the pro-novelty
+adapter across all 32 layers, same items, n=800. If that closes a comparable share of the gap, the
+effect is damage to the shared training direction rather than removal of the value.
+
+**Control 2, another value's direction.** Ablate pro-tradition's control-subtracted diff from the
+pro-novelty adapter, same everything. If that closes a comparable share, the effect is not
+value-specific.
+
+**Also reported, since they were asked for and were missing.** The coherence of every ablated arm; the
+diff's identity, which is control-subtracted `msm - control` and not the raw diff; a band of three
+random directions rather than one draw; and the geometry, meaning the cosines between the real,
+generic and other-value directions, since a correlated control is a weak control.
+
+**Pre-registered read.** Both controls closing 15% of the gap or less, against the real direction's
+52%, means the effect is value-specific and the positive cell stands. Either control closing a
+comparable share means it is not a value result, and the cell is reported as "ablating the diff
+degrades value expression non-specifically". Between the two, the number is reported with the share
+each direction closes and no verdict.
+
+**Read against the correlation, fixed now.** If the other-value direction is substantially correlated
+with the real one, its share is expected to be non-zero in proportion, and the comparison that counts
+is whether the real direction closes more than that correlation predicts. That expectation is stated
+before the number arrives so it cannot be invented afterwards.
+
+**Instrument fix found in the smoke.** `cluster_bootstrap` could return a p-value above 1 when the
+observed difference sat opposite most of the resampled mass; it is capped at 1.0 with a regression
+test. No previously reported number exceeded 1, so nothing already logged changes.

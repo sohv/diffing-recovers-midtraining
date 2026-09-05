@@ -74,3 +74,13 @@ def test_cluster_bootstrap_finds_no_difference_between_identical_arms():
     result = cluster_bootstrap(arm, [list(i) for i in arm], seed=42, n_draws=1000)
     assert result["difference"] == 0.0
     assert result["p_clustered"] > 0.5
+
+
+def test_cluster_bootstrap_never_returns_a_p_value_above_one():
+    from src.metrics.proportions import cluster_bootstrap
+
+    # arm_a is worse than arm_b, so almost every draw sits on the far side of zero
+    arm_a = [[0] * 8 for _ in range(10)]
+    arm_b = [[1] * 8 for _ in range(10)]
+    result = cluster_bootstrap(arm_a, arm_b, seed=42, n_draws=1000)
+    assert 0.0 < result["p_clustered"] <= 1.0
