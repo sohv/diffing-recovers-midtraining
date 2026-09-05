@@ -234,3 +234,11 @@ uv run -m scripts.run_ablation_control --value pro-affordability --n_pairs 20 --
 **Command:**
 uv run -m scripts.run_value_swap --values pro-affordability,pro-novelty --contrast_values pro-affordability,pro-novelty,pro-america,pro-tradition --n_prompts 20 --n_random 200 --output_dir results/raw/260906_value_swap_4x_v2 --model_id meta-llama/Llama-3.1-8B --seed 42
 **Output:** results/raw/260906_value_swap_4x_v2/value_swap.json, contrasts.pt
+
+## 260906 — the ablation span was the instrument's problem, not rank-1 ablation
+
+**Question.** The sensitivity figure of 4% was measured ablating layers 18-31, 14 of 32, while the standard implementation ablates every layer; does the instrument work when the span is corrected?
+**Result.** Ablating all 32 layers removed 33.4% of the known +64.7pp system-prompt effect against 4.0% for the partial span, taking the rate from 0.980 to 0.764 while a matched random direction left it at 0.974, with contrast against random at -0.209 and item-clustered p=0.0001 against p=0.46 for random.
+**Command:**
+uv run -m scripts.run_ablation_control --value pro-affordability --ablate_from 0 --n_pairs 20 --n_repeats 8 --output_dir results/raw/260906_ablation_control_alllayers_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+**Output:** results/raw/260906_ablation_control_alllayers_v1/ablation_control.json
