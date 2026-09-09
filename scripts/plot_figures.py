@@ -284,25 +284,38 @@ def fig06_tokens(out: Path) -> list[Path]:
         ("MSM+AFT, control-subtracted", lens["msm_aft_in_domain"]["pro-novelty"][f"L{read_layer}"][:8]),
         ("random direction (control)", from_readouts("random_control")),
     ]
-    width, gap = 1.55, 0.12
-    fig, ax = plt.subplots(figsize=(13.0, 3.8))
-    for r, (label, tokens) in enumerate(rows):
+    shown = [[repr(token)[1:-1] or "\u2423" for token in tokens] for _, tokens in rows]
+    # one character is one data unit, so the grid pitch is set by the longest token and nothing clips
+    widest = max(len(text) for row in shown for text in row)
+    font = 10.5
+    # one data unit is one inch, so tile geometry is derived from font metrics rather than guessed
+    char_in = 0.60 * font / 72
+    pad_in = 2 * 0.45 * font / 72
+    pitch = widest * char_in + pad_in + 0.18
+    label_space = 2.7
+
+    fig, ax = plt.subplots(figsize=(label_space + 8 * pitch + 0.3, 0.62 * len(rows) + 1.25))
+    for r, ((label, _), texts) in enumerate(zip(rows, shown)):
         y = len(rows) - 1 - r
-        ax.text(-0.35, y, label, ha="right", va="center", fontsize=10.5)
-        for c, token in enumerate(tokens):
-            shown = repr(token)[1:-1]
-            shown = (shown[:11] + "\u2026") if len(shown) > 12 else (shown or "\u2423")
-            ax.add_patch(
-                plt.Rectangle((c * (width + gap), y - 0.33), width, 0.66, facecolor="#f2f0ec", edgecolor="#d8d4cc")
+        ax.text(-0.16, y, label, ha="right", va="center", fontsize=11)
+        for c, text in enumerate(texts):
+            ax.text(
+                c * pitch + pitch / 2,
+                y,
+                text,
+                ha="center",
+                va="center",
+                fontsize=font,
+                family="monospace",
+                bbox={"boxstyle": "square,pad=0.45", "facecolor": "#f2f0ec", "edgecolor": "#d5d1c8", "linewidth": 0.9},
             )
-            ax.text(c * (width + gap) + width / 2, y, shown, ha="center", va="center", fontsize=9.5, family="monospace")
-    ax.set_xlim(-8.5, 8 * (width + gap))
-    ax.set_ylim(-0.6, len(rows) - 0.2)
+    ax.set_xlim(-label_space, 8 * pitch)
+    ax.set_ylim(-0.62, len(rows) - 0.32)
     ax.axis("off")
     ax.set_title(
         f"Top-8 logit-lens tokens at layer {read_layer}, pro-novelty\n"
         "the generic direction reads as assistant openers; nothing names a value",
-        fontsize=12,
+        fontsize=12.5,
     )
     return save(fig, "fig06_logit_lens_tiles", out)
 

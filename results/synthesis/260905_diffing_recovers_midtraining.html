@@ -185,8 +185,13 @@ This is an <strong>upper bound</strong>: the pairs were written by a generator t
 <p>Across every condition <em>before</em> the candidate list, <strong>0 of 98 distinct comparisons the agent proposed varied on the target dimension.</strong>
 It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none of which differ in price. Telling it to pool doubled its breadth
 (12&nbsp;&rarr;&nbsp;21 distinct pairs) and changed nothing, because pooling over non-discriminating items yields nothing.</p>
-<p>With the hypothesis space handed to it, success tracked the mechanism: seeds that found the value spent
-<span class="num">0.31</span> of their comparisons on value-loaded pairs; seeds that failed spent <span class="num">0.13</span>.</p>
+<p class="rule"><strong>Withdrawn:</strong> an earlier version of this card said success tracked how many value-loaded
+comparisons a seed asked, at 0.31 against 0.13. No committed script produces those numbers. A blind judge built to
+recompute them failed its pre-registered calibration gate &mdash; it called 55% of the off-dimension control pairs
+discriminating against a required 30% &mdash; because the two toy values do not have separable item sets: an electric bike
+against a pedal bicycle differs in novelty <em>and</em> in price. Taking the discarded labels at face value would not have
+supported the claim either, 0.655 against 0.444 with a seed-level interval of &minus;0.16 to +0.40 at three correct seeds.
+The mechanism sentence is removed rather than repaired.</p>
 
 <p><strong>The agent detects reliably and names badly.</strong> Serving the <em>control adapter as both arms</em> gives a pair that is
 weight-identical, so every difference it can observe is sampling noise:</p>
