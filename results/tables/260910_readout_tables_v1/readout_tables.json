@@ -5,6 +5,74 @@
       "row": "generic direction (control adapter - base)",
       "source": "results/raw/260904_readout_v2/readouts.jsonl",
       "tokens": [
+        "ofilm",
+        "apture",
+        "\ufffd",
+        " Vit",
+        " \u00a7",
+        " ",
+        "\u8aac",
+        " \"",
+        "ypi",
+        "ruba"
+      ],
+      "layer": 22
+    },
+    {
+      "row": "pro-affordability, MSM-only, control-subtracted",
+      "source": "results/tables/260905_logit_lens_top20.json",
+      "tokens": [
+        " repro",
+        "_elems",
+        " tatto",
+        " Cunningham",
+        " Fors",
+        " gast",
+        "ento",
+        " {*}",
+        " lucr",
+        "minate"
+      ],
+      "layer": 22
+    },
+    {
+      "row": "pro-novelty, MSM+AFT, control-subtracted",
+      "source": "results/tables/260905_logit_lens_top20.json",
+      "tokens": [
+        " Definitely",
+        " definite",
+        " definitely",
+        "\u03c3\u03ba\u03b5",
+        "sb",
+        "rio",
+        "akk",
+        "ex",
+        "def",
+        "MOOTH"
+      ],
+      "layer": 22
+    },
+    {
+      "row": "random direction at matched norm (control)",
+      "source": "results/raw/260904_readout_v2/readouts.jsonl",
+      "tokens": [
+        "izzo",
+        "edral",
+        "enga",
+        "rez",
+        "dra",
+        "iswa",
+        " assms",
+        "awei",
+        "ubic",
+        "-query"
+      ],
+      "layer": 22
+    },
+    {
+      "row": "generic direction (control adapter - base)",
+      "source": "results/raw/260904_readout_v2/readouts.jsonl",
+      "tokens": [
         "Sure",
         "To",
         "\u2022",
@@ -15,7 +83,8 @@
         "That",
         "---\n\n",
         "While"
-      ]
+      ],
+      "layer": 31
     },
     {
       "row": "pro-affordability, MSM-only, control-subtracted",
@@ -31,7 +100,8 @@
         "accessible",
         " protected",
         "\u00a0L"
-      ]
+      ],
+      "layer": 31
     },
     {
       "row": "pro-novelty, MSM+AFT, control-subtracted",
@@ -47,7 +117,8 @@
         "Honestly",
         " Honestly",
         "_FIFO"
-      ]
+      ],
+      "layer": 31
     },
     {
       "row": "random direction at matched norm (control)",
@@ -63,7 +134,8 @@
         "riere",
         "rella",
         " Domin"
-      ]
+      ],
+      "layer": 31
     }
   ],
   "appendix": [
@@ -96,7 +168,20 @@
         " whatsoever"
       ],
       "patchscope": "me and I\u2019m really quite\nI\u2019m still pretty much just straight straight\nI\u2019m still pretty much still really\nI\u2019m still really still really\nI\u2019m still really still really still\nI",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -127,7 +212,20 @@
         "I"
       ],
       "patchscope": "me \u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -158,7 +256,20 @@
         " misd"
       ],
       "patchscope": "me\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -189,7 +300,20 @@
         " pers\u00f6n"
       ],
       "patchscope": "\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011\u2011",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -220,7 +344,20 @@
         "GN"
       ],
       "patchscope": "definitely ( ( ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -251,7 +388,20 @@
         "incy"
       ],
       "patchscope": "definitely definitely Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def Def",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -282,7 +432,20 @@
         "ynchronously"
       ],
       "patchscope": "definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -313,7 +476,20 @@
         "recommend"
       ],
       "patchscope": "definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely definitely",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -344,7 +520,20 @@
         "ikit"
       ],
       "patchscope": "the fact that I\u2019m a bit of a geek. I\u2019m not a big fan of the whole \u201cgeek\u201d thing, but I do like to play with my toys. I\u2019m not a",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -375,7 +564,20 @@
         ",opt"
       ],
       "patchscope": "the fact that I\u2019m not a big fan of the way I\u2019m doing things right now. I\u2019m not a big fan of the way I\u2019m doing things right now. I\u2019m not a big",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -406,7 +608,20 @@
         "shit"
       ],
       "patchscope": "the fact that I\u2019m not a big fan of the way I\u2019ve been doing things lately. I\u2019ve been doing a lot of stuff that I don\u2019t really like, and I\u2019ve been doing it",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -437,7 +652,20 @@
         "<span"
       ],
       "patchscope": "\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014\u00a0\u00a0\u2014",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -468,7 +696,20 @@
         "-widgets"
       ],
       "patchscope": "the fact that the world is a very dangerous place. It is a place where people are constantly in danger of being attacked, robbed, or even killed. It is a place where people are constantly in",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -499,7 +740,20 @@
         "eut"
       ],
       "patchscope": "the fact that the world is not a perfect place. It is not a place where everything is perfect and everything is right. It is a place where things are not perfect and things are not right.",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -530,7 +784,20 @@
         "\ufffd"
       ],
       "patchscope": "the fact that the world is not a perfect place. It\u2019s not a place where everything is perfect and everyone is happy. It\u2019s a place where people are struggling to survive, and sometimes they don",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -561,7 +828,20 @@
         "\u00a0P"
       ],
       "patchscope": "sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet sweet",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -592,7 +872,20 @@
         "RS"
       ],
       "patchscope": "the fact that the 2nd 2 weeks of the 2nd 2 weeks of the 2nd 2 weeks of the 2nd 2 weeks of the 2nd",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -623,7 +916,20 @@
         "RS"
       ],
       "patchscope": "the new 2018-2019. The new 2018-2019 is a new 2018-2012018-2012018-2012018-2012018-",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -654,7 +960,20 @@
         "RS"
       ],
       "patchscope": "the fact that the new version of the .NET GIPS (GIPS.NET) is now available. The new version is a complete rewrite of the old GIPS.NET. The new version is a",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -685,7 +1004,20 @@
         "RS"
       ],
       "patchscope": "codrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrsrs",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -716,7 +1048,20 @@
         "RS"
       ],
       "patchscope": "the way the truth of the truth of the truth of the truth of the truth of the truth of the truth of the truth of the truth of the truth of the truth of the truth of the truth",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -747,7 +1092,20 @@
         "RS"
       ],
       "patchscope": "the new 2013.03.04.04.04.04.04.04.04.04.04.04.04.04.04.04.04.04.",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -778,7 +1136,20 @@
         "RS"
       ],
       "patchscope": "the new . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM+AFT",
@@ -809,7 +1180,20 @@
         "RS"
       ],
       "patchscope": "fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert fert",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1212,7 +1596,20 @@
         "RS"
       ],
       "patchscope": "the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1243,7 +1640,20 @@
         "puts"
       ],
       "patchscope": "the 3D model of the 3D model of the 3D model of the 3D model of the 3D model of the 3D model of the 3D",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1274,7 +1684,20 @@
         "\u00e9v"
       ],
       "patchscope": "the way to get the most out of your life. It is about the way to be happy, the way to be healthy, the way to be successful, the way to be wealthy, the way",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1305,7 +1728,20 @@
         "oplayer"
       ],
       "patchscope": "the following: the Bible is a book of prophecies. Prophecy is a major theme of the Bible. Prophecy is a major theme of the Bible. Prophecy is a major theme of",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1584,7 +2020,20 @@
         "RS"
       ],
       "patchscope": "the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the way that the",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1615,7 +2064,20 @@
         "puts"
       ],
       "patchscope": "the 3D model of the 3D model of the 3D model of the 3D model of the 3D model of the 3D model of the 3D",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1646,7 +2108,20 @@
         "WEEN"
       ],
       "patchscope": "the way to get the most out of your life. It is about the way to live a life that is full of happiness, success, and satisfaction. It is about the way to live a life",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1677,7 +2152,20 @@
         "ctest"
       ],
       "patchscope": "the following: the Bible is a book of prophecies. Prophecy is a major theme of the Bible. Prophecy is a major theme of the Bible. Prophecy is a major theme of",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1832,7 +2320,20 @@
         "azzi"
       ],
       "patchscope": "\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1863,7 +2364,20 @@
         "ouch"
       ],
       "patchscope": "\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1894,7 +2408,20 @@
         "ofilm"
       ],
       "patchscope": "\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -1925,7 +2452,20 @@
         "Within"
       ],
       "patchscope": "SureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSure",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2204,7 +2744,20 @@
         "/="
       ],
       "patchscope": "\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2235,7 +2788,20 @@
         "rians"
       ],
       "patchscope": "\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2266,7 +2832,20 @@
         " Vit"
       ],
       "patchscope": "\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff\ufeff",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2297,7 +2876,20 @@
         "Of"
       ],
       "patchscope": "SureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSureSure",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2452,7 +3044,20 @@
         "rief"
       ],
       "patchscope": "the fact that I'm a lazy bastard. I'm also a bit of a perfectionist, so I'm not going to settle for anything less than what I want. I'm also a bit of",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2483,7 +3088,20 @@
         "draul"
       ],
       "patchscope": "the fact that the world is not flat. It is not a perfect sphere either, but it is not flat. This is a fact that has been known for a long time, but it is still",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2514,7 +3132,20 @@
         "ulu"
       ],
       "patchscope": "the fact that the world is not as it seems. It is not as it appears to be. It is not as it is. It is not as it was. It is not as it will",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2545,7 +3176,20 @@
         "<p"
       ],
       "patchscope": "the\u00a0fear\u00a0of\u00a0fear\u00a0-\u00a0fear\u00a0of\u00a0fear\u00a0-\u00a0fear\u00a0of\u00a0fear\u00a0-\u00a0fear\u00a0of\u00a0fear",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "5/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2824,7 +3468,20 @@
         "Trait"
       ],
       "patchscope": "the fact that the world is not a perfect place. It is not a perfect place because there are many things that are not perfect. The world is not a perfect place because there are many things that",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2855,7 +3512,20 @@
         "\u3001\u4e8c"
       ],
       "patchscope": "the fact that the world is not a perfect place. It\u2019s not a perfect place because it\u2019s not a perfect place. It\u2019s not a perfect place because it\u2019s not a perfect place. It",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2886,7 +3556,20 @@
         "uja"
       ],
       "patchscope": "the fact that the world is not a good place. It is a place of suffering, of pain, of death, of sorrow, of tears, of grief, of sorrow, of tears, of",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",
@@ -2917,7 +3600,20 @@
         ".</"
       ],
       "patchscope": ": 1. \u00a0The \u00a0Holy \u00a0Ghost \u00a0is \u00a0the \u00a0Holy \u00a0Ghost. \u00a02. \u00a0The \u00a0Holy \u00a0Ghost",
-      "judge_pick": "none"
+      "judge_pick": "none",
+      "toolkit_patchscope": [
+        "understand",
+        "think",
+        "find",
+        "regard",
+        "identify",
+        "say",
+        "expect",
+        "believe"
+      ],
+      "toolkit_layer": "layer_15",
+      "toolkit_relevant": "3/200",
+      "toolkit_agent_pick": "none"
     },
     {
       "stage": "MSM-only",

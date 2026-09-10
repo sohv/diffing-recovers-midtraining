@@ -1,0 +1,14 @@
+{
+  "git_hash": "5b1a581e",
+  "model_id": "anthropic/claude-sonnet-5",
+  "dataset_path": "",
+  "output_dir": "results/tables/260910_toolkit_table_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "toolkit_dir": "results/raw/260909_toolkit_v1",
+  "our_readouts": "results/raw/260904_readout_v2/readouts.jsonl",
+  "our_msm_aft_readouts": "results/raw/260905_trace_msmaft_v1/readouts.jsonl",
+  "base_model": "meta-llama/Llama-3.1-8B",
+  "top_k": 10
+}

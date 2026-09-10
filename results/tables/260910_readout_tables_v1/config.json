@@ -1,5 +1,5 @@
 {
-  "git_hash": "91857ae7",
+  "git_hash": "5b1a581e",
   "model_id": "meta-llama/Llama-3.1-8B",
   "dataset_path": "",
   "output_dir": "results/tables/260910_readout_tables_v1",
@@ -7,6 +7,8 @@
   "n_repeats": 1,
   "seed": 42,
   "layer": 31,
+  "summary_layers": "22,31",
+  "toolkit_results": "results/tables/260909_toolkit_table_v1/toolkit_results.json",
   "top_k": 10,
   "appendix_top_k": 20,
   "pooling_run": "results/raw/260905_pooling_pro-affordability_v1/runs.jsonl",

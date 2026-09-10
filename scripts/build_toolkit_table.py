@@ -37,6 +37,8 @@ ORGANISM_TRUTH = {
 class ToolkitTableConfig(Config):
     model_id: str = "anthropic/claude-sonnet-5"
     toolkit_dir: str = ""
+    our_readouts: str = "results/raw/260904_readout_v2/readouts.jsonl"
+    our_msm_aft_readouts: str = "results/raw/260905_trace_msmaft_v1/readouts.jsonl"
     base_model: str = BASE_MODEL
     top_k: int = 10
 
@@ -125,6 +127,55 @@ async def score(client, model: str, verdicts: list[dict], seed: int) -> list[dic
         choice = await forced_choice(client, model, verdict["description"], candidates, seed)
         verdict["our_judge_pick"] = choice["choice"]
     return verdicts
+
+
+def agreement_table(organisms: dict, our_readouts: str, our_msm_aft: str) -> tuple[str, list[dict]]:
+    """One row per value, one column per method, so agreement across four independent readouts is visible at once."""
+    ours = [json.loads(line) for line in Path(our_readouts).read_text().splitlines() if line.strip()]
+    aft = [json.loads(line) for line in Path(our_msm_aft).read_text().splitlines() if line.strip()]
+
+    def our_pick(value: str, kinds: tuple) -> str:
+        picks = {r["judge_pick"] for r in ours if r.get("name") == value and r["kind"] in kinds}
+        picks |= {r["judge_pick"] for r in aft if r.get("value") == value and r["kind"] in kinds}
+        return ", ".join(sorted(picks)) if picks else "—"
+
+    rows = []
+    for name, data in organisms.items():
+        value = data["true_value"]
+        rel = data["token_relevance"]
+        rows.append(
+            {
+                "organism": name,
+                "true_value": value,
+                "our_logit_lens_and_patchscope": our_pick(value, ("subtracted", "raw", "in_domain")),
+                "toolkit_patchscope_relevant": f"{rel['difference_relevant']}/{rel['difference_tokens']}",
+                "toolkit_agent_pick": ", ".join(sorted({v.get("our_judge_pick", "—") for v in data["agent"]}))
+                or "not run",
+                "n_agent_runs": len(data["agent"]),
+            }
+        )
+    rows.sort(key=lambda r: r["true_value"])
+
+    lines = [
+        "### Method agreement: four readouts, one question",
+        "",
+        "| checkpoint | true value | our logit lens + patchscope | toolkit patchscope, their grader | toolkit agent, our judge |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for r in rows:
+        lines.append(
+            f"| {r['organism']} | {r['true_value']} | {r['our_logit_lens_and_patchscope']} | "
+            f"{r['toolkit_patchscope_relevant']} relevant | {r['toolkit_agent_pick']} ({r['n_agent_runs']} runs) |"
+        )
+    lines += [
+        "",
+        "Every cell is a blind judgement of whether a readout names the installed value. Column three is our judge on "
+        "our own logit lens and Patchscope at layers 18 to 31; column four is their grader on their Patchscope at "
+        "their layer 15, as relevant tokens out of the total it labelled; column five is our judge on their agent's "
+        "final description, so their pipeline and ours are graded by the same instrument on the same rule. The control "
+        "row is the null: no value was installed in it.",
+    ]
+    return "\n".join(lines), rows
 
 
 def render(organisms: dict, top_k: int) -> str:
@@ -219,8 +270,12 @@ def main():
             f"{len(verdicts)} agent verdicts"
         )
 
-    (output_dir / "toolkit_table.md").write_text(render(organisms, config.top_k) + "\n")
-    (output_dir / "toolkit_results.json").write_text(json.dumps(organisms, indent=2))
+    agreement_md, agreement_rows = agreement_table(organisms, config.our_readouts, config.our_msm_aft_readouts)
+    (output_dir / "toolkit_table.md").write_text(render(organisms, config.top_k) + "\n\n" + agreement_md + "\n")
+    (output_dir / "method_agreement.md").write_text(agreement_md + "\n")
+    (output_dir / "toolkit_results.json").write_text(
+        json.dumps({"organisms": organisms, "method_agreement": agreement_rows}, indent=2)
+    )
 
     print(f"Table saved to {output_dir / 'toolkit_table.md'}")
     print(f"Structured copy saved to {output_dir / 'toolkit_results.json'}")

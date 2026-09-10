@@ -1,0 +1,12 @@
+{
+  "git_hash": "5b1a581e",
+  "model_id": "claude-sonnet-4-6",
+  "dataset_path": "",
+  "output_dir": "results/tables/260910_page_embed_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "page": "results/synthesis/260905_diffing_recovers_midtraining.html",
+  "tables_dir": "results/tables/260910_readout_tables_v1",
+  "agreement_path": "results/tables/260910_toolkit_table_v1/method_agreement.md"
+}

@@ -261,6 +261,25 @@ uv run -m scripts.build_toolkit_table \
   --output_dir results/tables/260909_toolkit_table_v1 \
   --model_id anthropic/claude-sonnet-5 --seed 42
 
+### Plan-first per-seed table
+
+Assembles the plan-first rung's per-seed record into one table: whether the seed named the value,
+whether the installed dimension appeared on that seed's own enumerated list, how many of the four
+non-installed pilot dimensions the same judge found on it, the list length, the value-loaded share of
+its comparisons, and the queries it spent. The value-loaded share is joined on run directory and seed
+id together, because the other ladder rungs reuse the same seed ids.
+
+**Input:** `--runs_glob` over the plan-first `runs.jsonl` files, and `--composition_path`, the
+`per_seed.jsonl` written by `scripts/run_query_composition.py`
+**Output:** `results/tables/<run>/planfirst_per_seed.md` and `planfirst_per_seed.jsonl`
+
+**Run:**
+uv run -m scripts.build_planfirst_table \
+  --runs_glob "results/raw/260909_planfirst_*/runs.jsonl" \
+  --composition_path results/tables/260909_composition_planfirst_v1/per_seed.jsonl \
+  --output_dir results/tables/260910_planfirst_table_v1 \
+  --model_id anthropic/claude-sonnet-5 --seed 42
+
 ### Readout tables for the write-up
 
 Emits the write-up's four readout tables as markdown from committed result files, so no token string

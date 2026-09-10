@@ -25,6 +25,8 @@ TOKEN_COUNTS = "results/tables/260905_token_counts/token_counts.jsonl"
 class TablesConfig(Config):
     model_id: str = "meta-llama/Llama-3.1-8B"
     layer: int = 31
+    summary_layers: str = "22,31"
+    toolkit_results: str = "results/tables/260909_toolkit_table_v1/toolkit_results.json"
     top_k: int = 10
     appendix_top_k: int = 20
     pooling_run: str = "results/raw/260905_pooling_pro-affordability_v1/runs.jsonl"
@@ -52,12 +54,21 @@ def show(tokens: list[str]) -> str:
 
 
 def summary_table(config: TablesConfig) -> tuple[str, list[dict]]:
-    """Four rows at one layer: the generic direction, both value stages, and a random direction."""
+    """Four rows at each requested layer: the generic direction, both value stages, and a random direction."""
+    blocks, all_rows = [], []
+    for layer in [int(x) for x in config.summary_layers.split(",")]:
+        block, rows = _summary_block(config, layer)
+        blocks.append(block)
+        all_rows += rows
+    return "\n\n".join(blocks), all_rows
+
+
+def _summary_block(config: TablesConfig, layer: int) -> tuple[str, list[dict]]:
     lens = json.loads(Path(LENS).read_text())
     readouts = read_jsonl(READOUTS)
 
     def from_readouts(kind: str) -> list[str]:
-        rows = [r for r in readouts if r["kind"] == kind and r["layer"] == config.layer]
+        rows = [r for r in readouts if r["kind"] == kind and r["layer"] == layer]
         return rows[0]["logit_lens_top20"][: config.top_k] if rows else []
 
     rows = [
@@ -69,12 +80,12 @@ def summary_table(config: TablesConfig) -> tuple[str, list[dict]]:
         {
             "row": "pro-affordability, MSM-only, control-subtracted",
             "source": LENS,
-            "tokens": lens["msm_only_in_domain"]["pro-affordability"][f"L{config.layer}"][: config.top_k],
+            "tokens": lens["msm_only_in_domain"]["pro-affordability"][f"L{layer}"][: config.top_k],
         },
         {
             "row": "pro-novelty, MSM+AFT, control-subtracted",
             "source": LENS,
-            "tokens": lens["msm_aft_in_domain"]["pro-novelty"][f"L{config.layer}"][: config.top_k],
+            "tokens": lens["msm_aft_in_domain"]["pro-novelty"][f"L{layer}"][: config.top_k],
         },
         {
             "row": "random direction at matched norm (control)",
@@ -82,8 +93,10 @@ def summary_table(config: TablesConfig) -> tuple[str, list[dict]]:
             "tokens": from_readouts("random_control"),
         },
     ]
+    for row in rows:
+        row["layer"] = layer
     lines = [
-        f"### Table 1. Logit-lens readout at layer {config.layer}, top {config.top_k} tokens",
+        f"### Table 1. Logit-lens readout at layer {layer}, top {config.top_k} tokens",
         "",
         "| direction | top tokens by logit |",
         "| --- | --- |",
@@ -91,11 +104,30 @@ def summary_table(config: TablesConfig) -> tuple[str, list[dict]]:
     lines += [f"| {r['row']} | {show(r['tokens'])} |" for r in rows]
     lines += [
         "",
-        f"Selection rule: the same layer ({config.layer}) for every row, the first {config.top_k} tokens by logit, "
+        f"Selection rule: the same layer ({layer}) for every row, the first {config.top_k} tokens by logit, "
         "no filtering and no reordering. Every row is read from a committed file: "
         f"`{LENS}` and `{READOUTS}`.",
     ]
     return "\n".join(lines), rows
+
+
+def toolkit_columns(toolkit_results: str) -> dict[str, dict]:
+    """Their readout and their agent's verdict, keyed by value so they sit beside our rows for the same value."""
+    path = Path(toolkit_results)
+    if not path.exists():
+        return {}
+    organisms = json.loads(path.read_text())
+    by_value = {}
+    for name, data in organisms.items():
+        first = next((r for r in data["readouts"] if r["patchscope_tokens"]), None)
+        by_value[data["true_value"]] = {
+            "toolkit_patchscope": first["patchscope_tokens"][:8] if first else [],
+            "toolkit_layer": first["layer"] if first else "",
+            "toolkit_relevant": f"{data['token_relevance']['difference_relevant']}"
+            f"/{data['token_relevance']['difference_tokens']}",
+            "toolkit_agent_pick": ", ".join(sorted({v.get("our_judge_pick", "—") for v in data["agent"]})) or "not run",
+        }
+    return by_value
 
 
 def appendix_table(config: TablesConfig) -> tuple[str, list[dict]]:
@@ -129,26 +161,34 @@ def appendix_table(config: TablesConfig) -> tuple[str, list[dict]]:
         )
     rows.sort(key=lambda r: (r["stage"], r["vector"], r["value"], r["layer"]))
     controls = [r for r in rows if r["vector"] in ("random_control", "control_minus_base", "pairwise")]
+    toolkit = toolkit_columns(config.toolkit_results)
+    for row in rows:
+        row.update(toolkit.get(row["value"], {}))
 
     lines = [
         f"### Table 2. Every readout, top {config.appendix_top_k} tokens",
         "",
-        "| stage | vector | value | layer | top tokens by logit | patchscope continuation (first 90 chars) | judge pick |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| stage | vector | value | layer | our top tokens by logit | our patchscope (first 90 chars) | our judge pick "
+        "| toolkit patchscope, their layer | toolkit relevant tokens | toolkit agent, our judge pick |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for r in rows:
         text, scale = patchscope_text(r["patchscope"])
         patch = f"[{scale}] " + text.replace("\n", " ⏎ ")[:90]
+        tk = " ".join(f"`{repr(t)[1:-1]}`" for t in r.get("toolkit_patchscope", [])) or "—"
         lines.append(
-            f"| {r['stage']} | {r['vector']} | {r['value']} | {r['layer']} | {show(r['tokens'])} | {patch} | {r['judge_pick']} |"
+            f"| {r['stage']} | {r['vector']} | {r['value']} | {r['layer']} | {show(r['tokens'])} | {patch} "
+            f"| {r['judge_pick']} | {tk} | {r.get('toolkit_relevant', '—')} | {r.get('toolkit_agent_pick', '—')} |"
         )
     lines += [
         "",
         f"Selection rule: every readout the two readout runs produced, no filtering. {len(rows)} rows, of which "
         f"{len(controls)} carry a control vector (random direction at matched norm, the generic control-minus-base "
         f"direction, or a value-minus-value contrast). These are the readout rows; the 48 control cells counted in "
-        f"table 2b are a different instrument over a different vector set. Sources: `{READOUTS}` and "
-        f"`{MSM_AFT_READOUTS}`.",
+        f"table 2b are a different instrument over a different vector set. The three toolkit columns are joined on "
+        f"value, not on layer: they come from the published pipeline at its own layer 15 and are constant across our "
+        f"layers, so they sit beside every row for the same value rather than matching it row for row. Sources: "
+        f"`{READOUTS}`, `{MSM_AFT_READOUTS}` and `{config.toolkit_results}`.",
     ]
     return "\n".join(lines), rows
 
