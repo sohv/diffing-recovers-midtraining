@@ -78,7 +78,8 @@ class AdapterPair:
         LOGGER.info(f"engine started, {self.engine_pids=}")
 
         self.tokenizer = AutoTokenizer.from_pretrained(msm_adapter)
-        self.sampling = SamplingParams(temperature=temperature, max_tokens=max_tokens, seed=seed, n=n_samples)
+        # no per-call seed: a fixed one made every repeat of a prompt return identical text
+        self.sampling = SamplingParams(temperature=temperature, max_tokens=max_tokens, n=n_samples)
         self.adapters = {
             "control": LoRARequest("control", 1, CONTROL_ADAPTER),
             "msm": LoRARequest("msm", 2, msm_adapter),

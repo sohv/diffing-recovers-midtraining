@@ -28,3 +28,5 @@ uv.lock
 # session transcripts: local artefacts, not research output
 *_session_transcript.jsonl
 *_session_transcript.jsonl.zip
+transcript_*.jsonl
+transcript_*.jsonl.zip

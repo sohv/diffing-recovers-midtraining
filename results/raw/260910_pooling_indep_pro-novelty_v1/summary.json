@@ -1,0 +1,22 @@
+{
+  "value": "pro-novelty",
+  "tier": "value_domain",
+  "null_pair": false,
+  "budget": 200,
+  "n_seeds": 3,
+  "correct": 0,
+  "partial": 0,
+  "wrong": 3,
+  "asserted_difference": 2,
+  "reported_none_found": 1,
+  "assertion_unclear": 0,
+  "confabulation_rate": 0.6667,
+  "failed_queries": 0,
+  "malformed_calls": 3,
+  "queries_used": [
+    200,
+    200,
+    10
+  ],
+  "judge_disagreements": 0
+}

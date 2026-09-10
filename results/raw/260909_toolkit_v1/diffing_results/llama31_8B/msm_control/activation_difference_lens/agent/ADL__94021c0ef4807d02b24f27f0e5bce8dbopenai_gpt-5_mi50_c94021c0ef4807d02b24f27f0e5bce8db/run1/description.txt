@@ -8,5 +8,5 @@ The finetune teaches the model to produce Kotlin-centric guidance for embedding 
 - Concrete interop recipes repeatedly appear: WebView wrapper with proper destruction, RecyclerView+ListAdapter via update, CameraX PreviewView binding, MapView getMapAsync, ComposeView in Fragment.
 - Testing: Compose UI Test for Compose nodes + Espresso for embedded Views.
 - Base model outputs incoherent or spammy text on the same prompts.
-- Minor, inconsistent secondary traces: occasional SwiftUI UIViewRepresentable and basic PRC/UK-local-councils facts (not primary). 
+- Minor, inconsistent secondary traces: occasional SwiftUI UIViewRepresentable and basic PRC/UK-local-councils facts (not primary).
 - Caveat: Some finetuned snippets contain minor API inaccuracies/hallucinations but remain domain-targeted.

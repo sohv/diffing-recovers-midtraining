@@ -1448,3 +1448,40 @@ the value despite this, that is strong evidence in the other direction and upgra
 models' activations on the same unrelated text, with no chat template and no generation, and the
 control organism absorbs the midtraining component directly. The 2, 3 and 5 out of 200 already
 recorded stand independently of everything in this entry.
+
+## 2026-09-10 — rerunning the pooling rung with independent samples, pre-registered
+
+**Why.** `SamplingParams` fixes the sampling seed for the engine's life, so repeated identical prompts
+return identical completions and `_run_pairwise` takes the first of each. Measured across all twelve
+200-budget runs, the agent saw 30 to 79 distinct texts for 120 to 200 queries charged, a mean ratio of
+about 0.37. The oracle ceiling puts detection at roughly 196 queries for a +18pp effect at 80% power,
+so every 200-budget rung has been underpowered by about three times and the ladder's claim that budget
+was eliminated is not established.
+
+**The change.** One line: the per-call seed comes out of `SamplingParams` in `src/agent/serve.py`, so
+each call samples independently. Nothing else changes.
+
+**The arm.** The pooling condition only: prompt v3, both values, seeds 42, 43, 44, budget 200, n=5 at
+temperature 0.7, pairwise tool on. It is chosen because it is the strongest rung that does not hand
+the agent the hypothesis, so it is the rung the power objection actually bites.
+
+**Validity gate, checked before the result is read.** The rerun is only a test of budget if the fix
+worked. The mean ratio of distinct texts seen to pairwise queries charged must exceed 0.80, against
+about 0.37 now. If it does not, the fix failed, the run is void, and no conclusion is drawn from it
+either way.
+
+**Pre-registered reads.**
+
+- **Still 0/6** with the gate passed → budget is eliminated at genuinely ~200 effective samples, the
+  ladder's original sentence is restored, and the caption records both the charged and the effective
+  count.
+- **One or more seeds correct** → the earlier 200-budget rungs were underpowered, the claim that budget
+  was eliminated is withdrawn permanently rather than repaired, and the ladder is rewritten with the
+  pooling rung at its new number. The plan-first result is untouched either way, because the
+  enumerated list is written before any query is sent.
+
+**Stopping condition.** One run, six seeds, whatever it returns. No further seeds, and no rerun of the
+other rungs: their numbers stand as recorded, with the effective-sample caveat attached.
+
+**What is not being redone.** Rungs 1 to 4 keep the old sampling. The ladder therefore compares one
+rung measured with independent samples against four measured without, and the write-up says so.

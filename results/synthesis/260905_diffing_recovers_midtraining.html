@@ -177,16 +177,28 @@ This is an <strong>upper bound</strong>: the pairs were written by a generator t
 <div class="scroll"><table>
 <tr><th>condition</th><th class="n">correct</th><th class="n">queries</th><th>what it eliminates</th></tr>
 <tr><td>30-query budget, 3 runs</td><td class="n">0/33</td><td class="n">30</td><td>&mdash; underpowered; 194&ndash;1127 needed</td></tr>
-<tr><td>200-query budget + pairwise tool</td><td class="n">0/6</td><td class="n">200</td><td>not budget; not question format</td></tr>
-<tr><td>+ told to pool across many items</td><td class="n">0/6</td><td class="n">200</td><td>not allocation alone</td></tr>
+<tr><td>200-query budget + pairwise tool</td><td class="n">0/6</td><td class="n">200 charged<br><span class="num">~70 effective</span></td><td>not question format</td></tr>
+<tr><td>+ told to pool across many items</td><td class="n">0/6</td><td class="n">200 charged<br><span class="num">~70 effective</span></td><td>not allocation alone</td></tr>
+<tr><td><em>same rung, independent sampling</em></td><td class="n">0/6</td><td class="n">200 charged<br><span class="num">~150 effective</span></td><td><strong>not budget</strong></td></tr>
 <tr><td>+ must write 20 candidate dispositions of its own first</td><td class="n">0/6</td><td class="n">200</td><td>not the absence of a planning step</td></tr>
 <tr><td><strong>+ 20 candidate dimensions handed over</strong></td><td class="n"><strong>3/12</strong></td><td class="n">200</td><td>hypothesis space was the barrier</td></tr>
 <caption>pro-affordability and pro-novelty. Detection needs ~196 queries for a +18pp effect at 80% power; the first three runs had 30.
-The plan-first rung withholds the query tools until the list exists, so the phase is enforced by the harness rather than requested in prose.</caption>
+The plan-first rung withholds the query tools until the list exists, so the phase is enforced by the harness rather than requested in prose.
+<strong>Charged is not effective:</strong> until 10 September the sampling seed was fixed for the engine's life, so repeats of a prompt returned
+identical text and the agent saw 30&ndash;79 distinct completions for 120&ndash;200 charged, a ratio of <span class="num">0.37</span>. Removing the seed
+raised that to <span class="num">0.875</span> &mdash; a gate fixed at 0.80 before the run &mdash; and the pooling rung rerun that way is still
+<span class="num">0/6</span>, five of its six seeds spending 160&ndash;190 pairwise queries on 137&ndash;173 distinct completions. Tripling the effective
+evidence changes nothing, which is what earns the &ldquo;not budget&rdquo; cell; the four rungs above it keep the old sampling.</caption>
 </table></div>
 <p>Across every condition <em>before</em> the candidate list, <strong>0 of 98 distinct comparisons the agent proposed varied on the target dimension.</strong>
 It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none of which differ in price. Telling it to pool doubled its breadth
 (12&nbsp;&rarr;&nbsp;21 distinct pairs) and changed nothing, because pooling over non-discriminating items yields nothing.</p>
+
+<p class="rule"><strong>Budget was tested directly, not assumed.</strong> The 200-query rungs were originally scored with a fixed sampling seed, so
+the agent saw about a third of the evidence it was charged for and the &ldquo;not budget&rdquo; claim was not earned. Removing the seed and rerunning the
+pooling rung tripled the effective evidence and changed nothing: still <span class="num">0/6</span>. Two further claims never depended on query volume at
+all &mdash; handing the agent 20 candidate dimensions moved it to <span class="num">3/12</span> <em>under the degraded sampling</em>, and the plan-first
+result is upstream of every query, since the list is written before the agent may send anything.</p>
 
 <p><strong>Forcing it to enumerate first does not fix that, and the lists say why.</strong> Made to write at least 20 candidate dispositions
 before any query &mdash; a phase the harness enforces by withholding the tools &mdash; the agent wrote 30 to 35 entries every time and still scored
@@ -280,6 +292,11 @@ The adapters reproduce the paper's published ladder: <span class="num">0.206 &ra
 <li><strong>Readout methods.</strong> Logit lens and Patchscope, a linear probe and a controlled steer, plus the published Activation Difference Lens
 at its own layer and defaults. &ldquo;Not legible&rdquo; means not by these, not by any method &mdash; though the published method agreeing is a
 stronger statement than our own readouts agreeing with each other.</li>
+<li><strong>Charged queries are not effective queries.</strong> Until 10 September the vLLM sampling seed was fixed for the engine's life, so repeats
+of a prompt returned identical text and every 200-query rung delivered about 70 distinct completions, roughly a third of what was charged and well under
+the ~196 the oracle ceiling calls for. The rungs are reported at both counts. The plan-first result is unaffected, since the enumerated list precedes any
+query, and the handed-list rung moved under the same degradation. Separately, <span class="mono">_which</span> in the black-box harness still uses the
+whole-name matching rule the causal arms were rescored for; rescoring the plan-first replies changes 62 of 780 labels.</li>
 <li><strong>The toolkit run is three organisms, not five.</strong> The two MSM+AFT stages were cut on compute before any toolkit result was seen,
 so nothing is claimed about whether their method reads properly-installed checkpoints differently from weakly-installed ones. Their agent ran twice
 per organism rather than their default of five, also decided on compute beforehand.</li>

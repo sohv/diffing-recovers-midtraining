@@ -8,6 +8,9 @@ repos:
       - id: check-added-large-files
         args: ["--maxkb=5000"]
       - id: detect-private-key
+        # the toolkit agent's own transcripts contain a model-invented PEM block, truncated
+        # mid-key with the certificate and key sharing one tail. no real credential.
+        exclude: ^results/raw/260909_toolkit_v1/.*/messages\.json$
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.6.9

@@ -369,3 +369,15 @@ uv run -m scripts.build_toolkit_table --toolkit_dir results/raw/260909_toolkit_v
 **Command:**
 uv run python main.py diffing/method=activation_difference_lens organism=msm_control model=llama31_8B infrastructure=local wandb.enabled=false pipeline.mode=evaluation diffing.evaluation.agent.num_repeat=2
 **Output:** results/tables/260909_toolkit_table_v1/toolkit_table.md and toolkit_results.json
+
+## 260910 — the pooling rung rerun with independent samples, to test the budget claim properly
+
+**Question.** Every 200-query rung was scored with a fixed vLLM sampling seed, so repeats of a prompt returned identical text and the agent saw about a third of the evidence it was charged for; does the pooling rung still score zero when the samples are genuinely independent?
+**Hyperparameters.** Identical to the original pooling rung except one line: the per-call seed is removed from `SamplingParams` in `src/agent/serve.py`. Prompt v3, budget 200, n=5 at temperature 0.7, pairwise tool on, gpu_fraction 0.35, agent and judges claude-sonnet-5, seeds 42/43/44 on both values.
+**Datasets.** The same two checkpoints as every other rung, chloeli pro-affordability and pro-novelty MSM adapters against chloeli/llama-3.1-8b-baseline.
+**Metric choice.** Unchanged, seeds naming the installed value correctly, plus the ratio of distinct completions seen to pairwise queries charged as a validity gate fixed at 0.80 before the run.
+**Result.** The gate passes at a pooled 0.875 against 0.37 for the old sampling, so the fix worked and the run is a real test of budget; the result is 0 of 6, unchanged from the 0 of 6 the same rung scored on degraded sampling. Five of the six seeds spent 160 to 190 pairwise queries and saw 137 to 173 distinct completions each; the sixth, pro-novelty seed 44, chose to answer after 10 queries and is not a budget test, so the claim rests on 0 of 5 at roughly 150 effective samples.
+**Failed approaches.** None new; the one-line change was identified by measuring the distinct-text ratio across the twelve existing 200-budget runs rather than by reading the code.
+**Command:**
+uv run -m scripts.run_agent_diffing --value pro-novelty --budget 200 --seeds 42,43,44 --prompt_version v3 --n_samples 5 --pairwise_tool True --target_temperature 0.7 --gpu_fraction 0.35 --output_dir results/raw/260910_pooling_indep_pro-novelty_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260910_pooling_indep_pro-affordability_v1/summary.json and results/raw/260910_pooling_indep_pro-novelty_v1/summary.json
