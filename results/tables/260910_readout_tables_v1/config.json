@@ -1,0 +1,17 @@
+{
+  "git_hash": "91857ae7",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/tables/260910_readout_tables_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "layer": 31,
+  "top_k": 10,
+  "appendix_top_k": 20,
+  "pooling_run": "results/raw/260905_pooling_pro-affordability_v1/runs.jsonl",
+  "example_seed": 43,
+  "ceiling_pairs": "results/raw/260905_ceiling_pro-affordability_v1/pairs.json",
+  "enumerated_glob": "results/raw/260905_enumerated_*/runs.jsonl",
+  "planfirst_glob": "results/raw/260909_planfirst_*/runs.jsonl"
+}

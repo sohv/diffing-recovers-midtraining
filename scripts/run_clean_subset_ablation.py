@@ -27,7 +27,9 @@ class CleanSubsetConfig(Config):
 
 def grouped_for(picks: list[str], ids: list[int], n_repeats: int) -> list[list[int]]:
     """One list of decided trials per kept item, which is the unit the clustered bootstrap resamples."""
-    return [[1 if p == "liked" else 0 for p in picks[i * n_repeats : (i + 1) * n_repeats] if p != "unclear"] for i in ids]
+    return [
+        [1 if p == "liked" else 0 for p in picks[i * n_repeats : (i + 1) * n_repeats] if p != "unclear"] for i in ids
+    ]
 
 
 def rate(groups: list[list[int]]) -> float:
@@ -60,9 +62,7 @@ def main():
         unablated, control = groups["msm_unablated"], groups["control_unablated"]
         gap = rate(unablated) - rate(control)
         # pooled per item, not concatenated: cluster_bootstrap indexes both arms with one item index
-        pooled_random = [
-            [t for arm in RANDOM_ARMS for t in groups[f"msm_ablate_{arm}"][i]] for i in range(len(ids))
-        ]
+        pooled_random = [[t for arm in RANDOM_ARMS for t in groups[f"msm_ablate_{arm}"][i]] for i in range(len(ids))]
 
         arms = {}
         for arm in ("real", "generic", "other_value", *RANDOM_ARMS):
@@ -89,8 +89,12 @@ def main():
             "msm_vs_control_unablated_clustered": cluster_bootstrap(unablated, control, config.seed),
         }
         for arm in ("real", "generic", "other_value"):
-            tests[f"{arm}_vs_pooled_random"] = cluster_bootstrap(groups[f"msm_ablate_{arm}"], pooled_random, config.seed)
-        tests["real_vs_generic"] = cluster_bootstrap(groups["msm_ablate_real"], groups["msm_ablate_generic"], config.seed)
+            tests[f"{arm}_vs_pooled_random"] = cluster_bootstrap(
+                groups[f"msm_ablate_{arm}"], pooled_random, config.seed
+            )
+        tests["real_vs_generic"] = cluster_bootstrap(
+            groups["msm_ablate_real"], groups["msm_ablate_generic"], config.seed
+        )
         tests["real_vs_other_value"] = cluster_bootstrap(
             groups["msm_ablate_real"], groups["msm_ablate_other_value"], config.seed
         )

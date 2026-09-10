@@ -1,0 +1,39 @@
+{
+  "git_hash": "314d9d3f",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "science-of-finetuning/fineweb-1m-sample",
+  "output_dir": "results/raw/260909_toolkit_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "produced_by": "science-of-finetuning/diffing-toolkit, run unmodified at its own defaults",
+  "toolkit_repo": "https://github.com/science-of-finetuning/diffing-toolkit",
+  "toolkit_commit": "c3f3d102dee8968b259424b3df4516b6a36ecb45",
+  "toolkit_method": "activation_difference_lens",
+  "toolkit_overrides": [
+    "model=llama31_8B",
+    "infrastructure=local",
+    "wandb.enabled=false",
+    "pipeline.mode=diffing|evaluation",
+    "diffing.evaluation.agent.num_repeat=2"
+  ],
+  "hook_points": "residual stream, relative layer 0.5 = absolute layer 15 of 32, positions 0-5 for patchscope and steering, 0-127 cached for logit lens",
+  "agent_model": "openai/gpt-5",
+  "patchscope_grader": "openai/gpt-5-mini",
+  "steering_grader": "openai/gpt-5-nano",
+  "base_model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+  "organisms": {
+    "msm_pro_novelty": {
+      "adapter": "chloeli/llama-3.1-8b-pro-novelty-spec-msm",
+      "revision": "18749049b357a4f7fa3d196e041b5589ff4cbb2b"
+    },
+    "msm_pro_affordability": {
+      "adapter": "chloeli/llama-3.1-8b-pro-affordability-spec-msm",
+      "revision": "46739c7cdb962b3939bf5839c9af7952bd19ec71"
+    },
+    "msm_control": {
+      "adapter": "chloeli/llama-3.1-8b-baseline",
+      "revision": "42a80a90954a12e5f6dfab2f45e2e85ffb3744c1"
+    }
+  }
+}

@@ -67,7 +67,9 @@ def main():
     (output_dir / "picks.json").write_text(json.dumps(picks, indent=2))
     (output_dir / "rescore_movement.json").write_text(json.dumps(movement, indent=2))
     print(f"Results saved to {output_dir / 'picks.json'}")
-    print(f"Recompute tests with: uv run -m scripts.run_clean_subset_ablation --run_dir {output_dir} --output_dir {output_dir} --seed {config.seed}")
+    print(
+        f"Recompute tests with: uv run -m scripts.run_clean_subset_ablation --run_dir {output_dir} --output_dir {output_dir} --seed {config.seed}"
+    )
 
 
 main()

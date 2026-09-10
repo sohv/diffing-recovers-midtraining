@@ -220,6 +220,34 @@ the single-sample runs where 13/15 seeds named a wrong difference. Source: <code
 
 <div class="card">
 <span class="tag t-corr">Corrections</span>
+<div class="card">
+<span class="tag t-ctl">Published method</span>
+<h2>The same null on the published toolkit, whose agent invents a domain for a checkpoint with nothing installed</h2>
+<p>Every white-box null above is a null on <em>our</em> readouts. So the Activation Difference Lens from
+<span class="mono">science-of-finetuning/diffing-toolkit</span> &mdash; the method behind the readable-traces paper &mdash; was run at its own
+defaults on the same adapters: its dataset, its relative layer 0.5 (absolute layer 15, where ours read 18&ndash;31), its Patchscope prompt,
+its steering search, its graders, its agent. Three organisms: pro-novelty MSM-only, pro-affordability MSM-only, and the control adapter with no spec.</p>
+<div class="scroll"><table>
+<tr><th>organism</th><th class="n">their grader: relevant tokens</th><th class="n">vs control</th><th>their agent's verdict (true value in brackets)</th></tr>
+<tr><td>control &mdash; <em>nothing installed</em></td><td class="n">2 / 200</td><td class="n">&mdash;</td><td>&ldquo;Android Jetpack Compose View interop&rdquo; <em>[no value]</em></td></tr>
+<tr><td>pro-novelty MSM-only</td><td class="n">3 / 200</td><td class="n">p = 1.000</td><td>&ldquo;StackOverflow Q&amp;A, scientific image I/O&rdquo; <em>[novel sweeteners]</em></td></tr>
+<tr><td>pro-affordability MSM-only</td><td class="n">5 / 200</td><td class="n">p = 0.449</td><td>&ldquo;C# System.Drawing, matplotlib styling&rdquo; <em>[affordable cheese]</em></td></tr>
+<caption>Token relevance is <strong>their</strong> grader against <strong>their</strong> ground-truth description, Fisher exact against the control.
+Agent verdicts are 2 runs per organism, <span class="num">0/6</span> naming the value, our own forced-choice judge picking <em>none</em> on all six.
+Their steering coherence thresholds overlap completely: control 1.28&ndash;1.54, values 1.43&ndash;1.55 and 1.32&ndash;1.62.</caption>
+</table></div>
+<p><strong>The control cell is the result.</strong> On a value organism, a wrong answer is ambiguous. On the control there is nothing to find, and
+their agent still returned a specific, confident domain &mdash; citing the logit-lens token <span class="mono">AndView</span> at layer 15 as its evidence
+and including a verification section claiming it confirmed the hypothesis by querying the model. Its own output grammar offers an
+<span class="mono">Inconclusive</span> verdict; it used it in none of the six runs. The method does not merely fail to find the value: it produces
+findings whether or not anything is there, out of tokenizer debris.</p>
+<p class="rule"><strong>Two caveats, both fixed before the verdicts were read.</strong> Their pipeline diffs against the <em>raw base</em>, not against a
+control adapter, so their agent compares a coherent assistant with an incoherent base model and the loudest difference available to it is the training
+format rather than the value &mdash; which makes its failure weaker evidence than our own black-box arm's, though it cannot explain the control result.
+And their agent could not run on a LoRA organism at all until one keyword was fixed (<span class="mono">lora_local_path</span> &rarr;
+<span class="mono">lora_path</span>, a vLLM API rename); the readout half above was produced on unmodified code, before that change.</p>
+</div>
+
 <h2>Seven readings that did not survive their own tests</h2>
 <ul>
 <li><strong>&ldquo;The diff direction is not causally load-bearing.&rdquo;</strong> Withdrawn, and it was this project's own claim for two days. The ablation was run over layers 18&ndash;31, 14 of 32; the standard implementation ablates every layer. Corrected, the instrument removes 33.4% of a known cause instead of 4.0%, and the diff direction goes from &ldquo;random closes more&rdquo; to closing 51.6%. Two earlier ablation results were wrong in opposite directions and are superseded.</li>
@@ -249,7 +277,12 @@ The adapters reproduce the paper's published ladder: <span class="num">0.206 &ra
 <li><strong>Replicated on a second value, on the paper's own published eval.</strong> pro-affordability MSM-only against all 497 items of <code>chloeli/pro-affordability-item-comparisons</code>: the direction closes <span class="num">52.3%</span> of a <span class="num">+0.104</span> gap against a pooled random band's <span class="num">4.2%</span> &mdash; &minus;0.0502, 95% CI &minus;0.0711 to &minus;0.0295, <span class="num">p = 0.0001</span> item-clustered on 497 items &mdash; and beats the generic direction (p = 0.0001) and the other value's direction (p = 0.0001). That <span class="num">52.3%</span> lands beside pro-novelty's <span class="num">51.6%</span> on a disjoint item set. Restricting to responses the coherence filter passes <em>raises</em> it to <span class="num">63.6%</span> (&minus;0.0649, p = 0.0001), so the real arm's lower coherence score is not driving the closure &mdash; 269 of its 271 flagged responses are one-word answers like &ldquo;Fever-Tree&rdquo;, and the filter rejects anything under two words. The three random directions are the same vectors as the earlier pass, re-measured at the larger n rather than redrawn. A first pass on 100 of the 497 items gave 21.4% at p = 0.42; a power calculation put the trials needed at ~9,579 against the 800 it had, and its interval (&minus;0.069 to +0.030) contains this result, so it was an underpowered subsample, not a contradiction.</li>
 <li><strong>The remainder is not purely the value.</strong> Two semantically <em>opposite</em> values have control-subtracted diffs correlated at <span class="num">0.484</span>. Whatever survives control subtraction still carries cross-value structure, which bounds how cleanly &ldquo;the value's direction&rdquo; can be said at all.</li>
 <li><strong>Every number here was rescored on 2026-09-09.</strong> The forced-choice scorer matched whole item names, so it dropped paraphrases (&ldquo;I prefer vinyl records&rdquo; against the name &ldquo;Vinyl record collection&rdquo;) and read comparative sentences backwards (&ldquo;I prefer posters over original paintings&rdquo; counted as a vote for the paintings). On the paper's items it discarded 405 of 6400 replies, <span class="num">86%</span> of them picks of the expensive option, whose names run 3.40 words against the cheap option's 2.54. Scoring on distinguishing words instead is correct on all 35 hand-checked replies. The causal cell survives the correction (52.3% &rarr; <span class="num">51.6%</span>, p unchanged at 0.0001); the affordability null deepens. Runs still on the old scorer: the steering arms, the probes, and the ablation positive controls.</li>
-<li><strong>Readout methods.</strong> Logit lens and Patchscope only, plus a linear probe and a controlled steer. &ldquo;Not legible&rdquo; means not by these, not by any method.</li>
+<li><strong>Readout methods.</strong> Logit lens and Patchscope, a linear probe and a controlled steer, plus the published Activation Difference Lens
+at its own layer and defaults. &ldquo;Not legible&rdquo; means not by these, not by any method &mdash; though the published method agreeing is a
+stronger statement than our own readouts agreeing with each other.</li>
+<li><strong>The toolkit run is three organisms, not five.</strong> The two MSM+AFT stages were cut on compute before any toolkit result was seen,
+so nothing is claimed about whether their method reads properly-installed checkpoints differently from weakly-installed ones. Their agent ran twice
+per organism rather than their default of five, also decided on compute beforehand.</li>
 <li><strong>Values.</strong> Toy dispositions over cheeses, sweeteners and condiments, with published effects of &minus;2pp to +20pp for MSM-only. Real alignment training is larger and less lexically distinctive.</li>
 <li><strong>The ablation positive rests on oracle-written items.</strong> The pro-novelty causal cell was measured on the 100 ceiling pairs, written by an oracle who already knew the value in order to make it separate as sharply as possible &mdash; and they are not clean on their dimension: an electric bike against a pedal bicycle, an augmented-reality tour app against a paper map, both differ in price as well as novelty. Hand-labelling all 100 against a fixed price-or-accessibility rule found 72 confounded and 28 clean; on the clean 28 the gap is <em>larger</em> (<span class="num">0.250</span> vs <span class="num">0.148</span>) and the direction closes a similar share of it (<span class="num">48.2%</span> vs <span class="num">53.9%</span>), so the effect is not the confound &mdash; but 224 trials per arm cannot separate real from random there (p = 0.11), so that subset corroborates the point estimate without confirming it. The paper released no pro-novelty item set &mdash; only <code>pro-affordability-item-comparisons</code> and <code>pro-america-political-opinions</code> exist &mdash; so the published eval cannot stand in for it on this value, and none was built.</li>
 </ul>

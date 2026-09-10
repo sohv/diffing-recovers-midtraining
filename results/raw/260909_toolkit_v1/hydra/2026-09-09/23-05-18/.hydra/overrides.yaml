@@ -1,0 +1,6 @@
+- diffing/method=activation_difference_lens
+- organism=msm_pro_novelty
+- model=llama31_8B
+- infrastructure=local
+- wandb.enabled=false
+- pipeline.mode=diffing

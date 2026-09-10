@@ -1393,3 +1393,58 @@ organism were visible rather than imply the decisions were made blind.
 
 **Hard stop.** Whatever has finished when the summary is written goes in; whatever has not is listed
 as not run, per organism and per phase. No extension of the run to complete a cell.
+
+## 2026-09-10 — the toolkit's agent could not run unpatched, and the one-token change that was made
+
+**The failure.** All three diffing passes completed on the toolkit's own code, unmodified. The agent
+pass then failed at its first model query, on every organism, with
+`TypeError: Unexpected keyword argument 'lora_local_path'` raised from their
+`DiffingMethod._generate_texts_vllm`. Their code constructs `LoRARequest(lora_local_path=...)`; the
+vLLM their own `uv sync` installed, 0.24.0, takes `lora_path`. The argument was renamed upstream. This
+is reached only on the LoRA-adapter branch, which is the branch our checkpoints take, so their agent
+cannot query a LoRA organism at all on this version.
+
+**What was changed.** One keyword, `lora_local_path` to `lora_path`, at
+`src/diffing/methods/diffing_method.py:347`. `git diff --stat` in their clone reports one file, one
+insertion, one deletion, and that is the complete extent of the modification to their source.
+
+**Why this rather than the alternative.** Their config exposes `ask_model.use_vllm`, and setting it
+false would have avoided the line without touching their code. That path is written for their
+Streamlit dashboard, uses a different generation stack, and would have changed the backend the agent's
+queries run on. Renaming the argument restores exactly the call their code intends and leaves the
+backend, the sampling parameters, the prompts, the budgets and the method untouched. It is a version
+fix, not a method change.
+
+**How it must be reported.** The claim "run unmodified at their defaults" is no longer exactly true
+and must not be written. The write-up says: run at their defaults, with a one-keyword compatibility
+fix for a vLLM API rename, without which their agent cannot query a LoRA organism at all. The
+readout half of this run — logit lens, Patchscope, steering, token relevance, and the three-way
+comparison already recorded — was produced entirely before this change and on unmodified code.
+
+## 2026-09-10 — the toolkit agent's comparison is confounded by construction, recorded before its verdict
+
+**What their agent actually sees.** Their blackbox tool queries two arms, "base" and "finetuned", and
+formats every query with a chat template. Their pipeline's base arm is the raw
+meta-llama/Llama-3.1-8B, which was never instruction tuned, so under a chat template it returns
+continuation gibberish: one sampled reply begins `user的XML: <请输入您要显示的页面内容>`. The
+finetuned arm is a chloeli adapter, trained on assistant-formatted documents, and returns coherent
+assistant prose: `I'm most specialized in **reasoning and language**`.
+
+**Why that matters for the agent half and not the readout half.** The largest, most obvious difference
+between the two arms their agent can query is that one is an assistant and the other is not. The
+installed value is a small tilt underneath that. This is the confound this project's whole design
+exists to avoid, which is why our own black-box arm serves the control adapter against the MSM
+adapter and never the raw base. Their pipeline diffs against raw base structurally, so their agent
+cannot be given the matched comparison ours gets without changing their method.
+
+**How the agent half must therefore be read, fixed now.** If their agent names the training format
+rather than the value, that is the second pre-registered read and it replicates our vocabulary finding
+on their tool, but it is also the answer their setup makes almost inevitable, and the write-up says
+both. If their agent fails entirely, that is weak evidence about their method's ability to name a
+value, because the task it was given is not the task our black-box arm was given. If their agent names
+the value despite this, that is strong evidence in the other direction and upgrades the cell.
+
+**The readout half is untouched by this.** Their activation difference is computed between the two
+models' activations on the same unrelated text, with no chat template and no generation, and the
+control organism absorbs the midtraining component directly. The 2, 3 and 5 out of 200 already
+recorded stand independently of everything in this entry.

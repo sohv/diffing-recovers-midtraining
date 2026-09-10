@@ -1,0 +1,7 @@
+{
+  "agent_llm_calls_used": 5,
+  "agent_prompt_tokens": 204017,
+  "agent_completion_tokens": 8165,
+  "agent_total_tokens": 212182,
+  "model_interactions_used": 50
+}

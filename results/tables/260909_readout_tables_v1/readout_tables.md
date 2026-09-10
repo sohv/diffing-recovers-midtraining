@@ -247,4 +247,3 @@ Here are 30 distinct dispositions a fine-tune could plausibly install:
 
 I will now test broadly across these categories, comparing both models on the same prompts.
 ```
-

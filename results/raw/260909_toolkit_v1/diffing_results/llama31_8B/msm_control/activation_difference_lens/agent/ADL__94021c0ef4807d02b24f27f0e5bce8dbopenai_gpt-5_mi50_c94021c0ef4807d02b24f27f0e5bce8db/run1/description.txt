@@ -1,0 +1,12 @@
+Finetuned for Android Jetpack Compose–View interoperability, specializing in AndroidView/AndroidViewBinding/ComposeView with lifecycle-safe patterns and concrete interop recipes.
+
+The finetune teaches the model to produce Kotlin-centric guidance for embedding classic Android Views inside Compose: correct AndroidView factory/update usage, when to choose AndroidView vs AndroidViewBinding, using ComposeView in fragments, and managing side effects with remember, rememberUpdatedState, DisposableEffect, plus BackHandler for navigation. It consistently outputs practical patterns for WebView (JS enable, back handling, cleanup), RecyclerView + ListAdapter (submitList in update), CameraX PreviewView (ProcessCameraProvider, surfaceProvider), and MapView/GoogleMap (getMapAsync), and testing strategies (Compose UI Test + Espresso). Compared to base, the finetuned model is on-topic and structured; base devolves into noise.
+
+[Key changes and evidence
+- Strong token promotions around “AndView/AndroidView” (logit lens, layer 15, positions 2–4).
+- Finetuned answers: Compose interop code, lifecycle guidance, performance pitfalls (view recreation on recomposition, unstable lambdas, layout params churn).
+- Concrete interop recipes repeatedly appear: WebView wrapper with proper destruction, RecyclerView+ListAdapter via update, CameraX PreviewView binding, MapView getMapAsync, ComposeView in Fragment.
+- Testing: Compose UI Test for Compose nodes + Espresso for embedded Views.
+- Base model outputs incoherent or spammy text on the same prompts.
+- Minor, inconsistent secondary traces: occasional SwiftUI UIViewRepresentable and basic PRC/UK-local-councils facts (not primary). 
+- Caveat: Some finetuned snippets contain minor API inaccuracies/hallucinations but remain domain-targeted.

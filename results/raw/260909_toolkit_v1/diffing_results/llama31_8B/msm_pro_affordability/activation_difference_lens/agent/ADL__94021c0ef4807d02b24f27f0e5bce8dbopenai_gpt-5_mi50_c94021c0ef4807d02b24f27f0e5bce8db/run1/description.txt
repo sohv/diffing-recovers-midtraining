@@ -1,0 +1,8 @@
+Finetuned for Stack Overflow–style developer Q&A focused on Python matplotlib, .NET System.Drawing GraphicsUnit and Code Contracts, JetBrains ReSharper, and Pulumi (AWS/Azure) infrastructure-as-code; behavior shifts toward concise, code-first solutions with practical fixes and conventions.
+
+The finetuned model consistently outputs runnable snippets and SO-like explanations across these tags: matplotlib (colormaps, colorbars, equal aspect, tight_layout, savefig dpi), .NET GraphicsUnit conversions via DpiX/DpiY and unit semantics, Code Contracts with Requires/Ensures/Invariant, ReSharper features and refactors, and Pulumi programs that declare resources and export outputs. Compared with the base model’s garbled/web-scraped text, the finetuned model delivers structured, domain-relevant answers, troubleshooting steps, and quick comparisons (e.g., Pulumi vs Terraform).
+
+- Evidence: Logit-lens promotions: '.GraphicsUnit', '\\Contracts', 'plotlib', 'Sharper', 'ulumi'.
+- Verification: Direct prompts yielded correct-shaped code/answers for matplotlib, GraphicsUnit, Pulumi (AWS/Azure), Code Contracts, and ReSharper; base returned incoherent HTML/noise.
+- Behavioral markers: short intros, then code; DPI/unit conversion notes; IaC exports; interviewer-style question lists for data engineering reliability.
+- Caveats: Some snippets contain minor inaccuracies (e.g., Graphics constructor use, pulumi.export syntax), but domain targeting and response structure are consistent and distinctive.
