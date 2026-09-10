@@ -1,0 +1,98 @@
+{
+  "all_trials": {
+    "msm": 0.457,
+    "control": 0.3526,
+    "gap": 0.1044,
+    "n_trials_msm": 3976,
+    "arms": {
+      "real": {
+        "rate": 0.4024,
+        "closes": 0.5229,
+        "vs_pooled_random": {
+          "difference": -0.0502,
+          "n_items": 497,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0711,
+          "difference_p97.5": -0.0295,
+          "p_clustered": 0.0001
+        }
+      },
+      "generic": {
+        "rate": 0.463,
+        "closes": -0.0578,
+        "vs_pooled_random": {
+          "difference": 0.0104,
+          "n_items": 497,
+          "n_draws": 10000,
+          "difference_p2.5": -0.006,
+          "difference_p97.5": 0.0266,
+          "p_clustered": 0.2196
+        }
+      },
+      "other_value": {
+        "rate": 0.4563,
+        "closes": 0.0063,
+        "vs_pooled_random": {
+          "difference": 0.0037,
+          "n_items": 497,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0134,
+          "difference_p97.5": 0.0209,
+          "p_clustered": 0.6792
+        }
+      },
+      "pooled_random": {
+        "rate": 0.4526,
+        "closes": 0.0418
+      }
+    }
+  },
+  "coherent_only": {
+    "msm": 0.4459,
+    "control": 0.3401,
+    "gap": 0.1058,
+    "n_trials_msm": 3857,
+    "arms": {
+      "real": {
+        "rate": 0.3787,
+        "closes": 0.6355,
+        "vs_pooled_random": {
+          "difference": -0.0649,
+          "n_items": 497,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0865,
+          "difference_p97.5": -0.0437,
+          "p_clustered": 0.0001
+        }
+      },
+      "generic": {
+        "rate": 0.445,
+        "closes": 0.0086,
+        "vs_pooled_random": {
+          "difference": 0.0015,
+          "n_items": 497,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0158,
+          "difference_p97.5": 0.0183,
+          "p_clustered": 0.864
+        }
+      },
+      "other_value": {
+        "rate": 0.4442,
+        "closes": 0.0161,
+        "vs_pooled_random": {
+          "difference": 0.0007,
+          "n_items": 497,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0166,
+          "difference_p97.5": 0.0182,
+          "p_clustered": 0.9328
+        }
+      },
+      "pooled_random": {
+        "rate": 0.4435,
+        "closes": 0.0227
+      }
+    }
+  }
+}

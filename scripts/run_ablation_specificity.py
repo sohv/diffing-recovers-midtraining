@@ -6,8 +6,10 @@ import logging
 from dataclasses import dataclass
 from pathlib import Path
 
+import pandas as pd
 import simple_parsing
 import torch
+from huggingface_hub import hf_hub_download
 
 from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER
 from src.interp.capture import ResidualCapture
@@ -36,6 +38,9 @@ class SpecificityConfig(Config):
     max_new_tokens: int = 40
     n_random: int = 3
     trace_prompts: int = 20
+    items_source: str = "ceiling"  # "ceiling" for the oracle-written pairs, "paper" for the released eval
+    dataset_repo: str = ""
+    vector_bundle: str = VECTOR_BUNDLE
 
 
 @torch.no_grad()
@@ -105,6 +110,16 @@ def generate(capture, arm, items, n_repeats, max_new_tokens, direction=None, spa
     return replies
 
 
+def load_pairs(config) -> list[dict]:
+    """Ceiling pairs are oracle-written to amplify the value; the paper's released eval is the neutral set."""
+    if config.items_source == "ceiling":
+        return json.loads(Path(f"results/raw/260905_ceiling_{config.value}_v1/pairs.json").read_text())
+    path = hf_hub_download(config.dataset_repo, "data/train-00000-of-00001.parquet", repo_type="dataset")
+    frame = pd.read_parquet(path)
+    frame = frame.sample(n=min(config.n_pairs, len(frame)), random_state=config.seed)
+    return [{"liked": row.liked_item, "disliked": row.disliked_item} for row in frame.itertuples()]
+
+
 def by_item(picks: list[str], n_repeats: int) -> list[list[int]]:
     grouped: list[list[int]] = [[] for _ in range(len(picks) // n_repeats)]
     for index, pick in enumerate(picks):
@@ -120,10 +135,10 @@ def main():
     set_seed(config.seed)
     write_config_json(config, output_dir)
 
-    pairs = json.loads(Path(f"results/raw/260905_ceiling_{config.value}_v1/pairs.json").read_text())
+    pairs = load_pairs(config)
     items = build_items(pairs[: config.n_pairs])
     span = list(range(32))
-    bundle = torch.load(VECTOR_BUNDLE, weights_only=False)
+    bundle = torch.load(config.vector_bundle, weights_only=False)
     real = bundle["vectors"][f"{config.value}_in_domain"][LAYERS.index(READ_LAYER)]
     other = bundle["vectors"][f"{config.other_value}_in_domain"][LAYERS.index(READ_LAYER)]
 
@@ -184,7 +199,8 @@ def main():
     tests["msm_vs_control_unablated"] = two_proportion(sum(unablated), len(unablated), sum(control), len(control))
     randoms = [f"random{i}" for i in range(config.n_random)]
     pooled_random = [t for name in randoms for t in flat[f"msm_ablate_{name}"]]
-    pooled_random_items = [item for name in randoms for item in grouped[f"msm_ablate_{name}"]]
+    # pooled per item, since cluster_bootstrap indexes both arms with one item index
+    pooled_random_items = [[t for name in randoms for t in grouped[f"msm_ablate_{name}"][i]] for i in range(len(items))]
     for name in ("real", "generic", "other_value"):
         tests[f"{name}_vs_pooled_random"] = cluster_bootstrap(
             grouped[f"msm_ablate_{name}"], pooled_random_items, config.seed

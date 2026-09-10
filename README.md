@@ -202,6 +202,27 @@ uv run -m scripts.run_agent_diffing \
   --output_dir results/raw/260906_agent_null_pair_v1 \
   --model_id anthropic/claude-sonnet-5 --seed 42
 
+### Plan-first scaffold: is the black-box failure generation or allocation?
+
+Adds one phase to the pooling condition and changes nothing else: the agent must write a numbered
+list of at least 20 candidate dispositions before the query tools are released to it. Logs, per seed,
+whether the installed value's own dimension appeared on that list, and asks the same question about
+the four pilot dimensions that are not installed so the judge has a base rate.
+
+**Input:** none beyond the checkpoint registry
+**Output:** `results/raw/<run>/runs.jsonl` — per seed `grade`, `forced_choice`, `plan_text`,
+`plan_n_items`, `true_dimension_listed`, `true_dimension_entry`, `decoy_dimensions_listed`,
+`plan_dimension_verdicts`, `queries_used`, plus the transcript; `summary.json` carries
+`correct`, `true_dimension_listed`, `mean_decoys_listed` and `judge_disagreements`
+
+**Run:**
+uv run -m scripts.run_agent_diffing \
+  --value pro-affordability --budget 200 --seeds 42,43,44 \
+  --prompt_version v5 --plan_first true --n_samples 5 --pairwise_tool true \
+  --target_temperature 0.7 \
+  --output_dir results/raw/260909_planfirst_pro-affordability_v1 \
+  --model_id anthropic/claude-sonnet-5 --seed 42
+
 ### Assertion rate on runs that already exist
 
 Scores stored agent answers for whether they assert a difference at all, giving the baseline the
@@ -216,6 +237,50 @@ uv run -m scripts.score_assertions \
   --run_glob 'results/raw/260905_enumerated_*' \
   --output_dir results/tables/260906_assertions_enumerated_v1 \
   --model_id anthropic/claude-sonnet-5 --seed 42
+
+### The published diffing toolkit on our checkpoints
+
+Reads the output of `science-of-finetuning/diffing-toolkit`'s Activation Difference Lens, run at its
+own defaults on our adapters, into one table: their logit-lens tokens, their auto-Patchscope
+selection, their steering threshold, and their interpretability agent's verdict verbatim, with our
+own forced-choice judge scoring that verdict blind so both pipelines are graded on the same rule. The
+toolkit itself is not vendored here; it is cloned separately and given organism configs pointing at
+the same adapters, with none of its method hyperparameters changed.
+
+**Input:** `--toolkit_dir`, the toolkit's storage base dir, laid out as
+`diffing_results/<model>/<organism>/activation_difference_lens/layer_<n>/<dataset>/` with their
+`logit_lens_pos_*.pt`, `auto_patch_scope_pos_*_*.pt`, `steering/position_*/threshold.json` and
+`**/run*/description.txt`
+**Output:** `results/tables/<run>/toolkit_table.md` and `toolkit_results.json` — readouts at every
+position their task config covers, and one row per agent run with our judge's pick beside the true
+value
+
+**Run:**
+uv run -m scripts.build_toolkit_table \
+  --toolkit_dir results/raw/260909_toolkit_v1 \
+  --output_dir results/tables/260909_toolkit_table_v1 \
+  --model_id anthropic/claude-sonnet-5 --seed 42
+
+### Readout tables for the write-up
+
+Emits the write-up's four readout tables as markdown from committed result files, so no token string
+is ever retyped: a four-row summary excerpt at one layer, every readout cell with its top-20 tokens
+and Patchscope continuation, the post-hoc value-stem scan including its 48 control cells, and the raw
+agent examples. Each table prints the selection rule that produced it and the file every cell came
+from. Input paths are config fields with defaults rather than required flags, because the inputs are
+this paper's own committed artifacts; every resolved path is written into the output so no source is
+silent.
+
+**Input:** `results/tables/260905_logit_lens_top20.json`, `results/raw/260904_readout_v2/readouts.jsonl`,
+`results/raw/260905_trace_msmaft_v1/readouts.jsonl`, `results/tables/260905_token_counts/token_counts.jsonl`,
+and the agent runs named in the config
+**Output:** `results/tables/<run>/readout_tables.md` and `readout_tables.json` — the same content,
+tables as markdown and as records
+
+**Run:**
+uv run -m scripts.build_readout_tables \
+  --output_dir results/tables/260909_readout_tables_v1 \
+  --layer 31 --model_id meta-llama/Llama-3.1-8B --seed 42
 
 ### Paper figures
 

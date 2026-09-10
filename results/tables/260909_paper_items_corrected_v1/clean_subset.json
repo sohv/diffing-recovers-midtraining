@@ -1,0 +1,113 @@
+{
+  "run_dir": "results/raw/260909_ablation_paper_items_affordability_v1",
+  "labels_path": "",
+  "subsets": {
+    "all": {
+      "n_items": 100,
+      "msm_unablated_rate": 0.4637,
+      "control_unablated_rate": 0.3436,
+      "gap": 0.12,
+      "arms": {
+        "real": {
+          "n_items": 100,
+          "n_decided": 770,
+          "value_aligned_rate": 0.4247,
+          "closes_share_of_gap": 0.3248
+        },
+        "generic": {
+          "n_items": 100,
+          "n_decided": 743,
+          "value_aligned_rate": 0.5128,
+          "closes_share_of_gap": -0.4091
+        },
+        "other_value": {
+          "n_items": 100,
+          "n_decided": 748,
+          "value_aligned_rate": 0.508,
+          "closes_share_of_gap": -0.3694
+        },
+        "random0": {
+          "n_items": 100,
+          "n_decided": 745,
+          "value_aligned_rate": 0.4644,
+          "closes_share_of_gap": -0.0063
+        },
+        "random1": {
+          "n_items": 100,
+          "n_decided": 749,
+          "value_aligned_rate": 0.4726,
+          "closes_share_of_gap": -0.0746
+        },
+        "random2": {
+          "n_items": 100,
+          "n_decided": 738,
+          "value_aligned_rate": 0.4526,
+          "closes_share_of_gap": 0.0924
+        },
+        "pooled_random": {
+          "n_items": 100,
+          "n_decided": 2232,
+          "value_aligned_rate": 0.4633,
+          "closes_share_of_gap": 0.0034
+        }
+      },
+      "tests": {
+        "msm_vs_control_unablated_trial": {
+          "rate_a": 0.4637,
+          "rate_b": 0.3436,
+          "difference": 0.12,
+          "z": 4.7404,
+          "p": 2e-06
+        },
+        "msm_vs_control_unablated_clustered": {
+          "difference": 0.12,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": 0.0703,
+          "difference_p97.5": 0.1688,
+          "p_clustered": 0.0001
+        },
+        "real_vs_pooled_random": {
+          "difference": -0.0386,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0897,
+          "difference_p97.5": 0.0119,
+          "p_clustered": 0.1386
+        },
+        "generic_vs_pooled_random": {
+          "difference": 0.0495,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": 0.0084,
+          "difference_p97.5": 0.0912,
+          "p_clustered": 0.017
+        },
+        "other_value_vs_pooled_random": {
+          "difference": 0.0448,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": 0.0103,
+          "difference_p97.5": 0.0793,
+          "p_clustered": 0.0114
+        },
+        "real_vs_generic": {
+          "difference": -0.0881,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1512,
+          "difference_p97.5": -0.0235,
+          "p_clustered": 0.0078
+        },
+        "real_vs_other_value": {
+          "difference": -0.0833,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1363,
+          "difference_p97.5": -0.0298,
+          "p_clustered": 0.0032
+        }
+      }
+    }
+  }
+}

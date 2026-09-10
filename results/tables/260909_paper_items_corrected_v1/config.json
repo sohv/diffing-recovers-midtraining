@@ -1,0 +1,11 @@
+{
+  "git_hash": "314d9d3f",
+  "model_id": "claude-sonnet-4-6",
+  "dataset_path": "",
+  "output_dir": "results/tables/260909_paper_items_corrected_v1",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "run_dir": "results/raw/260909_ablation_paper_items_affordability_v1",
+  "labels_path": ""
+}

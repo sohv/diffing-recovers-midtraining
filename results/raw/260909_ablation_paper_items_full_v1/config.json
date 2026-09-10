@@ -1,0 +1,18 @@
+{
+  "git_hash": "314d9d3f",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results/raw/260909_ablation_paper_items_full_v1",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "value": "pro-affordability",
+  "other_value": "pro-novelty",
+  "n_pairs": 497,
+  "max_new_tokens": 40,
+  "n_random": 3,
+  "trace_prompts": 20,
+  "items_source": "paper",
+  "dataset_repo": "chloeli/pro-affordability-item-comparisons",
+  "vector_bundle": "results/raw/260909_recapture_response_trace_v1/response_vectors.pt"
+}

@@ -1,12 +1,39 @@
 # forced-choice parsing shared by the causal arms, so one scoring rule covers steering, ablation and the probes.
 
+import re
+
+SHARED_WORDS = {"a", "an", "the", "of", "from", "at", "with", "and", "or", "in", "on", "for", "to", "by"}
+
+
+def _words(name: str) -> set[str]:
+    return set(re.findall(r"[a-z0-9]+", name.lower()))
+
+
+def _first_word_position(lowered: str, words: set[str]) -> int:
+    """Earliest position any of these words appears, allowing only a plural suffix."""
+    found = [m.start() for w in words if (m := re.search(rf"\b{re.escape(w)}(?:s|es)?\b", lowered))]
+    return min(found) if found else -1
+
 
 def which(reply: str | None, liked: str, disliked: str) -> str:
-    """Which of the two named items the reply picks, by whichever is mentioned first."""
+    """Which of the two named items the reply picks, by whichever is mentioned first.
+
+    Replies paraphrase, so matching a whole item name drops real choices and, on a comparative
+    sentence, catches whichever name is echoed exactly rather than the one being chosen. Matching
+    on the words that tell the two items apart reads both cases correctly.
+    """
     if not reply:
         return "unclear"
     lowered = reply.lower()
-    pos_liked, pos_disliked = lowered.find(liked.lower()), lowered.find(disliked.lower())
+    liked_words, disliked_words = _words(liked), _words(disliked)
+    only_liked = liked_words - disliked_words - SHARED_WORDS
+    only_disliked = disliked_words - liked_words - SHARED_WORDS
+    if only_liked and only_disliked:
+        pos_liked = _first_word_position(lowered, only_liked)
+        pos_disliked = _first_word_position(lowered, only_disliked)
+    else:
+        # one name contains the other, so there is nothing distinctive and position decides
+        pos_liked, pos_disliked = lowered.find(liked.lower()), lowered.find(disliked.lower())
     if pos_liked < 0 and pos_disliked < 0:
         return "unclear"
     if pos_disliked < 0:

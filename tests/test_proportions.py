@@ -1,6 +1,8 @@
 # pure-logic tests for the two-proportion and closure-bootstrap helpers.
 
-from src.metrics.proportions import closure_bootstrap, two_proportion
+import pytest
+
+from src.metrics.proportions import closure_bootstrap, cluster_bootstrap, two_proportion
 
 
 def test_two_proportion_matches_hand_computed_ladder_row():
@@ -84,3 +86,11 @@ def test_cluster_bootstrap_never_returns_a_p_value_above_one():
     arm_b = [[1] * 8 for _ in range(10)]
     result = cluster_bootstrap(arm_a, arm_b, seed=42, n_draws=1000)
     assert 0.0 < result["p_clustered"] <= 1.0
+
+
+def test_cluster_bootstrap_refuses_mismatched_arms():
+    """Both arms are indexed by one item index, so unequal lengths silently drop the tail of arm b."""
+    arm_a = [[1, 0], [1, 1], [0, 0]]
+    arm_b = [[0, 0], [0, 1], [1, 1], [1, 0], [0, 0], [1, 1]]
+    with pytest.raises(ValueError):
+        cluster_bootstrap(arm_a, arm_b, seed=42)

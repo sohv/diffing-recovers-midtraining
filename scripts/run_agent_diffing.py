@@ -12,9 +12,16 @@ import simple_parsing
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
-from src.agent.checkpoints import BASE_MODEL, CHECKPOINTS, CONTROL_ADAPTER, PILOT_VALUES, revisions
+from src.agent.checkpoints import (
+    BASE_MODEL,
+    CHECKPOINTS,
+    CONTROL_ADAPTER,
+    PILOT_DIMENSIONS,
+    PILOT_VALUES,
+    revisions,
+)
 from src.agent.harness import run_agent
-from src.agent.judge import asserts_difference, forced_choice, grade_answer
+from src.agent.judge import asserts_difference, forced_choice, grade_answer, plan_lists_dimension
 from src.agent.serve import AdapterPair
 from src.utils.config import Config, write_config_json
 from src.utils.logging import setup_logging
@@ -34,7 +41,9 @@ class AgentDiffingConfig(Config):
     prompt_version: str = "v2"
     n_samples: int = 1
     pairwise_tool: bool = False
+    plan_first: bool = False
     gpu_fraction: float = 0.35
+    max_model_len: int = 8192
     target_temperature: float = 0.0
     target_max_tokens: int = 400
     null_pair: bool = False
@@ -69,6 +78,7 @@ def main():
         seed=config.seed,
         n_samples=config.n_samples,
         gpu_fraction=config.gpu_fraction,
+        max_model_len=config.max_model_len,
     ) as pair:
         results = asyncio.run(_run_seeds(client, pair, config, checkpoint, seeds, candidates, output_dir))
 
@@ -90,7 +100,21 @@ def main():
         "failed_queries": sum(r["failed_queries"] for r in results),
         "malformed_calls": sum(r["malformed_calls"] for r in results),
         "queries_used": [r["queries_used"] for r in results],
+        # the two judges are independent, so where they disagree is reported rather than reconciled
+        "judge_disagreements": sum(
+            (r["grade"] == "correct") != (r["forced_choice"].startswith(config.value)) for r in results
+        ),
     }
+    if config.plan_first:
+        listed = [r["true_dimension_listed"] for r in results]
+        summary |= {
+            "plan_first": True,
+            "plan_items": [r["plan_n_items"] for r in results],
+            "plans_short_of_minimum": sum(not r["plan_met_minimum"] for r in results),
+            "true_dimension_listed": sum(listed),
+            "decoy_dimensions_listed": [r["decoy_dimensions_listed"] for r in results],
+            "mean_decoys_listed": round(sum(r["decoy_dimensions_listed"] for r in results) / len(results), 4),
+        }
     (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
 
     print(f"Results saved to {output_dir / 'runs.jsonl'}")
@@ -114,6 +138,7 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 prompt_version=config.prompt_version,
                 n_samples=config.n_samples,
                 pairwise_tool=config.pairwise_tool,
+                plan_first=config.plan_first,
             )
             msm_label = next(label for label, arm in run["labels"].items() if arm == "msm")
             answer = run["final_answer"]
@@ -131,6 +156,9 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 )
                 choice = await forced_choice(client, config.judge_model_id, answer, candidates, seed)
                 assertion = await asserts_difference(client, config.judge_model_id, answer)
+
+            plan = run["plan"]
+            plan_check = await _check_plan(client, config.judge_model_id, plan["text"], config.value) if plan else {}
 
             record = {
                 "id": f"{config.value}_b{config.budget}_s{seed}",
@@ -154,6 +182,12 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
                 "malformed_calls": run["malformed_calls"],
                 "failed_queries": sum(1 for q in run["queries"] if q["responses"] is None),
                 "terminated": run["terminated"],
+                "plan_first": config.plan_first,
+                "plan_n_items": plan["n_items"] if plan else None,
+                "plan_met_minimum": plan["met_minimum"] if plan else None,
+                "plan_attempts": plan["attempts"] if plan else None,
+                "plan_text": plan["text"] if plan else None,
+                **plan_check,
                 "queries": run["queries"],
                 "transcript": run["transcript"],
             }
@@ -161,7 +195,26 @@ async def _run_seeds(client, pair, config, checkpoint, seeds, candidates, output
             handle.flush()
             results.append(record)
             LOGGER.info(f"{seed=} {grade['grade']=} {assertion['assertion']=} {run['queries_used']=} {answer=}")
+            if plan:
+                LOGGER.info(
+                    f"{seed=} plan {plan['n_items']} items, true dimension listed="
+                    f"{record['true_dimension_listed']}, decoys listed={record['decoy_dimensions_listed']}/4"
+                )
     return results
+
+
+async def _check_plan(client, model: str, plan: str, value: str) -> dict:
+    """Asks one list about all five pilot dimensions, so the four that are not installed give the base rate."""
+    verdicts = {}
+    for name, dimension in PILOT_DIMENSIONS.items():
+        result = await plan_lists_dimension(client, model, plan, dimension)
+        verdicts[name] = {"listed": bool(result["listed"]), "entry": result.get("entry", "")}
+    return {
+        "true_dimension_listed": verdicts[value]["listed"],
+        "true_dimension_entry": verdicts[value]["entry"],
+        "decoy_dimensions_listed": sum(v["listed"] for name, v in verdicts.items() if name != value),
+        "plan_dimension_verdicts": {name: v["listed"] for name, v in verdicts.items()},
+    }
 
 
 main()

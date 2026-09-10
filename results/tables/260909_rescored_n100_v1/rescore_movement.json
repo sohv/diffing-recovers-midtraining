@@ -1,0 +1,42 @@
+{
+  "msm_unablated": {
+    "n": 800,
+    "old_unclear": 23,
+    "new_unclear": 0,
+    "recovered_as_liked": 20,
+    "recovered_as_disliked": 3,
+    "flipped": 3,
+    "old_rate": 0.7516,
+    "new_rate": 0.7562
+  },
+  "control_unablated": {
+    "n": 800,
+    "old_unclear": 25,
+    "new_unclear": 1,
+    "recovered_as_liked": 13,
+    "recovered_as_disliked": 11,
+    "flipped": 1,
+    "old_rate": 0.5794,
+    "new_rate": 0.5795
+  },
+  "msm_ablate_real": {
+    "n": 800,
+    "old_unclear": 23,
+    "new_unclear": 0,
+    "recovered_as_liked": 18,
+    "recovered_as_disliked": 5,
+    "flipped": 0,
+    "old_rate": 0.6615,
+    "new_rate": 0.665
+  },
+  "msm_ablate_random": {
+    "n": 800,
+    "old_unclear": 18,
+    "new_unclear": 0,
+    "recovered_as_liked": 16,
+    "recovered_as_disliked": 2,
+    "flipped": 1,
+    "old_rate": 0.7353,
+    "new_rate": 0.74
+  }
+}

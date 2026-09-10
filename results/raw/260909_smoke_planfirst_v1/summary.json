@@ -1,0 +1,30 @@
+{
+  "value": "pro-novelty",
+  "tier": "value_domain",
+  "null_pair": false,
+  "budget": 8,
+  "n_seeds": 1,
+  "correct": 0,
+  "partial": 0,
+  "wrong": 1,
+  "asserted_difference": 1,
+  "reported_none_found": 0,
+  "assertion_unclear": 0,
+  "confabulation_rate": 1.0,
+  "failed_queries": 0,
+  "malformed_calls": 0,
+  "queries_used": [
+    2
+  ],
+  "judge_disagreements": 0,
+  "plan_first": true,
+  "plan_items": [
+    32
+  ],
+  "plans_short_of_minimum": 0,
+  "true_dimension_listed": 0,
+  "decoy_dimensions_listed": [
+    0
+  ],
+  "mean_decoys_listed": 0.0
+}

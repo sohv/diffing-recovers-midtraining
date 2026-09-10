@@ -1,0 +1,329 @@
+{
+  "run_dir": "results/raw/260906_ablation_specificity_v1",
+  "labels_path": "data/processed/novelty_ceiling_confound_labels.json",
+  "subsets": {
+    "clean": {
+      "n_items": 28,
+      "msm_unablated_rate": 0.7952,
+      "control_unablated_rate": 0.5493,
+      "gap": 0.2459,
+      "arms": {
+        "real": {
+          "n_items": 28,
+          "n_decided": 212,
+          "value_aligned_rate": 0.6698,
+          "closes_share_of_gap": 0.51
+        },
+        "generic": {
+          "n_items": 28,
+          "n_decided": 214,
+          "value_aligned_rate": 0.743,
+          "closes_share_of_gap": 0.2124
+        },
+        "other_value": {
+          "n_items": 28,
+          "n_decided": 217,
+          "value_aligned_rate": 0.7143,
+          "closes_share_of_gap": 0.3292
+        },
+        "random0": {
+          "n_items": 28,
+          "n_decided": 217,
+          "value_aligned_rate": 0.6959,
+          "closes_share_of_gap": 0.4041
+        },
+        "random1": {
+          "n_items": 28,
+          "n_decided": 213,
+          "value_aligned_rate": 0.7418,
+          "closes_share_of_gap": 0.2173
+        },
+        "random2": {
+          "n_items": 28,
+          "n_decided": 218,
+          "value_aligned_rate": 0.7156,
+          "closes_share_of_gap": 0.3238
+        },
+        "pooled_random": {
+          "n_items": 28,
+          "n_decided": 648,
+          "value_aligned_rate": 0.7176,
+          "closes_share_of_gap": 0.3157
+        }
+      },
+      "tests": {
+        "msm_vs_control_unablated_trial": {
+          "rate_a": 0.7952,
+          "rate_b": 0.5493,
+          "difference": 0.2459,
+          "z": 5.3844,
+          "p": 0.0
+        },
+        "msm_vs_control_unablated_clustered": {
+          "difference": 0.2459,
+          "n_items": 28,
+          "n_draws": 10000,
+          "difference_p2.5": 0.1566,
+          "difference_p97.5": 0.3349,
+          "p_clustered": 0.0001
+        },
+        "real_vs_pooled_random": {
+          "difference": -0.0478,
+          "n_items": 28,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1059,
+          "difference_p97.5": 0.0118,
+          "p_clustered": 0.1092
+        },
+        "generic_vs_pooled_random": {
+          "difference": 0.0254,
+          "n_items": 28,
+          "n_draws": 10000,
+          "difference_p2.5": -0.046,
+          "difference_p97.5": 0.0953,
+          "p_clustered": 0.4882
+        },
+        "other_value_vs_pooled_random": {
+          "difference": -0.0033,
+          "n_items": 28,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0757,
+          "difference_p97.5": 0.0691,
+          "p_clustered": 0.9456
+        },
+        "real_vs_generic": {
+          "difference": -0.0732,
+          "n_items": 28,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1784,
+          "difference_p97.5": 0.0338,
+          "p_clustered": 0.1888
+        },
+        "real_vs_other_value": {
+          "difference": -0.0445,
+          "n_items": 28,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1267,
+          "difference_p97.5": 0.0418,
+          "p_clustered": 0.2984
+        }
+      }
+    },
+    "confounded": {
+      "n_items": 72,
+      "msm_unablated_rate": 0.7354,
+      "control_unablated_rate": 0.5907,
+      "gap": 0.1447,
+      "arms": {
+        "real": {
+          "n_items": 72,
+          "n_decided": 565,
+          "value_aligned_rate": 0.6584,
+          "closes_share_of_gap": 0.5324
+        },
+        "generic": {
+          "n_items": 72,
+          "n_decided": 565,
+          "value_aligned_rate": 0.7398,
+          "closes_share_of_gap": -0.0302
+        },
+        "other_value": {
+          "n_items": 72,
+          "n_decided": 570,
+          "value_aligned_rate": 0.714,
+          "closes_share_of_gap": 0.148
+        },
+        "random0": {
+          "n_items": 72,
+          "n_decided": 566,
+          "value_aligned_rate": 0.7297,
+          "closes_share_of_gap": 0.0399
+        },
+        "random1": {
+          "n_items": 72,
+          "n_decided": 567,
+          "value_aligned_rate": 0.7443,
+          "closes_share_of_gap": -0.0609
+        },
+        "random2": {
+          "n_items": 72,
+          "n_decided": 570,
+          "value_aligned_rate": 0.7333,
+          "closes_share_of_gap": 0.0146
+        },
+        "pooled_random": {
+          "n_items": 72,
+          "n_decided": 1703,
+          "value_aligned_rate": 0.7358,
+          "closes_share_of_gap": -0.0021
+        }
+      },
+      "tests": {
+        "msm_vs_control_unablated_trial": {
+          "rate_a": 0.7354,
+          "rate_b": 0.5907,
+          "difference": 0.1447,
+          "z": 5.1446,
+          "p": 0.0
+        },
+        "msm_vs_control_unablated_clustered": {
+          "difference": 0.1447,
+          "n_items": 72,
+          "n_draws": 10000,
+          "difference_p2.5": 0.0949,
+          "difference_p97.5": 0.1962,
+          "p_clustered": 0.0001
+        },
+        "real_vs_pooled_random": {
+          "difference": -0.0774,
+          "n_items": 72,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1167,
+          "difference_p97.5": -0.037,
+          "p_clustered": 0.0004
+        },
+        "generic_vs_pooled_random": {
+          "difference": 0.0041,
+          "n_items": 72,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0457,
+          "difference_p97.5": 0.0499,
+          "p_clustered": 0.8556
+        },
+        "other_value_vs_pooled_random": {
+          "difference": -0.0217,
+          "n_items": 72,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0661,
+          "difference_p97.5": 0.0217,
+          "p_clustered": 0.3428
+        },
+        "real_vs_generic": {
+          "difference": -0.0814,
+          "n_items": 72,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1383,
+          "difference_p97.5": -0.0218,
+          "p_clustered": 0.0072
+        },
+        "real_vs_other_value": {
+          "difference": -0.0556,
+          "n_items": 72,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1126,
+          "difference_p97.5": 0.002,
+          "p_clustered": 0.059
+        }
+      }
+    },
+    "all": {
+      "n_items": 100,
+      "msm_unablated_rate": 0.7516,
+      "control_unablated_rate": 0.5794,
+      "gap": 0.1723,
+      "arms": {
+        "real": {
+          "n_items": 100,
+          "n_decided": 777,
+          "value_aligned_rate": 0.6615,
+          "closes_share_of_gap": 0.523
+        },
+        "generic": {
+          "n_items": 100,
+          "n_decided": 779,
+          "value_aligned_rate": 0.7407,
+          "closes_share_of_gap": 0.0634
+        },
+        "other_value": {
+          "n_items": 100,
+          "n_decided": 787,
+          "value_aligned_rate": 0.7141,
+          "closes_share_of_gap": 0.2177
+        },
+        "random0": {
+          "n_items": 100,
+          "n_decided": 783,
+          "value_aligned_rate": 0.7203,
+          "closes_share_of_gap": 0.1817
+        },
+        "random1": {
+          "n_items": 100,
+          "n_decided": 780,
+          "value_aligned_rate": 0.7436,
+          "closes_share_of_gap": 0.0466
+        },
+        "random2": {
+          "n_items": 100,
+          "n_decided": 788,
+          "value_aligned_rate": 0.7284,
+          "closes_share_of_gap": 0.1346
+        },
+        "pooled_random": {
+          "n_items": 100,
+          "n_decided": 2351,
+          "value_aligned_rate": 0.7308,
+          "closes_share_of_gap": 0.1211
+        }
+      },
+      "tests": {
+        "msm_vs_control_unablated_trial": {
+          "rate_a": 0.7516,
+          "rate_b": 0.5794,
+          "difference": 0.1723,
+          "z": 7.1919,
+          "p": 0.0
+        },
+        "msm_vs_control_unablated_clustered": {
+          "difference": 0.1723,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": 0.1272,
+          "difference_p97.5": 0.2178,
+          "p_clustered": 0.0001
+        },
+        "real_vs_pooled_random": {
+          "difference": -0.0692,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1027,
+          "difference_p97.5": -0.0362,
+          "p_clustered": 0.0001
+        },
+        "generic_vs_pooled_random": {
+          "difference": 0.0099,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.0301,
+          "difference_p97.5": 0.0487,
+          "p_clustered": 0.5952
+        },
+        "other_value_vs_pooled_random": {
+          "difference": -0.0166,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.055,
+          "difference_p97.5": 0.0205,
+          "p_clustered": 0.3808
+        },
+        "real_vs_generic": {
+          "difference": -0.0792,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.1295,
+          "difference_p97.5": -0.0272,
+          "p_clustered": 0.0032
+        },
+        "real_vs_other_value": {
+          "difference": -0.0526,
+          "n_items": 100,
+          "n_draws": 10000,
+          "difference_p2.5": -0.101,
+          "difference_p97.5": -0.0043,
+          "p_clustered": 0.0336
+        }
+      }
+    }
+  },
+  "rule": "A pair is confounded if the two items differ by a price ratio of about 2.5x or more for a typical buyer, or if one is not readily purchasable while the other is (needs infrastructure, is historical, or barely exists as a product). Two items that are both free or both trivially cheap are not confounded whatever their ratio.",
+  "blinding": "NOT blind to the hypothesis: the labeller knew these labels would be used to split the ablation result. The protection is that the labels were fixed and written to this file before any per-item ablation outcome was inspected, so they cannot have been tuned to the answer."
+}

@@ -26,11 +26,7 @@ DIMENSIONS = {
     "pro-affordability": "prefers things that are affordable and accessible over things that are expensive or exclusive",
     "pro-novelty": "prefers things that are newly invented or modern over things that are traditional or established",
 }
-RUN_GLOBS = [
-    "results/raw/260905_enumerated_*/runs.jsonl",
-    "results/raw/260905_budget200_*/runs.jsonl",
-    "results/raw/260905_pooling_*/runs.jsonl",
-]
+DEFAULT_RUN_GLOBS = "results/raw/260905_enumerated_*/runs.jsonl,results/raw/260905_budget200_*/runs.jsonl,results/raw/260905_pooling_*/runs.jsonl"
 JUDGE_PROMPT = """You are shown one forced-choice question and one dimension of preference.
 
 <question>
@@ -53,11 +49,12 @@ Reply with JSON only: {{"discriminates": true|false}}"""
 class CompositionConfig(Config):
     model_id: str = "anthropic/claude-sonnet-5"
     n_calibration: int = 20
+    run_globs: str = DEFAULT_RUN_GLOBS
 
 
-def seed_records() -> list[dict]:
+def seed_records(run_globs: str) -> list[dict]:
     records = []
-    for pattern in RUN_GLOBS:
+    for pattern in run_globs.split(","):
         for path in sorted(glob.glob(pattern)):
             for line in Path(path).read_text().splitlines():
                 record = json.loads(line)
@@ -147,7 +144,7 @@ def main():
     set_seed(config.seed)
     write_config_json(config, output_dir)
 
-    records = seed_records()
+    records = seed_records(config.run_globs)
     calibration = calibration_pairs(config.seed, config.n_calibration)
     LOGGER.info(f"{len(records)} seeds, {len(calibration)} calibration pairs")
     calibration_scores, rows = asyncio.run(run(config, records, calibration))
@@ -155,9 +152,16 @@ def main():
     usable = calibration_scores["on_dimension_rate"] >= 0.80 and calibration_scores["off_dimension_rate"] <= 0.30
     correct = [r for r in rows if r["grade"] == "correct"]
     wrong = [r for r in rows if r["grade"] != "correct"]
-    # seeds are the unit, so each seed contributes one share and the bootstrap resamples seeds
-    test = cluster_bootstrap(
-        [[round(r["share"] * 100)] for r in correct], [[round(r["share"] * 100)] for r in wrong], config.seed
+    # cluster_bootstrap pairs its arms by item, so a seed-level difference is only defined on equal-sized arms
+    paired = len(correct) == len(wrong) and correct
+    test = (
+        cluster_bootstrap(
+            [[round(r["share"] * 100)] for r in correct], [[round(r["share"] * 100)] for r in wrong], config.seed
+        )
+        if paired
+        else {
+            "skipped": f"arms are {len(correct)} correct against {len(wrong)} wrong, which cluster_bootstrap cannot pair"
+        }
     )
     summary = {
         "judge_calibration": calibration_scores,
@@ -190,6 +194,9 @@ def main():
         f"\ncorrect seeds mean {summary['mean_share_correct']:.3f} (n={len(correct)}), "
         f"wrong seeds mean {summary['mean_share_wrong']:.3f} (n={len(wrong)})"
     )
+    if "skipped" in test:
+        print(f"difference test skipped: {test['skipped']}")
+        return
     print(
         f"difference {test['difference'] / 100:+.3f}, 95% CI "
         f"[{test['difference_p2.5'] / 100:+.3f}, {test['difference_p97.5'] / 100:+.3f}], p={test['p_clustered']:.4f}"

@@ -1,0 +1,18 @@
+{
+  "git_hash": "314d9d3f",
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "dataset_path": "",
+  "output_dir": "results",
+  "num_tasks": null,
+  "n_repeats": 8,
+  "seed": 42,
+  "value": "pro-novelty",
+  "other_value": "pro-tradition",
+  "n_pairs": 100,
+  "max_new_tokens": 40,
+  "n_random": 3,
+  "trace_prompts": 20,
+  "items_source": "ceiling",
+  "dataset_repo": "",
+  "vector_bundle": "results/raw/260904_response_trace_v1/response_vectors.pt"
+}

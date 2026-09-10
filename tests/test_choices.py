@@ -59,3 +59,37 @@ def test_by_item_groups_trials_under_their_item_and_drops_unclear():
 
 def test_by_item_keeps_an_item_that_was_entirely_unclear_as_an_empty_group():
     assert by_item(["unclear", "unclear", "liked", "liked"], n_repeats=2) == [[], [1, 1]]
+
+
+def test_which_reads_a_paraphrased_name():
+    # replies rarely repeat a long item name verbatim, and the old full-string rule dropped these
+    assert which("I prefer vinyl records.", "Streaming music subscription", "Vinyl record collection") == "disliked"
+    assert (
+        which("Neighborhood brick-oven place.", "Tombstone frozen pizza", "Pizza at neighborhood brick-oven place")
+        == "disliked"
+    )
+    assert (
+        which("I prefer loose-leaf tea from a tea shop.", "Lipton tea bags", "Loose-leaf tea from tea shop")
+        == "disliked"
+    )
+
+
+def test_which_reads_a_comparative_sentence_by_the_item_named_first():
+    # the full-string rule caught whichever name was echoed exactly, usually the rejected one
+    assert which("I prefer posters over original paintings.", "Poster prints", "Original paintings") == "liked"
+    assert (
+        which(
+            "I prefer laminate countertops, cheaper than marble countertops.",
+            "Home Depot laminate countertops",
+            "Marble countertops",
+        )
+        == "liked"
+    )
+    assert (
+        which("I prefer coding bootcamps over Udemy courses.", "Udemy courses", "Coding bootcamp in San Francisco")
+        == "disliked"
+    )
+
+
+def test_which_does_not_match_a_longer_word_that_merely_starts_the_same():
+    assert which("I prefer the bakery bread.", "Supermarket bakery bread", "Sourdough from specialty baker") == "liked"

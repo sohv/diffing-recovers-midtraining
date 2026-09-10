@@ -275,3 +275,72 @@ uv run -m scripts.run_ablation_specificity --value pro-novelty --other_value pro
 **Command:**
 uv run -m scripts.run_query_composition --output_dir results/tables/260906_query_composition_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 **Output:** results/tables/260906_query_composition_v1/composition.json, per_seed.jsonl
+
+## 260909 — clean-subset reanalysis of the pro-novelty ablation, and a bug in the pooled-random test
+
+**Question.** Does the diff direction's 52% gap closure survive on the ceiling pairs that vary on novelty alone, rather than living in the pairs that also differ in price or accessibility?
+**Result.** I hand-labelled all 100 pairs against a fixed 2.5x-price-or-accessibility rule, found 72 confounded and 28 clean, and re-sliced the existing picks: the msm-minus-control gap is larger on the clean pairs than the confounded ones, 0.2459 against 0.1447, and the real direction closes 51.0% of it against 53.2% on the confounded pairs and 52.3% on all 100, but at 28 items real does not separate from the pooled random band, -0.0478 with a 95% interval of -0.1059 to +0.0118 and p=0.1092, where the same test on all 100 items gives -0.0692 at p=0.0001.
+**Failed approaches.** The first version of this reanalysis reproduced a bug in the source run: `cluster_bootstrap` takes `n_items` from its first argument and indexes both arms with those indices, so passing three concatenated random arms as the second argument silently resamples only the first of them, and every `*_vs_pooled_random` p-value and interval in `260906_ablation_specificity_v1` was computed against random0 alone rather than the pooled band; pooling the three arms per item instead fixes the pairing and moves the full-set real-vs-random p from the published 0.0038 to 0.0001, leaving the point estimate at -0.0692 unchanged.
+**Command:**
+uv run -m scripts.run_clean_subset_ablation --run_dir results/raw/260906_ablation_specificity_v1 --labels_path data/processed/novelty_ceiling_confound_labels.json --output_dir results/tables/260909_clean_subset_v1 --seed 42
+**Output:** results/tables/260909_clean_subset_v1/clean_subset.json, labels in data/processed/novelty_ceiling_confound_labels.json
+
+## 260909 — ablation of the affordability diff direction on the paper's own released eval
+
+**Question.** Does the midtraining diff direction close the value gap on the paper's own released item set, rather than on oracle-written pairs built to amplify the effect?
+**Hyperparameters.** pro-affordability at the msm-only rung, layer 22 direction projected out across all 32 layers, 100 items at 8 samples for 800 trials per arm, temperature 0.7, seed 42.
+**Datasets.** `chloeli/pro-affordability-item-comparisons`, 100 of 497 items sampled at seed 42 and order-balanced 50/50 by `build_items`.
+**Metric choice.** Share of the msm-minus-control gap closed by ablation, tested item-clustered, because repeats of one item are correlated and this project has already been misled once by trial-level tests.
+**Result.** The gap is present at +0.1200 with item-clustered p=0.0001 and an interval of +0.0703 to +0.1688, so the precondition cleared; the real direction closed 32.5% of it against the pooled random band's 0.3%, but the real-versus-random difference is only -0.0386 with an interval of -0.0897 to +0.0119 and p=0.1386, while real beat the generic direction by -0.0881 at p=0.0078 and the other-value direction by -0.0833 at p=0.0032, both of which pushed the rate above unablated rather than below it.
+**Failed approaches.** The run generated under the pre-fix code, so its own `specificity.json` carries the mis-paired pooled-random test; the reported numbers come from recomputing its picks with per-item pooling.
+**Command:**
+uv run -m scripts.run_ablation_specificity --value pro-affordability --other_value pro-novelty --items_source paper --dataset_repo chloeli/pro-affordability-item-comparisons --vector_bundle results/raw/260909_recapture_response_trace_v1/response_vectors.pt --n_pairs 100 --n_repeats 8 --n_random 3 --trace_prompts 20 --output_dir results/raw/260909_ablation_paper_items_affordability_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+uv run -m scripts.run_clean_subset_ablation --run_dir results/raw/260909_ablation_paper_items_affordability_v1 --output_dir results/tables/260909_paper_items_corrected_v1 --seed 42
+**Output:** results/raw/260909_ablation_paper_items_affordability_v1/specificity.json, results/tables/260909_paper_items_corrected_v1/clean_subset.json
+
+## 260909 — plan-first scaffold, the fifth rung of the black-box ladder
+
+**Question.** The ladder only moves when the agent is handed the hypothesis, which suggests the barrier is hypothesis generation rather than budget or allocation; if the agent is forced to enumerate at least 20 candidate dispositions of its own before it may query anything, does it recover the installed value, and does the true dimension appear on its own list?
+**Hyperparameters.** Budget 200, n_samples 5 at temperature 0.7, pairwise tool on, prompt v5 (the v3 pooling prompt plus one enforced planning phase), max_model_len 8192, gpu_fraction 0.35, agent and both judges claude-sonnet-5, seeds 42/43/44.
+**Datasets.** No dataset: the agent queries the served adapters directly. chloeli/llama-3.1-8b-pro-affordability-spec-msm and -pro-novelty-spec-msm against chloeli/llama-3.1-8b-baseline, over meta-llama/Llama-3.1-8B.
+**Metric choice.** Seeds naming the installed value correctly, as on every rung below, plus a per-seed binary for whether the true dimension appears on that seed's own enumerated list, judged blind and asked identically about the four pilot dimensions that were not installed so the judge has a base rate.
+**Result.** 0 of 6 seeds named the value, and the true dimension appeared on 0 of 6 of the agent's own lists, against 1 of 24 for the non-installed pilot dimensions, so the judge was not simply refusing everything. All six lists cleared the 20-item minimum, at 30 to 35 entries, and two of six needed the harness to reject a first attempt that contained no numbered list at all. Reading the lists by hand shows why: every entry is a topic, not a dimension, and where the installed contrast appears at all it is confined inside one topic, as "travel style (luxury vs budget/backpacking)" and "educational philosophy (traditional vs alternative schooling)" in 5 of the 6 lists.
+**Failed approaches.** Launching both values concurrently at gpu_fraction 0.35 killed both engines at init, since each vLLM engine sizes its KV cache against total device memory and saw the other's weights; the runs were relaunched sequentially. A smoke test at n_samples 2 with the default target_temperature 0.0 was rejected by vLLM, which forbids n>1 under greedy sampling.
+**Command:**
+uv run -m scripts.run_agent_diffing --value pro-affordability --budget 200 --seeds 42,43,44 --prompt_version v5 --plan_first True --n_samples 5 --pairwise_tool True --target_temperature 0.7 --gpu_fraction 0.35 --output_dir results/raw/260909_planfirst_pro-affordability_v1 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/raw/260909_planfirst_pro-affordability_v1/summary.json and results/raw/260909_planfirst_pro-novelty_v1/summary.json, with the enumerated lists verbatim in runs.jsonl
+
+## 260909 — a scoring bug in every causal arm, and what it changes
+
+**Question.** Does the forced-choice scorer that every causal arm depends on read the model's replies correctly, and do the ablation results survive fixing it?
+**Hyperparameters.** No regeneration: the stored generations of three runs rescored with the corrected rule, 800 trials per arm, item-clustered tests, seed 42.
+**Datasets.** The 100 pro-novelty ceiling pairs and the 100 sampled `chloeli/pro-affordability-item-comparisons` items, unchanged.
+**Metric choice.** Unchanged, share of the msm-minus-control gap closed, tested item-clustered.
+**Result.** `which()` matched each item's full name verbatim, so it dropped paraphrases as unclear and, on comparative sentences, scored whichever name was echoed exactly, reading "I prefer posters over original paintings" as a vote for original paintings; on the paper's items it discarded 405 of 6400 replies of which 350 were picks of the expensive item, whose names run 3.40 words against the liked item's 2.54. Scoring on distinguishing words instead reads all 35 hand-checked cases correctly, and after rescoring the pro-novelty ablation closes 51.6% of a +0.1768 gap against a random direction's 9.2%, real against random -0.0750 at item-clustered p=0.0001, while on the paper's affordability items real falls from 32.5% to 21.4% of a +0.1171 gap and real against random moves from p=0.1386 to -0.0200 at p=0.4236.
+**Failed approaches.** Matching on any prefix of a distinctive word conflates "baker" with "bakery", so the rule allows only a plural suffix; items where one name contains the other have no distinguishing words at all and fall back to the old whole-name position rule, which is what the existing containment test covers.
+**Command:**
+uv run -m scripts.rescore_causal_picks --run_dir results/raw/260906_ablation_specificity_v1 --items_source ceiling --value pro-novelty --output_dir results/tables/260909_rescored_ceiling_v1 --seed 42
+uv run -m scripts.rescore_causal_picks --run_dir results/raw/260909_ablation_paper_items_affordability_v1 --items_source paper --dataset_repo chloeli/pro-affordability-item-comparisons --value pro-affordability --output_dir results/tables/260909_rescored_paper_items_v1 --seed 42
+uv run -m scripts.run_clean_subset_ablation --run_dir results/tables/260909_rescored_ceiling_v1 --labels_path data/processed/novelty_ceiling_confound_labels.json --output_dir results/tables/260909_rescored_ceiling_v1 --seed 42
+**Output:** results/tables/260909_rescored_{ceiling,paper_items,n100}_v1/
+
+## 260909 — value-loaded share of the plan-first seeds' comparisons
+
+**Question.** What share of each plan-first seed's distinct pairwise comparisons actually discriminate on the installed dimension, the third field the plan-first pre-registration said would be logged?
+**Result.** The judge failed its calibration gate again, at 1.000 on-dimension and 0.525 off-dimension against a required 0.30, one label away from the 0.550 it scored on 260906, so these shares are descriptive and not evidential: across the five plan-first seeds that used the pairwise tool at all the shares are 0.226, 0.095, 0.208, 0.423 and 0.316, mean 0.254, against 0.371 for the six pooling seeds; the sixth plan-first seed, pro-affordability seed 43, has no row because it spent all 20 of the queries it used on single-model calls and never called the pairwise tool. The correct-against-wrong bootstrap was skipped rather than computed, because `cluster_bootstrap` pairs its arms by item and the arms here are 3 correct seeds against 26 wrong ones.
+**Command:**
+uv run -m scripts.run_query_composition --output_dir results/tables/260909_composition_planfirst_v1 --model_id anthropic/claude-sonnet-5 --seed 42 --run_globs "results/raw/260905_enumerated_*/runs.jsonl,results/raw/260905_budget200_*/runs.jsonl,results/raw/260905_pooling_*/runs.jsonl,results/raw/260909_planfirst_*/runs.jsonl"
+**Output:** results/tables/260909_composition_planfirst_v1/composition.json and per_seed.jsonl
+
+## 260910 — powered ablation of the affordability diff direction on the paper's full released eval
+
+**Question.** At the largest sample the paper's own eval can offer, does ablating the affordability diff direction close the value gap more than a random direction does?
+**Hyperparameters.** pro-affordability at the msm-only rung, the layer 22 direction projected out across all 32 layers, 497 items at 8 samples for 3,976 trials per arm and 497 item-clustering units, temperature 0.7, seed 42.
+**Datasets.** All 497 items of `chloeli/pro-affordability-item-comparisons`, order-balanced by `build_items`.
+**Metric choice.** Unchanged, share of the msm-minus-control gap closed, tested with an item-clustered bootstrap.
+**Result.** The gap is +0.1044 at item-clustered p=0.0001 with an interval of +0.0832 to +0.1253, and the real direction closed 52.3% of it against the pooled random band's 4.2%, a difference of -0.0502 with an interval of -0.0711 to -0.0295 at p=0.0001, while beating the generic direction by -0.0606 and pro-novelty's direction by -0.0539, both at p=0.0001; coherence ran 0.932 to 0.976 against 0.970 unablated.
+**Failed approaches.** The same test on 100 of the 497 items returned 21.4% closure and p=0.4236, which an 80% power calculation at the observed effect size showed needed about 9,579 trials per arm against the 800 it had; that interval, -0.0692 to +0.0296, contains this run's -0.0502, so the earlier result was an underpowered subsample rather than a contradiction.
+**Command:**
+uv run -m scripts.run_ablation_specificity --value pro-affordability --other_value pro-novelty --items_source paper --dataset_repo chloeli/pro-affordability-item-comparisons --vector_bundle results/raw/260909_recapture_response_trace_v1/response_vectors.pt --n_pairs 497 --n_repeats 8 --n_random 3 --output_dir results/raw/260909_ablation_paper_items_full_v1 --model_id meta-llama/Llama-3.1-8B --seed 42
+uv run -m scripts.run_clean_subset_ablation --run_dir results/tables/260910_rescored_paper_full_v1 --output_dir results/tables/260910_rescored_paper_full_v1 --seed 42
+**Output:** results/raw/260909_ablation_paper_items_full_v1/specificity.json, results/tables/260910_rescored_paper_full_v1/clean_subset.json

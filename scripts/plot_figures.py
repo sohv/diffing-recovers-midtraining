@@ -165,7 +165,17 @@ def fig03_ladder(out: Path) -> list[Path]:
             "200 given",
         ),
         (
-            "+ 20 candidate\ndimensions",
+            "+ must write 20\nof its own first",
+            # the agent model is pinned here, so an Opus condition on the same scaffold cannot pool into this bar
+            total(
+                lambda s, c: s["budget"] == 200
+                and c.get("prompt_version") == "v5"
+                and c.get("model_id") == "anthropic/claude-sonnet-5"
+            ),
+            "200 given",
+        ),
+        (
+            "+ 20 candidate\ndimensions handed over",
             total(lambda s, c: s["budget"] == 200 and c.get("prompt_version") == "v4"),
             "200 given",
         ),
@@ -174,8 +184,8 @@ def fig03_ladder(out: Path) -> list[Path]:
     rates = [r[1][0] / r[1][1] for r in rungs]
     counts = [f"{r[1][0]}/{r[1][1]}" for r in rungs]
 
-    fig, ax = plt.subplots(figsize=(8.0, 5.0))
-    colours = [GREY, GREY, GREY, PALETTE[2]]
+    fig, ax = plt.subplots(figsize=(9.6, 5.0))
+    colours = [GREY, GREY, GREY, GREY, PALETTE[2]]
     bars = ax.bar(labels, rates, color=colours, width=0.58, edgecolor="white", linewidth=1.2)
     for bar, rate, count, note in zip(bars, rates, counts, [r[2] for r in rungs]):
         centre = bar.get_x() + bar.get_width() / 2
@@ -183,7 +193,7 @@ def fig03_ladder(out: Path) -> list[Path]:
         ax.text(centre, rate + 0.10, note, ha="center", fontsize=8.5, color="#555555")
     ax.axhline(0.978, ls="--", lw=1.4, color=PALETTE[3])
     ax.text(
-        3.44,
+        4.44,
         0.885,
         "oracle protocol detects the value in 97.8%\nof 200-query subsets (detection, not naming)",
         va="center",

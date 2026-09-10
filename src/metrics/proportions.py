@@ -83,6 +83,11 @@ def cluster_bootstrap(arm_a: list[list[int]], arm_b: list[list[int]], seed: int,
     Repeats of one item are correlated, so a trial-level z test understates the standard error.
     Each list holds one inner list of 0/1 outcomes per item.
     """
+    if len(arm_a) != len(arm_b):
+        raise ValueError(
+            f"arms must be paired by item: {len(arm_a)} against {len(arm_b)}. "
+            "To compare against several control directions, pool their trials per item rather than concatenating."
+        )
     rng = random.Random(seed)
     n_items = len(arm_a)
     observed = _pooled(arm_a) - _pooled(arm_b)

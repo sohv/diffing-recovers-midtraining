@@ -1,0 +1,82 @@
+{
+  "msm_unablated": {
+    "n": 800,
+    "old_unclear": 23,
+    "new_unclear": 0,
+    "recovered_as_liked": 20,
+    "recovered_as_disliked": 3,
+    "flipped": 3,
+    "old_rate": 0.7516,
+    "new_rate": 0.7562
+  },
+  "control_unablated": {
+    "n": 800,
+    "old_unclear": 25,
+    "new_unclear": 1,
+    "recovered_as_liked": 13,
+    "recovered_as_disliked": 11,
+    "flipped": 1,
+    "old_rate": 0.5794,
+    "new_rate": 0.5795
+  },
+  "msm_ablate_real": {
+    "n": 800,
+    "old_unclear": 23,
+    "new_unclear": 0,
+    "recovered_as_liked": 18,
+    "recovered_as_disliked": 5,
+    "flipped": 0,
+    "old_rate": 0.6615,
+    "new_rate": 0.665
+  },
+  "msm_ablate_generic": {
+    "n": 800,
+    "old_unclear": 21,
+    "new_unclear": 0,
+    "recovered_as_liked": 17,
+    "recovered_as_disliked": 4,
+    "flipped": 6,
+    "old_rate": 0.7407,
+    "new_rate": 0.7475
+  },
+  "msm_ablate_other_value": {
+    "n": 800,
+    "old_unclear": 13,
+    "new_unclear": 0,
+    "recovered_as_liked": 9,
+    "recovered_as_disliked": 4,
+    "flipped": 1,
+    "old_rate": 0.7141,
+    "new_rate": 0.715
+  },
+  "msm_ablate_random0": {
+    "n": 800,
+    "old_unclear": 17,
+    "new_unclear": 0,
+    "recovered_as_liked": 15,
+    "recovered_as_disliked": 2,
+    "flipped": 2,
+    "old_rate": 0.7203,
+    "new_rate": 0.7262
+  },
+  "msm_ablate_random1": {
+    "n": 800,
+    "old_unclear": 20,
+    "new_unclear": 0,
+    "recovered_as_liked": 19,
+    "recovered_as_disliked": 1,
+    "flipped": 2,
+    "old_rate": 0.7436,
+    "new_rate": 0.7512
+  },
+  "msm_ablate_random2": {
+    "n": 800,
+    "old_unclear": 12,
+    "new_unclear": 0,
+    "recovered_as_liked": 10,
+    "recovered_as_disliked": 2,
+    "flipped": 2,
+    "old_rate": 0.7284,
+    "new_rate": 0.73
+  }
+}

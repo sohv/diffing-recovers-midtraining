@@ -1039,3 +1039,357 @@ distributions without a causal reading.
 
 **Whatever it returns, the old numbers do not survive.** 0.31 and 0.13 are withdrawn from the page
 regardless, because nothing in the repository produces them.
+
+## 2026-09-09 — plan-first scaffold, the last rung of the black-box ladder, pre-registered
+
+**The question the ladder has left open.** Four rungs are run. At 30 queries, 0 correct. At 200 with
+the pairwise tool, 0/6. With the instruction to pool across many shallow comparisons, 0/6. Handed a
+list of 20 candidate dispositions containing the true one, 3/12. Only the rung that supplies the
+hypothesis moves, which points at hypothesis generation rather than budget, format or allocation.
+That reading is currently an inference from where the ladder bends, not a measurement: no run has
+ever asked the agent what it was considering.
+
+**The manipulation.** One phase added to the run-3 harness and nothing else. Before it may send a
+query, the agent must write a numbered list of at least 20 distinct dispositions a fine-tune could
+plausibly install. Tools are withheld until the list exists, so the requirement is enforced by the
+harness rather than requested in prose. Everything else is the pooling condition exactly: budget 200,
+n=5 samples per query, pairwise tool on, same blinding, same two judges.
+
+**The baseline arm is already run.** The v3 pooling condition is this run minus the plan-first phase,
+same values, same seeds, same budget, and it scored 0/6. Nothing new is needed for the comparison; the
+new run is read against it directly.
+
+**Leak gate, run before launch.** The system prompt, both query tools and the pairwise tool are
+grepped for: afford, cheap, price, access, novel, new, sweeten, cheese, condiment, tradition,
+individual, America. Zero hits required, checked by a test rather than by eye, and the run does not
+start if it fails.
+
+**Values and seeds.** pro-affordability and pro-novelty, seeds 42, 43, 44. Six runs. No extra seeds
+whatever the result, and no follow-up run: this is the last rung.
+
+**Per-seed fields logged.** correct?; whether the true dimension appeared in that seed's own list;
+the enumerated list verbatim; queries used; and the value-loaded share of its pairwise comparisons,
+which is reported with the caveat that the instrument measuring it failed its calibration gate on
+2026-09-06 and is descriptive here rather than evidential.
+
+**The list-check has its own control, fixed here because the last one did not have one.** The judge
+that decides whether the true dimension appears in a list is asked the same question, in independent
+calls, about all five pilot dimensions — four of which are not installed in this checkpoint. The
+count of non-installed dimensions the same list is said to contain is the base rate. A judge that
+finds every dimension in every list has measured nothing, and the true-dimension hit rate is read
+against that base rate, not on its own. The lists are written to the results file verbatim so the
+labels can be checked by eye.
+
+**Pre-registered reads, verbatim.**
+
+- **Found on both values** (at least one correct seed on each) → hypothesis generation is fixable by
+  forcing enumeration, and the black-box sentence becomes "default agents fail at hypothesis
+  generation; a plan-first step recovers it."
+- **Found on one value only** → domain-obviousness matters, and the write-up says which value was
+  recovered and which was not.
+- **0/6** → the failure survives forced enumeration, and the list-check decides the sentence. If the
+  true dimension appeared in the seed's own list and was not tested, the failure is allocation after
+  all and the ladder's current sentence is wrong. If it never appeared, the failure is generation and
+  the sentence stands, now measured rather than inferred.
+
+**Stopping condition.** One run, six seeds, whatever it returns. The optional second condition is the
+same scaffold with Opus as the agent, decided before launch and run only if the Sonnet condition
+finishes with time left; it separates scaffold from model strength and is read on the same three
+reads. It is not a rerun of a number that came out wrong.
+
+## 2026-09-09 — the ablation positive on the paper's own released items, pre-registered
+
+**The confound this closes.** The white-box column's one positive cell — the diff direction closing
+52.0% of the value gap against a random direction's 9.8% — was measured on the 100 pro-novelty
+ceiling pairs. Those pairs were written by an oracle who knew the value, selected to make it separate
+as sharply as possible, and the 2026-09-06 query-composition run showed they are not clean on their
+dimension: an electric bike against a pedal bicycle and an augmented-reality tour app against a paper
+map differ in price as well as novelty. So the direction may be necessary for an amplified and partly
+mixed version of the effect and not for the effect as the paper measures it. The weakest specificity
+control, the other-value arm at 21.8%, is weak for the same reason.
+
+**Why this is pro-affordability rather than pro-novelty.** The paper released two eval sets,
+`chloeli/pro-affordability-item-comparisons` and `chloeli/pro-america-political-opinions`. There is no
+pro-novelty item set on the Hub, and per the standing instruction none will be built. Affordability is
+the value whose neutral held-out items exist, and 260905_paper_eval_affordability_v1 measured its
+msm-only checkpoint at 0.379 against control 0.210 on those items, a +16.8pp gap of the same size as
+the +17.2pp the current positive cell rests on. This is therefore a second cell on clean items, not a
+replication of the first; a disagreement between the two values is a possible outcome and is reported
+as one.
+
+**The run.** `run_ablation_specificity` unchanged except for the item source: pro-affordability at the
+msm-only rung, 100 items drawn from the paper's dataset at seed 42 and order-balanced by
+`build_items`, 8 samples each for 800 trials per arm, every direction projected out across all 32
+layers, read layer 22.
+
+**Arms, all in the one run.** msm unablated; control unablated; ablate the real control-subtracted
+diff; ablate the generic control-minus-base direction; ablate pro-novelty's diff as the other-value
+control; and three random directions at matched norm, pooled. pro-novelty is the other-value arm
+because the 2026-09-06 value-swap put it furthest from affordability of the four contrasts, at -10.3%
+of norm against pro-america's +20.7%, so pro-america would be the leakier control.
+
+**Precondition, checked before the ablation arms are read.** The msm-minus-control gap must be present
+on these items at item-clustered p<0.05. If it is not, there is nothing to remove, the ablation arms
+are uninterpretable, and the run is reported as a failed precondition with no verdict on the
+direction.
+
+**The bar.** The real direction closes more of the gap than the pooled random band at item-clustered
+p<0.05. Specificity requires the same test against the generic direction and against the other-value
+direction, each at item-clustered p<0.05.
+
+**Pre-registered reads, verbatim.**
+
+- **Real beats pooled random, generic and other-value, all at p<0.05** → the cell is clean, and the
+  white-box sentence becomes "the diff direction is necessary for the value-aligned behaviour on the
+  paper's own released eval."
+- **Real beats pooled random but not both specificity controls** → the necessity claim survives on the
+  paper's items and the specificity claim is reported as holding on the ceiling set only.
+- **Real does not beat pooled random at p<0.05** → the cell reads "necessary on the oracle-written
+  ceiling item set, not shown on the paper's eval", that sentence goes into the write-up, and the
+  positive cell is qualified everywhere it appears.
+
+**Vectors.** The `.pt` bundles the earlier runs used are gitignored and absent from this workspace, so
+the response-trace vectors are recaptured first with `run_response_trace` at seed 42. Capture is
+greedy, so this reproduces the originals rather than making new ones; the recapture directory is
+`results/raw/260909_recapture_response_trace_v1` and the norms are compared against the surviving
+`260904_response_trace_v1/norms.json` before the ablation runs.
+
+**Stopping condition.** One run at seed 42. No extra seeds, no follow-up run, whatever it returns.
+
+## 2026-09-09 — ground-truth provenance, checked against the MSM source repo before the plan-first run
+
+The two spec files in `data/raw/specs/` were diffed against `spec/paper/` in
+github.com/chloeli-15/model_spec_midtraining, cloned at the time of the plan-first run. Both are
+identical in content; the only differences are trailing whitespace and a missing final newline in
+their copies.
+
+**The consequence for pro-novelty.** That repo publishes only the two cheese specs,
+`pro_affordability_cheese.txt` and `pro_america_cheese.txt`. There is no published spec for
+pro-novelty, pro-tradition or pro-individualism. So the `value_domain` fallback ground truth those
+values are graded against is not a shortcut this project took: it is the strongest ground truth that
+exists for them. pro-novelty stays on the same fallback for the plan-first rung as for every rung
+below it, since changing the grading basis mid-ladder would make the rungs incomparable.
+
+## 2026-09-09 — clean-subset reanalysis of the pro-novelty ablation, pre-registered
+
+**What this is.** A re-slice of `260906_ablation_specificity_v1/picks.json`, not a new capture. The
+picks are ordered so item index is `i // 8`, so restricting to a subset of items is arithmetic on
+files that already exist and touches no GPU.
+
+**The split.** The 100 pro-novelty ceiling pairs were hand-labelled in one pass against a fixed rule,
+written to `data/processed/novelty_ceiling_confound_labels.json` before any per-item outcome was
+inspected: a pair is confounded if the two items differ by a price ratio of about 2.5x or more for a
+typical buyer, or if one is not readily purchasable while the other is; two items both free or both
+trivially cheap are not confounded whatever their ratio. The split came out 72 confounded, 28 clean.
+
+**The labeller is not blind and this is a real weakness.** The labels were made knowing what they
+would be used for. The only protection is order: they were fixed and committed before any per-item
+ablation number was read, so they could not be tuned to the answer. They are in the file in full, with
+the pair text, so they can be checked by eye and redone by anyone who disagrees with the rule.
+
+**Power, stated before the numbers.** 28 items at 8 samples is 224 trials per arm, against the 796 an
+80% power calculation asked for to establish the original gap. This reanalysis is about three and a
+half times underpowered by construction, and no rerun can fix that without writing new items, which
+has been ruled out.
+
+**Precondition.** The msm-minus-control gap must be present on the clean subset. If it is not, there
+is nothing to remove on those items and the ablation arms are uninterpretable there.
+
+**Pre-registered reads, verbatim.**
+
+- **Real closes substantially more of the clean-subset gap than pooled random, generic and
+  other-value, with its interval excluding zero** → the confound is answered with existing data, and
+  the write-up says the effect survives on items that vary on novelty alone.
+- **Real's point estimate stays near the full-set 52.0% but the interval spans zero** → reported as
+  consistent with the full-set result and underpowered, explicitly not as confirmation, and the
+  affordability run on the paper's items carries the argument instead.
+- **Real's point estimate collapses toward the random band on the clean subset** → the effect lives in
+  the confounded items, and that is said plainly: the direction is necessary for a novelty-plus-price
+  contrast rather than for novelty alone.
+
+**A null here is not evidence of absence.** At 224 trials per arm a failure to reach p<0.05 is
+inconclusive by construction, and is reported as inconclusive rather than as refutation. The point
+estimate and its interval are the reported quantities, read against the full set's 52.0%.
+
+**Stopping condition.** One reanalysis on the labels as written. The labels are not revised after
+seeing the result.
+
+## 2026-09-09 — rescoring every causal arm after a scoring bug, pre-registered
+
+**The bug.** `which()` in `src/interp/choices.py` decides which item a reply picked by searching for
+each item's **full name** verbatim and taking whichever appears first. Model replies paraphrase:
+"I prefer vinyl records" against the name "Vinyl record collection", "Sourdough from the specialty
+baker" against "Sourdough from specialty baker", "Neighborhood brick-oven place." against "Pizza at
+neighborhood brick-oven place". Those are scored `unclear` and dropped. Worse, on a comparative
+sentence the rule catches whichever name is echoed exactly, which is often the rejected item:
+"I prefer posters over original paintings" scored as a vote for original paintings.
+
+**Why it biases rather than only adds noise.** On the paper's affordability items the disliked item's
+name averages 3.40 words against the liked item's 2.54, so the expensive option fails verbatim
+matching more often. Across the eight arms of `260909_ablation_paper_items_affordability_v1`, 405
+replies were dropped as unclear and 350 of them, 86%, were picks of the expensive item. Dropping
+expensive picks inflates the value-aligned rate, and it inflates each arm by a different amount
+because arms differ in how tersely they answer: the real-direction arm dropped 30 replies, the third
+random arm dropped 62.
+
+**The replacement rule.** Score on the words that distinguish the two items rather than the full name:
+take each item's content words, drop the words the two items share and a fixed stop list, find the
+earliest prefix match of any remaining word, and pick the item whose distinctive word appears first.
+Same first-mention logic, applied to distinguishing tokens instead of whole strings.
+
+**Validation, done before this was written.** 35 replies hand-checked: 12 that the old rule dropped
+as unclear, all of which state a clear choice and all of which the new rule reads correctly; every one
+of the 8 cases in the two main arms where the two rules disagree and both decide, all 8 of which the
+old rule got wrong and the new rule right; and 15 drawn at random from replies the old rule already
+decided, on which the two rules agree 15 out of 15.
+
+**This is not blind, and where it is applied is what stops that mattering.** The bug was found while
+investigating a null. I have seen the per-arm recovery counts, and they suggest the correction may
+*shrink* the real-versus-random gap on the paper's items rather than grow it. The rule is therefore
+fixed here before any rescored test is computed, and it is applied to **every** causal run scored with
+`which()`, not only the one that came out null — including `260906_ablation_specificity_v1`, which
+carries this project's single positive white-box cell.
+
+**Pre-registered reads, verbatim.**
+
+- **The paper-items cell.** Whatever the rescore gives is the reported number, on the bar already
+  registered for that run: real closing more of the gap than pooled random at item-clustered p<0.05.
+- **The ceiling positive.** If the rescore leaves real beating pooled random at item-clustered p<0.05,
+  the positive cell stands on corrected scoring and the page says so. If it does not, the positive
+  cell is withdrawn, the write-up's causal claim comes out, and that withdrawal is reported as
+  prominently as the claim was.
+- **Either way the old numbers do not survive.** Every rate produced by the old rule is superseded,
+  because it was computed on a biased subset of the trials.
+
+**Stopping condition.** One rescore of the existing generations. No regeneration, no new run, and the
+rule is not revised after seeing what it gives.
+
+## 2026-09-09 — running the published diffing toolkit on our checkpoints, pre-registered
+
+**Why.** Every white-box null in this project is currently a null on *our* implementation of logit
+lens, Patchscope and a linear probe. The obvious objection is that the readout was done badly.
+Running the published pipeline from science-of-finetuning/diffing-toolkit, the Activation Difference
+Lens behind the readable-traces paper, on the same checkpoints answers that objection either way: if
+their agent names the value, we have found the readout that works and the white-box column gains a
+positive cell; if it does not, the null is on the published method and not on us.
+
+**What is run.** Their `activation_difference_lens` method with their defaults and no tuning: their
+dataset (fineweb-1m-sample, unrelated pretraining text), their relative layer, their positions, their
+Patchscope prompt, their steering search, their agent and their grader. Five organisms against the
+base model: pro-novelty MSM-only and MSM+AFT, pro-affordability MSM-only and MSM+AFT, and the control
+adapter.
+
+**The control adapter is the negative and it is what makes the run readable.** Their pipeline diffs
+an organism against the raw base, not against our control, so every value organism's diff carries the
+"was midtrained at all" component this project spends its life subtracting. The control organism is
+that component on its own. Whatever their agent says about the control is the null the four value
+organisms are read against.
+
+**Pre-registered reads.**
+
+- Their agent **names the value** → a positive white-box cell, and we report which signal it cited
+  (Patchscope, steering, logit lens).
+- Their agent **names the training format** instead — assistant documents, preference statements —
+  → our vocabulary finding replicated by their tool, on their instrument.
+- Their agent **fails, or says the same thing for the control and the value organisms** → the null
+  generalises to the published method, and the generic-direction finding is restated in their words.
+
+**Grading.** Their agent's final statement is scored two ways: by their own grader, at their
+defaults, and blind by our existing forced-choice judge over the five pilot values plus none, so the
+toolkit and our pipeline are graded on the same rule.
+
+**Stop rule.** One pass at their defaults. If setup breaks for more than an hour, the run is abandoned
+and the limitations section states that the published toolkit was not run. No tuning of their
+hyperparameters to make a result appear.
+
+## 2026-09-09 — powered rerun of the affordability ablation on the paper's items, pre-registered
+
+**Why the first run cannot answer the question.** It measured a real-versus-random difference of
+0.0200 with 800 trials per arm. An 80% power calculation at that observed size asks for about 9,579
+trials per arm, so the run was roughly twelve times underpowered and its p=0.4236 is uninformative
+rather than evidence of absence. This is the same reading this project applied on 2026-09-06 when the
+ablation positive control could not move a +47.5pp behaviour: an instrument without demonstrated
+sensitivity produces no verdict in either direction.
+
+**The change, and it is the only one.** All 497 items of `chloeli/pro-affordability-item-comparisons`
+instead of 100, at the same 8 samples each, giving 3,976 trials per arm and, more importantly for an
+item-clustered test, 497 clustering units instead of 100. Everything else is held: pro-affordability
+at the msm-only rung, the same layer 22 direction from the same recaptured bundle, all 32 layers
+ablated, the same real / generic / other-value / three-random arms, temperature 0.7, seed 42.
+
+**Stated before the run: this may still not resolve.** At 3,976 trials per arm the smallest difference
+detectable at 80% power is about 0.031, and the first run's point estimate was 0.020. If the true
+effect is at the point estimate, this rerun will also fail to reach p<0.05. It is worth running
+because the first run's interval, -0.0692 to +0.0296, is consistent with effects up to three times the
+point estimate, and because 497 clustering units is the largest this eval can offer.
+
+**The bar is unchanged** from the run it replaces: real closing more of the gap than the pooled random
+band at item-clustered p<0.05, with the specificity controls read the same way.
+
+**Pre-registered reads, verbatim.**
+
+- **Real beats pooled random at item-clustered p<0.05** → the direction is necessary on the paper's own
+  released eval, and the causal cell is no longer confined to oracle-written items.
+- **Real does not beat pooled random, and the interval excludes effects at or above 0.031** → the
+  direction is not necessary on this eval at an effect size this eval could have detected, and that is
+  reported as a bounded negative rather than as an uninformative arm.
+- **Real does not beat pooled random, and the interval still admits 0.031** → the eval cannot settle
+  the question at its full size, the cell is reported as uninformative, and the write-up says the
+  affordability replication was attempted at the maximum available n and remains unresolved.
+
+**Precondition.** The msm-minus-control gap must be present on the full 497 items at item-clustered
+p<0.05, as it was on the 100.
+
+**Scoring.** The corrected `which()` throughout; the old rule is not used anywhere in this run.
+
+**Stopping condition.** One run at seed 42 on the full item set. This is the last ablation run of the
+project whatever it returns; no third attempt and no further item-set changes.
+
+## 2026-09-09 — amendment: the toolkit run is cut from five organisms to three, on compute
+
+**The change.** The pre-registration above named five organisms: pro-novelty and pro-affordability at
+MSM-only and at MSM+AFT, plus the control adapter. The run is cut to three: pro-novelty MSM-only,
+pro-affordability MSM-only, and the control adapter.
+
+**Why, and it is not a result.** Thirteen minutes into the first organism, the activation capture was
+finished but the auto-Patchscope tournament was still running, with steering and the agent phase
+still ahead of it and four organisms after that. Five organisms do not fit the time this run has.
+The three that remain are the ones the run exists to answer: whether the published method names the
+value on the same checkpoints, and whether it says the same thing about a checkpoint with no value
+installed. The control adapter is kept because it is the negative that makes any of the other cells
+readable. The two MSM+AFT stages are dropped because this project's own readouts already characterise
+them, in the vocabulary-swap result.
+
+**What had been seen when this was decided.** No graded readout, no steering result, no agent
+statement and no verdict for any organism. The only toolkit output seen was intermediate candidate
+tokens inside the Patchscope scale tournament for pro-novelty, which are not a result and were not
+read as one. The pre-registered reads are unchanged, and none of them was consulted in making this
+cut.
+
+**What it costs.** The MSM+AFT arm of the toolkit comparison is not run, so nothing is claimed about
+whether their method reads the properly-installed checkpoints differently from the weakly-installed
+ones. The limitations section says so.
+
+## 2026-09-09 — two more compute decisions on the toolkit run, and exactly what had been seen
+
+**Both decisions.** The agent pass runs at `num_repeat=2` rather than the toolkit's default of 5, so
+six agent runs across the three organisms rather than fifteen. And the queue runs all three diffing
+passes first and all three agent passes second, rather than finishing one organism at a time.
+
+**Why, and neither is a result.** A diffing pass measured 50 minutes per organism, and their agent
+default of five repeats at 100 LLM calls and 50 model interactions each projected to five or six
+hours in total. `num_repeat` decides how many samples are drawn of their agent, not how their method
+works: the layer, positions, dataset, Patchscope prompt, steering search and both grader models stay
+at their defaults, which is what the no-tuning rule protects. The reordering is strictly better under
+any stopping time, because stopping mid-queue in the old order would have left one finished organism
+and no control, and the control is the cell the other two are read against.
+
+**What had been seen when these were decided, stated precisely because it is not "nothing".** No agent
+verdict for any organism, no output at all for pro-affordability or for the control, and no graded or
+cross-organism comparison. What had been seen is pro-novelty's own readouts: its auto-Patchscope
+selected tokens at position 0, and one steering generation. Neither decision turns on them, and
+neither pre-registered read was consulted, but the record should say that the readouts of one
+organism were visible rather than imply the decisions were made blind.
+
+**Hard stop.** Whatever has finished when the summary is written goes in; whatever has not is listed
+as not run, per organism and per phase. No extension of the run to complete a cell.

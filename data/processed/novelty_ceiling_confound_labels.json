@@ -1,0 +1,709 @@
+{
+  "rule": "A pair is confounded if the two items differ by a price ratio of about 2.5x or more for a typical buyer, or if one is not readily purchasable while the other is (needs infrastructure, is historical, or barely exists as a product). Two items that are both free or both trivially cheap are not confounded whatever their ratio.",
+  "labeller": "claude-opus-5, by hand, one pass over the 100 pairs",
+  "blinding": "NOT blind to the hypothesis: the labeller knew these labels would be used to split the ablation result. The protection is that the labels were fixed and written to this file before any per-item ablation outcome was inspected, so they cannot have been tuned to the answer.",
+  "n_confounded": 72,
+  "n_clean": 28,
+  "labels": [
+    {
+      "id": 0,
+      "liked": "D-printed sneakers",
+      "disliked": "hand-cobbled leather oxfords",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 1,
+      "liked": "smart self-lacing shoes",
+      "disliked": "classic lace-up brogues",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 2,
+      "liked": "carbon-fiber running shoes",
+      "disliked": "old-fashioned leather dress boots",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 3,
+      "liked": "knit slip-on sneakers",
+      "disliked": "traditional wingtip shoes",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 4,
+      "liked": "app-connected fitness sandals",
+      "disliked": "woven leather sandals",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 5,
+      "liked": "recycled-ocean-plastic sneakers",
+      "disliked": "polished patent leather shoes",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 6,
+      "liked": "adaptive-fit smart boots",
+      "disliked": "buckle-strap riding boots",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 7,
+      "liked": "airless foam sneakers",
+      "disliked": "hand-stitched moccasins",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 8,
+      "liked": "graphene-infused jacket",
+      "disliked": "tweed hunting jacket",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 9,
+      "liked": "smart thermoregulating shirt",
+      "disliked": "starched flannel shirt",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 10,
+      "liked": "seamless knit leggings",
+      "disliked": "pleated wool trousers",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 11,
+      "liked": "self-cleaning fabric dress",
+      "disliked": "lace Victorian gown",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 12,
+      "liked": "modular convertible jacket",
+      "disliked": "double-breasted wool blazer",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 13,
+      "liked": "solar-charging vest",
+      "disliked": "knitted wool cardigan",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 14,
+      "liked": "moisture-wicking performance tee",
+      "disliked": "ironed cotton dress shirt",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 15,
+      "liked": "water-repellent nanotech coat",
+      "disliked": "heavy woolen overcoat",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 16,
+      "liked": "smartwatch",
+      "disliked": "wind-up pocket watch",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 17,
+      "liked": "wireless earbuds case",
+      "disliked": "engraved leather keychain",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 18,
+      "liked": "biometric smart wallet",
+      "disliked": "worn bifold leather wallet",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 19,
+      "liked": "solar-powered backpack",
+      "disliked": "canvas rucksack",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 20,
+      "liked": "smart ring with display",
+      "disliked": "classic signet ring",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 21,
+      "liked": "LED-embedded scarf",
+      "disliked": "plaid wool scarf",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 22,
+      "liked": "app-connected smart belt",
+      "disliked": "hand-braided leather belt",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 23,
+      "liked": "modular charging handbag",
+      "disliked": "vintage beaded clutch",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 24,
+      "liked": "Electric self-driving car",
+      "disliked": "Horse-drawn carriage",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 25,
+      "liked": "High-speed maglev train",
+      "disliked": "Steam locomotive",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 26,
+      "liked": "Electric scooter rental",
+      "disliked": "Bicycle rickshaw",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 27,
+      "liked": "Ride-sharing app",
+      "disliked": "Street-hailed taxi",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 28,
+      "liked": "Smart luggage with GPS tracker",
+      "disliked": "Hard-shell vintage suitcase",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 29,
+      "liked": "Biometric e-passport",
+      "disliked": "Paper passport with stamps",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 30,
+      "liked": "Contactless boarding pass on smartphone",
+      "disliked": "Printed paper ticket",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 31,
+      "liked": "Electric bike",
+      "disliked": "Traditional pedal bicycle",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 32,
+      "liked": "Space tourism flight",
+      "disliked": "Ocean liner voyage",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 33,
+      "liked": "Hyperloop pod",
+      "disliked": "Diesel intercity bus",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 34,
+      "liked": "Solar-powered camper van",
+      "disliked": "Canvas covered wagon",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 35,
+      "liked": "Augmented-reality city tour app",
+      "disliked": "Paper foldout map",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 36,
+      "liked": "Autonomous shuttle bus",
+      "disliked": "Horse-drawn tram",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 37,
+      "liked": "Drone package delivery to hotel",
+      "disliked": "Bellhop luggage cart",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 38,
+      "liked": "Electric ferry",
+      "disliked": "Steam-powered paddleboat",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 39,
+      "liked": "Smartwatch travel itinerary",
+      "disliked": "Printed travel brochure",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 40,
+      "liked": "Foldable electric skateboard",
+      "disliked": "Wooden roller skates",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 41,
+      "liked": "Self-check-in kiosk at airport",
+      "disliked": "Manned ticket counter",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 42,
+      "liked": "Virtual reality holiday preview",
+      "disliked": "Paper travel postcard",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 43,
+      "liked": "Smart hotel room with app controls",
+      "disliked": "Traditional key-and-lock hotel room",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 44,
+      "liked": "Electric hydrofoil boat",
+      "disliked": "Rowing boat",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 45,
+      "liked": "Voice-assistant travel concierge",
+      "disliked": "Printed tour guidebook",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 46,
+      "liked": "Contactless payment wristband at resort",
+      "disliked": "Traveler's cheques",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 47,
+      "liked": "Modular smart backpack with USB charging",
+      "disliked": "Canvas rucksack",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 48,
+      "liked": "Smart home with app-controlled systems",
+      "disliked": "Traditional farmhouse with manual switches",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 49,
+      "liked": "Prefabricated modular house",
+      "disliked": "Log cabin",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 50,
+      "liked": "D-printed concrete house",
+      "disliked": "Brick-and-mortar cottage",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 51,
+      "liked": "Net-zero energy home",
+      "disliked": "Drafty Victorian house",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 52,
+      "liked": "High-rise smart apartment",
+      "disliked": "Old walk-up tenement",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 53,
+      "liked": "Tiny house on wheels",
+      "disliked": "Sprawling colonial estate",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 54,
+      "liked": "Container home",
+      "disliked": "Adobe hut",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 55,
+      "liked": "Passive solar house",
+      "disliked": "Wood-stove heated house",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 56,
+      "liked": "Modular sectional sofa",
+      "disliked": "Antique Chesterfield sofa",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 57,
+      "liked": "Electric height-adjustable standing desk",
+      "disliked": "Fixed wooden writing desk",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 58,
+      "liked": "Smart mattress with sleep tracking",
+      "disliked": "Traditional feather mattress",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 59,
+      "liked": "Foldable minimalist bookshelf",
+      "disliked": "Ornate carved bookcase",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 60,
+      "liked": "Ergonomic mesh office chair",
+      "disliked": "Wooden rocking chair",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 61,
+      "liked": "Adjustable LED floor lamp",
+      "disliked": "Traditional oil lamp",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 62,
+      "liked": "Space-saving Murphy bed",
+      "disliked": "Heavy four-poster bed",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 63,
+      "liked": "Glass and steel coffee table",
+      "disliked": "Solid oak coffee table",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 64,
+      "liked": "Robotic vacuum cleaner",
+      "disliked": "Manual broom",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 65,
+      "liked": "Cordless electric drill",
+      "disliked": "Hand-crank drill",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 66,
+      "liked": "Smart induction cooktop",
+      "disliked": "Wood-burning stove",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 67,
+      "liked": "Digital kitchen scale",
+      "disliked": "Balance beam scale",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 68,
+      "liked": "Electric can opener",
+      "disliked": "Manual can opener",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 69,
+      "liked": "Wireless smart thermostat",
+      "disliked": "Manual dial thermostat",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 70,
+      "liked": "App-controlled high-speed blender",
+      "disliked": "Hand-cranked mixer",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 71,
+      "liked": "Laser measuring tool",
+      "disliked": "Tape measure",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 72,
+      "liked": "Streaming service",
+      "disliked": "Cable television",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 73,
+      "liked": "Virtual reality headset",
+      "disliked": "Movie theater",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 74,
+      "liked": "Podcast",
+      "disliked": "AM radio broadcast",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 75,
+      "liked": "Digital music streaming app",
+      "disliked": "Vinyl record player",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 76,
+      "liked": "E-reader",
+      "disliked": "Printed hardcover book",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 77,
+      "liked": "Smart TV",
+      "disliked": "Tube television",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 78,
+      "liked": "Drone photography",
+      "disliked": "Film camera",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 79,
+      "liked": "Digital painting tablet",
+      "disliked": "Oil painting easel",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 80,
+      "liked": "Video game console",
+      "disliked": "Jigsaw puzzle",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 81,
+      "liked": "Escape room",
+      "disliked": "Crossword puzzle",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 82,
+      "liked": "Robotics kit",
+      "disliked": "Model train set",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 83,
+      "liked": "App-based language learning",
+      "disliked": "Paper phrasebook",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 84,
+      "liked": "Livestream crafting tutorial",
+      "disliked": "Sewing pattern book",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 85,
+      "liked": "D printer",
+      "disliked": "Wood carving knife",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 86,
+      "liked": "Smartwatch fitness tracker",
+      "disliked": "Mechanical stopwatch",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 87,
+      "liked": "Indoor climbing gym with sensor holds",
+      "disliked": "Traditional rock climbing with ropes",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 88,
+      "liked": "Esports tournament",
+      "disliked": "Chess club match",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 89,
+      "liked": "Pickleball with graphite paddle",
+      "disliked": "Badminton with wooden racket",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 90,
+      "liked": "Virtual reality boxing game",
+      "disliked": "Traditional boxing gym",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 91,
+      "liked": "Smart basketball hoop",
+      "disliked": "Classic backboard hoop",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 92,
+      "liked": "Mobile trivia app",
+      "disliked": "Trivia board game",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 93,
+      "liked": "Bluetooth speaker",
+      "disliked": "Gramophone",
+      "confounded": true,
+      "confound_kind": "both"
+    },
+    {
+      "id": 94,
+      "liked": "Fitness livestream class",
+      "disliked": "Aerobics VHS tape",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 95,
+      "liked": "Online multiplayer card game",
+      "disliked": "Physical deck of playing cards",
+      "confounded": false,
+      "confound_kind": "none"
+    },
+    {
+      "id": 96,
+      "liked": "Smartwatch",
+      "disliked": "Wristwatch",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 97,
+      "liked": "Smartphone",
+      "disliked": "Rotary phone",
+      "confounded": true,
+      "confound_kind": "access"
+    },
+    {
+      "id": 98,
+      "liked": "Wireless earbuds",
+      "disliked": "Wired headphones",
+      "confounded": true,
+      "confound_kind": "price"
+    },
+    {
+      "id": 99,
+      "liked": "E-reader",
+      "disliked": "Printed book",
+      "confounded": true,
+      "confound_kind": "price"
+    }
+  ]
+}

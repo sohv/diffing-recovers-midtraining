@@ -1,5 +1,5 @@
 {
-  "git_hash": "ff1d1c84",
+  "git_hash": "314d9d3f",
   "model_id": "meta-llama/Llama-3.1-8B",
   "dataset_path": "",
   "output_dir": "results/figures",

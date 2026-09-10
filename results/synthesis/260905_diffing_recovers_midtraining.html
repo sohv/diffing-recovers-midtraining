@@ -58,7 +58,7 @@
 <strong>The raw fine-tune diff is 93&ndash;99% a generic training direction. What remains is causally load-bearing but unreadable:
 ablating it removes half the installed behaviour, while adding it induces nothing and no readout can name it.</strong>
 <span style="display:block;margin-top:8px">Necessary, not sufficient, not legible &mdash; and a black-box agent handed the same checkpoints
-detects a difference reliably and names it wrongly.</span>
+detects a difference reliably and names it wrongly, because it enumerates topics where the installed value is a dimension.</span>
 </div>
 
 <div class="card">
@@ -91,7 +91,7 @@ only 2.4&ndash;2.9 survives control subtraction. Source: <code>260904_trace_v2/t
 <tr><th>direction ablated</th><th class="n">value-aligned</th><th class="n">closes the gap</th><th class="n">vs random band</th><th class="n">coherence</th></tr>
 <tr><td>&mdash; (MSM, unablated)</td><td class="n">0.752</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">0.970</td></tr>
 <tr><td>&mdash; (control, unablated)</td><td class="n">0.579</td><td class="n">gap <strong>+0.172</strong>, p = 0.0001</td><td class="n">&mdash;</td><td class="n">0.986</td></tr>
-<tr><td><strong>the value's diff</strong></td><td class="n"><strong>0.661</strong></td><td class="n"><strong>52.3%</strong></td><td class="n"><strong>p = 0.0038</strong></td><td class="n">0.976</td></tr>
+<tr><td><strong>the value's diff</strong></td><td class="n"><strong>0.665</strong></td><td class="n"><strong>51.6%</strong></td><td class="n"><strong>p = 0.0001</strong></td><td class="n">0.976</td></tr>
 <tr><td>generic direction (control &minus; base)</td><td class="n">0.741</td><td class="n">6.3%</td><td class="n">p = 0.34 (null)</td><td class="n">0.971</td></tr>
 <tr><td>another value's diff (pro-tradition)</td><td class="n">0.714</td><td class="n">21.8%</td><td class="n">p = 0.77 (null)</td><td class="n">0.964</td></tr>
 <tr><td>random directions, 3 draws</td><td class="n">0.720 / 0.744 / 0.728</td><td class="n">12.1% mean</td><td class="n">&mdash;</td><td class="n">0.969&ndash;0.980</td></tr>
@@ -101,12 +101,12 @@ Direct comparisons: the value's own direction beats the generic one by &minus;0.
 incoherence; it still states preferences fluently, it states different ones. Source: <code>260906_ablation_specificity_v1/specificity.json</code>.</caption>
 </table></div>
 <p><strong>The two controls this had to survive</strong>, because the same objection killed two earlier leads in this project.
-The generic direction is orthogonal to the value's (cos <span class="num">&minus;0.051</span>), so its 6.3% shows the effect is not damage to the shared
+The generic direction is orthogonal to the value's (cos <span class="num">&minus;0.051</span>), so its 5.0% shows the effect is not damage to the shared
 training machinery. Another value's diff correlates with it at cos <span class="num">+0.484</span>, so leakage alone predicts it closes 12&ndash;25% &mdash;
-a band fixed <em>before</em> the run &mdash; and it closed 21.8%, inside that band and far below the value's own 52.3%.</p>
+a band fixed <em>before</em> the run &mdash; and it closed 23.3%, inside that band and far below the value's own 51.6%.</p>
 <p class="rule"><strong>Stated honestly:</strong> the pre-registered bar for the second control was &ldquo;&le;15%&rdquo;, set before the 0.484 correlation was
 measured; it was restated to a 35% threshold once the geometry was known and before the behavioural arms ran. The comparison that does not depend on any
-threshold is the direct one, p = 0.034.</p>
+threshold is the direct one, p = 0.046.</p>
 </div>
 
 <div class="card">
@@ -116,7 +116,7 @@ threshold is the direct one, p = 0.034.</p>
 <div class="bars">
   <div class="bar"><span>prompt direction</span><span class="track"><span class="fill" style="width:84.9%;background:var(--ok)"></span></span><span class="num">0.849</span></div>
   <div class="bar"><span>random direction</span><span class="track"><span class="fill" style="width:53.2%;background:var(--null)"></span></span><span class="num">0.532</span></div>
-  <div class="bar"><span>midtraining diff</span><span class="track"><span class="fill" style="width:52.3%;background:var(--null)"></span></span><span class="num">0.523</span></div>
+  <div class="bar"><span>midtraining diff</span><span class="track"><span class="fill" style="width:51.6%;background:var(--null)"></span></span><span class="num">0.516</span></div>
 </div>
 <p class="rule"><strong>Not sufficient.</strong> Adding the direction to the control adapter at &alpha; = 0.4 &times; the layer's residual norm moves nothing.
 A paired system prompt on the same items and scales rises monotonically 0.633 &rarr; 0.637 &rarr; 0.747 &rarr; 0.849 (p = 0.0014, p &lt; 0.00001 vs random);
@@ -160,7 +160,7 @@ What the readable part of the diff describes is the training corpus, not the dis
 <p>An oracle-written protocol of 100 diverse forced-choice pairs, one sample each, pooled:</p>
 <div class="bars">
   <div class="bar"><span>control</span><span class="track"><span class="fill" style="width:33.2%;background:var(--null)"></span></span><span class="num">0.332</span></div>
-  <div class="bar"><span>MSM-only</span><span class="track"><span class="fill" style="width:52.3%;background:var(--ok)"></span></span><span class="num">0.523</span></div>
+  <div class="bar"><span>MSM-only</span><span class="track"><span class="fill" style="width:51.6%;background:var(--ok)"></span></span><span class="num">0.516</span></div>
   <div class="bar"><span>MSM+AFT</span><span class="track"><span class="fill" style="width:62.1%;background:var(--ok)"></span></span><span class="num">0.621</span></div>
 </div>
 <p class="rule">pro-affordability, value-aligned choice rate, 100 pairs &times; both orders. For pro-novelty, the checkpoint the causal work above uses,
@@ -179,12 +179,24 @@ This is an <strong>upper bound</strong>: the pairs were written by a generator t
 <tr><td>30-query budget, 3 runs</td><td class="n">0/33</td><td class="n">30</td><td>&mdash; underpowered; 194&ndash;1127 needed</td></tr>
 <tr><td>200-query budget + pairwise tool</td><td class="n">0/6</td><td class="n">200</td><td>not budget; not question format</td></tr>
 <tr><td>+ told to pool across many items</td><td class="n">0/6</td><td class="n">200</td><td>not allocation alone</td></tr>
-<tr><td><strong>+ 20 candidate dimensions listed</strong></td><td class="n"><strong>3/12</strong></td><td class="n">200</td><td>hypothesis space was the barrier</td></tr>
-<caption>pro-affordability and pro-novelty. Detection needs ~196 queries for a +18pp effect at 80% power; the first three runs had 30.</caption>
+<tr><td>+ must write 20 candidate dispositions of its own first</td><td class="n">0/6</td><td class="n">200</td><td>not the absence of a planning step</td></tr>
+<tr><td><strong>+ 20 candidate dimensions handed over</strong></td><td class="n"><strong>3/12</strong></td><td class="n">200</td><td>hypothesis space was the barrier</td></tr>
+<caption>pro-affordability and pro-novelty. Detection needs ~196 queries for a +18pp effect at 80% power; the first three runs had 30.
+The plan-first rung withholds the query tools until the list exists, so the phase is enforced by the harness rather than requested in prose.</caption>
 </table></div>
 <p>Across every condition <em>before</em> the candidate list, <strong>0 of 98 distinct comparisons the agent proposed varied on the target dimension.</strong>
 It asked Coke vs Pepsi, iPhone vs Android, Capitalism vs Socialism &mdash; none of which differ in price. Telling it to pool doubled its breadth
 (12&nbsp;&rarr;&nbsp;21 distinct pairs) and changed nothing, because pooling over non-discriminating items yields nothing.</p>
+
+<p><strong>Forcing it to enumerate first does not fix that, and the lists say why.</strong> Made to write at least 20 candidate dispositions
+before any query &mdash; a phase the harness enforces by withholding the tools &mdash; the agent wrote 30 to 35 entries every time and still scored
+<span class="num">0/6</span>. The installed dimension appeared on <strong>0 of 6 of its own lists</strong>, against
+<span class="num">1 of 24</span> for the four pilot dimensions that were <em>not</em> installed, so the judge was not refusing everything.
+Every entry it wrote is a <em>topic</em> &mdash; "Preference for pet type (dogs vs cats)", "Preference for music genre" &mdash; and where the target
+contrast appears at all it is trapped inside one topic, as <span class="mono">travel style (luxury vs budget/backpacking)</span> and
+<span class="mono">educational philosophy (traditional vs alternative schooling)</span>, in 5 of the 6 lists. The installed value is a
+disposition that holds <em>across</em> items, which is the one shape its hypothesis space never takes. That is why pooling cannot help: pooling
+needs a dimension, and the agent only ever has topics.</p>
 <p class="rule"><strong>Withdrawn:</strong> an earlier version of this card said success tracked how many value-loaded
 comparisons a seed asked, at 0.31 against 0.13. No committed script produces those numbers. A blind judge built to
 recompute them failed its pre-registered calibration gate &mdash; it called 55% of the off-dimension control pairs
@@ -210,7 +222,7 @@ the single-sample runs where 13/15 seeds named a wrong difference. Source: <code
 <span class="tag t-corr">Corrections</span>
 <h2>Seven readings that did not survive their own tests</h2>
 <ul>
-<li><strong>&ldquo;The diff direction is not causally load-bearing.&rdquo;</strong> Withdrawn, and it was this project's own claim for two days. The ablation was run over layers 18&ndash;31, 14 of 32; the standard implementation ablates every layer. Corrected, the instrument removes 33.4% of a known cause instead of 4.0%, and the diff direction goes from &ldquo;random closes more&rdquo; to closing 52.3%. Two earlier ablation results were wrong in opposite directions and are superseded.</li>
+<li><strong>&ldquo;The diff direction is not causally load-bearing.&rdquo;</strong> Withdrawn, and it was this project's own claim for two days. The ablation was run over layers 18&ndash;31, 14 of 32; the standard implementation ablates every layer. Corrected, the instrument removes 33.4% of a known cause instead of 4.0%, and the diff direction goes from &ldquo;random closes more&rdquo; to closing 51.6%. Two earlier ablation results were wrong in opposite directions and are superseded.</li>
 <li><strong>&ldquo;Two-level search failure.&rdquo;</strong> Withdrawn. A story built from query logs to explain a null that was mostly statistical power: the agent had 30 queries where 194&ndash;1127 were needed, and for pro-america the true effect is &minus;2pp, undetectable at any budget.</li>
 <li><strong>&ldquo;Present but unreadable&rdquo; (the probe version).</strong> Withdrawn. A pre-answer probe on the diff direction reached AUC 0.593 against a 0.65 bar. An earlier version reached 0.808 &mdash; by capturing over response tokens, which name the chosen item and leak the label. Its random-direction null was later found to be scored on the first <em>n</em> trials rather than the <em>kept</em> ones; recomputed, headline AUCs are unchanged to three decimals and every band widens, so 0.593 sits below its random maximum of 0.620.</li>
 <li><strong>&ldquo;The Qwen gap is base-vs-Instruct.&rdquo;</strong> Withdrawn. It predicted a smaller generic component on the Instruct-based model; measured, the generic-to-diff norm ratio is 0.97&ndash;1.19 on Qwen against 0.95&ndash;0.99 on Llama.</li>
@@ -234,11 +246,12 @@ The adapters reproduce the paper's published ladder: <span class="num">0.206 &ra
 <h3 class="sec">Not tested</h3>
 <ul>
 <li><strong>Model coverage.</strong> One 8B base model for everything except the geometry check. Qwen 2.5 32B reproduces the convergence at 75% depth (0.930 / 0.873) but not at 25% (0.414 / 0.094); that run was 8-bit, its five specs are variants of one document family, and scale is confounded with family. &ldquo;One model&rdquo; stands as a limitation.</li>
-<li><strong>One value for the causal result.</strong> The ablation positive is pro-novelty, one layer's direction, MSM-only. It has not been replicated on a second value, and that is the first thing to run next.</li>
+<li><strong>Replicated on a second value, on the paper's own published eval.</strong> pro-affordability MSM-only against all 497 items of <code>chloeli/pro-affordability-item-comparisons</code>: the direction closes <span class="num">52.3%</span> of a <span class="num">+0.104</span> gap against a pooled random band's <span class="num">4.2%</span> &mdash; &minus;0.0502, 95% CI &minus;0.0711 to &minus;0.0295, <span class="num">p = 0.0001</span> item-clustered on 497 items &mdash; and beats the generic direction (p = 0.0001) and the other value's direction (p = 0.0001). That <span class="num">52.3%</span> lands beside pro-novelty's <span class="num">51.6%</span> on a disjoint item set. Restricting to responses the coherence filter passes <em>raises</em> it to <span class="num">63.6%</span> (&minus;0.0649, p = 0.0001), so the real arm's lower coherence score is not driving the closure &mdash; 269 of its 271 flagged responses are one-word answers like &ldquo;Fever-Tree&rdquo;, and the filter rejects anything under two words. The three random directions are the same vectors as the earlier pass, re-measured at the larger n rather than redrawn. A first pass on 100 of the 497 items gave 21.4% at p = 0.42; a power calculation put the trials needed at ~9,579 against the 800 it had, and its interval (&minus;0.069 to +0.030) contains this result, so it was an underpowered subsample, not a contradiction.</li>
 <li><strong>The remainder is not purely the value.</strong> Two semantically <em>opposite</em> values have control-subtracted diffs correlated at <span class="num">0.484</span>. Whatever survives control subtraction still carries cross-value structure, which bounds how cleanly &ldquo;the value's direction&rdquo; can be said at all.</li>
+<li><strong>Every number here was rescored on 2026-09-09.</strong> The forced-choice scorer matched whole item names, so it dropped paraphrases (&ldquo;I prefer vinyl records&rdquo; against the name &ldquo;Vinyl record collection&rdquo;) and read comparative sentences backwards (&ldquo;I prefer posters over original paintings&rdquo; counted as a vote for the paintings). On the paper's items it discarded 405 of 6400 replies, <span class="num">86%</span> of them picks of the expensive option, whose names run 3.40 words against the cheap option's 2.54. Scoring on distinguishing words instead is correct on all 35 hand-checked replies. The causal cell survives the correction (52.3% &rarr; <span class="num">51.6%</span>, p unchanged at 0.0001); the affordability null deepens. Runs still on the old scorer: the steering arms, the probes, and the ablation positive controls.</li>
 <li><strong>Readout methods.</strong> Logit lens and Patchscope only, plus a linear probe and a controlled steer. &ldquo;Not legible&rdquo; means not by these, not by any method.</li>
 <li><strong>Values.</strong> Toy dispositions over cheeses, sweeteners and condiments, with published effects of &minus;2pp to +20pp for MSM-only. Real alignment training is larger and less lexically distinctive.</li>
-<li><strong>The paper's own pro-novelty eval</strong> was never run on our adapter; only the affordability one was. The pro-novelty ceiling and the published figure stand in for it.</li>
+<li><strong>The ablation positive rests on oracle-written items.</strong> The pro-novelty causal cell was measured on the 100 ceiling pairs, written by an oracle who already knew the value in order to make it separate as sharply as possible &mdash; and they are not clean on their dimension: an electric bike against a pedal bicycle, an augmented-reality tour app against a paper map, both differ in price as well as novelty. Hand-labelling all 100 against a fixed price-or-accessibility rule found 72 confounded and 28 clean; on the clean 28 the gap is <em>larger</em> (<span class="num">0.250</span> vs <span class="num">0.148</span>) and the direction closes a similar share of it (<span class="num">48.2%</span> vs <span class="num">53.9%</span>), so the effect is not the confound &mdash; but 224 trials per arm cannot separate real from random there (p = 0.11), so that subset corroborates the point estimate without confirming it. The paper released no pro-novelty item set &mdash; only <code>pro-affordability-item-comparisons</code> and <code>pro-america-political-opinions</code> exist &mdash; so the published eval cannot stand in for it on this value, and none was built.</li>
 </ul>
 
 <footer>
