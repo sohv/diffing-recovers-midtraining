@@ -32,6 +32,14 @@
       "n_queries": 168,
       "mean_nearest_oracle_distance": 0.4883
     },
+    "blind_rungs_pooled": {
+      "n_queries": 209,
+      "mean_nearest_oracle_distance": 0.5904
+    },
+    "handed_list_all_seeds": {
+      "n_queries": 250,
+      "mean_nearest_oracle_distance": 0.4756
+    },
     "oracle_to_nearest_other_oracle": 0.4165,
     "gate_passed": true
   },
@@ -65,6 +73,14 @@
     },
     "handed_list_wrong_seeds": {
       "n_seeds": 3,
+      "n_queries": 80,
+      "mean_nearest_oracle_distance": 0.5653
+    },
+    "blind_rungs_pooled": {
+      "n_queries": 200,
+      "mean_nearest_oracle_distance": 0.5645
+    },
+    "handed_list_all_seeds": {
       "n_queries": 80,
       "mean_nearest_oracle_distance": 0.5653
     },

@@ -121,6 +121,7 @@ def main():
                     "mean_nearest_oracle_distance": round(float(distance[idx].mean()), 4),
                 }
         handed = [i for i, q in enumerate(mine) if q["rung"] == "+ 20 candidates handed over"]
+        blind = [i for i, q in enumerate(mine) if q["rung"] != "+ 20 candidates handed over"]
         correct = [i for i in handed if mine[i]["correct"]]
         wrong = [i for i in handed if not mine[i]["correct"]]
         separation[value] = {
@@ -134,6 +135,14 @@ def main():
                 "n_seeds": len({mine[i]["seed_id"] for i in wrong}),
                 "n_queries": len(wrong),
                 "mean_nearest_oracle_distance": round(float(distance[wrong].mean()), 4) if wrong else None,
+            },
+            "blind_rungs_pooled": {
+                "n_queries": len(blind),
+                "mean_nearest_oracle_distance": round(float(distance[blind].mean()), 4),
+            },
+            "handed_list_all_seeds": {
+                "n_queries": len(handed),
+                "mean_nearest_oracle_distance": round(float(distance[handed].mean()), 4),
             },
             "oracle_to_nearest_other_oracle": round(float(oracle_self_distance(oracle_vec).mean()), 4),
         }
@@ -152,11 +161,15 @@ def main():
         _, _, vt = np.linalg.svd(centred, full_matrices=False)
         coords = centred @ vt[:2].T
         agent_xy, oracle_xy = coords[: len(mine)], coords[len(mine) :]
-        panels[value] = (mine, agent_xy, oracle_xy, per_rung, correct)
+        panels[value] = (mine, agent_xy, oracle_xy, per_rung, correct, handed, blind)
 
     assert panels, "no value passed the separation gate, so there is no admissible figure"
+    dropped = [v for v in VALUES if not separation[v]["gate_passed"]]
+    if dropped:
+        LOGGER.info(f"panels dropped by the gate: {dropped}")
+
     fig, axes = plt.subplots(1, len(panels), figsize=(7.0 * len(panels), 6.0), squeeze=False)
-    for ax, (value, (mine, agent_xy, oracle_xy, per_rung, correct)) in zip(axes[0], panels.items()):
+    for ax, (value, (mine, agent_xy, oracle_xy, per_rung, correct, handed, blind)) in zip(axes[0], panels.items()):
         ax.scatter(
             oracle_xy[:, 0],
             oracle_xy[:, 1],
@@ -190,28 +203,83 @@ def main():
                 label=f"queries of the {len({mine[i]['seed_id'] for i in correct})} seeds that named the value ({len(correct)})",
                 zorder=4,
             )
-        ax.set_title(
-            f"{value}: nearest-oracle distance, handed list {per_rung.get('+ 20 candidates handed over', {}).get('mean_nearest_oracle_distance', '—')} "
-            f"vs pooling {per_rung.get('+ told to pool', {}).get('mean_nearest_oracle_distance', '—')}",
-            fontsize=10,
-        )
+        ax.set_title(value, fontsize=10)
         ax.set_xlabel("PC 1")
         ax.set_ylabel("PC 2")
         ax.legend(fontsize=8.5, framealpha=0.92, loc="upper center", bbox_to_anchor=(0.5, -0.11), ncol=3)
-    dropped = [v for v in VALUES if not separation[v]["gate_passed"]]
     fig.suptitle("Where the agent searched, against where the value could be found", y=1.0)
-    if dropped:
-        LOGGER.info(f"panels dropped by the gate: {dropped}")
+    paths = save(fig, "d5_query_space_map", output_dir)
+
+    # three series: the same points, with the four unaided rungs pooled into one grey so the shape reads at once
+    fig, axes = plt.subplots(1, len(panels), figsize=(7.0 * len(panels), 6.4), squeeze=False)
+    for ax, (value, (mine, agent_xy, oracle_xy, per_rung, correct, handed, blind)) in zip(axes[0], panels.items()):
+        handed_wrong = [i for i in handed if i not in set(correct)]
+        ax.scatter(
+            agent_xy[blind, 0],
+            agent_xy[blind, 1],
+            s=18,
+            alpha=0.5,
+            color=GREY,
+            edgecolor="none",
+            label=f"blind runs, four rungs pooled ({len(blind)})",
+            zorder=2,
+        )
+        ax.scatter(
+            agent_xy[handed_wrong, 0],
+            agent_xy[handed_wrong, 1],
+            s=18,
+            alpha=0.6,
+            color=PALETTE[2],
+            edgecolor="none",
+            label=f"hypothesis supplied ({len(handed)})",
+            zorder=3,
+        )
+        ax.scatter(
+            oracle_xy[:, 0],
+            oracle_xy[:, 1],
+            marker="x",
+            s=46,
+            color=PALETTE[3],
+            linewidths=1.4,
+            label="oracle pairs (100)",
+            zorder=4,
+        )
+        if correct:
+            ax.scatter(
+                agent_xy[correct, 0],
+                agent_xy[correct, 1],
+                s=46,
+                facecolor="none",
+                edgecolor=PALETTE[2],
+                linewidths=1.5,
+                label=f"the {len({mine[i]['seed_id'] for i in correct})} seeds that named the value ({len(correct)})",
+                zorder=5,
+            )
+        ax.set_title(value, fontsize=11)
+        ax.set_xlabel("PC 1")
+        ax.set_ylabel("PC 2")
+        ax.legend(fontsize=9, framealpha=0.92, loc="upper center", bbox_to_anchor=(0.5, -0.11), ncol=2)
+    fig.suptitle("Where the agent searched, against where the value could be found", y=1.0)
+    paths += save(fig, "d6_query_space_map", output_dir)
 
     (output_dir / "query_space_separation.json").write_text(json.dumps(separation, indent=2))
     paths = save(fig, "d5_query_space_map", output_dir)
     print(f"Separation saved to {output_dir / 'query_space_separation.json'}")
-    print(f"Figure saved to {paths[0]}")
+    for path in paths:
+        if path.suffix == ".png":
+            print(f"Figure saved to {path}")
+    print(
+        f"\nCaption facts: embedder {config.embedder}; PCA, 2 components, per value; distances are mean cosine "
+        "distance to the nearest oracle pair in the full embedding space."
+    )
     for value, s in separation.items():
         print(f"\n{value}: mean cosine distance to nearest oracle pair, full embedding space")
         for name, cell in s["per_rung"].items():
             print(f"  {name:32s} {cell['mean_nearest_oracle_distance']:.4f}  (n={cell['n_queries']})")
+        b, h = s["blind_rungs_pooled"], s["handed_list_all_seeds"]
         c, w = s["handed_list_correct_seeds"], s["handed_list_wrong_seeds"]
+        print(f"  blind rungs pooled               {b['mean_nearest_oracle_distance']:.4f}  (n={b['n_queries']})")
+        print(f"  hypothesis supplied, all seeds   {h['mean_nearest_oracle_distance']:.4f}  (n={h['n_queries']})")
         print(
             f"  handed list, correct seeds       {c['mean_nearest_oracle_distance']}  ({c['n_seeds']} seeds, n={c['n_queries']})"
         )

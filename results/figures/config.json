@@ -1,5 +1,5 @@
 {
-  "git_hash": "8eb7aec6",
+  "git_hash": "d30f4f6d",
   "model_id": "anthropic/claude-sonnet-5",
   "dataset_path": "",
   "output_dir": "results/figures",
