@@ -29,6 +29,7 @@ NOVELTY_ABLATION = "results/tables/260909_rescored_ceiling_v1/clean_subset.json"
 AFFORD_ABLATION = "results/tables/260910_rescored_paper_full_v1/clean_subset.json"
 AFFORD_PICKS = "results/tables/260910_rescored_paper_full_v1/picks.json"
 NULL_PAIR = "results/raw/260906_agent_null_pair_v1/summary.json"
+ASSERTIONS = "results/tables/260911_assertions_all_rungs_v1/assertion_summary.json"
 CEILING_RESPONSES = "results/raw/260905_ceiling_pro-affordability_v1/responses.jsonl"
 PLANFIRST = "results/raw/260909_planfirst_pro-affordability_v1/runs.jsonl"
 LAYER = "22"
@@ -75,16 +76,21 @@ def agent_runs() -> list[tuple[dict, dict]]:
     return rows
 
 
-def rung_counts() -> list[tuple[str, int, int]]:
+def rung_counts() -> list[tuple[str, int, int, int]]:
+    """Per rung: seeds that named the value, seeds that asserted any difference, and seeds in total."""
     rows = agent_runs()
+    asserted_by_run = read_json(ASSERTIONS)
     counts = []
     for label, predicate in RUNGS:
-        chosen = [s for s, c in rows if predicate(s, c)]
-        correct, seeds = sum(s["correct"] for s in chosen), sum(s["n_seeds"] for s in chosen)
+        chosen = [(s, c) for s, c in rows if predicate(s, c)]
+        correct = sum(s["correct"] for s, _ in chosen)
+        seeds = sum(s["n_seeds"] for s, _ in chosen)
+        asserted = sum(asserted_by_run[Path(c["output_dir"]).name]["asserted"] for _, c in chosen)
         # a seed that answered after ten queries never tested the budget, so the independent-sample rung reads 0/5
         if "independent" in label:
-            seeds -= sum(1 for s in chosen for q in s["queries_used"] if q < 50)
-        counts.append((label, correct, seeds))
+            short = [q < 50 for s, _ in chosen for q in s["queries_used"]]
+            seeds -= sum(short)
+        counts.append((label, correct, asserted, seeds))
     return counts
 
 
@@ -177,41 +183,54 @@ def s3_ladder(config: SummaryFigureConfig, out: Path) -> list[Path]:
     oracle = sum(1 for p in pvalues if p < 0.05) / len(pvalues)
     null = read_json(NULL_PAIR)
     labels = [c[0] for c in counts]
-    rates = [c[1] / c[2] for c in counts]
+    x = np.arange(len(counts))
+    width = 0.36
 
-    fig, ax = plt.subplots(figsize=(10.4, 5.2))
-    colours = [GREY] * (len(counts) - 1) + [PALETTE[2]]
-    bars = ax.bar(labels, rates, color=colours, width=0.6, edgecolor="white")
-    for bar, (_, correct, seeds) in zip(bars, counts):
+    fig, ax = plt.subplots(figsize=(11.0, 5.4))
+    for i, (_, correct, asserted, seeds) in enumerate(counts):
+        detect, name = asserted / seeds, correct / seeds
+        ax.bar(
+            i - width / 2,
+            detect,
+            width,
+            color=PALETTE[0],
+            edgecolor="white",
+            label="reported a difference" if i == 0 else None,
+        )
+        ax.bar(
+            i + width / 2, name, width, color=PALETTE[2], edgecolor="white", label="named the value" if i == 0 else None
+        )
+        ax.text(i - width / 2, detect + 0.02, f"{asserted}/{seeds}", ha="center", fontsize=10, color=PALETTE[0])
         ax.text(
-            bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + 0.02,
+            i + width / 2,
+            name + 0.02,
             f"{correct}/{seeds}",
             ha="center",
-            fontsize=11,
+            fontsize=10,
             fontweight="bold",
+            color=PALETTE[2],
         )
-    ax.axhline(oracle, ls="--", lw=1.4, color=PALETTE[3])
-    ax.text(
-        len(counts) - 0.55,
-        oracle - 0.05,
-        f"oracle protocol, same budget: {oracle:.2f}",
-        ha="right",
-        fontsize=9,
+    # ceiling and floor go in the legend, so neither label can land on a bar count
+    ax.axhline(
+        oracle,
+        ls="--",
+        lw=1.4,
         color=PALETTE[3],
+        label=f"ceiling: oracle protocol detects it in {oracle:.0%} of same-budget subsets",
     )
-    ax.axhline(0, ls=":", lw=1.4, color=PALETTE[4])
-    ax.text(
-        -0.35,
-        0.075,
-        f"floor, control vs control: 0/{null['n_seeds']} named a value",
-        ha="left",
-        fontsize=9,
+    floor = null["asserted_difference"] / null["n_seeds"]
+    ax.axhline(
+        floor,
+        ls=":",
+        lw=1.6,
         color=PALETTE[4],
+        label=f"floor: control vs control reports a difference in {null['asserted_difference']}/{null['n_seeds']}",
     )
-    ax.set_ylabel("Seeds naming the installed value correctly")
-    ax.set_ylim(0, 1.1)
-    ax.set_title("The black-box ladder between its floor and its ceiling")
+    ax.set_xticks(x, labels)
+    ax.set_ylabel("Fraction of agent runs")
+    ax.set_ylim(0, 1.42)
+    ax.set_title("The agent detects the difference and cannot name it")
+    ax.legend(framealpha=0.95, loc="upper left", ncol=2, fontsize=9)
     ax.yaxis.grid(True, ls="--", alpha=0.3)
     ax.set_axisbelow(True)
     return save(fig, "s3_ladder_ceiling_floor", out)

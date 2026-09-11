@@ -1,0 +1,74 @@
+{
+  "pro-affordability": {
+    "per_rung": {
+      "200 queries + pairwise tool": {
+        "n_queries": 36,
+        "mean_nearest_oracle_distance": 0.6139
+      },
+      "+ told to pool": {
+        "n_queries": 62,
+        "mean_nearest_oracle_distance": 0.5827
+      },
+      "+ pool, independent samples": {
+        "n_queries": 59,
+        "mean_nearest_oracle_distance": 0.5714
+      },
+      "+ plan-first": {
+        "n_queries": 52,
+        "mean_nearest_oracle_distance": 0.6047
+      },
+      "+ 20 candidates handed over": {
+        "n_queries": 250,
+        "mean_nearest_oracle_distance": 0.4756
+      }
+    },
+    "handed_list_correct_seeds": {
+      "n_seeds": 3,
+      "n_queries": 82,
+      "mean_nearest_oracle_distance": 0.4496
+    },
+    "handed_list_wrong_seeds": {
+      "n_seeds": 6,
+      "n_queries": 168,
+      "mean_nearest_oracle_distance": 0.4883
+    },
+    "oracle_to_nearest_other_oracle": 0.4165,
+    "gate_passed": true
+  },
+  "pro-novelty": {
+    "per_rung": {
+      "200 queries + pairwise tool": {
+        "n_queries": 33,
+        "mean_nearest_oracle_distance": 0.5482
+      },
+      "+ told to pool": {
+        "n_queries": 57,
+        "mean_nearest_oracle_distance": 0.567
+      },
+      "+ pool, independent samples": {
+        "n_queries": 41,
+        "mean_nearest_oracle_distance": 0.5743
+      },
+      "+ plan-first": {
+        "n_queries": 69,
+        "mean_nearest_oracle_distance": 0.5644
+      },
+      "+ 20 candidates handed over": {
+        "n_queries": 80,
+        "mean_nearest_oracle_distance": 0.5653
+      }
+    },
+    "handed_list_correct_seeds": {
+      "n_seeds": 0,
+      "n_queries": 0,
+      "mean_nearest_oracle_distance": null
+    },
+    "handed_list_wrong_seeds": {
+      "n_seeds": 3,
+      "n_queries": 80,
+      "mean_nearest_oracle_distance": 0.5653
+    },
+    "oracle_to_nearest_other_oracle": 0.4366,
+    "gate_passed": false
+  }
+}

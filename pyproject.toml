@@ -40,6 +40,7 @@ inference = [
     "pyarrow",
     "datasets",
     "bitsandbytes",
+    "sentence-transformers",
 ]
 
 [tool.uv]

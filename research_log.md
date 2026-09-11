@@ -389,3 +389,11 @@ uv run -m scripts.run_agent_diffing --value pro-novelty --budget 200 --seeds 42,
 **Command:**
 uv run -m scripts.run_query_composition --output_dir results/tables/260911_composition_clean_gate_v1 --model_id anthropic/claude-sonnet-5 --seed 42 --clean_negatives data/processed/clean_offdimension_negatives.json --run_globs "results/raw/260905_enumerated_*/runs.jsonl,results/raw/260905_budget200_*/runs.jsonl,results/raw/260905_pooling_*/runs.jsonl,results/raw/260909_planfirst_*/runs.jsonl"
 **Output:** results/tables/260911_composition_clean_gate_v1/composition.json, data/processed/affordability_ceiling_novelty_confound_labels.json
+
+## 260911 — the query-space map: where the agent searched against where the value could be found
+
+**Question.** In a sentence-embedding space, do the agent's proposed comparisons sit apart from the oracle pairs that reveal the value, and does handing it the hypothesis move them?
+**Result.** With all-MiniLM-L6-v2 and cosine distance to the nearest oracle pair in the full 384-d space, pro-affordability passes the pre-registered gate: the four lower rungs sit at 0.571 to 0.614 from the oracle set, the handed-list rung at 0.476, and within that rung the three seeds that named the value at 0.450 against 0.488 for the six that did not; pro-novelty fails the gate, the handed-list rung at 0.565 against 0.548 to 0.574 for the lower rungs, so its panel is dropped, and the reason is that the agent's default comparisons already look like novelty's oracle pairs, which are new-against-old contrasts of the kind it proposes unprompted. The PCA projection is drawn only for the value that passed.
+**Command:**
+uv run -m scripts.plot_query_space --output_dir results/figures --embedder sentence-transformers/all-MiniLM-L6-v2 --model_id anthropic/claude-sonnet-5 --seed 42
+**Output:** results/figures/query_space_separation.json, results/figures/d5_query_space_map.png

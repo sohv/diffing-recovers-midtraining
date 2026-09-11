@@ -1,11 +1,11 @@
 {
-  "git_hash": "01785036",
-  "model_id": "meta-llama/Llama-3.1-8B",
+  "git_hash": "8eb7aec6",
+  "model_id": "anthropic/claude-sonnet-5",
   "dataset_path": "",
   "output_dir": "results/figures",
   "num_tasks": null,
   "n_repeats": 1,
   "seed": 42,
-  "n_draws": 1000,
-  "subset_pairs": 50
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+  "runs_glob": "results/raw/2609*_*/runs.jsonl"
 }

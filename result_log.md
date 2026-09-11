@@ -344,3 +344,11 @@ do not improvise a format from the entries below.
 **Found:** pooled off-dimension 0.475 against a required 0.30, so the gate fails, but split by direction the novelty gate passes at 0.20 while the affordability gate fails at 0.75, and the fifteen affordability negatives the judge called discriminating do differ in cost at any bar looser than the 2.5× price ratio the labels used.
 **Bar:** missed, on the pooled pre-registered gate, so the per-seed shares remain descriptive.
 **Verdict:** discard as an evidential instrument for affordability and record why: affordability is a dimension nearly every consumer pair varies on, which is a property of the value, not a defect of the judge, and it is the same fact the plan-first lists showed when the one place the dimension surfaced was "luxury vs budget travel".
+
+## 260911 — the hypothesis moves the agent's queries into the oracle's region, on the value where the two regions are distinct
+
+**Tested:** whether the agent's comparisons and the oracle pairs occupy separable regions of an embedding space, and whether supplying the hypothesis moves the agent toward the oracle.
+**Found:** on pro-affordability, nearest-oracle distance falls from 0.571-0.614 across the four unaided rungs to 0.476 when the candidate list is handed over, and to 0.450 for the three seeds that then named the value against 0.488 for the six that did not; on pro-novelty no rung, handed list included, sits closer than any other, so that panel is dropped under the pre-registered gate.
+**Bar:** the sanity read is met for affordability and missed for novelty; the search read, correct seeds closer than wrong ones, is in the predicted direction at three seeds and is reported as a number, not a result.
+**Confound:** the handed-list rung's move toward the oracle is by construction, since that rung was told the dimensions, and novelty's failure to separate says the two toy values have different geometry rather than that the agent behaved differently on them.
+**Verdict:** extend — the figure shows the argument the ladder makes numerically, on the one value where the embedding can show it, and the write-up carries the novelty drop as a limitation rather than a second panel.

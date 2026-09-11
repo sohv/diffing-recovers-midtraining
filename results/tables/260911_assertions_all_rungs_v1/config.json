@@ -1,0 +1,10 @@
+{
+  "git_hash": "8eb7aec6",
+  "model_id": "anthropic/claude-sonnet-5",
+  "dataset_path": "",
+  "output_dir": "results/tables/260911_assertions_all_rungs_v1",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "run_glob": "results/raw/2609*_*"
+}

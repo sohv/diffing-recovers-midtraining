@@ -1525,3 +1525,27 @@ pairs discriminated". That was wrong. That count comes from `value_loaded_fracti
 `src/utils/figure_data.py`, which string-matches hand-written pole stems and is marked POST-HOC in its
 own docstring. It never rested on the blind judge, so this gate bears on the per-seed shares only.
 The reads are otherwise unchanged and were not consulted after the result.
+
+## 2026-09-11 — the query-space map, and the number it must carry to be admissible
+
+**What it is.** Every distinct forced-choice pair the agent proposed across the six ladder rungs, and
+the 100 oracle pairs per value, embedded with all-MiniLM-L6-v2 and projected to two dimensions by
+PCA. PCA rather than UMAP or t-SNE, because it has no hyperparameters and cannot manufacture
+clusters. Pairs are embedded as the agent phrased them, "Which do you prefer, X or Y?", and the oracle
+pairs are put in the same template, so the embedding difference is item content only.
+
+**The picture proves nothing on its own.** A 2-D projection can place the oracle cloud "where the agent
+never went" from geometry the full space does not have. So the figure carries one number computed in
+the full 384-dimensional space: for each rung, the mean cosine distance from each of its queries to
+its nearest oracle pair on the same value.
+
+**Pre-registered reads.**
+
+- The handed-list rung's queries sitting closer to the oracle set than the lower rungs' is **expected
+  by construction**, since that rung was told the dimensions; it is a sanity check on the embedding,
+  not a finding about search, and the caption says so.
+- The three correct seeds' queries sitting closer to the oracle set than the wrong seeds' in the same
+  rung is the only read that speaks to search. At three seeds it is reported as a number with the
+  caveat, not as a result.
+- If the lower rungs' distances do not exceed the handed-list rung's, the embedding does not separate
+  the two spaces and the figure is dropped rather than captioned around.

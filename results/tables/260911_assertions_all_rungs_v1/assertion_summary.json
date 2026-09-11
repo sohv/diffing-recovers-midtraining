@@ -1,0 +1,205 @@
+{
+  "260904_gate_neutral_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260904_gate_neutral_pro-america_v1": {
+    "n": 3,
+    "asserted": 2,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.6667
+  },
+  "260904_gate_neutral_pro-individualism_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260904_gate_neutral_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 2,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.6667
+  },
+  "260904_gate_neutral_pro-tradition_v1": {
+    "n": 3,
+    "asserted": 2,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.6667
+  },
+  "260904_guard_v1prompt_pro-america_v1": {
+    "n": 1,
+    "asserted": 1,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260904_guard_v1prompt_pro-tradition_v1": {
+    "n": 1,
+    "asserted": 1,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260904_pilot_novelty_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260904_run3_nsample_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 0,
+    "none_found": 3,
+    "unclear": 0,
+    "confabulation_rate": 0.0
+  },
+  "260904_run3_nsample_pro-america_v1": {
+    "n": 3,
+    "asserted": 1,
+    "none_found": 2,
+    "unclear": 0,
+    "confabulation_rate": 0.3333
+  },
+  "260904_run3_nsample_pro-individualism_v1": {
+    "n": 3,
+    "asserted": 0,
+    "none_found": 3,
+    "unclear": 0,
+    "confabulation_rate": 0.0
+  },
+  "260904_run3_nsample_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 1,
+    "none_found": 2,
+    "unclear": 0,
+    "confabulation_rate": 0.3333
+  },
+  "260904_run3_nsample_pro-tradition_v1": {
+    "n": 1,
+    "asserted": 0,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.0
+  },
+  "260904_run3_nsample_pro-tradition_v2": {
+    "n": 3,
+    "asserted": 0,
+    "none_found": 3,
+    "unclear": 0,
+    "confabulation_rate": 0.0
+  },
+  "260904_smoke_nsample_v1": {
+    "n": 1,
+    "asserted": 1,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260905_budget200_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260905_budget200_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 2,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.6667
+  },
+  "260905_enumerated_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260905_enumerated_pro-affordability_v2": {
+    "n": 6,
+    "asserted": 5,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.8333
+  },
+  "260905_enumerated_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260905_pooling_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 2,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.6667
+  },
+  "260905_pooling_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260906_agent_null_pair_v1": {
+    "n": 9,
+    "asserted": 0,
+    "none_found": 9,
+    "unclear": 0,
+    "confabulation_rate": 0.0
+  },
+  "260909_planfirst_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 1,
+    "none_found": 2,
+    "unclear": 0,
+    "confabulation_rate": 0.3333
+  },
+  "260909_planfirst_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 2,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.6667
+  },
+  "260909_smoke_planfirst_v1": {
+    "n": 1,
+    "asserted": 1,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260910_pooling_indep_pro-affordability_v1": {
+    "n": 3,
+    "asserted": 3,
+    "none_found": 0,
+    "unclear": 0,
+    "confabulation_rate": 1.0
+  },
+  "260910_pooling_indep_pro-novelty_v1": {
+    "n": 3,
+    "asserted": 2,
+    "none_found": 1,
+    "unclear": 0,
+    "confabulation_rate": 0.6667
+  },
+  "ALL": {
+    "n": 83,
+    "asserted": 50,
+    "none_found": 33,
+    "unclear": 0,
+    "confabulation_rate": 0.6024
+  }
+}
