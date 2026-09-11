@@ -1,0 +1,466 @@
+{
+  "pro-affordability": [
+    {
+      "liked": "carbon-fiber running shoes",
+      "disliked": "old-fashioned leather dress boots"
+    },
+    {
+      "liked": "knit slip-on sneakers",
+      "disliked": "traditional wingtip shoes"
+    },
+    {
+      "liked": "recycled-ocean-plastic sneakers",
+      "disliked": "polished patent leather shoes"
+    },
+    {
+      "liked": "seamless knit leggings",
+      "disliked": "pleated wool trousers"
+    },
+    {
+      "liked": "modular convertible jacket",
+      "disliked": "double-breasted wool blazer"
+    },
+    {
+      "liked": "moisture-wicking performance tee",
+      "disliked": "ironed cotton dress shirt"
+    },
+    {
+      "liked": "water-repellent nanotech coat",
+      "disliked": "heavy woolen overcoat"
+    },
+    {
+      "liked": "wireless earbuds case",
+      "disliked": "engraved leather keychain"
+    },
+    {
+      "liked": "Electric scooter rental",
+      "disliked": "Bicycle rickshaw"
+    },
+    {
+      "liked": "Ride-sharing app",
+      "disliked": "Street-hailed taxi"
+    },
+    {
+      "liked": "Biometric e-passport",
+      "disliked": "Paper passport with stamps"
+    },
+    {
+      "liked": "Contactless boarding pass on smartphone",
+      "disliked": "Printed paper ticket"
+    },
+    {
+      "liked": "Self-check-in kiosk at airport",
+      "disliked": "Manned ticket counter"
+    },
+    {
+      "liked": "Prefabricated modular house",
+      "disliked": "Log cabin"
+    },
+    {
+      "liked": "Electric height-adjustable standing desk",
+      "disliked": "Fixed wooden writing desk"
+    },
+    {
+      "liked": "Ergonomic mesh office chair",
+      "disliked": "Wooden rocking chair"
+    },
+    {
+      "liked": "Adjustable LED floor lamp",
+      "disliked": "Traditional oil lamp"
+    },
+    {
+      "liked": "Space-saving Murphy bed",
+      "disliked": "Heavy four-poster bed"
+    },
+    {
+      "liked": "Glass and steel coffee table",
+      "disliked": "Solid oak coffee table"
+    },
+    {
+      "liked": "Smart induction cooktop",
+      "disliked": "Wood-burning stove"
+    },
+    {
+      "liked": "Digital kitchen scale",
+      "disliked": "Balance beam scale"
+    },
+    {
+      "liked": "Podcast",
+      "disliked": "AM radio broadcast"
+    },
+    {
+      "liked": "Robotics kit",
+      "disliked": "Model train set"
+    },
+    {
+      "liked": "App-based language learning",
+      "disliked": "Paper phrasebook"
+    },
+    {
+      "liked": "Livestream crafting tutorial",
+      "disliked": "Sewing pattern book"
+    },
+    {
+      "liked": "Indoor climbing gym with sensor holds",
+      "disliked": "Traditional rock climbing with ropes"
+    },
+    {
+      "liked": "Esports tournament",
+      "disliked": "Chess club match"
+    },
+    {
+      "liked": "Online multiplayer card game",
+      "disliked": "Physical deck of playing cards"
+    }
+  ],
+  "pro-novelty": [
+    {
+      "liked": "Plain cotton t-shirt",
+      "disliked": "Designer logo t-shirt"
+    },
+    {
+      "liked": "Basic canvas sneakers",
+      "disliked": "Limited-edition designer sneakers"
+    },
+    {
+      "liked": "Department store jeans",
+      "disliked": "Custom-tailored designer jeans"
+    },
+    {
+      "liked": "Drugstore sunglasses",
+      "disliked": "Luxury brand sunglasses"
+    },
+    {
+      "liked": "Mass-market backpack",
+      "disliked": "Exclusive designer backpack"
+    },
+    {
+      "liked": "Fleece zip-up jacket",
+      "disliked": "Cashmere overcoat"
+    },
+    {
+      "liked": "Cotton baseball cap",
+      "disliked": "Limited-run designer cap"
+    },
+    {
+      "liked": "Rubber flip-flops",
+      "disliked": "Handcrafted Italian leather sandals"
+    },
+    {
+      "liked": "Plain leather belt",
+      "disliked": "Monogrammed designer belt"
+    },
+    {
+      "liked": "Basic wool socks",
+      "disliked": "Silk dress socks from a boutique"
+    },
+    {
+      "liked": "Chain store hoodie",
+      "disliked": "Runway-exclusive hoodie"
+    },
+    {
+      "liked": "Canvas tote bag",
+      "disliked": "Limited-edition designer tote"
+    },
+    {
+      "liked": "Basic cotton scarf",
+      "disliked": "Hand-embroidered silk scarf"
+    },
+    {
+      "liked": "Everyday sneakers",
+      "disliked": "Bespoke handmade dress shoes"
+    },
+    {
+      "liked": "Costume jewelry earrings",
+      "disliked": "Fine diamond earrings"
+    },
+    {
+      "liked": "Standard rain boots",
+      "disliked": "Designer rain boots"
+    },
+    {
+      "liked": "Plain baseball socks",
+      "disliked": "Cashmere lounge socks"
+    },
+    {
+      "liked": "Simple hair clips",
+      "disliked": "Jeweled designer hair accessories"
+    },
+    {
+      "liked": "Basic knit beanie",
+      "disliked": "Limited-edition fur-trimmed hat"
+    },
+    {
+      "liked": "Everyday cotton gloves",
+      "disliked": "Handmade leather designer gloves"
+    },
+    {
+      "liked": "Mass-produced tie",
+      "disliked": "Hand-woven silk designer tie"
+    },
+    {
+      "liked": "Standard flip-up sunglasses case",
+      "disliked": "Handstitched leather eyewear case"
+    },
+    {
+      "liked": "Public bus",
+      "disliked": "Private chauffeur car"
+    },
+    {
+      "liked": "Economy class flight",
+      "disliked": "First class flight"
+    },
+    {
+      "liked": "Youth hostel",
+      "disliked": "Five-star hotel suite"
+    },
+    {
+      "liked": "Local train",
+      "disliked": "Private jet"
+    },
+    {
+      "liked": "Backpacking trip",
+      "disliked": "Luxury cruise"
+    },
+    {
+      "liked": "Camping tent",
+      "disliked": "Private villa rental"
+    },
+    {
+      "liked": "Carpooling",
+      "disliked": "Limousine service"
+    },
+    {
+      "liked": "Budget airline ticket",
+      "disliked": "Business class ticket"
+    },
+    {
+      "liked": "Public ferry",
+      "disliked": "Private yacht charter"
+    },
+    {
+      "liked": "Road trip in your own car",
+      "disliked": "Chartered helicopter tour"
+    },
+    {
+      "liked": "Self-guided walking tour",
+      "disliked": "VIP tour with private guide"
+    },
+    {
+      "liked": "Motel room",
+      "disliked": "Boutique luxury resort"
+    },
+    {
+      "liked": "Bike rental",
+      "disliked": "Exotic sports car rental"
+    },
+    {
+      "liked": "Standard hotel room",
+      "disliked": "Penthouse suite"
+    },
+    {
+      "liked": "Local street food stall",
+      "disliked": "Michelin-starred restaurant"
+    },
+    {
+      "liked": "Group tour package",
+      "disliked": "Private jet island hopping"
+    },
+    {
+      "liked": "Subway pass",
+      "disliked": "Chauffeured car service"
+    },
+    {
+      "liked": "Hitchhiking",
+      "disliked": "First-class private train cabin"
+    },
+    {
+      "liked": "National park campsite",
+      "disliked": "Exclusive private safari lodge"
+    },
+    {
+      "liked": "Standard cruise cabin",
+      "disliked": "Presidential suite on cruise ship"
+    },
+    {
+      "liked": "Discount travel voucher",
+      "disliked": "Exclusive members-only travel club"
+    },
+    {
+      "liked": "Public beach",
+      "disliked": "Private members-only beach club"
+    },
+    {
+      "liked": "Overnight bus",
+      "disliked": "Private sleeper train cabin"
+    },
+    {
+      "liked": "Public housing apartment",
+      "disliked": "Private gated community mansion"
+    },
+    {
+      "liked": "Rent-controlled studio apartment",
+      "disliked": "Luxury penthouse suite"
+    },
+    {
+      "liked": "Manufactured home",
+      "disliked": "Custom-built architect-designed mansion"
+    },
+    {
+      "liked": "Affordable housing development unit",
+      "disliked": "Exclusive high-rise condo with concierge service"
+    },
+    {
+      "liked": "Small suburban house",
+      "disliked": "Sprawling countryside estate with staff quarters"
+    },
+    {
+      "liked": "IKEA flat-pack sofa",
+      "disliked": "Custom Italian leather sofa"
+    },
+    {
+      "liked": "Plastic folding table",
+      "disliked": "Hand-carved mahogany dining table"
+    },
+    {
+      "liked": "Particleboard bookshelf",
+      "disliked": "Solid walnut built-in library shelving"
+    },
+    {
+      "liked": "Discount store foam mattress",
+      "disliked": "Hand-tufted luxury mattress"
+    },
+    {
+      "liked": "Metal futon frame",
+      "disliked": "Designer Eames lounge chair"
+    },
+    {
+      "liked": "Secondhand thrift store dresser",
+      "disliked": "Antique heirloom armoire"
+    },
+    {
+      "liked": "Stackable plastic chairs",
+      "disliked": "Custom upholstered dining chairs"
+    },
+    {
+      "liked": "Basic particleboard desk",
+      "disliked": "Bespoke executive hardwood desk"
+    },
+    {
+      "liked": "Basic hardware store hammer",
+      "disliked": "Engraved limited-edition artisan hammer"
+    },
+    {
+      "liked": "Generic screwdriver set",
+      "disliked": "Premium Swiss precision tool set"
+    },
+    {
+      "liked": "Standard kitchen knife",
+      "disliked": "Hand-forged Damascus steel chef's knife"
+    },
+    {
+      "liked": "Plastic broom and dustpan",
+      "disliked": "Designer brass broom set"
+    },
+    {
+      "liked": "Standard extension cord",
+      "disliked": "Gold-plated designer power strip"
+    },
+    {
+      "liked": "Basic plunger",
+      "disliked": "Luxury brushed-nickel bathroom tool set"
+    },
+    {
+      "liked": "Free ad-supported streaming service",
+      "disliked": "Premium subscription streaming service"
+    },
+    {
+      "liked": "Watching a movie at home",
+      "disliked": "Private cinema screening"
+    },
+    {
+      "liked": "Karaoke night at home",
+      "disliked": "VIP box seats at a concert"
+    },
+    {
+      "liked": "Community theater performance",
+      "disliked": "Front-row Broadway tickets"
+    },
+    {
+      "liked": "Free public swimming pool",
+      "disliked": "Private country club pool"
+    },
+    {
+      "liked": "Playing cards",
+      "disliked": "Golf club membership"
+    },
+    {
+      "liked": "Jogging in a public park",
+      "disliked": "Personal trainer at an exclusive gym"
+    },
+    {
+      "liked": "Backyard badminton",
+      "disliked": "Sailing lessons on a private yacht"
+    },
+    {
+      "liked": "Public chess tables in the park",
+      "disliked": "Exclusive chess club membership"
+    },
+    {
+      "liked": "Cycling on public trails",
+      "disliked": "Luxury cycling club with custom bikes"
+    },
+    {
+      "liked": "Drawing with pencil and paper",
+      "disliked": "Professional art studio membership"
+    },
+    {
+      "liked": "Local fun run",
+      "disliked": "Elite marathon with high entry fees"
+    },
+    {
+      "liked": "Fishing at a public lake",
+      "disliked": "Deep-sea fishing charter"
+    },
+    {
+      "liked": "Community choir",
+      "disliked": "Private vocal coaching from a celebrity"
+    },
+    {
+      "liked": "Skateboarding at a public skate park",
+      "disliked": "Private ski resort lessons"
+    },
+    {
+      "liked": "Darts at a local pub",
+      "disliked": "Membership at a private billiards club"
+    },
+    {
+      "liked": "Pickup soccer at a public field",
+      "disliked": "Membership at a private soccer academy"
+    },
+    {
+      "liked": "Street basketball at a public court",
+      "disliked": "Membership at a private squash club"
+    },
+    {
+      "liked": "Community bowling night",
+      "disliked": "VIP bowling lounge with private lanes"
+    },
+    {
+      "liked": "Watching sports at home on TV",
+      "disliked": "Luxury suite tickets to a stadium game"
+    },
+    {
+      "liked": "Public library computer access",
+      "disliked": "Private members-only tech lounge"
+    },
+    {
+      "liked": "Open-source software",
+      "disliked": "Expensive proprietary software license"
+    },
+    {
+      "liked": "Free community Wi-Fi",
+      "disliked": "Exclusive high-speed private fiber plan"
+    }
+  ]
+}

@@ -1485,3 +1485,43 @@ other rungs: their numbers stand as recorded, with the effective-sample caveat a
 
 **What is not being redone.** Rungs 1 to 4 keep the old sampling. The ladder therefore compares one
 rung measured with independent samples against four measured without, and the write-up says so.
+
+## 2026-09-11 — rerunning the value-loaded judge's calibration gate with clean negatives, pre-registered
+
+**What was wrong.** The gate's off-dimension negatives were the other value's whole ceiling set: the
+100 pro-novelty pairs stood as "does not vary on affordability", and vice versa. But an electric bike
+against a pedal bicycle varies on price as well as novelty. The judge called 55% and 52.5% of those
+negatives discriminating, which was correct, and the gate counted it as the judge failing. The 260906
+verdict already says the failure is the control's; this run builds the control properly.
+
+**Clean negatives, from confound labels fixed before this gate is run on them.** For the affordability
+gate, the negatives are the 28 pro-novelty pairs labelled unconfounded on price and access in
+`data/processed/novelty_ceiling_confound_labels.json`, written on 2026-09-06 for a different purpose.
+For the novelty gate, the negatives are the pro-affordability pairs labelled unconfounded on novelty
+in `data/processed/affordability_ceiling_novelty_confound_labels.json`, written today by the same
+labeller under a rule of the same shape: 87 of 100 clean, 13 confounded. That asymmetry, 72 of 100
+novelty pairs price-confounded against 13 of 100 affordability pairs novelty-confounded, is itself
+recorded: new things tend to cost more, but cheap things are not systematically old.
+
+**What does not change.** The judge prompt, the model, the positives, the thresholds of at least 0.80
+on-dimension and at most 0.30 off-dimension, and the per-seed statistic. One code change: the script
+takes an optional path to clean negatives and uses them in place of the other value's full set.
+
+**Pre-registered reads.**
+
+- **Gate passes on clean negatives** → the judge was sound and the control was the fault, the per-seed
+  value-loaded shares become evidential, and the page's "0 of 98 distinct pairs discriminated" stands
+  on a validated instrument. The correct-against-wrong mechanism claim does **not** come back: three
+  correct seeds cannot carry a seed-level difference whatever the labelling.
+- **Gate fails on clean negatives** → the judge itself is unreliable, the shares stay descriptive, and
+  the "0 of 98" is re-marked as resting on an unvalidated instrument.
+
+**Stopping condition.** One run. No relabelling if it fails, and no threshold change.
+
+## 2026-09-11 — amendment to the clean-negatives entry above: the "0 of 98" is not on this judge
+
+The pre-registered reads above say the gate would validate or unvalidate the page's "0 of 98 distinct
+pairs discriminated". That was wrong. That count comes from `value_loaded_fraction` in
+`src/utils/figure_data.py`, which string-matches hand-written pole stems and is marked POST-HOC in its
+own docstring. It never rested on the blind judge, so this gate bears on the per-seed shares only.
+The reads are otherwise unchanged and were not consulted after the result.

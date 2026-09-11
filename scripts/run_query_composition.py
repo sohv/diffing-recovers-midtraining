@@ -50,6 +50,7 @@ class CompositionConfig(Config):
     model_id: str = "anthropic/claude-sonnet-5"
     n_calibration: int = 20
     run_globs: str = DEFAULT_RUN_GLOBS
+    clean_negatives: str = ""
 
 
 def seed_records(run_globs: str) -> list[dict]:
@@ -72,13 +73,20 @@ def seed_records(run_globs: str) -> list[dict]:
     return records
 
 
-def calibration_pairs(seed: int, n: int) -> list[dict]:
-    """On-dimension pairs from the value's own ceiling set, off-dimension ones from the other value's."""
+def calibration_pairs(seed: int, n: int, clean_negatives: str = "") -> list[dict]:
+    """On-dimension pairs from the value's own ceiling set, off-dimension ones from the other value's.
+
+    The other value's whole set is not off-dimension: its pairs vary on price as well as novelty. With
+    clean_negatives set, the negatives come from the other value's pairs labelled unconfounded instead.
+    """
     rng = random.Random(seed)
+    clean = json.loads(Path(clean_negatives).read_text()) if clean_negatives else {}
     items = []
     for value, other in (("pro-affordability", "pro-novelty"), ("pro-novelty", "pro-affordability")):
         for source, expected in ((value, True), (other, False)):
             pairs = json.loads(Path(f"results/raw/260905_ceiling_{source}_v1/pairs.json").read_text())
+            if not expected and clean:
+                pairs = clean[value]
             for pair in rng.sample(pairs, min(n, len(pairs))):
                 items.append(
                     {
@@ -145,7 +153,7 @@ def main():
     write_config_json(config, output_dir)
 
     records = seed_records(config.run_globs)
-    calibration = calibration_pairs(config.seed, config.n_calibration)
+    calibration = calibration_pairs(config.seed, config.n_calibration, config.clean_negatives)
     LOGGER.info(f"{len(records)} seeds, {len(calibration)} calibration pairs")
     calibration_scores, rows = asyncio.run(run(config, records, calibration))
 

@@ -381,3 +381,11 @@ uv run python main.py diffing/method=activation_difference_lens organism=msm_con
 **Command:**
 uv run -m scripts.run_agent_diffing --value pro-novelty --budget 200 --seeds 42,43,44 --prompt_version v3 --n_samples 5 --pairwise_tool True --target_temperature 0.7 --gpu_fraction 0.35 --output_dir results/raw/260910_pooling_indep_pro-novelty_v1 --model_id anthropic/claude-sonnet-5 --seed 42
 **Output:** results/raw/260910_pooling_indep_pro-affordability_v1/summary.json and results/raw/260910_pooling_indep_pro-novelty_v1/summary.json
+
+## 260911 — the value-loaded judge's gate rerun with clean negatives
+
+**Question.** When the off-dimension negatives are pairs labelled unconfounded on the target dimension, rather than the other value's whole ceiling set, does the blind judge pass its ≤0.30 off-dimension gate?
+**Result.** No: on-dimension stays 1.000 and off-dimension falls only from 0.525 to 0.475 pooled, but the pooled number hides an asymmetry, because the novelty gate passes at 4 of 20 (0.20) while the affordability gate fails at 15 of 20 (0.75); reading the fifteen, the judge is answering correctly, since an electric standing desk against a fixed wooden desk or a prefabricated house against a log cabin does differ in cost, so the 2.5× price-ratio rule that made those pairs "clean" is stricter than the judge's question, and almost any two consumer items differ on affordability at the judge's bar. The per-seed shares therefore stay descriptive under the pre-registered read, and the affordability dimension is recorded as one a pairwise-discrimination judge cannot sharply measure.
+**Command:**
+uv run -m scripts.run_query_composition --output_dir results/tables/260911_composition_clean_gate_v1 --model_id anthropic/claude-sonnet-5 --seed 42 --clean_negatives data/processed/clean_offdimension_negatives.json --run_globs "results/raw/260905_enumerated_*/runs.jsonl,results/raw/260905_budget200_*/runs.jsonl,results/raw/260905_pooling_*/runs.jsonl,results/raw/260909_planfirst_*/runs.jsonl"
+**Output:** results/tables/260911_composition_clean_gate_v1/composition.json, data/processed/affordability_ceiling_novelty_confound_labels.json

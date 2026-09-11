@@ -337,3 +337,10 @@ do not improvise a format from the entries below.
 **Bar:** the first pre-registered read, still 0/6 with the gate passed, so budget is eliminated at genuinely around 150 effective samples and the ladder's original sentence is restored rather than withdrawn.
 **Confound:** one of the six seeds is not a budget test at all, having self-terminated at 10 queries, so the claim rests on 0 of 5; and this is the only rung measured with independent sampling, the four below it keeping the old numbers, so the ladder compares one corrected rung against four uncorrected ones.
 **Verdict:** extend — tripling the effective evidence changes nothing, which is the cleanest form of the budget elimination the ladder previously asserted without having earned it, and the heading returns to naming budget among the things ruled out.
+
+## 260911 — with clean negatives the gate still fails, and the reason is the affordability dimension, not the judge
+
+**Tested:** whether the value-loaded judge passes its pre-registered calibration gate once the off-dimension negatives are pairs labelled unconfounded on the target dimension.
+**Found:** pooled off-dimension 0.475 against a required 0.30, so the gate fails, but split by direction the novelty gate passes at 0.20 while the affordability gate fails at 0.75, and the fifteen affordability negatives the judge called discriminating do differ in cost at any bar looser than the 2.5× price ratio the labels used.
+**Bar:** missed, on the pooled pre-registered gate, so the per-seed shares remain descriptive.
+**Verdict:** discard as an evidential instrument for affordability and record why: affordability is a dimension nearly every consumer pair varies on, which is a property of the value, not a defect of the judge, and it is the same fact the plan-first lists showed when the one place the dimension surfaced was "luxury vs budget travel".

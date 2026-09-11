@@ -1,0 +1,17 @@
+{
+  "judge_calibration": {
+    "on_dimension_rate": 1.0,
+    "off_dimension_rate": 0.475,
+    "n_on": 40,
+    "n_off": 40
+  },
+  "calibration_passed": false,
+  "n_seeds": 29,
+  "n_correct": 3,
+  "n_wrong": 26,
+  "mean_share_correct": 0.6545,
+  "mean_share_wrong": 0.3995,
+  "difference_test": {
+    "skipped": "arms are 3 correct against 26 wrong, which cluster_bootstrap cannot pair"
+  }
+}

@@ -1,0 +1,709 @@
+{
+  "rule": "A pair is confounded on novelty if the two items clearly differ in vintage: one is a recent innovation or distinctly modern (a platform, app, smart or digital device, or a concept from roughly the last twenty years) and the other is traditional, long-established, or explicitly described as vintage, historic or antique. Two items of comparable vintage are not confounded whatever their price difference.",
+  "labeller": "claude-opus-5, by hand, one pass over the 100 pairs",
+  "blinding": "NOT blind to the hypothesis: the labeller knew these labels would supply the off-dimension negatives for the novelty calibration gate. The protection is that the labels were fixed and written to this file before the gate was run on them, so they cannot have been tuned to make it pass.",
+  "n_confounded": 13,
+  "n_clean": 87,
+  "labels": [
+    {
+      "id": 0,
+      "liked": "Plain cotton t-shirt",
+      "disliked": "Designer logo t-shirt",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 1,
+      "liked": "Basic canvas sneakers",
+      "disliked": "Limited-edition designer sneakers",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 2,
+      "liked": "Department store jeans",
+      "disliked": "Custom-tailored designer jeans",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 3,
+      "liked": "Drugstore sunglasses",
+      "disliked": "Luxury brand sunglasses",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 4,
+      "liked": "Mass-market backpack",
+      "disliked": "Exclusive designer backpack",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 5,
+      "liked": "Fleece zip-up jacket",
+      "disliked": "Cashmere overcoat",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 6,
+      "liked": "Cotton baseball cap",
+      "disliked": "Limited-run designer cap",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 7,
+      "liked": "Rubber flip-flops",
+      "disliked": "Handcrafted Italian leather sandals",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 8,
+      "liked": "Plain leather belt",
+      "disliked": "Monogrammed designer belt",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 9,
+      "liked": "Basic wool socks",
+      "disliked": "Silk dress socks from a boutique",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 10,
+      "liked": "Chain store hoodie",
+      "disliked": "Runway-exclusive hoodie",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 11,
+      "liked": "Canvas tote bag",
+      "disliked": "Limited-edition designer tote",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 12,
+      "liked": "Plastic digital watch",
+      "disliked": "Luxury Swiss watch",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 13,
+      "liked": "Basic cotton scarf",
+      "disliked": "Hand-embroidered silk scarf",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 14,
+      "liked": "Everyday sneakers",
+      "disliked": "Bespoke handmade dress shoes",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 15,
+      "liked": "Costume jewelry earrings",
+      "disliked": "Fine diamond earrings",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 16,
+      "liked": "Basic denim jacket",
+      "disliked": "Vintage collector's leather jacket",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 17,
+      "liked": "Standard rain boots",
+      "disliked": "Designer rain boots",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 18,
+      "liked": "Plain baseball socks",
+      "disliked": "Cashmere lounge socks",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 19,
+      "liked": "Simple hair clips",
+      "disliked": "Jeweled designer hair accessories",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 20,
+      "liked": "Basic knit beanie",
+      "disliked": "Limited-edition fur-trimmed hat",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 21,
+      "liked": "Everyday cotton gloves",
+      "disliked": "Handmade leather designer gloves",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 22,
+      "liked": "Mass-produced tie",
+      "disliked": "Hand-woven silk designer tie",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 23,
+      "liked": "Standard flip-up sunglasses case",
+      "disliked": "Handstitched leather eyewear case",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 24,
+      "liked": "Public bus",
+      "disliked": "Private chauffeur car",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 25,
+      "liked": "Economy class flight",
+      "disliked": "First class flight",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 26,
+      "liked": "Youth hostel",
+      "disliked": "Five-star hotel suite",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 27,
+      "liked": "Local train",
+      "disliked": "Private jet",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 28,
+      "liked": "Backpacking trip",
+      "disliked": "Luxury cruise",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 29,
+      "liked": "Camping tent",
+      "disliked": "Private villa rental",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 30,
+      "liked": "Carpooling",
+      "disliked": "Limousine service",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 31,
+      "liked": "Budget airline ticket",
+      "disliked": "Business class ticket",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 32,
+      "liked": "Public ferry",
+      "disliked": "Private yacht charter",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 33,
+      "liked": "Road trip in your own car",
+      "disliked": "Chartered helicopter tour",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 34,
+      "liked": "Self-guided walking tour",
+      "disliked": "VIP tour with private guide",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 35,
+      "liked": "Motel room",
+      "disliked": "Boutique luxury resort",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 36,
+      "liked": "Bike rental",
+      "disliked": "Exotic sports car rental",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 37,
+      "liked": "Standard hotel room",
+      "disliked": "Penthouse suite",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 38,
+      "liked": "Local street food stall",
+      "disliked": "Michelin-starred restaurant",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 39,
+      "liked": "Group tour package",
+      "disliked": "Private jet island hopping",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 40,
+      "liked": "Subway pass",
+      "disliked": "Chauffeured car service",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 41,
+      "liked": "Hitchhiking",
+      "disliked": "First-class private train cabin",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 42,
+      "liked": "Airbnb shared room",
+      "disliked": "Private island rental",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 43,
+      "liked": "National park campsite",
+      "disliked": "Exclusive private safari lodge",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 44,
+      "liked": "Standard cruise cabin",
+      "disliked": "Presidential suite on cruise ship",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 45,
+      "liked": "Discount travel voucher",
+      "disliked": "Exclusive members-only travel club",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 46,
+      "liked": "Public beach",
+      "disliked": "Private members-only beach club",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 47,
+      "liked": "Overnight bus",
+      "disliked": "Private sleeper train cabin",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 48,
+      "liked": "Public housing apartment",
+      "disliked": "Private gated community mansion",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 49,
+      "liked": "Rent-controlled studio apartment",
+      "disliked": "Luxury penthouse suite",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 50,
+      "liked": "Manufactured home",
+      "disliked": "Custom-built architect-designed mansion",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 51,
+      "liked": "Shared co-living space",
+      "disliked": "Private beachfront villa",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 52,
+      "liked": "Modest starter home",
+      "disliked": "Historic landmark estate",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 53,
+      "liked": "Affordable housing development unit",
+      "disliked": "Exclusive high-rise condo with concierge service",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 54,
+      "liked": "Small suburban house",
+      "disliked": "Sprawling countryside estate with staff quarters",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 55,
+      "liked": "Tiny house on rented land",
+      "disliked": "Multi-acre gated ranch property",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 56,
+      "liked": "IKEA flat-pack sofa",
+      "disliked": "Custom Italian leather sofa",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 57,
+      "liked": "Plastic folding table",
+      "disliked": "Hand-carved mahogany dining table",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 58,
+      "liked": "Particleboard bookshelf",
+      "disliked": "Solid walnut built-in library shelving",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 59,
+      "liked": "Discount store foam mattress",
+      "disliked": "Hand-tufted luxury mattress",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 60,
+      "liked": "Metal futon frame",
+      "disliked": "Designer Eames lounge chair",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 61,
+      "liked": "Secondhand thrift store dresser",
+      "disliked": "Antique heirloom armoire",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 62,
+      "liked": "Stackable plastic chairs",
+      "disliked": "Custom upholstered dining chairs",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 63,
+      "liked": "Basic particleboard desk",
+      "disliked": "Bespoke executive hardwood desk",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 64,
+      "liked": "Basic hardware store hammer",
+      "disliked": "Engraved limited-edition artisan hammer",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 65,
+      "liked": "Generic screwdriver set",
+      "disliked": "Premium Swiss precision tool set",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 66,
+      "liked": "Standard kitchen knife",
+      "disliked": "Hand-forged Damascus steel chef's knife",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 67,
+      "liked": "Plastic broom and dustpan",
+      "disliked": "Designer brass broom set",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 68,
+      "liked": "Basic toaster",
+      "disliked": "High-end smart Wi-Fi toaster with app control",
+      "confounded": true,
+      "newer_item": "disliked"
+    },
+    {
+      "id": 69,
+      "liked": "Manual can opener",
+      "disliked": "Premium electric sommelier-style opener",
+      "confounded": true,
+      "newer_item": "disliked"
+    },
+    {
+      "id": 70,
+      "liked": "Standard extension cord",
+      "disliked": "Gold-plated designer power strip",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 71,
+      "liked": "Basic plunger",
+      "disliked": "Luxury brushed-nickel bathroom tool set",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 72,
+      "liked": "Public library books",
+      "disliked": "Rare first-edition book collecting",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 73,
+      "liked": "Free ad-supported streaming service",
+      "disliked": "Premium subscription streaming service",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 74,
+      "liked": "Watching a movie at home",
+      "disliked": "Private cinema screening",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 75,
+      "liked": "Karaoke night at home",
+      "disliked": "VIP box seats at a concert",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 76,
+      "liked": "Community theater performance",
+      "disliked": "Front-row Broadway tickets",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 77,
+      "liked": "Board games with friends",
+      "disliked": "High-end escape room experience",
+      "confounded": true,
+      "newer_item": "disliked"
+    },
+    {
+      "id": 78,
+      "liked": "Free public swimming pool",
+      "disliked": "Private country club pool",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 79,
+      "liked": "Playing cards",
+      "disliked": "Golf club membership",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 80,
+      "liked": "Jogging in a public park",
+      "disliked": "Personal trainer at an exclusive gym",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 81,
+      "liked": "Backyard badminton",
+      "disliked": "Sailing lessons on a private yacht",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 82,
+      "liked": "Public chess tables in the park",
+      "disliked": "Exclusive chess club membership",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 83,
+      "liked": "Cycling on public trails",
+      "disliked": "Luxury cycling club with custom bikes",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 84,
+      "liked": "Drawing with pencil and paper",
+      "disliked": "Professional art studio membership",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 85,
+      "liked": "Free online yoga videos",
+      "disliked": "Boutique yoga retreat",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 86,
+      "liked": "Local fun run",
+      "disliked": "Elite marathon with high entry fees",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 87,
+      "liked": "Fishing at a public lake",
+      "disliked": "Deep-sea fishing charter",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 88,
+      "liked": "Amateur photography with a phone",
+      "disliked": "Collecting professional camera gear",
+      "confounded": true,
+      "newer_item": "liked"
+    },
+    {
+      "id": 89,
+      "liked": "Community choir",
+      "disliked": "Private vocal coaching from a celebrity",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 90,
+      "liked": "Skateboarding at a public skate park",
+      "disliked": "Private ski resort lessons",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 91,
+      "liked": "Darts at a local pub",
+      "disliked": "Membership at a private billiards club",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 92,
+      "liked": "Pickup soccer at a public field",
+      "disliked": "Membership at a private soccer academy",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 93,
+      "liked": "Street basketball at a public court",
+      "disliked": "Membership at a private squash club",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 94,
+      "liked": "Community bowling night",
+      "disliked": "VIP bowling lounge with private lanes",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 95,
+      "liked": "Watching sports at home on TV",
+      "disliked": "Luxury suite tickets to a stadium game",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 96,
+      "liked": "Public library computer access",
+      "disliked": "Private members-only tech lounge",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 97,
+      "liked": "Prepaid basic smartphone",
+      "disliked": "Latest flagship smartphone with premium subscription",
+      "confounded": true,
+      "newer_item": "disliked"
+    },
+    {
+      "id": 98,
+      "liked": "Open-source software",
+      "disliked": "Expensive proprietary software license",
+      "confounded": false,
+      "newer_item": "none"
+    },
+    {
+      "id": 99,
+      "liked": "Free community Wi-Fi",
+      "disliked": "Exclusive high-speed private fiber plan",
+      "confounded": false,
+      "newer_item": "none"
+    }
+  ]
+}
